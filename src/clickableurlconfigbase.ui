@@ -1,0 +1,374 @@
+<!DOCTYPE UI><UI version="3.3" stdsetdef="1">
+<class>KIPMsgClickableURLConfigDialogBase</class>
+<widget class="QDialog">
+    <property name="name">
+        <cstring>KIPMsgClickableURLConfigDialogBase</cstring>
+    </property>
+    <property name="geometry">
+        <rect>
+            <x>0</x>
+            <y>0</y>
+            <width>470</width>
+            <height>380</height>
+        </rect>
+    </property>
+    <property name="sizePolicy">
+        <sizepolicy>
+            <hsizetype>0</hsizetype>
+            <vsizetype>0</vsizetype>
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+        </sizepolicy>
+    </property>
+    <property name="minimumSize">
+        <size>
+            <width>470</width>
+            <height>380</height>
+        </size>
+    </property>
+    <property name="maximumSize">
+        <size>
+            <width>470</width>
+            <height>380</height>
+        </size>
+    </property>
+    <property name="baseSize">
+        <size>
+            <width>470</width>
+            <height>380</height>
+        </size>
+    </property>
+    <property name="caption">
+        <string>KIpMessenger Clickable URL Configuration</string>
+    </property>
+    <property name="icon">
+        <pixmap>image0</pixmap>
+    </property>
+    <property name="modal">
+        <bool>true</bool>
+    </property>
+    <widget class="QGroupBox">
+        <property name="name">
+            <cstring>groupBox20</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>10</x>
+                <y>60</y>
+                <width>450</width>
+                <height>120</height>
+            </rect>
+        </property>
+        <property name="title">
+            <string>Clickable URL - Case of protocol specification</string>
+        </property>
+        <widget class="KListBox">
+            <item>
+                <property name="text">
+                    <string>HTTP</string>
+                </property>
+            </item>
+            <item>
+                <property name="text">
+                    <string>HTTPS</string>
+                </property>
+            </item>
+            <item>
+                <property name="text">
+                    <string>FTP</string>
+                </property>
+            </item>
+            <item>
+                <property name="text">
+                    <string>FILE</string>
+                </property>
+            </item>
+            <item>
+                <property name="text">
+                    <string>TELNET</string>
+                </property>
+            </item>
+            <property name="name">
+                <cstring>m_ProtocolsListbox</cstring>
+            </property>
+            <property name="geometry">
+                <rect>
+                    <x>10</x>
+                    <y>20</y>
+                    <width>112</width>
+                    <height>90</height>
+                </rect>
+            </property>
+        </widget>
+        <widget class="KLineEdit">
+            <property name="name">
+                <cstring>m_ProgramNameEditbox</cstring>
+            </property>
+            <property name="geometry">
+                <rect>
+                    <x>130</x>
+                    <y>60</y>
+                    <width>310</width>
+                    <height>25</height>
+                </rect>
+            </property>
+        </widget>
+        <widget class="KPushButton">
+            <property name="name">
+                <cstring>m_BrowseProgramButton</cstring>
+            </property>
+            <property name="geometry">
+                <rect>
+                    <x>360</x>
+                    <y>20</y>
+                    <width>80</width>
+                    <height>28</height>
+                </rect>
+            </property>
+            <property name="text">
+                <string>&amp;Browse...</string>
+            </property>
+            <property name="accel">
+                <string>Alt+B</string>
+            </property>
+        </widget>
+        <widget class="QLabel">
+            <property name="name">
+                <cstring>textLabel4</cstring>
+            </property>
+            <property name="geometry">
+                <rect>
+                    <x>130</x>
+                    <y>20</y>
+                    <width>230</width>
+                    <height>20</height>
+                </rect>
+            </property>
+            <property name="text">
+                <string>wakeup program</string>
+            </property>
+        </widget>
+    </widget>
+    <widget class="QGroupBox">
+        <property name="name">
+            <cstring>groupBox19</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>10</x>
+                <y>0</y>
+                <width>450</width>
+                <height>58</height>
+            </rect>
+        </property>
+        <property name="title">
+            <string>Clickable URL - Default configuration</string>
+        </property>
+        <hbox>
+            <property name="name">
+                <cstring>unnamed</cstring>
+            </property>
+            <widget class="QCheckBox">
+                <property name="name">
+                    <cstring>m_DefaultBrowserCheckbox</cstring>
+                </property>
+                <property name="text">
+                    <string>&amp;Use default browser(case of no protocol specification)</string>
+                </property>
+                <property name="accel">
+                    <string>Alt+U</string>
+                </property>
+            </widget>
+        </hbox>
+    </widget>
+    <widget class="QGroupBox">
+        <property name="name">
+            <cstring>groupBox4</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>10</x>
+                <y>180</y>
+                <width>450</width>
+                <height>130</height>
+            </rect>
+        </property>
+        <property name="title">
+            <string>Caution</string>
+        </property>
+        <widget class="QLabel">
+            <property name="name">
+                <cstring>textLabel1</cstring>
+            </property>
+            <property name="geometry">
+                <rect>
+                    <x>10</x>
+                    <y>20</y>
+                    <width>430</width>
+                    <height>100</height>
+                </rect>
+            </property>
+            <property name="text">
+                <string>Original IpMessenger for Windows was Clickable URL
+function implemented in DoubleClick.
+ But In KIpMessenger,URL was shown by HTML ancher,
+because it is using KHTML.So that function was
+implemented in Single Click.</string>
+            </property>
+            <property name="alignment">
+                <set>WordBreak|AlignVCenter</set>
+            </property>
+        </widget>
+    </widget>
+    <widget class="QFrame">
+        <property name="name">
+            <cstring>frame5</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>0</x>
+                <y>320</y>
+                <width>470</width>
+                <height>50</height>
+            </rect>
+        </property>
+        <property name="frameShape">
+            <enum>StyledPanel</enum>
+        </property>
+        <property name="frameShadow">
+            <enum>Raised</enum>
+        </property>
+        <property name="lineWidth">
+            <number>0</number>
+        </property>
+        <widget class="KPushButton">
+            <property name="name">
+                <cstring>m_OKButton</cstring>
+            </property>
+            <property name="geometry">
+                <rect>
+                    <x>140</x>
+                    <y>10</y>
+                    <width>80</width>
+                    <height>28</height>
+                </rect>
+            </property>
+            <property name="text">
+                <string>O&amp;K</string>
+            </property>
+            <property name="accel">
+                <string>Alt+K</string>
+            </property>
+        </widget>
+        <widget class="KPushButton">
+            <property name="name">
+                <cstring>m_CancelButton</cstring>
+            </property>
+            <property name="geometry">
+                <rect>
+                    <x>250</x>
+                    <y>10</y>
+                    <width>80</width>
+                    <height>28</height>
+                </rect>
+            </property>
+            <property name="text">
+                <string>Ca&amp;ncel</string>
+            </property>
+            <property name="accel">
+                <string>Alt+N</string>
+            </property>
+        </widget>
+        <widget class="KPushButton">
+            <property name="name">
+                <cstring>m_ApplyButton</cstring>
+            </property>
+            <property name="geometry">
+                <rect>
+                    <x>390</x>
+                    <y>10</y>
+                    <width>70</width>
+                    <height>28</height>
+                </rect>
+            </property>
+            <property name="text">
+                <string>&amp;Apply</string>
+            </property>
+            <property name="accel">
+                <string>Alt+A</string>
+            </property>
+        </widget>
+    </widget>
+</widget>
+<customwidgets>
+</customwidgets>
+<images>
+    <image name="image0">
+        <data format="PNG" length="471">89504e470d0a1a0a0000000d4948445200000020000000200806000000737a7af40000019e494441545885c5964192832010457fa75ce602dc2f37c876188bd16de604783e2f907dcfc24014a169b59cfc8d52f9d0af9b96408ccfaa896f8c3c0b81087c0a2783e822067ffdc6a033e203002e2a170367413475cb713113023f25c5d6550080b049602630285ba579f06999a5470f20049702d4a407d8d10229dc318093a403a075f3d454ca3edb8444c2e27bbf3ee53ce2898a81750369b3d6ec756e3d06512319b422e26af797d6fe78131e3e0999e311579454d95d0031e83bc2aee09b0134d96e09ae06d81a38ce0355214e3d8a35122bb0a7c1cefb335204dfa322402d7bf52959a94803009deb61ae06e3738c4f49bdebe0afc3c21fe77dafa10344efba851ff75905c6e7088324b8009ffac35852ea076600e66a30e245266878f8ac3f8c875f5fbcbea5fe08b0259352e6f3f1f0e3d1bb6e312f8c53ff254716334914f730e3cf8d7bd78130eda46d2d6c6b577ee269618e95c0bb070c0c6eed2d5b89ce75597f6e6c5b9b9dffd55a8a006937cf9fb77b1e620123cc1f9f79080e97b1c179ae6552aac4113130dd88c29e4819f8875757648ba4ebe8bfe80fe6410424335586a80000000049454e44ae426082</data>
+    </image>
+</images>
+<connections>
+    <connection>
+        <sender>m_ApplyButton</sender>
+        <signal>clicked()</signal>
+        <receiver>KIPMsgClickableURLConfigDialogBase</receiver>
+        <slot>slotApplyClicked()</slot>
+    </connection>
+    <connection>
+        <sender>m_BrowseProgramButton</sender>
+        <signal>clicked()</signal>
+        <receiver>KIPMsgClickableURLConfigDialogBase</receiver>
+        <slot>slotBrowseClicked()</slot>
+    </connection>
+    <connection>
+        <sender>m_CancelButton</sender>
+        <signal>clicked()</signal>
+        <receiver>KIPMsgClickableURLConfigDialogBase</receiver>
+        <slot>slotCancelClicked()</slot>
+    </connection>
+    <connection>
+        <sender>m_OKButton</sender>
+        <signal>clicked()</signal>
+        <receiver>KIPMsgClickableURLConfigDialogBase</receiver>
+        <slot>slotOkClicked()</slot>
+    </connection>
+    <connection>
+        <sender>m_ProtocolsListbox</sender>
+        <signal>clicked(QListBoxItem*)</signal>
+        <receiver>KIPMsgClickableURLConfigDialogBase</receiver>
+        <slot>slotProtocolClicked(QListBoxItem*)</slot>
+    </connection>
+    <connection>
+        <sender>m_ProgramNameEditbox</sender>
+        <signal>textChanged(const QString&amp;)</signal>
+        <receiver>KIPMsgClickableURLConfigDialogBase</receiver>
+        <slot>slotProgramNameChanged(const QString&amp;)</slot>
+    </connection>
+</connections>
+<tabstops>
+    <tabstop>m_DefaultBrowserCheckbox</tabstop>
+    <tabstop>m_ProtocolsListbox</tabstop>
+    <tabstop>m_BrowseProgramButton</tabstop>
+    <tabstop>m_ProgramNameEditbox</tabstop>
+    <tabstop>m_OKButton</tabstop>
+    <tabstop>m_CancelButton</tabstop>
+    <tabstop>m_ApplyButton</tabstop>
+</tabstops>
+<slots>
+    <slot>slotBrowseClicked()</slot>
+    <slot>slotOkClicked()</slot>
+    <slot>slotCancelClicked()</slot>
+    <slot>slotApplyClicked()</slot>
+    <slot>slotProtocolClicked(QListBoxItem*)</slot>
+    <slot>slotProgramNameChanged(const QString&amp;)</slot>
+</slots>
+<layoutdefaults spacing="6" margin="11"/>
+<includehints>
+    <includehint>klistbox.h</includehint>
+    <includehint>klineedit.h</includehint>
+    <includehint>kpushbutton.h</includehint>
+    <includehint>kpushbutton.h</includehint>
+    <includehint>kpushbutton.h</includehint>
+    <includehint>kpushbutton.h</includehint>
+</includehints>
+</UI>

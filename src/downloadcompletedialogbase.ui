@@ -1,0 +1,157 @@
+<!DOCTYPE UI><UI version="3.3" stdsetdef="1">
+<class>DownloadCompleteDialogBase</class>
+<widget class="QDialog">
+    <property name="name">
+        <cstring>DownloadCompleteDialogBase</cstring>
+    </property>
+    <property name="geometry">
+        <rect>
+            <x>0</x>
+            <y>0</y>
+            <width>340</width>
+            <height>120</height>
+        </rect>
+    </property>
+    <property name="minimumSize">
+        <size>
+            <width>340</width>
+            <height>120</height>
+        </size>
+    </property>
+    <property name="maximumSize">
+        <size>
+            <width>340</width>
+            <height>120</height>
+        </size>
+    </property>
+    <property name="baseSize">
+        <size>
+            <width>340</width>
+            <height>120</height>
+        </size>
+    </property>
+    <property name="caption">
+        <string>File Download Complete</string>
+    </property>
+    <widget class="KPushButton">
+        <property name="name">
+            <cstring>m_CloseButton</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>250</x>
+                <y>80</y>
+                <width>70</width>
+                <height>28</height>
+            </rect>
+        </property>
+        <property name="text">
+            <string>Close</string>
+        </property>
+        <property name="accel">
+            <string></string>
+        </property>
+    </widget>
+    <widget class="QFrame">
+        <property name="name">
+            <cstring>frame3</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>10</x>
+                <y>10</y>
+                <width>320</width>
+                <height>60</height>
+            </rect>
+        </property>
+        <property name="frameShape">
+            <enum>StyledPanel</enum>
+        </property>
+        <property name="frameShadow">
+            <enum>Sunken</enum>
+        </property>
+        <widget class="QLabel">
+            <property name="name">
+                <cstring>m_DetailLabel1</cstring>
+            </property>
+            <property name="geometry">
+                <rect>
+                    <x>10</x>
+                    <y>10</y>
+                    <width>290</width>
+                    <height>20</height>
+                </rect>
+            </property>
+            <property name="text">
+                <string>Total 0KB (0KB/s)</string>
+            </property>
+            <property name="alignment">
+                <set>AlignCenter</set>
+            </property>
+        </widget>
+        <widget class="QLabel">
+            <property name="name">
+                <cstring>m_DetailLabel2</cstring>
+            </property>
+            <property name="geometry">
+                <rect>
+                    <x>10</x>
+                    <y>30</y>
+                    <width>290</width>
+                    <height>20</height>
+                </rect>
+            </property>
+            <property name="text">
+                <string>95 sec  0 files</string>
+            </property>
+            <property name="alignment">
+                <set>AlignCenter</set>
+            </property>
+        </widget>
+    </widget>
+    <widget class="KPushButton">
+        <property name="name">
+            <cstring>m_OpenAsButton</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>10</x>
+                <y>80</y>
+                <width>220</width>
+                <height>28</height>
+            </rect>
+        </property>
+        <property name="text">
+            <string>Open Folder as &amp;Konqueror</string>
+        </property>
+        <property name="accel">
+            <string>Alt+K</string>
+        </property>
+    </widget>
+</widget>
+<customwidgets>
+</customwidgets>
+<connections>
+    <connection>
+        <sender>m_CloseButton</sender>
+        <signal>clicked()</signal>
+        <receiver>DownloadCompleteDialogBase</receiver>
+        <slot>slotCloseClicked()</slot>
+    </connection>
+    <connection>
+        <sender>m_OpenAsButton</sender>
+        <signal>clicked()</signal>
+        <receiver>DownloadCompleteDialogBase</receiver>
+        <slot>slotOpenAsClicked()</slot>
+    </connection>
+</connections>
+<slots>
+    <slot>slotOpenAsClicked()</slot>
+    <slot>slotCloseClicked()</slot>
+</slots>
+<layoutdefaults spacing="6" margin="11"/>
+<includehints>
+    <includehint>kpushbutton.h</includehint>
+    <includehint>kpushbutton.h</includehint>
+</includehints>
+</UI>

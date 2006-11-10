@@ -1,0 +1,307 @@
+<!DOCTYPE UI><UI version="3.3" stdsetdef="1">
+<class>KIpMessengerAttachedFileDialogBase</class>
+<widget class="QDialog">
+    <property name="name">
+        <cstring>KIpMessengerAttachedFileDialogBase</cstring>
+    </property>
+    <property name="geometry">
+        <rect>
+            <x>0</x>
+            <y>0</y>
+            <width>606</width>
+            <height>325</height>
+        </rect>
+    </property>
+    <property name="caption">
+        <string>KIpMessenger - Attach File List</string>
+    </property>
+    <property name="icon">
+        <pixmap>image0</pixmap>
+    </property>
+    <property name="modal">
+        <bool>true</bool>
+    </property>
+    <vbox>
+        <property name="name">
+            <cstring>unnamed</cstring>
+        </property>
+        <widget class="QGroupBox">
+            <property name="name">
+                <cstring>groupBox2</cstring>
+            </property>
+            <property name="title">
+                <string>Attach files</string>
+            </property>
+            <vbox>
+                <property name="name">
+                    <cstring>unnamed</cstring>
+                </property>
+                <widget class="KListView">
+                    <property name="name">
+                        <cstring>m_AttachFileListView</cstring>
+                    </property>
+                    <property name="selectionMode" stdset="0">
+                        <enum>Extended</enum>
+                    </property>
+                    <property name="allColumnsShowFocus">
+                        <bool>true</bool>
+                    </property>
+                </widget>
+            </vbox>
+        </widget>
+        <widget class="QFrame">
+            <property name="name">
+                <cstring>frame16</cstring>
+            </property>
+            <property name="minimumSize">
+                <size>
+                    <width>0</width>
+                    <height>40</height>
+                </size>
+            </property>
+            <property name="maximumSize">
+                <size>
+                    <width>32767</width>
+                    <height>40</height>
+                </size>
+            </property>
+            <property name="frameShape">
+                <enum>StyledPanel</enum>
+            </property>
+            <property name="frameShadow">
+                <enum>Raised</enum>
+            </property>
+            <property name="lineWidth">
+                <number>0</number>
+            </property>
+            <hbox>
+                <property name="name">
+                    <cstring>unnamed</cstring>
+                </property>
+                <widget class="QFrame">
+                    <property name="name">
+                        <cstring>frame17</cstring>
+                    </property>
+                    <property name="minimumSize">
+                        <size>
+                            <width>320</width>
+                            <height>30</height>
+                        </size>
+                    </property>
+                    <property name="maximumSize">
+                        <size>
+                            <width>320</width>
+                            <height>30</height>
+                        </size>
+                    </property>
+                    <property name="frameShape">
+                        <enum>StyledPanel</enum>
+                    </property>
+                    <property name="frameShadow">
+                        <enum>Raised</enum>
+                    </property>
+                    <property name="lineWidth">
+                        <number>0</number>
+                    </property>
+                    <widget class="KPushButton">
+                        <property name="name">
+                            <cstring>m_DeleteButton</cstring>
+                        </property>
+                        <property name="geometry">
+                            <rect>
+                                <x>240</x>
+                                <y>0</y>
+                                <width>80</width>
+                                <height>28</height>
+                            </rect>
+                        </property>
+                        <property name="text">
+                            <string>Delete</string>
+                        </property>
+                        <property name="accel">
+                            <string></string>
+                        </property>
+                    </widget>
+                    <widget class="KPushButton">
+                        <property name="name">
+                            <cstring>m_AddDirectoriesButton</cstring>
+                        </property>
+                        <property name="geometry">
+                            <rect>
+                                <x>110</x>
+                                <y>0</y>
+                                <width>120</width>
+                                <height>28</height>
+                            </rect>
+                        </property>
+                        <property name="text">
+                            <string>Add Directories</string>
+                        </property>
+                        <property name="accel">
+                            <string></string>
+                        </property>
+                    </widget>
+                    <widget class="KPushButton">
+                        <property name="name">
+                            <cstring>m_AddFilesButton</cstring>
+                        </property>
+                        <property name="geometry">
+                            <rect>
+                                <x>0</x>
+                                <y>0</y>
+                                <width>100</width>
+                                <height>28</height>
+                            </rect>
+                        </property>
+                        <property name="text">
+                            <string>Add Files</string>
+                        </property>
+                        <property name="accel">
+                            <string></string>
+                        </property>
+                    </widget>
+                </widget>
+                <widget class="QFrame">
+                    <property name="name">
+                        <cstring>frame19</cstring>
+                    </property>
+                    <property name="minimumSize">
+                        <size>
+                            <width>60</width>
+                            <height>0</height>
+                        </size>
+                    </property>
+                    <property name="frameShape">
+                        <enum>StyledPanel</enum>
+                    </property>
+                    <property name="frameShadow">
+                        <enum>Raised</enum>
+                    </property>
+                    <property name="lineWidth">
+                        <number>0</number>
+                    </property>
+                </widget>
+                <widget class="QFrame">
+                    <property name="name">
+                        <cstring>frame18</cstring>
+                    </property>
+                    <property name="minimumSize">
+                        <size>
+                            <width>170</width>
+                            <height>30</height>
+                        </size>
+                    </property>
+                    <property name="maximumSize">
+                        <size>
+                            <width>170</width>
+                            <height>30</height>
+                        </size>
+                    </property>
+                    <property name="frameShape">
+                        <enum>StyledPanel</enum>
+                    </property>
+                    <property name="frameShadow">
+                        <enum>Raised</enum>
+                    </property>
+                    <property name="lineWidth">
+                        <number>0</number>
+                    </property>
+                    <widget class="KPushButton">
+                        <property name="name">
+                            <cstring>m_OkButton</cstring>
+                        </property>
+                        <property name="geometry">
+                            <rect>
+                                <x>0</x>
+                                <y>0</y>
+                                <width>80</width>
+                                <height>28</height>
+                            </rect>
+                        </property>
+                        <property name="text">
+                            <string>O&amp;K</string>
+                        </property>
+                        <property name="accel">
+                            <string>Alt+K</string>
+                        </property>
+                    </widget>
+                    <widget class="KPushButton">
+                        <property name="name">
+                            <cstring>m_CancelButton</cstring>
+                        </property>
+                        <property name="geometry">
+                            <rect>
+                                <x>90</x>
+                                <y>0</y>
+                                <width>80</width>
+                                <height>28</height>
+                            </rect>
+                        </property>
+                        <property name="text">
+                            <string>Ca&amp;ncel</string>
+                        </property>
+                        <property name="accel">
+                            <string>Alt+N</string>
+                        </property>
+                    </widget>
+                </widget>
+            </hbox>
+        </widget>
+    </vbox>
+</widget>
+<customwidgets>
+</customwidgets>
+<images>
+    <image name="image0">
+        <data format="PNG" length="823">89504e470d0a1a0a0000000d4948445200000016000000160806000000c4b46c3b000002fe49444154388d9d943f681b6718c67f121a3e818653f170060d3238a02b197c268b4d0b3d37534a2096272b7471a183db4c4e87924207d593ed2d9a92349422155ac59dea4ed6e60ca5d2411bcb811a2b509035145bb4c6f160783a483aeb24db75f3c1cbcbf7bc7feef9de3f1711880920cdd97909872f3d2a2499c4a586ffbff41885089a40fa1b497dd2448f530b02bd91ec9115ba3390b4270728cf832b2572af57b5c481aceebd4c56512e3a3198be7318829cebb072e31316791e60decd9fa84dbdcf2a6fb1c55d0026818b190bad7cb61862a66f2c298184d143aa3246da2a3c94c67b4ed6151837809501ec5a1b8e004ea853c1c9c074eb53d80dbb4d02518e0cfc63c2964360d1668d42186ff5074fb2393b038fceb08f5805a0065026abdcfcb6b486b4860ed62caddc5cd403f2434d6a2edf92329d4b99ac841518abb84af74fc55e37c114c7f2d8d4c225ddb746a4a6bd748ed10e92f66a4c99ec95e733f761555be35343862ae1990f31be488c91caeb59ed3dcf4bbf20a5c20edbe46506622e65ecbdb7a9eae70b52f1b267a4e5b07dfee65dc458bfb9d28dffae4f99f2105c26ab680d7f60bbea4849f8d8875fcff03a0e494492033ea019e0fe407c6f8e87186f7dff58da401ae96f8e1beabac7667039c6957d0ee3d8eb7489a5d919c0c7c5c579e73e7c09fcd5fd7c0c36eedd628e022e2e3e3ed9541d5e004f218ecf3ea33c9b98e6c45bc2c767eec71da26f1b17cbaae065d234ac0ac936a16d6262012c13d8bd4c1a3f1687591bacb3959c33fb811d03d14697a9dfead46aff55df7ac7e0894bc8eeb77cd26d8fc21f7769dcceb16f0c18c3178ec3c9e949e0171deb36c0b55d001abfaff22c655301eedb691a7f8e52da2d0576d7ee94239df0288e3b14efe58903cb4fbf66e3e70dcc518758642fe3a8389feb04756bd86eb7297e57a4d5eafc754cc2608fd88ca646997977267850cf7f677787f51fd603dfe6294494c9e9ab79a7c3a4e507da49382c7fbb8c73ea507a511a1aa9cb4e19881c278ce2a9311ac0180ce9fae96be2bbafa875e7f32a7a0ef817c4a19f17893ed3c70000000049454e44ae426082</data>
+    </image>
+</images>
+<connections>
+    <connection>
+        <sender>m_CancelButton</sender>
+        <signal>clicked()</signal>
+        <receiver>KIpMessengerAttachedFileDialogBase</receiver>
+        <slot>slotCancelClicked()</slot>
+    </connection>
+    <connection>
+        <sender>m_DeleteButton</sender>
+        <signal>clicked()</signal>
+        <receiver>KIpMessengerAttachedFileDialogBase</receiver>
+        <slot>slotDeleteClicked()</slot>
+    </connection>
+    <connection>
+        <sender>m_OkButton</sender>
+        <signal>clicked()</signal>
+        <receiver>KIpMessengerAttachedFileDialogBase</receiver>
+        <slot>slotOkClicked()</slot>
+    </connection>
+    <connection>
+        <sender>m_AddDirectoriesButton</sender>
+        <signal>clicked()</signal>
+        <receiver>KIpMessengerAttachedFileDialogBase</receiver>
+        <slot>slotAddDirectoriesClicked()</slot>
+    </connection>
+    <connection>
+        <sender>m_AddFilesButton</sender>
+        <signal>clicked()</signal>
+        <receiver>KIpMessengerAttachedFileDialogBase</receiver>
+        <slot>slotAddFilesClicked()</slot>
+    </connection>
+</connections>
+<slots>
+    <slot>slotAddFilesClicked()</slot>
+    <slot>slotDeleteClicked()</slot>
+    <slot>slotCancelClicked()</slot>
+    <slot>slotOkClicked()</slot>
+    <slot>slotAddDirectoriesClicked()</slot>
+</slots>
+<layoutdefaults spacing="6" margin="11"/>
+<includehints>
+    <includehint>klistview.h</includehint>
+    <includehint>kpushbutton.h</includehint>
+    <includehint>kpushbutton.h</includehint>
+    <includehint>kpushbutton.h</includehint>
+    <includehint>kpushbutton.h</includehint>
+    <includehint>kpushbutton.h</includehint>
+</includehints>
+</UI>

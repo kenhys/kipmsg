@@ -1,0 +1,661 @@
+<!DOCTYPE UI><UI version="3.3" stdsetdef="1">
+<class>KIpMsgAbsenceModeConfigDialogBase</class>
+<widget class="QDialog">
+    <property name="name">
+        <cstring>KIpMsgAbsenceModeConfigDialogBase</cstring>
+    </property>
+    <property name="geometry">
+        <rect>
+            <x>0</x>
+            <y>0</y>
+            <width>640</width>
+            <height>420</height>
+        </rect>
+    </property>
+    <property name="sizePolicy">
+        <sizepolicy>
+            <hsizetype>0</hsizetype>
+            <vsizetype>0</vsizetype>
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+        </sizepolicy>
+    </property>
+    <property name="minimumSize">
+        <size>
+            <width>640</width>
+            <height>420</height>
+        </size>
+    </property>
+    <property name="maximumSize">
+        <size>
+            <width>640</width>
+            <height>300</height>
+        </size>
+    </property>
+    <property name="baseSize">
+        <size>
+            <width>640</width>
+            <height>300</height>
+        </size>
+    </property>
+    <property name="caption">
+        <string>KIpMessenger - Absence Mode Configuration</string>
+    </property>
+    <property name="icon">
+        <pixmap>image0</pixmap>
+    </property>
+    <widget class="QGroupBox">
+        <property name="name">
+            <cstring>groupBox6</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>10</x>
+                <y>10</y>
+                <width>190</width>
+                <height>280</height>
+            </rect>
+        </property>
+        <property name="title">
+            <string>Absence modes</string>
+        </property>
+        <widget class="KPushButton">
+            <property name="name">
+                <cstring>m_DeleteButton</cstring>
+            </property>
+            <property name="geometry">
+                <rect>
+                    <x>100</x>
+                    <y>240</y>
+                    <width>80</width>
+                    <height>28</height>
+                </rect>
+            </property>
+            <property name="text">
+                <string>&amp;Delete</string>
+            </property>
+            <property name="accel">
+                <string>Alt+D</string>
+            </property>
+        </widget>
+        <widget class="KPushButton">
+            <property name="name">
+                <cstring>m_AddButton</cstring>
+            </property>
+            <property name="geometry">
+                <rect>
+                    <x>10</x>
+                    <y>240</y>
+                    <width>80</width>
+                    <height>28</height>
+                </rect>
+            </property>
+            <property name="text">
+                <string>&amp;Add</string>
+            </property>
+            <property name="accel">
+                <string>Alt+A</string>
+            </property>
+        </widget>
+        <widget class="KListBox">
+            <property name="name">
+                <cstring>m_AbsenceModeListbox</cstring>
+            </property>
+            <property name="geometry">
+                <rect>
+                    <x>10</x>
+                    <y>30</y>
+                    <width>170</width>
+                    <height>200</height>
+                </rect>
+            </property>
+        </widget>
+    </widget>
+    <widget class="QGroupBox">
+        <property name="name">
+            <cstring>groupBox7</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>210</x>
+                <y>10</y>
+                <width>420</width>
+                <height>280</height>
+            </rect>
+        </property>
+        <property name="title">
+            <string>Settings</string>
+        </property>
+        <widget class="KPushButton">
+            <property name="name">
+                <cstring>m_SetButton</cstring>
+            </property>
+            <property name="geometry">
+                <rect>
+                    <x>330</x>
+                    <y>20</y>
+                    <width>80</width>
+                    <height>28</height>
+                </rect>
+            </property>
+            <property name="text">
+                <string>&amp;Set</string>
+            </property>
+            <property name="accel">
+                <string>Alt+S</string>
+            </property>
+        </widget>
+        <widget class="KComboBox">
+            <item>
+                <property name="text">
+                    <string>Latin1</string>
+                </property>
+            </item>
+            <item>
+                <property name="text">
+                    <string>Big5</string>
+                </property>
+            </item>
+            <item>
+                <property name="text">
+                    <string>Big5-HKSCS</string>
+                </property>
+            </item>
+            <item>
+                <property name="text">
+                    <string>eucJP</string>
+                </property>
+            </item>
+            <item>
+                <property name="text">
+                    <string>eucKR</string>
+                </property>
+            </item>
+            <item>
+                <property name="text">
+                    <string>GB2312</string>
+                </property>
+            </item>
+            <item>
+                <property name="text">
+                    <string>GBK</string>
+                </property>
+            </item>
+            <item>
+                <property name="text">
+                    <string>GB18030</string>
+                </property>
+            </item>
+            <item>
+                <property name="text">
+                    <string>JIS7</string>
+                </property>
+            </item>
+            <item>
+                <property name="text">
+                    <string>Shift-JIS</string>
+                </property>
+            </item>
+            <item>
+                <property name="text">
+                    <string>TSCII</string>
+                </property>
+            </item>
+            <item>
+                <property name="text">
+                    <string>utf8</string>
+                </property>
+            </item>
+            <item>
+                <property name="text">
+                    <string>KOI8-R</string>
+                </property>
+            </item>
+            <item>
+                <property name="text">
+                    <string>KOI8-U</string>
+                </property>
+            </item>
+            <item>
+                <property name="text">
+                    <string>ISO8859-1</string>
+                </property>
+            </item>
+            <item>
+                <property name="text">
+                    <string>ISO8859-2</string>
+                </property>
+            </item>
+            <item>
+                <property name="text">
+                    <string>ISO8859-3</string>
+                </property>
+            </item>
+            <item>
+                <property name="text">
+                    <string>ISO8859-4</string>
+                </property>
+            </item>
+            <item>
+                <property name="text">
+                    <string>ISO8859-5</string>
+                </property>
+            </item>
+            <item>
+                <property name="text">
+                    <string>ISO8859-6</string>
+                </property>
+            </item>
+            <item>
+                <property name="text">
+                    <string>ISO8859-7</string>
+                </property>
+            </item>
+            <item>
+                <property name="text">
+                    <string>ISO8859-8</string>
+                </property>
+            </item>
+            <item>
+                <property name="text">
+                    <string>ISO8859-8-i</string>
+                </property>
+            </item>
+            <item>
+                <property name="text">
+                    <string>ISO8859-9</string>
+                </property>
+            </item>
+            <item>
+                <property name="text">
+                    <string>ISO8859-10</string>
+                </property>
+            </item>
+            <item>
+                <property name="text">
+                    <string>ISO8859-13</string>
+                </property>
+            </item>
+            <item>
+                <property name="text">
+                    <string>ISO8859-14</string>
+                </property>
+            </item>
+            <item>
+                <property name="text">
+                    <string>ISO8859-15</string>
+                </property>
+            </item>
+            <item>
+                <property name="text">
+                    <string>IBM 850</string>
+                </property>
+            </item>
+            <item>
+                <property name="text">
+                    <string>IBM 866</string>
+                </property>
+            </item>
+            <item>
+                <property name="text">
+                    <string>CP874</string>
+                </property>
+            </item>
+            <item>
+                <property name="text">
+                    <string>CP1250</string>
+                </property>
+            </item>
+            <item>
+                <property name="text">
+                    <string>CP1251</string>
+                </property>
+            </item>
+            <item>
+                <property name="text">
+                    <string>CP1252</string>
+                </property>
+            </item>
+            <item>
+                <property name="text">
+                    <string>CP1253</string>
+                </property>
+            </item>
+            <item>
+                <property name="text">
+                    <string>CP1254</string>
+                </property>
+            </item>
+            <item>
+                <property name="text">
+                    <string>CP1255</string>
+                </property>
+            </item>
+            <item>
+                <property name="text">
+                    <string>CP1256</string>
+                </property>
+            </item>
+            <item>
+                <property name="text">
+                    <string>CP1257</string>
+                </property>
+            </item>
+            <item>
+                <property name="text">
+                    <string>CP1258</string>
+                </property>
+            </item>
+            <item>
+                <property name="text">
+                    <string>Apple Roman</string>
+                </property>
+            </item>
+            <item>
+                <property name="text">
+                    <string>TIS-620</string>
+                </property>
+            </item>
+            <property name="name">
+                <cstring>m_EncodingCombobox</cstring>
+            </property>
+            <property name="geometry">
+                <rect>
+                    <x>120</x>
+                    <y>50</y>
+                    <width>290</width>
+                    <height>25</height>
+                </rect>
+            </property>
+            <property name="currentItem">
+                <number>9</number>
+            </property>
+        </widget>
+        <widget class="KLineEdit">
+            <property name="name">
+                <cstring>m_TitleEditbox</cstring>
+            </property>
+            <property name="geometry">
+                <rect>
+                    <x>120</x>
+                    <y>20</y>
+                    <width>200</width>
+                    <height>25</height>
+                </rect>
+            </property>
+        </widget>
+        <widget class="QLabel">
+            <property name="name">
+                <cstring>textLabel1_2</cstring>
+            </property>
+            <property name="geometry">
+                <rect>
+                    <x>10</x>
+                    <y>50</y>
+                    <width>110</width>
+                    <height>20</height>
+                </rect>
+            </property>
+            <property name="text">
+                <string>Encoding</string>
+            </property>
+        </widget>
+        <widget class="QLabel">
+            <property name="name">
+                <cstring>textLabel1</cstring>
+            </property>
+            <property name="geometry">
+                <rect>
+                    <x>10</x>
+                    <y>20</y>
+                    <width>110</width>
+                    <height>20</height>
+                </rect>
+            </property>
+            <property name="text">
+                <string>Title</string>
+            </property>
+        </widget>
+        <widget class="KTextEdit">
+            <property name="name">
+                <cstring>m_DescriptionTextbox</cstring>
+            </property>
+            <property name="geometry">
+                <rect>
+                    <x>10</x>
+                    <y>80</y>
+                    <width>400</width>
+                    <height>190</height>
+                </rect>
+            </property>
+        </widget>
+    </widget>
+    <widget class="KPushButton">
+        <property name="name">
+            <cstring>m_CloseButton</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>540</x>
+                <y>380</y>
+                <width>90</width>
+                <height>28</height>
+            </rect>
+        </property>
+        <property name="text">
+            <string>Clos&amp;e</string>
+        </property>
+        <property name="accel">
+            <string>Alt+E</string>
+        </property>
+    </widget>
+    <widget class="KPushButton">
+        <property name="name">
+            <cstring>m_ConfigOnlyButton</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>420</x>
+                <y>380</y>
+                <width>110</width>
+                <height>28</height>
+            </rect>
+        </property>
+        <property name="text">
+            <string>Configure onl&amp;y</string>
+        </property>
+        <property name="accel">
+            <string>Alt+Y</string>
+        </property>
+    </widget>
+    <widget class="KPushButton">
+        <property name="name">
+            <cstring>m_ConfigAndAbsenceModeButton</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>210</x>
+                <y>380</y>
+                <width>200</width>
+                <height>28</height>
+            </rect>
+        </property>
+        <property name="text">
+            <string>Confi&amp;gure and Absence mode</string>
+        </property>
+        <property name="accel">
+            <string>Alt+G</string>
+        </property>
+    </widget>
+    <widget class="QGroupBox">
+        <property name="name">
+            <cstring>groupBox3</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>10</x>
+                <y>290</y>
+                <width>620</width>
+                <height>80</height>
+            </rect>
+        </property>
+        <property name="title">
+            <string>Auto absence mode settings</string>
+        </property>
+        <widget class="QLabel">
+            <property name="name">
+                <cstring>m_AutoAbsenceMinutesLabel</cstring>
+            </property>
+            <property name="geometry">
+                <rect>
+                    <x>10</x>
+                    <y>40</y>
+                    <width>430</width>
+                    <height>20</height>
+                </rect>
+            </property>
+            <property name="text">
+                <string>Auto Absence,some minutes after if no input from mouse.</string>
+            </property>
+        </widget>
+        <widget class="QLabel">
+            <property name="name">
+                <cstring>m_MinutesLabel</cstring>
+            </property>
+            <property name="geometry">
+                <rect>
+                    <x>550</x>
+                    <y>40</y>
+                    <width>61</width>
+                    <height>20</height>
+                </rect>
+            </property>
+            <property name="text">
+                <string>minutes</string>
+            </property>
+        </widget>
+        <widget class="QCheckBox">
+            <property name="name">
+                <cstring>m_AutoAbsenceModeCheckbox</cstring>
+            </property>
+            <property name="geometry">
+                <rect>
+                    <x>10</x>
+                    <y>20</y>
+                    <width>420</width>
+                    <height>23</height>
+                </rect>
+            </property>
+            <property name="text">
+                <string>Au&amp;to absence mode enabled.</string>
+            </property>
+            <property name="accel">
+                <string>Alt+T</string>
+            </property>
+        </widget>
+        <widget class="KIntNumInput">
+            <property name="name">
+                <cstring>m_AutoAbsenceMinutesInputbox</cstring>
+            </property>
+            <property name="geometry">
+                <rect>
+                    <x>440</x>
+                    <y>40</y>
+                    <width>106</width>
+                    <height>27</height>
+                </rect>
+            </property>
+            <property name="minValue">
+                <number>1</number>
+            </property>
+        </widget>
+    </widget>
+</widget>
+<images>
+    <image name="image0">
+        <data format="PNG" length="441">89504e470d0a1a0a0000000d4948445200000020000000200806000000737a7af400000180494441545885c55751ae8320109c6dbc626f833504cfe83bcef403e5558465c5e7eb24861217667658810af15d0ce91751d62210016fd149883c54f2f51d2177f003001ea62802778918da21d7410a36fd92996d730080b248200584145dfa248fd3ec63ec0214728da005bb808e12c8c55d1370136c02e4583c2dd4b22f16a1883279efd7671c278caa081c0bc89ab565ad4bf3112283166085089bd55f9bfbeb4578792724d3165785e66c978044facbd0457e5a8025db33e466016789d3384853c4ad5bb105aa033d0576df616420ef4155402b7bf32ed970e40100c1cfe0b26f35cc3e1ce2d3b882aeedb292c703eb5930fb400070709811c9dd6bac663ffb803c7eebe3a59c0b9efbf86994b404ee1927734fa7668f85c5f8ad8f1f56af6f793cb03a004f5a33997d28665eeabb69dc8d2bbc8fa5147c2017326f09ec9e5a9cd622fa919e6cfe7a0d6c7d99ca0b1a4e38317e38b11bdf72606bf32cf2a7c7094457eb356075e20a08c4afa054cd799f0b117c0097bffd9faa5d47ff056fa0c55d4cfc1322030000000049454e44ae426082</data>
+    </image>
+</images>
+<connections>
+    <connection>
+        <sender>m_AbsenceModeListbox</sender>
+        <signal>clicked(QListBoxItem*)</signal>
+        <receiver>KIpMsgAbsenceModeConfigDialogBase</receiver>
+        <slot>slotAbsenceModeClicked(QListBoxItem*)</slot>
+    </connection>
+    <connection>
+        <sender>m_AddButton</sender>
+        <signal>clicked()</signal>
+        <receiver>KIpMsgAbsenceModeConfigDialogBase</receiver>
+        <slot>slotAddClicked()</slot>
+    </connection>
+    <connection>
+        <sender>m_AutoAbsenceModeCheckbox</sender>
+        <signal>clicked()</signal>
+        <receiver>KIpMsgAbsenceModeConfigDialogBase</receiver>
+        <slot>slotAutoAbsenceClicked()</slot>
+    </connection>
+    <connection>
+        <sender>m_ConfigAndAbsenceModeButton</sender>
+        <signal>clicked()</signal>
+        <receiver>KIpMsgAbsenceModeConfigDialogBase</receiver>
+        <slot>slotConfigAndAbsenceModeClicked()</slot>
+    </connection>
+    <connection>
+        <sender>m_ConfigOnlyButton</sender>
+        <signal>clicked()</signal>
+        <receiver>KIpMsgAbsenceModeConfigDialogBase</receiver>
+        <slot>slotConfigOnlyClicked()</slot>
+    </connection>
+    <connection>
+        <sender>m_DeleteButton</sender>
+        <signal>clicked()</signal>
+        <receiver>KIpMsgAbsenceModeConfigDialogBase</receiver>
+        <slot>slotDeleteClicked()</slot>
+    </connection>
+    <connection>
+        <sender>m_EncodingCombobox</sender>
+        <signal>activated(int)</signal>
+        <receiver>KIpMsgAbsenceModeConfigDialogBase</receiver>
+        <slot>slotEncodingChanged(int)</slot>
+    </connection>
+    <connection>
+        <sender>m_CloseButton</sender>
+        <signal>clicked()</signal>
+        <receiver>KIpMsgAbsenceModeConfigDialogBase</receiver>
+        <slot>slotCancelClicked()</slot>
+    </connection>
+    <connection>
+        <sender>m_SetButton</sender>
+        <signal>clicked()</signal>
+        <receiver>KIpMsgAbsenceModeConfigDialogBase</receiver>
+        <slot>slotSetClicked()</slot>
+    </connection>
+</connections>
+<slots>
+    <slot>slotConfigAndAbsenceModeClicked()</slot>
+    <slot>slotConfigOnlyClicked()</slot>
+    <slot>slotCancelClicked()</slot>
+    <slot>slotSetClicked()</slot>
+    <slot>slotAbsenceModeClicked(QListBoxItem*)</slot>
+    <slot>slotAddClicked()</slot>
+    <slot>slotDeleteClicked()</slot>
+    <slot>slotEncodingChanged(int)</slot>
+    <slot>slotAutoAbsenceClicked()</slot>
+</slots>
+<layoutdefaults spacing="6" margin="11"/>
+<includehints>
+    <includehint>kpushbutton.h</includehint>
+    <includehint>kpushbutton.h</includehint>
+    <includehint>klistbox.h</includehint>
+    <includehint>kpushbutton.h</includehint>
+    <includehint>kcombobox.h</includehint>
+    <includehint>klineedit.h</includehint>
+    <includehint>ktextedit.h</includehint>
+    <includehint>kpushbutton.h</includehint>
+    <includehint>kpushbutton.h</includehint>
+    <includehint>kpushbutton.h</includehint>
+    <includehint>knuminput.h</includehint>
+    <includehint>knuminput.h</includehint>
+</includehints>
+</UI>

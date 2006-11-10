@@ -1,0 +1,4 @@
+File=kipmsgsettings.kcfg
+ClassName=KIpMsgSettings
+Singleton=true
+Mutators=true

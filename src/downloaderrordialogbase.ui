@@ -1,0 +1,154 @@
+<!DOCTYPE UI><UI version="3.3" stdsetdef="1">
+<class>DownloadErrorDialogBase</class>
+<widget class="QDialog">
+    <property name="name">
+        <cstring>DownloadErrorDialogBase</cstring>
+    </property>
+    <property name="geometry">
+        <rect>
+            <x>0</x>
+            <y>0</y>
+            <width>340</width>
+            <height>120</height>
+        </rect>
+    </property>
+    <property name="minimumSize">
+        <size>
+            <width>340</width>
+            <height>120</height>
+        </size>
+    </property>
+    <property name="maximumSize">
+        <size>
+            <width>340</width>
+            <height>120</height>
+        </size>
+    </property>
+    <property name="baseSize">
+        <size>
+            <width>340</width>
+            <height>120</height>
+        </size>
+    </property>
+    <property name="caption">
+        <string>File Download Error</string>
+    </property>
+    <widget class="KPushButton">
+        <property name="name">
+            <cstring>m_CancelButton</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>190</x>
+                <y>80</y>
+                <width>90</width>
+                <height>28</height>
+            </rect>
+        </property>
+        <property name="text">
+            <string>Cancel</string>
+        </property>
+    </widget>
+    <widget class="KPushButton">
+        <property name="name">
+            <cstring>m_RetryButton</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>90</x>
+                <y>80</y>
+                <width>90</width>
+                <height>28</height>
+            </rect>
+        </property>
+        <property name="text">
+            <string>Retr&amp;y</string>
+        </property>
+        <property name="accel">
+            <string>Alt+Y</string>
+        </property>
+    </widget>
+    <widget class="QFrame">
+        <property name="name">
+            <cstring>frame11</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>10</x>
+                <y>10</y>
+                <width>320</width>
+                <height>60</height>
+            </rect>
+        </property>
+        <property name="frameShape">
+            <enum>StyledPanel</enum>
+        </property>
+        <property name="frameShadow">
+            <enum>Sunken</enum>
+        </property>
+        <widget class="QLabel">
+            <property name="name">
+                <cstring>m_DetailLabel1</cstring>
+            </property>
+            <property name="geometry">
+                <rect>
+                    <x>10</x>
+                    <y>10</y>
+                    <width>300</width>
+                    <height>20</height>
+                </rect>
+            </property>
+            <property name="text">
+                <string>Total 0KB (0KB/s)</string>
+            </property>
+            <property name="alignment">
+                <set>AlignCenter</set>
+            </property>
+        </widget>
+        <widget class="QLabel">
+            <property name="name">
+                <cstring>m_DetailLabel2</cstring>
+            </property>
+            <property name="geometry">
+                <rect>
+                    <x>10</x>
+                    <y>30</y>
+                    <width>300</width>
+                    <height>20</height>
+                </rect>
+            </property>
+            <property name="text">
+                <string>95 sec  0 files</string>
+            </property>
+            <property name="alignment">
+                <set>AlignCenter</set>
+            </property>
+        </widget>
+    </widget>
+</widget>
+<customwidgets>
+</customwidgets>
+<connections>
+    <connection>
+        <sender>m_CancelButton</sender>
+        <signal>clicked()</signal>
+        <receiver>DownloadErrorDialogBase</receiver>
+        <slot>slotCancelClicked()</slot>
+    </connection>
+    <connection>
+        <sender>m_RetryButton</sender>
+        <signal>clicked()</signal>
+        <receiver>DownloadErrorDialogBase</receiver>
+        <slot>slotRetryClicked()</slot>
+    </connection>
+</connections>
+<slots>
+    <slot>slotCancelClicked()</slot>
+    <slot>slotRetryClicked()</slot>
+</slots>
+<layoutdefaults spacing="6" margin="11"/>
+<includehints>
+    <includehint>kpushbutton.h</includehint>
+    <includehint>kpushbutton.h</includehint>
+</includehints>
+</UI>

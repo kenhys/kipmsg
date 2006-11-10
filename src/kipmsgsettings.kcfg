@@ -1,0 +1,330 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<!DOCTYPE kcfg SYSTEM "http://www.kde.org/standards/kcfg/1.0/kcfg.dtd">
+<kcfg> <kcfgfile name="kipmsgrc"/>
+  <group name="basic">
+    <entry name="UserName" type="String">
+      <label>Defines user name.</label>
+    </entry>
+    <entry name="GroupName" type="String">
+      <label>Defines group name.</label>
+    </entry>
+    <entry name="ConfirmOpen" type="Bool">
+      <label>Defines confirm message opened.</label>
+      <default>true</default>
+    </entry>
+    <entry name="NoPopup" type="Bool">
+      <label>Defines no popup when message recieved.</label>
+      <default>false</default>
+    </entry>
+    <entry name="NoSound" type="Bool">
+      <label>Defines no sound when message recieved.</label>
+      <default>false</default>
+    </entry>
+    <entry name="SecretDefault" type="Bool">
+      <label>Defines secret default value as true.</label>
+      <default>true</default>
+    </entry>
+    <entry name="QuoteDefault" type="Bool">
+      <label>Defines quote default value as true.</label>
+      <default>true</default>
+    </entry>
+    <entry name="MessageEncoding" type="String">
+      <label>Defines Message Encoding.</label>
+      <default>Shift-JIS</default>
+    </entry>
+    <entry name="LocalFilesystemEncoding" type="String">
+      <label>Defines Local Filesystem Encoding.</label>
+      <default>eucJP</default>
+    </entry>
+    <entry name="BroadcastNetworkAddress" type="StringList">
+      <label>Defines broadcast network ip address.</label>
+    </entry>
+    <entry name="ConnectDialup" type="Bool">
+      <label>Defines connection by dialup.</label>
+      <default>false</default>
+    </entry>
+  </group>
+  <group name="detail">
+    <entry name="IMEAutomaticaly" type="Bool">
+      <label>Defines IME on/off automaticaly.</label>
+      <default>false</default>
+    </entry>
+    <entry name="ConfirmIcon" type="Bool">
+      <label>Defines Send/OpenConfirm window show as icon.</label>
+      <default>false</default>
+    </entry>
+    <entry name="NoHide" type="Bool">
+      <label>Defines No hide recieve window when reply.</label>
+      <default>false</default>
+    </entry>
+    <entry name="HotKey" type="Bool">
+      <label>Defines send/recieve hotkey(Alt+Ctrl+S,R).</label>
+      <default>false</default>
+    </entry>
+    <entry name="FireIntercept" type="Bool">
+      <label>Defines Send/Recieve change Fire/Intercept.</label>
+      <default>false</default>
+    </entry>
+    <entry name="OpenBySingleClick" type="Bool">
+      <label>Defines open send window by single click.</label>
+      <default>false</default>
+    </entry>
+    <entry name="NonePopupOnAbsence" type="Bool">
+      <label>Defines none popup recieve when absence mode.</label>
+      <default>true</default>
+    </entry>
+    <entry name="QuoteChar" type="String">
+      <label>Defines Quote char.</label>
+    </entry>
+    <entry name="RecieveSoundFileName" type="Path">
+      <label>Defines recieve sound file name.</label>
+    </entry>
+    <entry name="IconFileName" type="Path">
+      <label>Defines icon file name.</label>
+    </entry>
+    <entry name="AbsenceIconFileName" type="Path">
+      <label>Defines absence icon file name.</label>
+    </entry>
+  </group>
+  <group name="log">
+    <entry name="Log" type="Bool">
+      <label>Defines record log.</label>
+      <default>false</default>
+    </entry>
+    <entry name="RecordAfterUnlock" type="Bool">
+      <label>Defines record after unlock.</label>
+      <default>false</default>
+    </entry>
+    <entry name="RecordLogin" type="Bool">
+      <label>Defines record login name.</label>
+      <default>false</default>
+    </entry>
+    <entry name="RecordIPAddress" type="Bool">
+      <label>Defines record ip address.</label>
+      <default>false</default>
+    </entry>
+    <entry name="LogFileName" type="Path">
+      <label>Defines log file name.</label>
+      <default>false</default>
+    </entry>
+  </group>
+  <group name="clickablurl">
+    <entry name="UseDefaultBrowser" type="Bool">
+      <label>Defines use default browser.</label>
+      <default>false</default>
+    </entry>
+    <entry name="ExecutePrograms" type="StringList">
+      <label>Defines execute protocols and program names.</label>
+    </entry>
+  </group>
+  <group name="password">
+    <entry name="UnlockPassword" type="Password">
+      <label>Defines unlock password.</label>
+    </entry>
+  </group>
+  <group name="show">
+    <entry name="ShowGroupName" type="Bool">
+      <label>Defines show group name.</label>
+      <default>true</default>
+    </entry>
+    <entry name="ShowHostName" type="Bool">
+      <label>Defines show host name.</label>
+      <default>true</default>
+    </entry>
+    <entry name="ShowIpAddress" type="Bool">
+      <label>Defines show ip address.</label>
+      <default>false</default>
+    </entry>
+    <entry name="ShowLoginName" type="Bool">
+      <label>Defines show login name.</label>
+      <default>false</default>
+    </entry>
+    <entry name="ShowPriority" type="Bool">
+      <label>Defines show priority.</label>
+      <default>false</default>
+    </entry>
+    <entry name="ShowEncoding" type="Bool">
+      <label>Defines show encoding.</label>
+      <default>false</default>
+    </entry>
+    <entry name="SortGroupName" type="Bool">
+      <label>Defines sort group name.</label>
+      <default>true</default>
+    </entry>
+    <entry name="Sort1stGroupingDesc" type="Bool">
+      <label>Defines sort 1st grouping descending.</label>
+      <default>false</default>
+    </entry>
+    <entry name="SortUserName" type="Bool">
+      <label>Defines sort user name.</label>
+      <default>true</default>
+    </entry>
+    <entry name="SortIpAddress" type="Bool">
+      <label>Defines sort ip address.</label>
+      <default>false</default>
+    </entry>
+    <entry name="SortHostName" type="Bool">
+      <label>Defines sort host name.</label>
+      <default>false</default>
+    </entry>
+    <entry name="Sort2ndGroupingDesc" type="Bool">
+      <label>Defines sort 2nd grouping descending.</label>
+      <default>false</default>
+    </entry>
+    <entry name="IgnoreCaseAsSingleByte" type="Bool">
+      <label>Defines ignore case as single byte.</label>
+      <default>false</default>
+    </entry>
+    <entry name="PriorityMultiBytes" type="Bool">
+      <label>Defines priority multibytes character.</label>
+      <default>false</default>
+    </entry>
+    <entry name="UserNameColumnIndex" type="Int">
+      <label>Defines user name column index.</label>
+      <default>0</default>
+    </entry>
+    <entry name="UserNameColumnWidth" type="Int">
+      <label>Defines user name column width.</label>
+      <default>50</default>
+    </entry>
+    <entry name="GroupNameColumnIndex" type="Int">
+      <label>Defines group name column index.</label>
+      <default>1</default>
+    </entry>
+    <entry name="GroupNameColumnWidth" type="Int">
+      <label>Defines group name column width.</label>
+      <default>50</default>
+    </entry>
+    <entry name="HostNameColumnIndex" type="Int">
+      <label>Defines host name column index.</label>
+      <default>2</default>
+    </entry>
+    <entry name="HostNameColumnWidth" type="Int">
+      <label>Defines host name column width.</label>
+      <default>50</default>
+    </entry>
+    <entry name="IpAddressColumnIndex" type="Int">
+      <label>Defines IP address column index.</label>
+      <default>3</default>
+    </entry>
+    <entry name="IpAddressColumnWidth" type="Int">
+      <label>Defines IP address column width.</label>
+      <default>50</default>
+    </entry>
+    <entry name="LoginNameColumnIndex" type="Int">
+      <label>Defines login name column index.</label>
+      <default>4</default>
+    </entry>
+    <entry name="LoginNameColumnWidth" type="Int">
+      <label>Defines login name column width.</label>
+      <default>50</default>
+    </entry>
+    <entry name="PriorityColumnIndex" type="Int">
+      <label>Defines priority column index.</label>
+      <default>5</default>
+    </entry>
+    <entry name="PriorityColumnWidth" type="Int">
+      <label>Defines priority column width.</label>
+      <default>50</default>
+    </entry>
+    <entry name="EncodingColumnIndex" type="Int">
+      <label>Defines encoding column index.</label>
+      <default>6</default>
+    </entry>
+    <entry name="EncodingColumnWidth" type="Int">
+      <label>Defines encoding column width.</label>
+      <default>50</default>
+    </entry>
+    <entry name="SendDialogFixizePosition" type="Bool">
+      <label>Defines send dialog position.</label>
+    </entry>
+    <entry name="SendDialogTop" type="Int">
+      <label>Defines send dialog top.</label>
+    </entry>
+    <entry name="SendDialogLeft" type="Int">
+      <label>Defines send dialog left.</label>
+    </entry>
+    <entry name="SendDialogSaveSize" type="Bool">
+      <label>Defines send dialog size save.</label>
+    </entry>
+    <entry name="SendDialogHeight" type="Int">
+      <label>Defines send dialog height.</label>
+    </entry>
+    <entry name="SendDialogWidth" type="Int">
+      <label>Defines send dialog width.</label>
+    </entry>
+    <entry name="PriorityLevel1" type="StringList">
+      <label>Defines priority level 1 nickname and ipaddress.</label>
+    </entry>
+    <entry name="PriorityLevel2" type="StringList">
+      <label>Defines priority level 2 nickname and ipaddress.</label>
+    </entry>
+    <entry name="PriorityLevel3" type="StringList">
+      <label>Defines priority level 3 nickname and ipaddress.</label>
+    </entry>
+    <entry name="PriorityLevel4" type="StringList">
+      <label>Defines priority level 4 nickname and ipaddress.</label>
+    </entry>
+    <entry name="PriorityDefault" type="StringList">
+      <label>Defines priority default nickname and ipaddress.</label>
+    </entry>
+    <entry name="PriorityHidden" type="StringList">
+      <label>Defines priority hidden nickname and ipaddress.</label>
+    </entry>
+    <entry name="ListFont" type="Font">
+      <label>Defines host listview font.</label>
+    </entry>
+    <entry name="EditFont" type="Font">
+      <label>Defines message edit box font.</label>
+    </entry>
+    <entry name="RecieveDialogFixizePosition" type="Bool">
+      <label>Defines send dialog position.</label>
+    </entry>
+    <entry name="RecieveDialogTop" type="Int">
+      <label>Defines send dialog top.</label>
+    </entry>
+    <entry name="RecieveDialogLeft" type="Int">
+      <label>Defines send dialog left.</label>
+    </entry>
+    <entry name="RecieveDialogSaveSize" type="Bool">
+      <label>Defines send dialog size save.</label>
+    </entry>
+    <entry name="RecieveDialogHeight" type="Int">
+      <label>Defines send dialog height.</label>
+    </entry>
+    <entry name="RecieveDialogWidth" type="Int">
+      <label>Defines send dialog width.</label>
+    </entry>
+  </group>
+  <group name="encoding">
+    <entry name="EncodingSettings" type="StringList">
+      <label>Defines encoding.</label>
+    </entry>
+  </group>
+  <group name="absence">
+    <entry name="AbsenceLastKey" type="Int">
+      <label>Defines absence last key.</label>
+      <default>0</default>
+    </entry>
+    <entry name="AbsenceKeys" type="StringList">
+      <label>Defines absence key.</label>
+    </entry>
+    <entry name="AbsenceTitles" type="StringList">
+      <label>Defines absence title.</label>
+    </entry>
+    <entry name="AbsenceEncodings" type="StringList">
+      <label>Defines absence encoding.</label>
+    </entry>
+    <entry name="AbsenceDetails" type="StringList">
+      <label>Defines absence detail.</label>
+    </entry>
+    <entry name="AutoAbsenceEnabled" type="Bool">
+      <label>Defines enabled auto absence.</label>
+      <default>false</default>
+    </entry>
+    <entry name="AutoAbsenceMinutes" type="Int">
+      <label>Defines auto absence.</label>
+      <default>5</default>
+    </entry>
+  </group>
+</kcfg>

@@ -1,0 +1,1098 @@
+<!DOCTYPE UI><UI version="3.3" stdsetdef="1">
+<class>KIPMsgConfigDialogBase</class>
+<widget class="QDialog">
+    <property name="name">
+        <cstring>KIPMsgConfigDialogBase</cstring>
+    </property>
+    <property name="geometry">
+        <rect>
+            <x>0</x>
+            <y>0</y>
+            <width>470</width>
+            <height>580</height>
+        </rect>
+    </property>
+    <property name="sizePolicy">
+        <sizepolicy>
+            <hsizetype>0</hsizetype>
+            <vsizetype>0</vsizetype>
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+        </sizepolicy>
+    </property>
+    <property name="minimumSize">
+        <size>
+            <width>470</width>
+            <height>580</height>
+        </size>
+    </property>
+    <property name="maximumSize">
+        <size>
+            <width>470</width>
+            <height>580</height>
+        </size>
+    </property>
+    <property name="baseSize">
+        <size>
+            <width>470</width>
+            <height>580</height>
+        </size>
+    </property>
+    <property name="caption">
+        <string>KIpMessenger Configuration</string>
+    </property>
+    <property name="icon">
+        <pixmap>image0</pixmap>
+    </property>
+    <property name="modal">
+        <bool>true</bool>
+    </property>
+    <widget class="QGroupBox">
+        <property name="name">
+            <cstring>groupBox3</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>10</x>
+                <y>80</y>
+                <width>235</width>
+                <height>180</height>
+            </rect>
+        </property>
+        <property name="title">
+            <string>Send/Recieve options</string>
+        </property>
+        <vbox>
+            <property name="name">
+                <cstring>unnamed</cstring>
+            </property>
+            <widget class="QCheckBox">
+                <property name="name">
+                    <cstring>m_ConfirmOpenCheckbox</cstring>
+                </property>
+                <property name="text">
+                    <string>Confirm to &amp;open message</string>
+                </property>
+                <property name="accel">
+                    <string>Alt+O</string>
+                </property>
+            </widget>
+            <widget class="QCheckBox">
+                <property name="name">
+                    <cstring>m_NoPopupCheckbox</cstring>
+                </property>
+                <property name="text">
+                    <string>No pop&amp;up on recieve</string>
+                </property>
+                <property name="accel">
+                    <string>Alt+U</string>
+                </property>
+            </widget>
+            <widget class="QCheckBox">
+                <property name="name">
+                    <cstring>m_NoSoundCheckbox</cstring>
+                </property>
+                <property name="text">
+                    <string>&amp;No sound on recieve</string>
+                </property>
+                <property name="accel">
+                    <string>Alt+N</string>
+                </property>
+            </widget>
+            <widget class="QCheckBox">
+                <property name="name">
+                    <cstring>m_SecretDefaultCheckbox</cstring>
+                </property>
+                <property name="text">
+                    <string>Secret checkbo&amp;x's default as true</string>
+                </property>
+                <property name="accel">
+                    <string>Alt+X</string>
+                </property>
+            </widget>
+            <widget class="QCheckBox">
+                <property name="name">
+                    <cstring>m_QuoteDefaultCheckbox</cstring>
+                </property>
+                <property name="text">
+                    <string>&amp;Quote checkbox's default as true</string>
+                </property>
+                <property name="accel">
+                    <string>Alt+Q</string>
+                </property>
+            </widget>
+        </vbox>
+    </widget>
+    <widget class="QGroupBox">
+        <property name="name">
+            <cstring>groupBox5</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>10</x>
+                <y>360</y>
+                <width>450</width>
+                <height>170</height>
+            </rect>
+        </property>
+        <property name="title">
+            <string>Broadcast configuration without Local Network</string>
+        </property>
+        <widget class="QLabel">
+            <property name="name">
+                <cstring>textLabel2</cstring>
+            </property>
+            <property name="geometry">
+                <rect>
+                    <x>10</x>
+                    <y>30</y>
+                    <width>240</width>
+                    <height>20</height>
+                </rect>
+            </property>
+            <property name="text">
+                <string>ex:192.168.1.255 ( or FQDN)</string>
+            </property>
+        </widget>
+        <widget class="KLineEdit">
+            <property name="name">
+                <cstring>m_IpAddressOrFQDNEditbox</cstring>
+            </property>
+            <property name="geometry">
+                <rect>
+                    <x>10</x>
+                    <y>80</y>
+                    <width>170</width>
+                    <height>25</height>
+                </rect>
+            </property>
+        </widget>
+        <widget class="QCheckBox">
+            <property name="name">
+                <cstring>m_DialupCheckbox</cstring>
+            </property>
+            <property name="geometry">
+                <rect>
+                    <x>10</x>
+                    <y>110</y>
+                    <width>170</width>
+                    <height>23</height>
+                </rect>
+            </property>
+            <property name="text">
+                <string>Connect &amp;to dialup</string>
+            </property>
+            <property name="accel">
+                <string>Alt+T</string>
+            </property>
+        </widget>
+        <widget class="KPushButton">
+            <property name="name">
+                <cstring>m_DeleteFromBroadcastButton</cstring>
+            </property>
+            <property name="geometry">
+                <rect>
+                    <x>190</x>
+                    <y>100</y>
+                    <width>60</width>
+                    <height>28</height>
+                </rect>
+            </property>
+            <property name="text">
+                <string>&lt;&lt;</string>
+            </property>
+        </widget>
+        <widget class="KListBox">
+            <property name="name">
+                <cstring>m_BroadcastListbox</cstring>
+            </property>
+            <property name="geometry">
+                <rect>
+                    <x>260</x>
+                    <y>30</y>
+                    <width>180</width>
+                    <height>130</height>
+                </rect>
+            </property>
+        </widget>
+        <widget class="KPushButton">
+            <property name="name">
+                <cstring>m_AddToBroadcastButton</cstring>
+            </property>
+            <property name="geometry">
+                <rect>
+                    <x>190</x>
+                    <y>60</y>
+                    <width>60</width>
+                    <height>28</height>
+                </rect>
+            </property>
+            <property name="text">
+                <string>&gt;&gt;</string>
+            </property>
+        </widget>
+    </widget>
+    <widget class="QFrame">
+        <property name="name">
+            <cstring>frame3</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>0</x>
+                <y>0</y>
+                <width>470</width>
+                <height>82</height>
+            </rect>
+        </property>
+        <property name="frameShape">
+            <enum>StyledPanel</enum>
+        </property>
+        <property name="frameShadow">
+            <enum>Raised</enum>
+        </property>
+        <property name="lineWidth">
+            <number>0</number>
+        </property>
+        <widget class="QGroupBox">
+            <property name="name">
+                <cstring>groupBox2</cstring>
+            </property>
+            <property name="geometry">
+                <rect>
+                    <x>230</x>
+                    <y>10</y>
+                    <width>230</width>
+                    <height>60</height>
+                </rect>
+            </property>
+            <property name="title">
+                <string>GroupName</string>
+            </property>
+            <vbox>
+                <property name="name">
+                    <cstring>unnamed</cstring>
+                </property>
+                <widget class="KComboBox">
+                    <property name="name">
+                        <cstring>m_GroupNameCombobox</cstring>
+                    </property>
+                    <property name="editable">
+                        <bool>true</bool>
+                    </property>
+                </widget>
+            </vbox>
+        </widget>
+        <widget class="QGroupBox">
+            <property name="name">
+                <cstring>groupBox1</cstring>
+            </property>
+            <property name="geometry">
+                <rect>
+                    <x>10</x>
+                    <y>10</y>
+                    <width>210</width>
+                    <height>60</height>
+                </rect>
+            </property>
+            <property name="title">
+                <string>UserName</string>
+            </property>
+            <hbox>
+                <property name="name">
+                    <cstring>unnamed</cstring>
+                </property>
+                <widget class="KLineEdit">
+                    <property name="name">
+                        <cstring>m_UserNameEditbox</cstring>
+                    </property>
+                </widget>
+            </hbox>
+        </widget>
+    </widget>
+    <widget class="QFrame">
+        <property name="name">
+            <cstring>frame4</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>250</x>
+                <y>80</y>
+                <width>220</width>
+                <height>180</height>
+            </rect>
+        </property>
+        <property name="frameShape">
+            <enum>StyledPanel</enum>
+        </property>
+        <property name="frameShadow">
+            <enum>Raised</enum>
+        </property>
+        <property name="lineWidth">
+            <number>0</number>
+        </property>
+        <widget class="QFrame">
+            <property name="name">
+                <cstring>frame6</cstring>
+            </property>
+            <property name="geometry">
+                <rect>
+                    <x>0</x>
+                    <y>60</y>
+                    <width>210</width>
+                    <height>118</height>
+                </rect>
+            </property>
+            <property name="frameShape">
+                <enum>StyledPanel</enum>
+            </property>
+            <property name="frameShadow">
+                <enum>Raised</enum>
+            </property>
+            <vbox>
+                <property name="name">
+                    <cstring>unnamed</cstring>
+                </property>
+                <widget class="KPushButton">
+                    <property name="name">
+                        <cstring>m_DetailAndLogConfigButton</cstring>
+                    </property>
+                    <property name="text">
+                        <string>Det&amp;ail &amp;&amp; Log setup</string>
+                    </property>
+                    <property name="accel">
+                        <string>Alt+A</string>
+                    </property>
+                </widget>
+                <widget class="KPushButton">
+                    <property name="name">
+                        <cstring>m_ClickableURLConfigButton</cstring>
+                    </property>
+                    <property name="text">
+                        <string>Clicka&amp;ble URL setup</string>
+                    </property>
+                    <property name="accel">
+                        <string>Alt+B</string>
+                    </property>
+                </widget>
+                <widget class="KPushButton">
+                    <property name="name">
+                        <cstring>m_UnlockPasswordConfigButton</cstring>
+                    </property>
+                    <property name="text">
+                        <string>Unlo&amp;ck password setup</string>
+                    </property>
+                    <property name="accel">
+                        <string>Alt+C</string>
+                    </property>
+                </widget>
+            </vbox>
+        </widget>
+        <widget class="QLabel">
+            <property name="name">
+                <cstring>textLabel1</cstring>
+            </property>
+            <property name="geometry">
+                <rect>
+                    <x>0</x>
+                    <y>10</y>
+                    <width>210</width>
+                    <height>50</height>
+                </rect>
+            </property>
+            <property name="frameShape">
+                <enum>LineEditPanel</enum>
+            </property>
+            <property name="frameShadow">
+                <enum>Sunken</enum>
+            </property>
+            <property name="text">
+                <string>Send/Recieve window --&gt; Display &amp; Sort configuration on Right Click</string>
+            </property>
+            <property name="alignment">
+                <set>WordBreak|AlignVCenter</set>
+            </property>
+        </widget>
+    </widget>
+    <widget class="QFrame">
+        <property name="name">
+            <cstring>frame5</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>0</x>
+                <y>530</y>
+                <width>470</width>
+                <height>50</height>
+            </rect>
+        </property>
+        <property name="frameShape">
+            <enum>StyledPanel</enum>
+        </property>
+        <property name="frameShadow">
+            <enum>Raised</enum>
+        </property>
+        <property name="lineWidth">
+            <number>0</number>
+        </property>
+        <widget class="KPushButton">
+            <property name="name">
+                <cstring>m_OKButton</cstring>
+            </property>
+            <property name="geometry">
+                <rect>
+                    <x>140</x>
+                    <y>10</y>
+                    <width>80</width>
+                    <height>28</height>
+                </rect>
+            </property>
+            <property name="text">
+                <string>OK</string>
+            </property>
+        </widget>
+        <widget class="KPushButton">
+            <property name="name">
+                <cstring>m_CancelButton</cstring>
+            </property>
+            <property name="geometry">
+                <rect>
+                    <x>250</x>
+                    <y>10</y>
+                    <width>80</width>
+                    <height>28</height>
+                </rect>
+            </property>
+            <property name="text">
+                <string>Canc&amp;el</string>
+            </property>
+            <property name="accel">
+                <string>Alt+E</string>
+            </property>
+        </widget>
+        <widget class="KPushButton">
+            <property name="name">
+                <cstring>m_ApplyButton</cstring>
+            </property>
+            <property name="geometry">
+                <rect>
+                    <x>390</x>
+                    <y>10</y>
+                    <width>70</width>
+                    <height>28</height>
+                </rect>
+            </property>
+            <property name="text">
+                <string>Appl&amp;y</string>
+            </property>
+            <property name="accel">
+                <string>Alt+Y</string>
+            </property>
+        </widget>
+    </widget>
+    <widget class="QGroupBox">
+        <property name="name">
+            <cstring>groupBox12</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>10</x>
+                <y>260</y>
+                <width>450</width>
+                <height>90</height>
+            </rect>
+        </property>
+        <property name="title">
+            <string>Encodings</string>
+        </property>
+        <widget class="QLabel">
+            <property name="name">
+                <cstring>textLabel2_2</cstring>
+            </property>
+            <property name="geometry">
+                <rect>
+                    <x>11</x>
+                    <y>20</y>
+                    <width>290</width>
+                    <height>25</height>
+                </rect>
+            </property>
+            <property name="text">
+                <string>Message encoding(Default)</string>
+            </property>
+        </widget>
+        <widget class="KComboBox">
+            <item>
+                <property name="text">
+                    <string>Latin1</string>
+                </property>
+            </item>
+            <item>
+                <property name="text">
+                    <string>Big5</string>
+                </property>
+            </item>
+            <item>
+                <property name="text">
+                    <string>Big5-HKSCS</string>
+                </property>
+            </item>
+            <item>
+                <property name="text">
+                    <string>eucJP</string>
+                </property>
+            </item>
+            <item>
+                <property name="text">
+                    <string>eucKR</string>
+                </property>
+            </item>
+            <item>
+                <property name="text">
+                    <string>GB2312</string>
+                </property>
+            </item>
+            <item>
+                <property name="text">
+                    <string>GBK</string>
+                </property>
+            </item>
+            <item>
+                <property name="text">
+                    <string>GB18030</string>
+                </property>
+            </item>
+            <item>
+                <property name="text">
+                    <string>JIS7</string>
+                </property>
+            </item>
+            <item>
+                <property name="text">
+                    <string>Shift-JIS</string>
+                </property>
+            </item>
+            <item>
+                <property name="text">
+                    <string>TSCII</string>
+                </property>
+            </item>
+            <item>
+                <property name="text">
+                    <string>utf8</string>
+                </property>
+            </item>
+            <item>
+                <property name="text">
+                    <string>KOI8-R</string>
+                </property>
+            </item>
+            <item>
+                <property name="text">
+                    <string>KOI8-U</string>
+                </property>
+            </item>
+            <item>
+                <property name="text">
+                    <string>ISO8859-1</string>
+                </property>
+            </item>
+            <item>
+                <property name="text">
+                    <string>ISO8859-2</string>
+                </property>
+            </item>
+            <item>
+                <property name="text">
+                    <string>ISO8859-3</string>
+                </property>
+            </item>
+            <item>
+                <property name="text">
+                    <string>ISO8859-4</string>
+                </property>
+            </item>
+            <item>
+                <property name="text">
+                    <string>ISO8859-5</string>
+                </property>
+            </item>
+            <item>
+                <property name="text">
+                    <string>ISO8859-6</string>
+                </property>
+            </item>
+            <item>
+                <property name="text">
+                    <string>ISO8859-7</string>
+                </property>
+            </item>
+            <item>
+                <property name="text">
+                    <string>ISO8859-8</string>
+                </property>
+            </item>
+            <item>
+                <property name="text">
+                    <string>ISO8859-8-i</string>
+                </property>
+            </item>
+            <item>
+                <property name="text">
+                    <string>ISO8859-9</string>
+                </property>
+            </item>
+            <item>
+                <property name="text">
+                    <string>ISO8859-10</string>
+                </property>
+            </item>
+            <item>
+                <property name="text">
+                    <string>ISO8859-13</string>
+                </property>
+            </item>
+            <item>
+                <property name="text">
+                    <string>ISO8859-14</string>
+                </property>
+            </item>
+            <item>
+                <property name="text">
+                    <string>ISO8859-15</string>
+                </property>
+            </item>
+            <item>
+                <property name="text">
+                    <string>IBM 850</string>
+                </property>
+            </item>
+            <item>
+                <property name="text">
+                    <string>IBM 866</string>
+                </property>
+            </item>
+            <item>
+                <property name="text">
+                    <string>CP874</string>
+                </property>
+            </item>
+            <item>
+                <property name="text">
+                    <string>CP1250</string>
+                </property>
+            </item>
+            <item>
+                <property name="text">
+                    <string>CP1251</string>
+                </property>
+            </item>
+            <item>
+                <property name="text">
+                    <string>CP1252</string>
+                </property>
+            </item>
+            <item>
+                <property name="text">
+                    <string>CP1253</string>
+                </property>
+            </item>
+            <item>
+                <property name="text">
+                    <string>CP1254</string>
+                </property>
+            </item>
+            <item>
+                <property name="text">
+                    <string>CP1255</string>
+                </property>
+            </item>
+            <item>
+                <property name="text">
+                    <string>CP1256</string>
+                </property>
+            </item>
+            <item>
+                <property name="text">
+                    <string>CP1257</string>
+                </property>
+            </item>
+            <item>
+                <property name="text">
+                    <string>CP1258</string>
+                </property>
+            </item>
+            <item>
+                <property name="text">
+                    <string>Apple Roman</string>
+                </property>
+            </item>
+            <item>
+                <property name="text">
+                    <string>TIS-620</string>
+                </property>
+            </item>
+            <property name="name">
+                <cstring>m_MessageEncodingCombobox</cstring>
+            </property>
+            <property name="geometry">
+                <rect>
+                    <x>300</x>
+                    <y>20</y>
+                    <width>140</width>
+                    <height>25</height>
+                </rect>
+            </property>
+            <property name="currentItem">
+                <number>9</number>
+            </property>
+        </widget>
+        <widget class="QLabel">
+            <property name="name">
+                <cstring>textLabel2_2_2</cstring>
+            </property>
+            <property name="geometry">
+                <rect>
+                    <x>10</x>
+                    <y>50</y>
+                    <width>290</width>
+                    <height>25</height>
+                </rect>
+            </property>
+            <property name="text">
+                <string>Local Filesystem encoding</string>
+            </property>
+        </widget>
+        <widget class="KComboBox">
+            <item>
+                <property name="text">
+                    <string>Latin1</string>
+                </property>
+            </item>
+            <item>
+                <property name="text">
+                    <string>Big5</string>
+                </property>
+            </item>
+            <item>
+                <property name="text">
+                    <string>Big5-HKSCS</string>
+                </property>
+            </item>
+            <item>
+                <property name="text">
+                    <string>eucJP</string>
+                </property>
+            </item>
+            <item>
+                <property name="text">
+                    <string>eucKR</string>
+                </property>
+            </item>
+            <item>
+                <property name="text">
+                    <string>GB2312</string>
+                </property>
+            </item>
+            <item>
+                <property name="text">
+                    <string>GBK</string>
+                </property>
+            </item>
+            <item>
+                <property name="text">
+                    <string>GB18030</string>
+                </property>
+            </item>
+            <item>
+                <property name="text">
+                    <string>JIS7</string>
+                </property>
+            </item>
+            <item>
+                <property name="text">
+                    <string>Shift-JIS</string>
+                </property>
+            </item>
+            <item>
+                <property name="text">
+                    <string>TSCII</string>
+                </property>
+            </item>
+            <item>
+                <property name="text">
+                    <string>utf8</string>
+                </property>
+            </item>
+            <item>
+                <property name="text">
+                    <string>KOI8-R</string>
+                </property>
+            </item>
+            <item>
+                <property name="text">
+                    <string>KOI8-U</string>
+                </property>
+            </item>
+            <item>
+                <property name="text">
+                    <string>ISO8859-1</string>
+                </property>
+            </item>
+            <item>
+                <property name="text">
+                    <string>ISO8859-2</string>
+                </property>
+            </item>
+            <item>
+                <property name="text">
+                    <string>ISO8859-3</string>
+                </property>
+            </item>
+            <item>
+                <property name="text">
+                    <string>ISO8859-4</string>
+                </property>
+            </item>
+            <item>
+                <property name="text">
+                    <string>ISO8859-5</string>
+                </property>
+            </item>
+            <item>
+                <property name="text">
+                    <string>ISO8859-6</string>
+                </property>
+            </item>
+            <item>
+                <property name="text">
+                    <string>ISO8859-7</string>
+                </property>
+            </item>
+            <item>
+                <property name="text">
+                    <string>ISO8859-8</string>
+                </property>
+            </item>
+            <item>
+                <property name="text">
+                    <string>ISO8859-8-i</string>
+                </property>
+            </item>
+            <item>
+                <property name="text">
+                    <string>ISO8859-9</string>
+                </property>
+            </item>
+            <item>
+                <property name="text">
+                    <string>ISO8859-10</string>
+                </property>
+            </item>
+            <item>
+                <property name="text">
+                    <string>ISO8859-13</string>
+                </property>
+            </item>
+            <item>
+                <property name="text">
+                    <string>ISO8859-14</string>
+                </property>
+            </item>
+            <item>
+                <property name="text">
+                    <string>ISO8859-15</string>
+                </property>
+            </item>
+            <item>
+                <property name="text">
+                    <string>IBM 850</string>
+                </property>
+            </item>
+            <item>
+                <property name="text">
+                    <string>IBM 866</string>
+                </property>
+            </item>
+            <item>
+                <property name="text">
+                    <string>CP874</string>
+                </property>
+            </item>
+            <item>
+                <property name="text">
+                    <string>CP1250</string>
+                </property>
+            </item>
+            <item>
+                <property name="text">
+                    <string>CP1251</string>
+                </property>
+            </item>
+            <item>
+                <property name="text">
+                    <string>CP1252</string>
+                </property>
+            </item>
+            <item>
+                <property name="text">
+                    <string>CP1253</string>
+                </property>
+            </item>
+            <item>
+                <property name="text">
+                    <string>CP1254</string>
+                </property>
+            </item>
+            <item>
+                <property name="text">
+                    <string>CP1255</string>
+                </property>
+            </item>
+            <item>
+                <property name="text">
+                    <string>CP1256</string>
+                </property>
+            </item>
+            <item>
+                <property name="text">
+                    <string>CP1257</string>
+                </property>
+            </item>
+            <item>
+                <property name="text">
+                    <string>CP1258</string>
+                </property>
+            </item>
+            <item>
+                <property name="text">
+                    <string>Apple Roman</string>
+                </property>
+            </item>
+            <item>
+                <property name="text">
+                    <string>TIS-620</string>
+                </property>
+            </item>
+            <property name="name">
+                <cstring>m_LocalFilesystemEncodingCombobox</cstring>
+            </property>
+            <property name="geometry">
+                <rect>
+                    <x>299</x>
+                    <y>50</y>
+                    <width>140</width>
+                    <height>25</height>
+                </rect>
+            </property>
+            <property name="currentItem">
+                <number>3</number>
+            </property>
+        </widget>
+    </widget>
+</widget>
+<customwidgets>
+</customwidgets>
+<images>
+    <image name="image0">
+        <data format="PNG" length="472">89504e470d0a1a0a0000000d4948445200000020000000200806000000737a7af40000019f494441545885c596e19183201085df662c202dd0577a4803c7399c3690ab01ebb28574b0f7c34014615975bcbc3fcae4c17ebbac04627c564d7c63e4590844e0533819441731f8eb37069d111f007051b918380ba2a95b8e8b9910f82929b6ae0200844d02338141d92acd834fcb2c3d7a0021b814a0263dc08e1648e18e019c241d00ad9ba7a652f6d926241216dffbf529e7114f540cac1b489bb566af73eb31881ac9a0151157bbbfb4f6c79bf0f049c81c8fb8a2a4caee028841df117605df0ca0c9764b7035c0d6c0711ea80a71ea51ac9158813d0d76de9f9122f81e15016ad9ab4fc94a451a00e85c0f7335189f637c4aea5d077f1d16fe38ef7b0d1d207ad72dfcb8cf2a303e471824c105f8d41fc692523f3003305783112f3241c3c367fd613cfcfae2f52df547802d9994329f8f871f8fde758b79619cfa2f39b29849a2b887197f6edcbb0e8469276d6b615bbbf2134f0b73ac04de3d6060706b6fd94a74aecbfa7363dbdaecfcafd6520448bb79febcddf3100b1861fef8cc4370b88c0dce732d9352258e8881e94614f644cac03fbcba225b245d47ff457fde10047420e987990000000049454e44ae426082</data>
+    </image>
+</images>
+<connections>
+    <connection>
+        <sender>m_AddToBroadcastButton</sender>
+        <signal>clicked()</signal>
+        <receiver>KIPMsgConfigDialogBase</receiver>
+        <slot>slotAddBroadcastAddressClicked()</slot>
+    </connection>
+    <connection>
+        <sender>m_DeleteFromBroadcastButton</sender>
+        <signal>clicked()</signal>
+        <receiver>KIPMsgConfigDialogBase</receiver>
+        <slot>slotDeleteBroadcastAddressClicked()</slot>
+    </connection>
+    <connection>
+        <sender>m_ApplyButton</sender>
+        <signal>clicked()</signal>
+        <receiver>KIPMsgConfigDialogBase</receiver>
+        <slot>slotApplyClicked()</slot>
+    </connection>
+    <connection>
+        <sender>m_CancelButton</sender>
+        <signal>clicked()</signal>
+        <receiver>KIPMsgConfigDialogBase</receiver>
+        <slot>slotCancelClicked()</slot>
+    </connection>
+    <connection>
+        <sender>m_OKButton</sender>
+        <signal>clicked()</signal>
+        <receiver>KIPMsgConfigDialogBase</receiver>
+        <slot>slotOkClicked()</slot>
+    </connection>
+    <connection>
+        <sender>m_DetailAndLogConfigButton</sender>
+        <signal>clicked()</signal>
+        <receiver>KIPMsgConfigDialogBase</receiver>
+        <slot>slotDetailAndLogSetupClicked()</slot>
+    </connection>
+    <connection>
+        <sender>m_ClickableURLConfigButton</sender>
+        <signal>clicked()</signal>
+        <receiver>KIPMsgConfigDialogBase</receiver>
+        <slot>slotClickableUrlClicked()</slot>
+    </connection>
+    <connection>
+        <sender>m_UnlockPasswordConfigButton</sender>
+        <signal>clicked()</signal>
+        <receiver>KIPMsgConfigDialogBase</receiver>
+        <slot>slotUnlockPasswordSetup()</slot>
+    </connection>
+</connections>
+<tabstops>
+    <tabstop>m_UserNameEditbox</tabstop>
+    <tabstop>m_GroupNameCombobox</tabstop>
+    <tabstop>m_ConfirmOpenCheckbox</tabstop>
+    <tabstop>m_NoPopupCheckbox</tabstop>
+    <tabstop>m_NoSoundCheckbox</tabstop>
+    <tabstop>m_SecretDefaultCheckbox</tabstop>
+    <tabstop>m_QuoteDefaultCheckbox</tabstop>
+    <tabstop>m_DetailAndLogConfigButton</tabstop>
+    <tabstop>m_ClickableURLConfigButton</tabstop>
+    <tabstop>m_UnlockPasswordConfigButton</tabstop>
+    <tabstop>m_IpAddressOrFQDNEditbox</tabstop>
+    <tabstop>m_DialupCheckbox</tabstop>
+    <tabstop>m_AddToBroadcastButton</tabstop>
+    <tabstop>m_DeleteFromBroadcastButton</tabstop>
+    <tabstop>m_BroadcastListbox</tabstop>
+    <tabstop>m_OKButton</tabstop>
+    <tabstop>m_CancelButton</tabstop>
+    <tabstop>m_ApplyButton</tabstop>
+</tabstops>
+<slots>
+    <slot>slotDetailAndLogSetupClicked()</slot>
+    <slot>slotClickableUrlClicked()</slot>
+    <slot>slotUnlockPasswordSetup()</slot>
+    <slot>slotAddBroadcastAddressClicked()</slot>
+    <slot>slotDeleteBroadcastAddressClicked()</slot>
+    <slot>slotOkClicked()</slot>
+    <slot>slotCancelClicked()</slot>
+    <slot>slotApplyClicked()</slot>
+</slots>
+<layoutdefaults spacing="6" margin="11"/>
+<includehints>
+    <includehint>klineedit.h</includehint>
+    <includehint>kpushbutton.h</includehint>
+    <includehint>klistbox.h</includehint>
+    <includehint>kpushbutton.h</includehint>
+    <includehint>kcombobox.h</includehint>
+    <includehint>klineedit.h</includehint>
+    <includehint>klineedit.h</includehint>
+    <includehint>kpushbutton.h</includehint>
+    <includehint>kpushbutton.h</includehint>
+    <includehint>kpushbutton.h</includehint>
+    <includehint>kpushbutton.h</includehint>
+    <includehint>kpushbutton.h</includehint>
+    <includehint>kpushbutton.h</includehint>
+    <includehint>kcombobox.h</includehint>
+    <includehint>kcombobox.h</includehint>
+</includehints>
+</UI>
