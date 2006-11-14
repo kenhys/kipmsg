@@ -1899,7 +1899,7 @@ fi
 
 # Define the identity of the package.
  PACKAGE=kipmsg
- VERSION=0.1
+ VERSION=0.1.0
 
 
 cat >>confdefs.h <<_ACEOF
@@ -31145,6 +31145,8 @@ done
 
           ac_config_files="$ac_config_files doc/en/Makefile"
 
+          ac_config_files="$ac_config_files icons/Makefile"
+
           ac_config_files="$ac_config_files po/Makefile"
 
           ac_config_files="$ac_config_files po/ja/Makefile"
@@ -31703,6 +31705,7 @@ do
   "Makefile" ) CONFIG_FILES="$CONFIG_FILES Makefile" ;;
   "doc/Makefile" ) CONFIG_FILES="$CONFIG_FILES doc/Makefile" ;;
   "doc/en/Makefile" ) CONFIG_FILES="$CONFIG_FILES doc/en/Makefile" ;;
+  "icons/Makefile" ) CONFIG_FILES="$CONFIG_FILES icons/Makefile" ;;
   "po/Makefile" ) CONFIG_FILES="$CONFIG_FILES po/Makefile" ;;
   "po/ja/Makefile" ) CONFIG_FILES="$CONFIG_FILES po/ja/Makefile" ;;
   "src/Makefile" ) CONFIG_FILES="$CONFIG_FILES src/Makefile" ;;
