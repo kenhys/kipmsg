@@ -1,0 +1,16 @@
+Begin3
+Title:          kipmsg -- IpMessenger on KDE
+Version:        0.1
+Entered-date:   
+Description:    
+Keywords:       KDE Qt
+Author:         仁木 邦信 <nikikuni@yahoo.co.jp>
+Maintained-by:  仁木 邦信 <nikikuni@yahoo.co.jp>
+Home-page:      
+Alternate-site: 
+Primary-site:   ftp://ftp.kde.org/pub/kde/unstable/apps/utils
+                xxxxxx  kipmsg-0.1.tar.gz
+                xxx     kipmsg-0.1.lsm
+Platform:       Linux. Needs KDE
+Copying-policy: GPL
+End
