@@ -404,7 +404,7 @@ void SendDialog::slotMessageSendClicked()
 		QTextCodec *codec = QTextCodec::codecForName( host->EncodingName().c_str() );
 		string msg = codec->fromUnicode( m_MessageEditbox->text() ).data();
 		KIpMessengerLogger::GetInstance()->PutSentMessage( 
-			agent->SendMsg( m_LockCheckbox->isChecked(), targets.size(), *host, msg, m_SecretCheckbox->isChecked(), files ) );
+			agent->SendMsg( *host, msg, m_SecretCheckbox->isChecked(), files, m_LockCheckbox->isChecked(), targets.size() ) );
 		QString ip = codec->toUnicode( host->IpAddress().c_str() );
 		QString login = codec->toUnicode( host->UserName().c_str() );
 		for( QStringList::iterator ite = encodings.begin(); ite != encodings.end(); ite++ ){
