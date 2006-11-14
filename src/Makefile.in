@@ -727,10 +727,7 @@ info: info-am
 
 info-am:
 
-#>- install-data-am: install-kde_kcfgDATA install-shelldesktopDATA \
-#>- 	install-shellrcDATA
-#>+ 2
-install-data-am: install-kde-icons  install-kde_kcfgDATA install-shelldesktopDATA \
+install-data-am: install-kde_kcfgDATA install-shelldesktopDATA \
 	install-shellrcDATA
 
 install-exec-am: install-binPROGRAMS
@@ -750,11 +747,7 @@ mostlyclean: mostlyclean-am
 mostlyclean-am: mostlyclean-compile mostlyclean-generic \
 	mostlyclean-libtool
 
-#>- uninstall-am: uninstall-binPROGRAMS uninstall-info-am \
-#>- 	uninstall-kde_kcfgDATA uninstall-shelldesktopDATA \
-#>- 	uninstall-shellrcDATA
-#>+ 3
-uninstall-am: uninstall-kde-icons  uninstall-binPROGRAMS uninstall-info-am \
+uninstall-am: uninstall-binPROGRAMS uninstall-info-am \
 	uninstall-kde_kcfgDATA uninstall-shelldesktopDATA \
 	uninstall-shellrcDATA
 
@@ -911,7 +904,7 @@ clean-metasources:
 	-rm -f  downloadcompletedialog.moc senddialog.moc unlockpasswordconfig.moc downloadmonitor.moc kipmsgwidget.moc clickableurlconfig.moc passworddialog.moc about.moc openconfirm.moc absenceconfig.moc attachedfiledialog.moc kipmsgconfig.moc detailandlogconfig.moc downloaderrordialog.moc encodingconfig.moc showconfig.moc searchbox.moc recievedialog.moc
 
 #>+ 2
-KDE_DIST=unlockpasswordconfigbase.h aboutbase.h kipmsg downloaderrordialogbase.ui downloadcompletedialogbase.ui passworddialogbase.h kipmsgwidgetbase.ui absenceconfigbase.ui unlockpasswordconfigbase.ui hi22-app-kipmsg_absence.png detailandlogconfigbase.h absenceconfigbase.h absence.ico kipmsg.lsm kipmsgsettings.kcfgc hi22-action-kipmsg_download.png aboutbase.ui encodingconfigbase.ui detailandlogconfigbase.ui encodingconfigbase.h senddialogbase.h kipmsgconfigbase.h recievedialogbase.h kipmsgsettings.kcfg clickableurlconfigbase.ui hi32-app-kipmsg.png recievedialogbase.ui hi48-app-kipmsg.png downloaderrordialogbase.h hi22-app-kipmsg.png clickableurlconfigbase.h hi16-app-kipmsg.png kipmsg.desktop downloadcompletedialogbase.h showconfigbase.h openconfirmbase.ui kipmsgui.rc hi22-action-kipmsg_about.png showconfigbase.ui openconfirmbase.h senddialogbase.ui searchboxbase.h attachedfiledialogbase.h kipmsgwidget.h kipmsgwidgetbase.h hi64-app-kipmsg.png passworddialogbase.ui downloadmonitorbase.h attachedfiledialogbase.ui kipmsgsettings.h kipmsgconfigbase.ui downloadmonitorbase.ui searchboxbase.ui 
+KDE_DIST=downloaderrordialogbase.ui downloadcompletedialogbase.ui kipmsgwidgetbase.ui absenceconfigbase.ui unlockpasswordconfigbase.ui absence.ico kipmsg.lsm kipmsgsettings.kcfgc aboutbase.ui encodingconfigbase.ui detailandlogconfigbase.ui kipmsgsettings.kcfg clickableurlconfigbase.ui recievedialogbase.ui kipmsg.desktop openconfirmbase.ui kipmsgui.rc showconfigbase.ui senddialogbase.ui kipmsgwidget.h passworddialogbase.ui attachedfiledialogbase.ui kipmsgconfigbase.ui downloadmonitorbase.ui searchboxbase.ui 
 
 #>+ 21
 clean-ui:
@@ -943,33 +936,6 @@ clean-kcfg:
 #>+ 2
 docs-am:
 
-#>+ 26
-install-kde-icons:
-	$(mkinstalldirs) $(DESTDIR)$(kde_icondir)/hicolor/16x16/apps
-	$(INSTALL_DATA) $(srcdir)/hi16-app-kipmsg.png $(DESTDIR)$(kde_icondir)/hicolor/16x16/apps/kipmsg.png
-	$(mkinstalldirs) $(DESTDIR)$(kde_icondir)/hicolor/32x32/apps
-	$(INSTALL_DATA) $(srcdir)/hi32-app-kipmsg.png $(DESTDIR)$(kde_icondir)/hicolor/32x32/apps/kipmsg.png
-	$(mkinstalldirs) $(DESTDIR)$(kde_icondir)/hicolor/22x22/apps
-	$(INSTALL_DATA) $(srcdir)/hi22-app-kipmsg.png $(DESTDIR)$(kde_icondir)/hicolor/22x22/apps/kipmsg.png
-	$(mkinstalldirs) $(DESTDIR)$(kde_icondir)/hicolor/64x64/apps
-	$(INSTALL_DATA) $(srcdir)/hi64-app-kipmsg.png $(DESTDIR)$(kde_icondir)/hicolor/64x64/apps/kipmsg.png
-	$(mkinstalldirs) $(DESTDIR)$(kde_icondir)/hicolor/48x48/apps
-	$(INSTALL_DATA) $(srcdir)/hi48-app-kipmsg.png $(DESTDIR)$(kde_icondir)/hicolor/48x48/apps/kipmsg.png
-	$(mkinstalldirs) $(DESTDIR)$(kde_icondir)/hicolor/22x22/actions
-	$(INSTALL_DATA) $(srcdir)/hi22-action-kipmsg_download.png $(DESTDIR)$(kde_icondir)/hicolor/22x22/actions/kipmsg_download.png
-	$(INSTALL_DATA) $(srcdir)/hi22-app-kipmsg_absence.png $(DESTDIR)$(kde_icondir)/hicolor/22x22/apps/kipmsg_absence.png
-	$(INSTALL_DATA) $(srcdir)/hi22-action-kipmsg_about.png $(DESTDIR)$(kde_icondir)/hicolor/22x22/actions/kipmsg_about.png
-
-uninstall-kde-icons:
-	-rm -f $(DESTDIR)$(kde_icondir)/hicolor/16x16/apps/kipmsg.png
-	-rm -f $(DESTDIR)$(kde_icondir)/hicolor/32x32/apps/kipmsg.png
-	-rm -f $(DESTDIR)$(kde_icondir)/hicolor/22x22/apps/kipmsg.png
-	-rm -f $(DESTDIR)$(kde_icondir)/hicolor/64x64/apps/kipmsg.png
-	-rm -f $(DESTDIR)$(kde_icondir)/hicolor/48x48/apps/kipmsg.png
-	-rm -f $(DESTDIR)$(kde_icondir)/hicolor/22x22/actions/kipmsg_download.png
-	-rm -f $(DESTDIR)$(kde_icondir)/hicolor/22x22/apps/kipmsg_absence.png
-	-rm -f $(DESTDIR)$(kde_icondir)/hicolor/22x22/actions/kipmsg_about.png
-
 #>+ 6
 force-reedit:
 		cd $(top_srcdir) && \
@@ -1000,7 +966,7 @@ bcheck-am:
 
 
 #>+ 11
-kipmsg.all_cpp.cpp: $(srcdir)/Makefile.in $(srcdir)/main.cpp $(srcdir)/kipmsgwidget.cpp $(srcdir)/recievedialog.cpp $(srcdir)/senddialog.cpp $(srcdir)/kipmsgconfig.cpp $(srcdir)/detailandlogconfig.cpp $(srcdir)/clickableurlconfig.cpp $(srcdir)/unlockpasswordconfig.cpp $(srcdir)/showconfig.cpp $(srcdir)/searchbox.cpp $(srcdir)/about.cpp $(srcdir)/downloadmonitor.cpp $(srcdir)/absenceconfig.cpp $(srcdir)/encodingconfig.cpp $(srcdir)/openconfirm.cpp $(srcdir)/passworddialog.cpp $(srcdir)/attachedfiledialog.cpp $(srcdir)/downloaderrordialog.cpp $(srcdir)/kipmsglogger.cpp $(srcdir)/downloadcompletedialog.cpp $(srcdir)/kipmsgwidgetbase.cpp $(srcdir)/recievedialogbase.cpp $(srcdir)/senddialogbase.cpp $(srcdir)/kipmsgconfigbase.cpp $(srcdir)/detailandlogconfigbase.cpp $(srcdir)/clickableurlconfigbase.cpp $(srcdir)/unlockpasswordconfigbase.cpp $(srcdir)/showconfigbase.cpp $(srcdir)/searchboxbase.cpp $(srcdir)/aboutbase.cpp $(srcdir)/downloadmonitorbase.cpp $(srcdir)/absenceconfigbase.cpp $(srcdir)/encodingconfigbase.cpp $(srcdir)/openconfirmbase.cpp $(srcdir)/passworddialogbase.cpp $(srcdir)/attachedfiledialogbase.cpp $(srcdir)/downloaderrordialogbase.cpp $(srcdir)/downloadcompletedialogbase.cpp $(srcdir)/kipmsgsettings.cpp  unlockpasswordconfig.moc senddialog.moc downloadcompletedialog.moc downloaderrordialogbase.moc unlockpasswordconfigbase.moc recievedialogbase.moc clickableurlconfig.moc about.moc passworddialog.moc openconfirm.moc attachedfiledialog.moc encodingconfigbase.moc kipmsgconfig.moc kipmsgwidgetbase.moc detailandlogconfig.moc showconfig.moc aboutbase.moc kipmsgconfigbase.moc recievedialog.moc detailandlogconfigbase.moc downloadmonitorbase.moc downloadcompletedialogbase.moc downloadmonitor.moc kipmsgwidget.moc passworddialogbase.moc showconfigbase.moc searchboxbase.moc absenceconfigbase.moc attachedfiledialogbase.moc absenceconfig.moc openconfirmbase.moc clickableurlconfigbase.moc downloaderrordialog.moc encodingconfig.moc searchbox.moc senddialogbase.moc
+kipmsg.all_cpp.cpp: $(srcdir)/Makefile.in $(srcdir)/main.cpp $(srcdir)/kipmsgwidget.cpp $(srcdir)/recievedialog.cpp $(srcdir)/senddialog.cpp $(srcdir)/kipmsgconfig.cpp $(srcdir)/detailandlogconfig.cpp $(srcdir)/clickableurlconfig.cpp $(srcdir)/unlockpasswordconfig.cpp $(srcdir)/showconfig.cpp $(srcdir)/searchbox.cpp $(srcdir)/about.cpp $(srcdir)/downloadmonitor.cpp $(srcdir)/absenceconfig.cpp $(srcdir)/encodingconfig.cpp $(srcdir)/openconfirm.cpp $(srcdir)/passworddialog.cpp $(srcdir)/attachedfiledialog.cpp $(srcdir)/downloaderrordialog.cpp $(srcdir)/kipmsglogger.cpp $(srcdir)/downloadcompletedialog.cpp kipmsgwidgetbase.cpp recievedialogbase.cpp senddialogbase.cpp kipmsgconfigbase.cpp detailandlogconfigbase.cpp clickableurlconfigbase.cpp unlockpasswordconfigbase.cpp showconfigbase.cpp searchboxbase.cpp aboutbase.cpp downloadmonitorbase.cpp absenceconfigbase.cpp encodingconfigbase.cpp openconfirmbase.cpp passworddialogbase.cpp attachedfiledialogbase.cpp downloaderrordialogbase.cpp downloadcompletedialogbase.cpp kipmsgsettings.cpp  unlockpasswordconfig.moc senddialog.moc downloadcompletedialog.moc downloaderrordialogbase.moc unlockpasswordconfigbase.moc recievedialogbase.moc clickableurlconfig.moc about.moc passworddialog.moc openconfirm.moc attachedfiledialog.moc encodingconfigbase.moc kipmsgconfig.moc kipmsgwidgetbase.moc detailandlogconfig.moc showconfig.moc aboutbase.moc kipmsgconfigbase.moc recievedialog.moc detailandlogconfigbase.moc downloadmonitorbase.moc downloadcompletedialogbase.moc downloadmonitor.moc kipmsgwidget.moc passworddialogbase.moc showconfigbase.moc searchboxbase.moc absenceconfigbase.moc attachedfiledialogbase.moc absenceconfig.moc openconfirmbase.moc clickableurlconfigbase.moc downloaderrordialog.moc encodingconfig.moc searchbox.moc senddialogbase.moc
 	@echo 'creating kipmsg.all_cpp.cpp ...'; \
 	rm -f kipmsg.all_cpp.files kipmsg.all_cpp.final; \
 	echo "#define KDE_USE_FINAL 1" >> kipmsg.all_cpp.final; \
