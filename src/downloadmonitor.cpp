@@ -21,6 +21,7 @@
 
 #include <qstringlist.h>
 #include <qtextcodec.h>
+#include <qcheckbox.h>
 #include <klistview.h>
 #include <klocale.h>
 #include <IpMessenger.h>
@@ -44,6 +45,8 @@ KIpMsgDownloadMonitor::KIpMsgDownloadMonitor(QWidget* parent, const char* name, 
 	PollingTimer = new QTimer( this );
 	connect( PollingTimer, SIGNAL( timeout() ), this, SLOT( slotPollingTimeout() ) );
 	PollingTimer->start(1400, FALSE);
+	m_NotPermitedIfModifiedCheckbox->setChecked(
+							IpMessengerAgent::GetInstance()->GetAbortDownloadAtFileChanged() );
 }
 
 KIpMsgDownloadMonitor::~KIpMsgDownloadMonitor()
@@ -70,6 +73,13 @@ void KIpMsgDownloadMonitor::slotPollingTimeout()
 	refreshDownloadFileList();
 }
 
+void KIpMsgDownloadMonitor::slotNotPermitedIfModifiedCheckboxClicked()
+{
+	IpMessengerAgent::GetInstance()->SetAbortDownloadAtFileChanged(
+											m_NotPermitedIfModifiedCheckbox->isChecked() );
+	KIpMsgSettings::setNotPermitedIfModified( m_NotPermitedIfModifiedCheckbox->isChecked() );
+	KIpMsgSettings::writeConfig();
+}
 
 void KIpMsgDownloadMonitor::refreshDownloadFileList()
 {

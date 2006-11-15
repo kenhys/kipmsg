@@ -61,6 +61,8 @@ kipmsgWidget::kipmsgWidget(QWidget* parent, const char* name, WFlags fl)
         : kipmsgWidgetBase(parent,name,fl)
 {
 	IpMsgAgent = IpMessengerAgent::GetInstance();
+	IpMsgAgent->SetAbortDownloadAtFileChanged( KIpMsgSettings::notPermitedIfModified() );
+
     MainPopup = new KPopupMenu(this);
 	AbsencePopup = new KPopupMenu(this);
 	rebuildMenu();

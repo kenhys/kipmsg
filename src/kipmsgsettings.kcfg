@@ -122,6 +122,12 @@
       <label>Defines unlock password.</label>
     </entry>
   </group>
+  <group name="download">
+    <entry name="NotPermitedIfModified" type="Bool">
+      <label>Defines NotPermitedIfModified Flag.</label>
+      <default>false</default>
+    </entry>
+  </group>
   <group name="show">
     <entry name="ShowGroupName" type="Bool">
       <label>Defines show group name.</label>

@@ -41,6 +41,7 @@ public slots:
     virtual void slotDeleteClicked();
     virtual void slotCloseClicked();
     virtual void slotPollingTimeout();
+    virtual void slotNotPermitedIfModifiedCheckboxClicked();
 
 protected:
     /*$PROTECTED_FUNCTIONS$*/

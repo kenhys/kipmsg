@@ -201,7 +201,7 @@ SETUIDFLAGS = @SETUIDFLAGS@
 SSL_INCLUDES = @SSL_INCLUDES@
 SSL_LDFLAGS = @SSL_LDFLAGS@
 STRIP = strip
-TOPSUBDIRS =  doc po src
+TOPSUBDIRS =  doc icons po src
 UIC = /usr/lib/qt3/bin/uic -L $(kde_widgetdir) -nounload
 UIC_TR = tr2i18n
 USER_INCLUDES = 
@@ -209,7 +209,7 @@ USER_LDFLAGS =
 USE_EXCEPTIONS = -fexceptions
 USE_RTTI = 
 USE_THREADS = 
-VERSION = 0.1
+VERSION = 0.1.0
 WOVERLOADED_VIRTUAL = 
 XGETTEXT = /usr/bin/xgettext
 XMLLINT = /usr/bin/xmllint
@@ -656,7 +656,7 @@ dist-hook:
 .NOEXPORT:
 
 #>+ 2
-KDE_DIST=stamp-h.in subdirs configure.files kipmsg.kdevelop.pcs Makefile.cvs kipmsg.kdevses Doxyfile kipmsg.kdevelop 
+KDE_DIST=stamp-h.in subdirs kipmsg.kdevelop.pcs configure.files kipmsg.kdevses Makefile.cvs Doxyfile kipmsg.kdevelop 
 
 #>+ 2
 docs-am:
