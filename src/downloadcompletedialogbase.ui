@@ -8,19 +8,19 @@
         <rect>
             <x>0</x>
             <y>0</y>
-            <width>340</width>
+            <width>350</width>
             <height>120</height>
         </rect>
     </property>
     <property name="minimumSize">
         <size>
-            <width>340</width>
+            <width>350</width>
             <height>120</height>
         </size>
     </property>
     <property name="maximumSize">
         <size>
-            <width>340</width>
+            <width>350</width>
             <height>120</height>
         </size>
     </property>
@@ -39,10 +39,10 @@
         </property>
         <property name="geometry">
             <rect>
-                <x>250</x>
+                <x>240</x>
                 <y>80</y>
-                <width>70</width>
-                <height>28</height>
+                <width>100</width>
+                <height>30</height>
             </rect>
         </property>
         <property name="text">
@@ -60,7 +60,7 @@
             <rect>
                 <x>10</x>
                 <y>10</y>
-                <width>320</width>
+                <width>330</width>
                 <height>60</height>
             </rect>
         </property>
@@ -72,18 +72,18 @@
         </property>
         <widget class="QLabel">
             <property name="name">
-                <cstring>m_DetailLabel1</cstring>
+                <cstring>m_DetailLabel2</cstring>
             </property>
             <property name="geometry">
                 <rect>
                     <x>10</x>
-                    <y>10</y>
-                    <width>290</width>
+                    <y>30</y>
+                    <width>310</width>
                     <height>20</height>
                 </rect>
             </property>
             <property name="text">
-                <string>Total 0KB (0KB/s)</string>
+                <string>95 sec  0 files</string>
             </property>
             <property name="alignment">
                 <set>AlignCenter</set>
@@ -91,18 +91,18 @@
         </widget>
         <widget class="QLabel">
             <property name="name">
-                <cstring>m_DetailLabel2</cstring>
+                <cstring>m_DetailLabel1</cstring>
             </property>
             <property name="geometry">
                 <rect>
                     <x>10</x>
-                    <y>30</y>
-                    <width>290</width>
+                    <y>10</y>
+                    <width>310</width>
                     <height>20</height>
                 </rect>
             </property>
             <property name="text">
-                <string>95 sec  0 files</string>
+                <string>Total 0KB (0KB/s)</string>
             </property>
             <property name="alignment">
                 <set>AlignCenter</set>
@@ -118,7 +118,7 @@
                 <x>10</x>
                 <y>80</y>
                 <width>220</width>
-                <height>28</height>
+                <height>30</height>
             </rect>
         </property>
         <property name="text">

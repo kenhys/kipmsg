@@ -128,47 +128,6 @@
                 <string>Encoding</string>
             </property>
         </widget>
-        <widget class="QLabel">
-            <property name="name">
-                <cstring>m_GroupNameLabel</cstring>
-            </property>
-            <property name="geometry">
-                <rect>
-                    <x>110</x>
-                    <y>50</y>
-                    <width>310</width>
-                    <height>22</height>
-                </rect>
-            </property>
-            <property name="frameShape">
-                <enum>PopupPanel</enum>
-            </property>
-            <property name="frameShadow">
-                <enum>Sunken</enum>
-            </property>
-            <property name="text">
-                <string></string>
-            </property>
-        </widget>
-        <widget class="QLabel">
-            <property name="name">
-                <cstring>m_UserNameLabel</cstring>
-            </property>
-            <property name="geometry">
-                <rect>
-                    <x>110</x>
-                    <y>20</y>
-                    <width>310</width>
-                    <height>22</height>
-                </rect>
-            </property>
-            <property name="frameShape">
-                <enum>PopupPanel</enum>
-            </property>
-            <property name="frameShadow">
-                <enum>Sunken</enum>
-            </property>
-        </widget>
         <widget class="KComboBox">
             <item>
                 <property name="text">
@@ -388,31 +347,72 @@
                     <x>110</x>
                     <y>80</y>
                     <width>310</width>
-                    <height>25</height>
+                    <height>30</height>
                 </rect>
             </property>
             <property name="currentItem">
                 <number>9</number>
             </property>
         </widget>
+        <widget class="QLabel">
+            <property name="name">
+                <cstring>m_GroupNameLabel</cstring>
+            </property>
+            <property name="geometry">
+                <rect>
+                    <x>110</x>
+                    <y>50</y>
+                    <width>310</width>
+                    <height>23</height>
+                </rect>
+            </property>
+            <property name="frameShape">
+                <enum>PopupPanel</enum>
+            </property>
+            <property name="frameShadow">
+                <enum>Sunken</enum>
+            </property>
+            <property name="text">
+                <string></string>
+            </property>
+        </widget>
+        <widget class="QLabel">
+            <property name="name">
+                <cstring>m_UserNameLabel</cstring>
+            </property>
+            <property name="geometry">
+                <rect>
+                    <x>110</x>
+                    <y>20</y>
+                    <width>310</width>
+                    <height>23</height>
+                </rect>
+            </property>
+            <property name="frameShape">
+                <enum>PopupPanel</enum>
+            </property>
+            <property name="frameShadow">
+                <enum>Sunken</enum>
+            </property>
+        </widget>
     </widget>
     <widget class="KPushButton">
         <property name="name">
-            <cstring>m_OKButton</cstring>
+            <cstring>m_ApplyButton</cstring>
         </property>
         <property name="geometry">
             <rect>
-                <x>140</x>
+                <x>340</x>
                 <y>300</y>
-                <width>80</width>
-                <height>28</height>
+                <width>100</width>
+                <height>30</height>
             </rect>
         </property>
         <property name="text">
-            <string>O&amp;K</string>
+            <string>&amp;Apply</string>
         </property>
         <property name="accel">
-            <string>Alt+K</string>
+            <string>Alt+A</string>
         </property>
     </widget>
     <widget class="KPushButton">
@@ -423,8 +423,8 @@
             <rect>
                 <x>230</x>
                 <y>300</y>
-                <width>80</width>
-                <height>28</height>
+                <width>100</width>
+                <height>30</height>
             </rect>
         </property>
         <property name="text">
@@ -436,24 +436,26 @@
     </widget>
     <widget class="KPushButton">
         <property name="name">
-            <cstring>m_ApplyButton</cstring>
+            <cstring>m_OKButton</cstring>
         </property>
         <property name="geometry">
             <rect>
-                <x>360</x>
+                <x>120</x>
                 <y>300</y>
-                <width>80</width>
-                <height>28</height>
+                <width>100</width>
+                <height>30</height>
             </rect>
         </property>
         <property name="text">
-            <string>&amp;Apply</string>
+            <string>O&amp;K</string>
         </property>
         <property name="accel">
-            <string>Alt+A</string>
+            <string>Alt+K</string>
         </property>
     </widget>
 </widget>
+<customwidgets>
+</customwidgets>
 <images>
     <image name="image0">
         <data format="PNG" length="472">89504e470d0a1a0a0000000d4948445200000020000000200806000000737a7af40000019f494441545885c556c19183300c5c65282395f84b29d7c6f9189f6923d7093ca9247de81e041f185b1666b8ec27d16425add68a8118ef4513be31d25a0844e04b7432886e62f3d76f0cbaa23f00e0a66231709588a64c390f66c2a29f22b3750e00100e09cc0406255d5a379fcb6c397a014273a941097a01152b108b3b27e022e804d07e794ac84d9f5c4222a178edbf4f99473cab6260bf40daa935679daac7206a248216445cdcfe5cedb72fe1e99b90395c715948ce5609084dff3a54353f2c4033ed91e66a01471b873c5051c4a557b106a203350b76ddc348d1bc065901a5e9d5b764c1910600bceb61ee06d3730a9f127ae731dcc70d3fe47ded452f227ae7377c7cac1c989e130ca2e682f898bfc412623eb01260ee06135eca048c8f21c95fe2f167c8bebec5fc20e0c824b9c9d7f1f83da0777e93b7c431ff965216268910ce30c14fc5bdf320cc27693b0bdbd91d9f782eccc109fced808141dbb54927bcf3497e2ab69d4de67f7696b23bb0c4c363ef045e13b55d1b8a4b4ef8e83896fce0c0e8062e4d9273e20c18a0ec0ea49cf0ce671da985f43afa2ff805c136f39817e5cfa70000000049454e44ae426082</data>

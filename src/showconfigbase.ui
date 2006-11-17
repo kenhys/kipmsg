@@ -8,7 +8,7 @@
         <rect>
             <x>0</x>
             <y>0</y>
-            <width>420</width>
+            <width>480</width>
             <height>440</height>
         </rect>
     </property>
@@ -22,19 +22,19 @@
     </property>
     <property name="minimumSize">
         <size>
-            <width>420</width>
+            <width>480</width>
             <height>440</height>
         </size>
     </property>
     <property name="maximumSize">
         <size>
-            <width>420</width>
+            <width>480</width>
             <height>440</height>
         </size>
     </property>
     <property name="baseSize">
         <size>
-            <width>420</width>
+            <width>480</width>
             <height>440</height>
         </size>
     </property>
@@ -47,161 +47,82 @@
     <property name="modal">
         <bool>true</bool>
     </property>
-    <widget class="QGroupBox">
+    <widget class="QFrame">
         <property name="name">
-            <cstring>groupBox32</cstring>
+            <cstring>frame5</cstring>
         </property>
         <property name="geometry">
             <rect>
-                <x>10</x>
-                <y>0</y>
-                <width>400</width>
-                <height>140</height>
+                <x>0</x>
+                <y>390</y>
+                <width>470</width>
+                <height>50</height>
             </rect>
         </property>
-        <property name="title">
-            <string>UserList Display Items and Options</string>
+        <property name="frameShape">
+            <enum>StyledPanel</enum>
         </property>
-        <widget class="QLabel">
+        <property name="frameShadow">
+            <enum>Raised</enum>
+        </property>
+        <property name="lineWidth">
+            <number>0</number>
+        </property>
+        <widget class="KPushButton">
             <property name="name">
-                <cstring>textLabel6</cstring>
+                <cstring>m_CancelButton</cstring>
             </property>
             <property name="geometry">
                 <rect>
-                    <x>10</x>
-                    <y>80</y>
-                    <width>380</width>
-                    <height>50</height>
-                </rect>
-            </property>
-            <property name="frameShape">
-                <enum>LineEditPanel</enum>
-            </property>
-            <property name="frameShadow">
-                <enum>Sunken</enum>
-            </property>
-            <property name="text">
-                <string>You able to change Fields show order with Drag and Drop on List Header.(Save on "Saving List Header")</string>
-            </property>
-            <property name="alignment">
-                <set>WordBreak|AlignVCenter</set>
-            </property>
-        </widget>
-        <widget class="QCheckBox">
-            <property name="name">
-                <cstring>m_PriorityCheckbox</cstring>
-            </property>
-            <property name="geometry">
-                <rect>
-                    <x>140</x>
-                    <y>50</y>
-                    <width>120</width>
-                    <height>23</height>
+                    <x>250</x>
+                    <y>10</y>
+                    <width>100</width>
+                    <height>30</height>
                 </rect>
             </property>
             <property name="text">
-                <string>Displa&amp;y Priority</string>
+                <string>Ca&amp;ncel</string>
             </property>
             <property name="accel">
-                <string>Alt+Y</string>
+                <string>Alt+N</string>
             </property>
         </widget>
-        <widget class="QCheckBox">
+        <widget class="KPushButton">
             <property name="name">
-                <cstring>m_EncodingCheckbox</cstring>
+                <cstring>m_OKButton</cstring>
             </property>
             <property name="geometry">
                 <rect>
-                    <x>270</x>
-                    <y>50</y>
-                    <width>120</width>
-                    <height>23</height>
+                    <x>130</x>
+                    <y>10</y>
+                    <width>100</width>
+                    <height>30</height>
                 </rect>
             </property>
             <property name="text">
-                <string>&amp;Encoding</string>
+                <string>O&amp;K</string>
             </property>
             <property name="accel">
-                <string>Alt+E</string>
+                <string>Alt+K</string>
             </property>
         </widget>
-        <widget class="QCheckBox">
+        <widget class="KPushButton">
             <property name="name">
-                <cstring>m_IpAddrCheckbox</cstring>
+                <cstring>m_ApplyButton</cstring>
             </property>
             <property name="geometry">
                 <rect>
-                    <x>270</x>
-                    <y>20</y>
-                    <width>120</width>
-                    <height>23</height>
+                    <x>380</x>
+                    <y>10</y>
+                    <width>90</width>
+                    <height>30</height>
                 </rect>
             </property>
             <property name="text">
-                <string>&amp;IP address</string>
+                <string>&amp;Apply</string>
             </property>
             <property name="accel">
-                <string>Alt+I</string>
-            </property>
-        </widget>
-        <widget class="QCheckBox">
-            <property name="name">
-                <cstring>m_LoginCheckbox</cstring>
-            </property>
-            <property name="geometry">
-                <rect>
-                    <x>10</x>
-                    <y>50</y>
-                    <width>120</width>
-                    <height>23</height>
-                </rect>
-            </property>
-            <property name="text">
-                <string>LoginName</string>
-            </property>
-            <property name="accel">
-                <string></string>
-            </property>
-        </widget>
-        <widget class="QCheckBox">
-            <property name="name">
-                <cstring>m_HostCheckbox</cstring>
-            </property>
-            <property name="geometry">
-                <rect>
-                    <x>140</x>
-                    <y>20</y>
-                    <width>110</width>
-                    <height>23</height>
-                </rect>
-            </property>
-            <property name="text">
-                <string>&amp;HostName</string>
-            </property>
-            <property name="accel">
-                <string>Alt+H</string>
-            </property>
-        </widget>
-        <widget class="QCheckBox">
-            <property name="name">
-                <cstring>m_GroupCheckbox</cstring>
-            </property>
-            <property name="geometry">
-                <rect>
-                    <x>10</x>
-                    <y>20</y>
-                    <width>120</width>
-                    <height>23</height>
-                </rect>
-            </property>
-            <property name="autoMask">
-                <bool>false</bool>
-            </property>
-            <property name="text">
-                <string>&amp;GroupName</string>
-            </property>
-            <property name="accel">
-                <string>Alt+G</string>
+                <string>Alt+A</string>
             </property>
         </widget>
     </widget>
@@ -213,13 +134,127 @@
             <rect>
                 <x>10</x>
                 <y>140</y>
-                <width>400</width>
+                <width>460</width>
                 <height>250</height>
             </rect>
         </property>
         <property name="title">
             <string>Rough Level User Level Sorting Settings</string>
         </property>
+        <widget class="QButtonGroup">
+            <property name="name">
+                <cstring>buttonGroup2</cstring>
+            </property>
+            <property name="geometry">
+                <rect>
+                    <x>10</x>
+                    <y>90</y>
+                    <width>440</width>
+                    <height>90</height>
+                </rect>
+            </property>
+            <property name="title">
+                <string>Grouping Level 2</string>
+            </property>
+            <widget class="QRadioButton">
+                <property name="name">
+                    <cstring>m_IpAddrOrderRadio</cstring>
+                </property>
+                <property name="geometry">
+                    <rect>
+                        <x>230</x>
+                        <y>20</y>
+                        <width>200</width>
+                        <height>23</height>
+                    </rect>
+                </property>
+                <property name="text">
+                    <string>Or&amp;der by IP address</string>
+                </property>
+                <property name="accel">
+                    <string>Alt+D</string>
+                </property>
+            </widget>
+            <widget class="QRadioButton">
+                <property name="name">
+                    <cstring>m_UserOrderRadio</cstring>
+                </property>
+                <property name="geometry">
+                    <rect>
+                        <x>10</x>
+                        <y>20</y>
+                        <width>200</width>
+                        <height>23</height>
+                    </rect>
+                </property>
+                <property name="text">
+                    <string>Order by &amp;User Name</string>
+                </property>
+                <property name="accel">
+                    <string>Alt+U</string>
+                </property>
+            </widget>
+            <widget class="QRadioButton">
+                <property name="name">
+                    <cstring>m_HostRadio</cstring>
+                </property>
+                <property name="geometry">
+                    <rect>
+                        <x>10</x>
+                        <y>50</y>
+                        <width>200</width>
+                        <height>23</height>
+                    </rect>
+                </property>
+                <property name="text">
+                    <string>&amp;Order by HostName</string>
+                </property>
+                <property name="accel">
+                    <string>Alt+O</string>
+                </property>
+            </widget>
+            <widget class="KPushButton">
+                <property name="name">
+                    <cstring>m_2ndOrderDescButton</cstring>
+                </property>
+                <property name="geometry">
+                    <rect>
+                        <x>230</x>
+                        <y>50</y>
+                        <width>200</width>
+                        <height>28</height>
+                    </rect>
+                </property>
+                <property name="text">
+                    <string>Toggle order</string>
+                </property>
+                <property name="accel">
+                    <string></string>
+                </property>
+                <property name="toggleButton">
+                    <bool>true</bool>
+                </property>
+            </widget>
+        </widget>
+        <widget class="QCheckBox">
+            <property name="name">
+                <cstring>m_IgnoreCaseSingleByteCheckbox</cstring>
+            </property>
+            <property name="geometry">
+                <rect>
+                    <x>10</x>
+                    <y>190</y>
+                    <width>440</width>
+                    <height>23</height>
+                </rect>
+            </property>
+            <property name="text">
+                <string>Ignore &amp;case in singlebyte Character</string>
+            </property>
+            <property name="accel">
+                <string>Alt+C</string>
+            </property>
+        </widget>
         <widget class="QGroupBox">
             <property name="name">
                 <cstring>groupBox32_2_2</cstring>
@@ -228,7 +263,7 @@
                 <rect>
                     <x>10</x>
                     <y>20</y>
-                    <width>380</width>
+                    <width>440</width>
                     <height>70</height>
                 </rect>
             </property>
@@ -260,9 +295,9 @@
                 </property>
                 <property name="geometry">
                     <rect>
-                        <x>200</x>
+                        <x>230</x>
                         <y>30</y>
-                        <width>170</width>
+                        <width>200</width>
                         <height>28</height>
                     </rect>
                 </property>
@@ -279,218 +314,185 @@
         </widget>
         <widget class="QCheckBox">
             <property name="name">
-                <cstring>m_IgnoreCaseSingleByteCheckbox</cstring>
-            </property>
-            <property name="geometry">
-                <rect>
-                    <x>10</x>
-                    <y>190</y>
-                    <width>380</width>
-                    <height>23</height>
-                </rect>
-            </property>
-            <property name="text">
-                <string>Ignore &amp;case in singlebyte Character</string>
-            </property>
-            <property name="accel">
-                <string>Alt+C</string>
-            </property>
-        </widget>
-        <widget class="QCheckBox">
-            <property name="name">
                 <cstring>m_PriorityMultiBytesCheckbox</cstring>
             </property>
             <property name="geometry">
                 <rect>
                     <x>10</x>
                     <y>220</y>
-                    <width>380</width>
+                    <width>440</width>
                     <height>23</height>
                 </rect>
             </property>
             <property name="text">
-                <string>&amp;Priority MultiBytes</string>
+                <string>Priority &amp;MultiBytes</string>
             </property>
             <property name="accel">
-                <string>Alt+P</string>
+                <string>Alt+M</string>
             </property>
         </widget>
-        <widget class="QButtonGroup">
+    </widget>
+    <widget class="QGroupBox">
+        <property name="name">
+            <cstring>groupBox32</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>10</x>
+                <y>0</y>
+                <width>460</width>
+                <height>140</height>
+            </rect>
+        </property>
+        <property name="title">
+            <string>UserList Display Items and Options</string>
+        </property>
+        <widget class="QLabel">
             <property name="name">
-                <cstring>buttonGroup2</cstring>
+                <cstring>textLabel6</cstring>
             </property>
             <property name="geometry">
                 <rect>
                     <x>10</x>
-                    <y>90</y>
-                    <width>380</width>
-                    <height>90</height>
+                    <y>80</y>
+                    <width>440</width>
+                    <height>50</height>
                 </rect>
             </property>
-            <property name="title">
-                <string>Grouping Level 2</string>
+            <property name="frameShape">
+                <enum>LineEditPanel</enum>
             </property>
-            <widget class="QRadioButton">
-                <property name="name">
-                    <cstring>m_UserOrderRadio</cstring>
-                </property>
-                <property name="geometry">
-                    <rect>
-                        <x>10</x>
-                        <y>20</y>
-                        <width>170</width>
-                        <height>23</height>
-                    </rect>
-                </property>
-                <property name="text">
-                    <string>Order by &amp;User Name</string>
-                </property>
-                <property name="accel">
-                    <string>Alt+U</string>
-                </property>
-            </widget>
-            <widget class="QRadioButton">
-                <property name="name">
-                    <cstring>m_HostRadio</cstring>
-                </property>
-                <property name="geometry">
-                    <rect>
-                        <x>10</x>
-                        <y>50</y>
-                        <width>170</width>
-                        <height>23</height>
-                    </rect>
-                </property>
-                <property name="text">
-                    <string>Order by Ho&amp;stName</string>
-                </property>
-                <property name="accel">
-                    <string>Alt+S</string>
-                </property>
-            </widget>
-            <widget class="QRadioButton">
-                <property name="name">
-                    <cstring>m_IpAddrOrderRadio</cstring>
-                </property>
-                <property name="geometry">
-                    <rect>
-                        <x>200</x>
-                        <y>20</y>
-                        <width>170</width>
-                        <height>23</height>
-                    </rect>
-                </property>
-                <property name="text">
-                    <string>Or&amp;der by IP address</string>
-                </property>
-                <property name="accel">
-                    <string>Alt+D</string>
-                </property>
-            </widget>
-            <widget class="KPushButton">
-                <property name="name">
-                    <cstring>m_2ndOrderDescButton</cstring>
-                </property>
-                <property name="geometry">
-                    <rect>
-                        <x>200</x>
-                        <y>50</y>
-                        <width>170</width>
-                        <height>28</height>
-                    </rect>
-                </property>
-                <property name="text">
-                    <string>Toggle order</string>
-                </property>
-                <property name="accel">
-                    <string></string>
-                </property>
-                <property name="toggleButton">
-                    <bool>true</bool>
-                </property>
-            </widget>
+            <property name="frameShadow">
+                <enum>Sunken</enum>
+            </property>
+            <property name="text">
+                <string>You able to change Fields show order with Drag and Drop on List Header.(Save on "Saving List Header")</string>
+            </property>
+            <property name="alignment">
+                <set>WordBreak|AlignVCenter</set>
+            </property>
         </widget>
-    </widget>
-    <widget class="QFrame">
-        <property name="name">
-            <cstring>frame5</cstring>
-        </property>
-        <property name="geometry">
-            <rect>
-                <x>0</x>
-                <y>390</y>
-                <width>420</width>
-                <height>50</height>
-            </rect>
-        </property>
-        <property name="frameShape">
-            <enum>StyledPanel</enum>
-        </property>
-        <property name="frameShadow">
-            <enum>Raised</enum>
-        </property>
-        <property name="lineWidth">
-            <number>0</number>
-        </property>
-        <widget class="KPushButton">
+        <widget class="QCheckBox">
             <property name="name">
-                <cstring>m_CancelButton</cstring>
+                <cstring>m_GroupCheckbox</cstring>
             </property>
             <property name="geometry">
                 <rect>
-                    <x>220</x>
-                    <y>10</y>
-                    <width>80</width>
-                    <height>28</height>
+                    <x>10</x>
+                    <y>20</y>
+                    <width>140</width>
+                    <height>23</height>
                 </rect>
             </property>
+            <property name="autoMask">
+                <bool>false</bool>
+            </property>
             <property name="text">
-                <string>Ca&amp;ncel</string>
+                <string>&amp;GroupName</string>
             </property>
             <property name="accel">
-                <string>Alt+N</string>
+                <string>Alt+G</string>
             </property>
         </widget>
-        <widget class="KPushButton">
+        <widget class="QCheckBox">
             <property name="name">
-                <cstring>m_ApplyButton</cstring>
+                <cstring>m_HostCheckbox</cstring>
             </property>
             <property name="geometry">
                 <rect>
-                    <x>340</x>
-                    <y>10</y>
-                    <width>70</width>
-                    <height>28</height>
+                    <x>160</x>
+                    <y>20</y>
+                    <width>140</width>
+                    <height>23</height>
                 </rect>
             </property>
             <property name="text">
-                <string>&amp;Apply</string>
+                <string>&amp;HostName</string>
             </property>
             <property name="accel">
-                <string>Alt+A</string>
+                <string>Alt+H</string>
             </property>
         </widget>
-        <widget class="KPushButton">
+        <widget class="QCheckBox">
             <property name="name">
-                <cstring>m_OKButton</cstring>
+                <cstring>m_PriorityCheckbox</cstring>
             </property>
             <property name="geometry">
                 <rect>
-                    <x>120</x>
-                    <y>10</y>
-                    <width>80</width>
-                    <height>28</height>
+                    <x>160</x>
+                    <y>50</y>
+                    <width>140</width>
+                    <height>23</height>
                 </rect>
             </property>
             <property name="text">
-                <string>O&amp;K</string>
+                <string>Displa&amp;y Priority</string>
             </property>
             <property name="accel">
-                <string>Alt+K</string>
+                <string>Alt+Y</string>
+            </property>
+        </widget>
+        <widget class="QCheckBox">
+            <property name="name">
+                <cstring>m_IpAddrCheckbox</cstring>
+            </property>
+            <property name="geometry">
+                <rect>
+                    <x>310</x>
+                    <y>20</y>
+                    <width>140</width>
+                    <height>23</height>
+                </rect>
+            </property>
+            <property name="text">
+                <string>&amp;IP address</string>
+            </property>
+            <property name="accel">
+                <string>Alt+I</string>
+            </property>
+        </widget>
+        <widget class="QCheckBox">
+            <property name="name">
+                <cstring>m_EncodingCheckbox</cstring>
+            </property>
+            <property name="geometry">
+                <rect>
+                    <x>310</x>
+                    <y>50</y>
+                    <width>140</width>
+                    <height>23</height>
+                </rect>
+            </property>
+            <property name="text">
+                <string>&amp;Encoding</string>
+            </property>
+            <property name="accel">
+                <string>Alt+E</string>
+            </property>
+        </widget>
+        <widget class="QCheckBox">
+            <property name="name">
+                <cstring>m_LoginCheckbox</cstring>
+            </property>
+            <property name="geometry">
+                <rect>
+                    <x>10</x>
+                    <y>50</y>
+                    <width>140</width>
+                    <height>23</height>
+                </rect>
+            </property>
+            <property name="text">
+                <string>LoginName</string>
+            </property>
+            <property name="accel">
+                <string></string>
             </property>
         </widget>
     </widget>
 </widget>
+<customwidgets>
+</customwidgets>
 <images>
     <image name="image0">
         <data format="PNG" length="471">89504e470d0a1a0a0000000d4948445200000020000000200806000000737a7af40000019e494441545885c5964192832010457fa75ce602dc2f37c876188bd16de604783e2f907dcfc24014a169b59cfc8d52f9d0af9b96408ccfaa896f8c3c0b81087c0a2783e822067ffdc6a033e203002e2a170367413475cb713113023f25c5d6550080b049602630285ba579f06999a5470f20049702d4a407d8d10229dc318093a403a075f3d454ca3edb8444c2e27bbf3ee53ce2898a81750369b3d6ec756e3d06512319b422e26af797d6fe78131e3e0999e311579454d95d0031e83bc2aee09b0134d96e09ae06d81a38ce0355214e3d8a35122bb0a7c1cefb335204dfa322402d7bf52959a94803009deb61ae06e3738c4f49bdebe0afc3c21fe77dafa10344efba851ff75905c6e7088324b8009ffac35852ea076600e66a30e245266878f8ac3f8c875f5fbcbea5fe08b0259352e6f3f1f0e3d1bb6e312f8c53ff254716334914f730e3cf8d7bd78130eda46d2d6c6b577ee269618e95c0bb070c0c6eed2d5b89ce75597f6e6c5b9b9dffd55a8a006937cf9fb77b1e620123cc1f9f79080e97b1c179ae6552aac4113130dd88c29e4819f8875757648ba4ebe8bfe80fe6410424335586a80000000049454e44ae426082</data>

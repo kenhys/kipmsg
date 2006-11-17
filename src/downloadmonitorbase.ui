@@ -44,44 +44,6 @@
     <property name="icon">
         <pixmap>image0</pixmap>
     </property>
-    <widget class="KPushButton">
-        <property name="name">
-            <cstring>m_CloseButton</cstring>
-        </property>
-        <property name="geometry">
-            <rect>
-                <x>100</x>
-                <y>200</y>
-                <width>80</width>
-                <height>28</height>
-            </rect>
-        </property>
-        <property name="text">
-            <string>&amp;Close</string>
-        </property>
-        <property name="accel">
-            <string>Alt+C</string>
-        </property>
-    </widget>
-    <widget class="KPushButton">
-        <property name="name">
-            <cstring>m_DeleteButton</cstring>
-        </property>
-        <property name="geometry">
-            <rect>
-                <x>10</x>
-                <y>200</y>
-                <width>80</width>
-                <height>28</height>
-            </rect>
-        </property>
-        <property name="text">
-            <string>&amp;Delete</string>
-        </property>
-        <property name="accel">
-            <string>Alt+D</string>
-        </property>
-    </widget>
     <widget class="KListView">
         <property name="name">
             <cstring>m_FileListView</cstring>
@@ -115,6 +77,44 @@
         </property>
         <property name="accel">
             <string>Alt+N</string>
+        </property>
+    </widget>
+    <widget class="KPushButton">
+        <property name="name">
+            <cstring>m_DeleteButton</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>10</x>
+                <y>200</y>
+                <width>100</width>
+                <height>30</height>
+            </rect>
+        </property>
+        <property name="text">
+            <string>&amp;Delete</string>
+        </property>
+        <property name="accel">
+            <string>Alt+D</string>
+        </property>
+    </widget>
+    <widget class="KPushButton">
+        <property name="name">
+            <cstring>m_CloseButton</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>120</x>
+                <y>200</y>
+                <width>100</width>
+                <height>30</height>
+            </rect>
+        </property>
+        <property name="text">
+            <string>&amp;Close</string>
+        </property>
+        <property name="accel">
+            <string>Alt+C</string>
         </property>
     </widget>
 </widget>
@@ -153,8 +153,8 @@
 </slots>
 <layoutdefaults spacing="6" margin="11"/>
 <includehints>
-    <includehint>kpushbutton.h</includehint>
-    <includehint>kpushbutton.h</includehint>
     <includehint>klistview.h</includehint>
+    <includehint>kpushbutton.h</includehint>
+    <includehint>kpushbutton.h</includehint>
 </includehints>
 </UI>

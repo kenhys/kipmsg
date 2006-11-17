@@ -8,7 +8,7 @@
         <rect>
             <x>0</x>
             <y>0</y>
-            <width>400</width>
+            <width>500</width>
             <height>190</height>
         </rect>
     </property>
@@ -22,19 +22,19 @@
     </property>
     <property name="minimumSize">
         <size>
-            <width>400</width>
+            <width>500</width>
             <height>190</height>
         </size>
     </property>
     <property name="maximumSize">
         <size>
-            <width>400</width>
+            <width>500</width>
             <height>190</height>
         </size>
     </property>
     <property name="baseSize">
         <size>
-            <width>400</width>
+            <width>500</width>
             <height>190</height>
         </size>
     </property>
@@ -49,13 +49,32 @@
     </property>
     <widget class="QLabel">
         <property name="name">
+            <cstring>pixmapLabel1</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>10</x>
+                <y>20</y>
+                <width>32</width>
+                <height>32</height>
+            </rect>
+        </property>
+        <property name="pixmap">
+            <pixmap>image1</pixmap>
+        </property>
+        <property name="scaledContents">
+            <bool>true</bool>
+        </property>
+    </widget>
+    <widget class="QLabel">
+        <property name="name">
             <cstring>textLabel7</cstring>
         </property>
         <property name="geometry">
             <rect>
                 <x>50</x>
                 <y>10</y>
-                <width>340</width>
+                <width>440</width>
                 <height>50</height>
             </rect>
         </property>
@@ -79,16 +98,35 @@
         <property name="geometry">
             <rect>
                 <x>10</x>
-                <y>70</y>
-                <width>380</width>
-                <height>28</height>
+                <y>68</y>
+                <width>480</width>
+                <height>30</height>
             </rect>
         </property>
         <property name="text">
-            <string>http://&amp;www.ipmsg.org</string>
+            <string>http://www.ipms&amp;g.org</string>
         </property>
         <property name="accel">
-            <string>Alt+W</string>
+            <string>Alt+G</string>
+        </property>
+    </widget>
+    <widget class="KPushButton">
+        <property name="name">
+            <cstring>m_OKButton</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>210</x>
+                <y>150</y>
+                <width>90</width>
+                <height>30</height>
+            </rect>
+        </property>
+        <property name="text">
+            <string>O&amp;K</string>
+        </property>
+        <property name="accel">
+            <string>Alt+K</string>
         </property>
     </widget>
     <widget class="QLabel">
@@ -97,9 +135,9 @@
         </property>
         <property name="geometry">
             <rect>
-                <x>10</x>
+                <x>0</x>
                 <y>100</y>
-                <width>380</width>
+                <width>500</width>
                 <height>40</height>
             </rect>
         </property>
@@ -111,45 +149,9 @@
             <set>AlignCenter</set>
         </property>
     </widget>
-    <widget class="QLabel">
-        <property name="name">
-            <cstring>pixmapLabel1</cstring>
-        </property>
-        <property name="geometry">
-            <rect>
-                <x>10</x>
-                <y>20</y>
-                <width>32</width>
-                <height>32</height>
-            </rect>
-        </property>
-        <property name="pixmap">
-            <pixmap>image1</pixmap>
-        </property>
-        <property name="scaledContents">
-            <bool>true</bool>
-        </property>
-    </widget>
-    <widget class="KPushButton">
-        <property name="name">
-            <cstring>m_OKButton</cstring>
-        </property>
-        <property name="geometry">
-            <rect>
-                <x>160</x>
-                <y>150</y>
-                <width>80</width>
-                <height>28</height>
-            </rect>
-        </property>
-        <property name="text">
-            <string>O&amp;K</string>
-        </property>
-        <property name="accel">
-            <string>Alt+K</string>
-        </property>
-    </widget>
 </widget>
+<customwidgets>
+</customwidgets>
 <images>
     <image name="image0">
         <data format="PNG" length="471">89504e470d0a1a0a0000000d4948445200000020000000200806000000737a7af40000019e494441545885c5964192832010457fa75ce602dc2f37c876188bd16de604783e2f907dcfc24014a169b59cfc8d52f9d0af9b96408ccfaa896f8c3c0b81087c0a2783e822067ffdc6a033e203002e2a170367413475cb713113023f25c5d6550080b049602630285ba579f06999a5470f20049702d4a407d8d10229dc318093a403a075f3d454ca3edb8444c2e27bbf3ee53ce2898a81750369b3d6ec756e3d06512319b422e26af797d6fe78131e3e0999e311579454d95d0031e83bc2aee09b0134d96e09ae06d81a38ce0355214e3d8a35122bb0a7c1cefb335204dfa322402d7bf52959a94803009deb61ae06e3738c4f49bdebe0afc3c21fe77dafa10344efba851ff75905c6e7088324b8009ffac35852ea076600e66a30e245266878f8ac3f8c875f5fbcbea5fe08b0259352e6f3f1f0e3d1bb6e312f8c53ff254716334914f730e3cf8d7bd78130eda46d2d6c6b577ee269618e95c0bb070c0c6eed2d5b89ce75597f6e6c5b9b9dffd55a8a006937cf9fb77b1e620123cc1f9f79080e97b1c179ae6552aac4113130dd88c29e4819f8875757648ba4ebe8bfe80fe6410424335586a80000000049454e44ae426082</data>

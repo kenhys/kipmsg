@@ -519,17 +519,23 @@
                     <property name="name">
                         <cstring>m_CloseButton</cstring>
                     </property>
+                    <property name="minimumSize">
+                        <size>
+                            <width>0</width>
+                            <height>30</height>
+                        </size>
+                    </property>
                     <property name="maximumSize">
                         <size>
-                            <width>70</width>
-                            <height>32767</height>
+                            <width>100</width>
+                            <height>30</height>
                         </size>
                     </property>
                     <property name="text">
-                        <string>Clo&amp;se</string>
+                        <string>Cl&amp;ose</string>
                     </property>
                     <property name="accel">
-                        <string>Alt+S</string>
+                        <string>Alt+O</string>
                     </property>
                 </widget>
                 <spacer>
@@ -553,9 +559,15 @@
                     <property name="name">
                         <cstring>m_ReplyButton</cstring>
                     </property>
+                    <property name="minimumSize">
+                        <size>
+                            <width>0</width>
+                            <height>30</height>
+                        </size>
+                    </property>
                     <property name="maximumSize">
                         <size>
-                            <width>70</width>
+                            <width>100</width>
                             <height>32767</height>
                         </size>
                     </property>
@@ -581,6 +593,8 @@
         </widget>
     </vbox>
 </widget>
+<customwidgets>
+</customwidgets>
 <images>
     <image name="image0">
         <data format="PNG" length="468">89504e470d0a1a0a0000000d4948445200000020000000200806000000737a7af40000019b494441545885c5574b8e83300c7daeb84c87db6431a7198aa2709a8ec46da0c7f12c801442e29820a66fd346387e1fdc4089f15954fe1b23ae854004be442783e82692cfd71874053f00e0a6aa62e02a1155bee43c98098b7e0ac2d6250040b849602630289ad29a7c6ab3add10b10c825821cf4020a462014774ec045d009a0fdf0e490721f1d4222a179e9af4fb98f7852c5c07e80b4ae35f73ad68f415449055a107176fa53bd3f3e84a74f42667fc42521255b24c093be198ac80f0bd0b83d42ae167094d8ef0365455c7a146b2026503260d73d8c14e425480ac8b9579f9299442a0070b683b91bf4afde7f4ae8acc3701f37f57edf632f7a11d159b7a9c7f72a81fed5c3202017c487f5cb5a42580fac0498bb418f599980f13944eb97f5f83b245fdfc27a607e1a8e76e01e6fe706065f8f3a9a4067dde424a88fad7fda66b32f727dfa5f907412234f388fad3beb40987c346d83a66d76f5c453634e39a9db3a1aa73b9044b34a62bddf272039199efb24303baadbda37979270abf8d7fb7d02b119d02671060ca467209684b32e994829a4d7d17fc11f546bef54539b10310000000049454e44ae426082</data>

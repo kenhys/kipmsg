@@ -100,36 +100,23 @@
                 <string></string>
             </property>
         </widget>
-        <widget class="KLineEdit">
+        <widget class="QCheckBox">
             <property name="name">
-                <cstring>m_LogFileNameEditbox</cstring>
+                <cstring>m_RecordIPAddressCheckbox</cstring>
             </property>
             <property name="geometry">
                 <rect>
-                    <x>120</x>
-                    <y>120</y>
-                    <width>340</width>
-                    <height>25</height>
-                </rect>
-            </property>
-        </widget>
-        <widget class="KPushButton">
-            <property name="name">
-                <cstring>m_LogFileButton</cstring>
-            </property>
-            <property name="geometry">
-                <rect>
-                    <x>10</x>
-                    <y>117</y>
-                    <width>110</width>
-                    <height>28</height>
+                    <x>250</x>
+                    <y>80</y>
+                    <width>220</width>
+                    <height>23</height>
                 </rect>
             </property>
             <property name="text">
-                <string>Lo&amp;g File</string>
+                <string>Record IP &amp;address</string>
             </property>
             <property name="accel">
-                <string>Alt+G</string>
+                <string>Alt+A</string>
             </property>
         </widget>
         <widget class="QCheckBox">
@@ -151,23 +138,36 @@
                 <string>Alt+T</string>
             </property>
         </widget>
-        <widget class="QCheckBox">
+        <widget class="KLineEdit">
             <property name="name">
-                <cstring>m_RecordIPAddressCheckbox</cstring>
+                <cstring>m_LogFileNameEditbox</cstring>
             </property>
             <property name="geometry">
                 <rect>
-                    <x>250</x>
-                    <y>80</y>
-                    <width>220</width>
-                    <height>23</height>
+                    <x>160</x>
+                    <y>120</y>
+                    <width>300</width>
+                    <height>25</height>
+                </rect>
+            </property>
+        </widget>
+        <widget class="KPushButton">
+            <property name="name">
+                <cstring>m_LogFileButton</cstring>
+            </property>
+            <property name="geometry">
+                <rect>
+                    <x>10</x>
+                    <y>117</y>
+                    <width>150</width>
+                    <height>30</height>
                 </rect>
             </property>
             <property name="text">
-                <string>Record IP &amp;address</string>
+                <string>Lo&amp;g File</string>
             </property>
             <property name="accel">
-                <string>Alt+A</string>
+                <string>Alt+G</string>
             </property>
         </widget>
     </widget>
@@ -194,14 +194,33 @@
         </property>
         <widget class="KPushButton">
             <property name="name">
+                <cstring>m_CancelButton</cstring>
+            </property>
+            <property name="geometry">
+                <rect>
+                    <x>240</x>
+                    <y>10</y>
+                    <width>100</width>
+                    <height>30</height>
+                </rect>
+            </property>
+            <property name="text">
+                <string>&amp;Cancel</string>
+            </property>
+            <property name="accel">
+                <string>Alt+C</string>
+            </property>
+        </widget>
+        <widget class="KPushButton">
+            <property name="name">
                 <cstring>m_OKButton</cstring>
             </property>
             <property name="geometry">
                 <rect>
-                    <x>140</x>
+                    <x>130</x>
                     <y>10</y>
-                    <width>80</width>
-                    <height>28</height>
+                    <width>100</width>
+                    <height>30</height>
                 </rect>
             </property>
             <property name="text">
@@ -213,30 +232,14 @@
         </widget>
         <widget class="KPushButton">
             <property name="name">
-                <cstring>m_CancelButton</cstring>
-            </property>
-            <property name="geometry">
-                <rect>
-                    <x>250</x>
-                    <y>10</y>
-                    <width>80</width>
-                    <height>28</height>
-                </rect>
-            </property>
-            <property name="text">
-                <string>&amp;Cancel</string>
-            </property>
-        </widget>
-        <widget class="KPushButton">
-            <property name="name">
                 <cstring>m_ApplyButton</cstring>
             </property>
             <property name="geometry">
                 <rect>
-                    <x>390</x>
+                    <x>380</x>
                     <y>10</y>
-                    <width>70</width>
-                    <height>28</height>
+                    <width>100</width>
+                    <height>30</height>
                 </rect>
             </property>
             <property name="text">
@@ -262,248 +265,6 @@
         <property name="title">
             <string>Detail configuration</string>
         </property>
-        <widget class="QGroupBox">
-            <property name="name">
-                <cstring>groupBox17</cstring>
-            </property>
-            <property name="geometry">
-                <rect>
-                    <x>320</x>
-                    <y>20</y>
-                    <width>145</width>
-                    <height>60</height>
-                </rect>
-            </property>
-            <property name="title">
-                <string>Quote Character</string>
-            </property>
-            <hbox>
-                <property name="name">
-                    <cstring>unnamed</cstring>
-                </property>
-                <widget class="KLineEdit">
-                    <property name="name">
-                        <cstring>m_QuoteCharEditbox</cstring>
-                    </property>
-                </widget>
-            </hbox>
-        </widget>
-        <widget class="QCheckBox">
-            <property name="name">
-                <cstring>m_NoHideCheckbox</cstring>
-            </property>
-            <property name="geometry">
-                <rect>
-                    <x>20</x>
-                    <y>90</y>
-                    <width>300</width>
-                    <height>23</height>
-                </rect>
-            </property>
-            <property name="text">
-                <string>No Hide Recieve message form &amp;when repling</string>
-            </property>
-            <property name="accel">
-                <string>Alt+W</string>
-            </property>
-        </widget>
-        <widget class="QCheckBox">
-            <property name="name">
-                <cstring>m_HotKeyCheckbox</cstring>
-            </property>
-            <property name="geometry">
-                <rect>
-                    <x>20</x>
-                    <y>120</y>
-                    <width>300</width>
-                    <height>23</height>
-                </rect>
-            </property>
-            <property name="text">
-                <string>Send/Recieve &amp;HotKey(Alt+Ctrl+S,R)</string>
-            </property>
-            <property name="accel">
-                <string>Alt+H</string>
-            </property>
-        </widget>
-        <widget class="QCheckBox">
-            <property name="name">
-                <cstring>m_FireInterceptCheckbox</cstring>
-            </property>
-            <property name="geometry">
-                <rect>
-                    <x>20</x>
-                    <y>150</y>
-                    <width>300</width>
-                    <height>23</height>
-                </rect>
-            </property>
-            <property name="text">
-                <string>Show [&amp;Fire/Intercept] as [Send/Recieve]</string>
-            </property>
-            <property name="accel">
-                <string>Alt+F</string>
-            </property>
-        </widget>
-        <widget class="QCheckBox">
-            <property name="name">
-                <cstring>m_OpenBySingleClickCheckbox</cstring>
-            </property>
-            <property name="geometry">
-                <rect>
-                    <x>20</x>
-                    <y>180</y>
-                    <width>300</width>
-                    <height>23</height>
-                </rect>
-            </property>
-            <property name="text">
-                <string>Open &amp;Send form by Single Click</string>
-            </property>
-            <property name="accel">
-                <string>Alt+S</string>
-            </property>
-        </widget>
-        <widget class="QCheckBox">
-            <property name="name">
-                <cstring>m_NonePopupOnAbsenceCheckbox</cstring>
-            </property>
-            <property name="geometry">
-                <rect>
-                    <x>20</x>
-                    <y>210</y>
-                    <width>300</width>
-                    <height>23</height>
-                </rect>
-            </property>
-            <property name="text">
-                <string>None &amp;popup recieve on Absence mode</string>
-            </property>
-            <property name="accel">
-                <string>Alt+P</string>
-            </property>
-        </widget>
-        <widget class="KPushButton">
-            <property name="name">
-                <cstring>m_RecieveSoundButton</cstring>
-            </property>
-            <property name="geometry">
-                <rect>
-                    <x>20</x>
-                    <y>240</y>
-                    <width>110</width>
-                    <height>28</height>
-                </rect>
-            </property>
-            <property name="text">
-                <string>Recie&amp;ved Sound</string>
-            </property>
-            <property name="accel">
-                <string>Alt+V</string>
-            </property>
-        </widget>
-        <widget class="QCheckBox">
-            <property name="name">
-                <cstring>m_IMEAutomaticalyCheckbox</cstring>
-            </property>
-            <property name="geometry">
-                <rect>
-                    <x>20</x>
-                    <y>30</y>
-                    <width>300</width>
-                    <height>23</height>
-                </rect>
-            </property>
-            <property name="text">
-                <string>IME ON/OFF A&amp;utomaticaly</string>
-            </property>
-            <property name="accel">
-                <string>Alt+U</string>
-            </property>
-        </widget>
-        <widget class="QCheckBox">
-            <property name="name">
-                <cstring>m_ConfirmIconCheckbox</cstring>
-            </property>
-            <property name="geometry">
-                <rect>
-                    <x>20</x>
-                    <y>60</y>
-                    <width>300</width>
-                    <height>23</height>
-                </rect>
-            </property>
-            <property name="text">
-                <string>&amp;No Display Send/OpenConfirm Icon</string>
-            </property>
-            <property name="accel">
-                <string>Alt+N</string>
-            </property>
-        </widget>
-        <widget class="KLineEdit">
-            <property name="name">
-                <cstring>m_RecieveSoundFileNameEditbox</cstring>
-            </property>
-            <property name="geometry">
-                <rect>
-                    <x>130</x>
-                    <y>240</y>
-                    <width>260</width>
-                    <height>25</height>
-                </rect>
-            </property>
-        </widget>
-        <widget class="KPushButton">
-            <property name="name">
-                <cstring>m_AbsenceIconButton</cstring>
-            </property>
-            <property name="geometry">
-                <rect>
-                    <x>20</x>
-                    <y>370</y>
-                    <width>110</width>
-                    <height>28</height>
-                </rect>
-            </property>
-            <property name="text">
-                <string>A&amp;bsence Icon</string>
-            </property>
-            <property name="accel">
-                <string>Alt+B</string>
-            </property>
-        </widget>
-        <widget class="KLineEdit">
-            <property name="name">
-                <cstring>m_AbsenceIconFileNameEditbox</cstring>
-            </property>
-            <property name="geometry">
-                <rect>
-                    <x>130</x>
-                    <y>370</y>
-                    <width>260</width>
-                    <height>25</height>
-                </rect>
-            </property>
-        </widget>
-        <widget class="KPushButton">
-            <property name="name">
-                <cstring>m_IconButton</cstring>
-            </property>
-            <property name="geometry">
-                <rect>
-                    <x>20</x>
-                    <y>300</y>
-                    <width>110</width>
-                    <height>28</height>
-                </rect>
-            </property>
-            <property name="text">
-                <string>&amp;Icon</string>
-            </property>
-            <property name="accel">
-                <string>Alt+I</string>
-            </property>
-        </widget>
         <widget class="QLabel">
             <property name="name">
                 <cstring>m_PreviewIconLabel</cstring>
@@ -550,20 +311,195 @@ icon</string>
                 <set>AlignCenter</set>
             </property>
         </widget>
-        <widget class="KPushButton">
+        <widget class="QGroupBox">
             <property name="name">
-                <cstring>m_PlayButton</cstring>
+                <cstring>groupBox17</cstring>
             </property>
             <property name="geometry">
                 <rect>
-                    <x>390</x>
-                    <y>240</y>
-                    <width>80</width>
-                    <height>28</height>
+                    <x>320</x>
+                    <y>20</y>
+                    <width>149</width>
+                    <height>62</height>
+                </rect>
+            </property>
+            <property name="title">
+                <string>Quote Character</string>
+            </property>
+            <hbox>
+                <property name="name">
+                    <cstring>unnamed</cstring>
+                </property>
+                <widget class="KLineEdit">
+                    <property name="name">
+                        <cstring>m_QuoteCharEditbox</cstring>
+                    </property>
+                </widget>
+            </hbox>
+        </widget>
+        <widget class="QCheckBox">
+            <property name="name">
+                <cstring>m_ConfirmIconCheckbox</cstring>
+            </property>
+            <property name="geometry">
+                <rect>
+                    <x>20</x>
+                    <y>60</y>
+                    <width>300</width>
+                    <height>23</height>
                 </rect>
             </property>
             <property name="text">
-                <string>Play</string>
+                <string>&amp;No Display Send/OpenConfirm Icon</string>
+            </property>
+            <property name="accel">
+                <string>Alt+N</string>
+            </property>
+        </widget>
+        <widget class="QCheckBox">
+            <property name="name">
+                <cstring>m_IMEAutomaticalyCheckbox</cstring>
+            </property>
+            <property name="geometry">
+                <rect>
+                    <x>20</x>
+                    <y>30</y>
+                    <width>300</width>
+                    <height>23</height>
+                </rect>
+            </property>
+            <property name="text">
+                <string>IME ON/OFF A&amp;utomaticaly</string>
+            </property>
+            <property name="accel">
+                <string>Alt+U</string>
+            </property>
+        </widget>
+        <widget class="QCheckBox">
+            <property name="name">
+                <cstring>m_NoHideCheckbox</cstring>
+            </property>
+            <property name="geometry">
+                <rect>
+                    <x>20</x>
+                    <y>90</y>
+                    <width>370</width>
+                    <height>23</height>
+                </rect>
+            </property>
+            <property name="text">
+                <string>No Hide Recieve &amp;message form when repling</string>
+            </property>
+            <property name="accel">
+                <string>Alt+M</string>
+            </property>
+        </widget>
+        <widget class="QCheckBox">
+            <property name="name">
+                <cstring>m_HotKeyCheckbox</cstring>
+            </property>
+            <property name="geometry">
+                <rect>
+                    <x>20</x>
+                    <y>120</y>
+                    <width>300</width>
+                    <height>23</height>
+                </rect>
+            </property>
+            <property name="text">
+                <string>Send/Recieve &amp;HotKey(Alt+Ctrl+S,R)</string>
+            </property>
+            <property name="accel">
+                <string>Alt+H</string>
+            </property>
+        </widget>
+        <widget class="QCheckBox">
+            <property name="name">
+                <cstring>m_FireInterceptCheckbox</cstring>
+            </property>
+            <property name="geometry">
+                <rect>
+                    <x>20</x>
+                    <y>150</y>
+                    <width>340</width>
+                    <height>23</height>
+                </rect>
+            </property>
+            <property name="text">
+                <string>Show [&amp;Fire/Intercept] as [Send/Recieve]</string>
+            </property>
+            <property name="accel">
+                <string>Alt+F</string>
+            </property>
+        </widget>
+        <widget class="QCheckBox">
+            <property name="name">
+                <cstring>m_OpenBySingleClickCheckbox</cstring>
+            </property>
+            <property name="geometry">
+                <rect>
+                    <x>20</x>
+                    <y>180</y>
+                    <width>300</width>
+                    <height>23</height>
+                </rect>
+            </property>
+            <property name="text">
+                <string>&amp;Open Send form by Single Click</string>
+            </property>
+            <property name="accel">
+                <string>Alt+O</string>
+            </property>
+        </widget>
+        <widget class="QCheckBox">
+            <property name="name">
+                <cstring>m_NonePopupOnAbsenceCheckbox</cstring>
+            </property>
+            <property name="geometry">
+                <rect>
+                    <x>20</x>
+                    <y>210</y>
+                    <width>310</width>
+                    <height>23</height>
+                </rect>
+            </property>
+            <property name="text">
+                <string>None &amp;popup recieve on Absence mode</string>
+            </property>
+            <property name="accel">
+                <string>Alt+P</string>
+            </property>
+        </widget>
+        <widget class="KLineEdit">
+            <property name="name">
+                <cstring>m_RecieveSoundFileNameEditbox</cstring>
+            </property>
+            <property name="geometry">
+                <rect>
+                    <x>160</x>
+                    <y>240</y>
+                    <width>230</width>
+                    <height>25</height>
+                </rect>
+            </property>
+        </widget>
+        <widget class="KPushButton">
+            <property name="name">
+                <cstring>m_IconButton</cstring>
+            </property>
+            <property name="geometry">
+                <rect>
+                    <x>20</x>
+                    <y>300</y>
+                    <width>140</width>
+                    <height>30</height>
+                </rect>
+            </property>
+            <property name="text">
+                <string>&amp;Icon</string>
+            </property>
+            <property name="accel">
+                <string>Alt+I</string>
             </property>
         </widget>
         <widget class="KLineEdit">
@@ -572,15 +508,84 @@ icon</string>
             </property>
             <property name="geometry">
                 <rect>
-                    <x>130</x>
+                    <x>160</x>
                     <y>300</y>
-                    <width>260</width>
+                    <width>230</width>
                     <height>25</height>
                 </rect>
             </property>
         </widget>
+        <widget class="KPushButton">
+            <property name="name">
+                <cstring>m_RecieveSoundButton</cstring>
+            </property>
+            <property name="geometry">
+                <rect>
+                    <x>20</x>
+                    <y>238</y>
+                    <width>140</width>
+                    <height>30</height>
+                </rect>
+            </property>
+            <property name="text">
+                <string>Recie&amp;ved Sound</string>
+            </property>
+            <property name="accel">
+                <string>Alt+V</string>
+            </property>
+        </widget>
+        <widget class="KPushButton">
+            <property name="name">
+                <cstring>m_AbsenceIconButton</cstring>
+            </property>
+            <property name="geometry">
+                <rect>
+                    <x>20</x>
+                    <y>368</y>
+                    <width>140</width>
+                    <height>30</height>
+                </rect>
+            </property>
+            <property name="text">
+                <string>A&amp;bsence Icon</string>
+            </property>
+            <property name="accel">
+                <string>Alt+B</string>
+            </property>
+        </widget>
+        <widget class="KLineEdit">
+            <property name="name">
+                <cstring>m_AbsenceIconFileNameEditbox</cstring>
+            </property>
+            <property name="geometry">
+                <rect>
+                    <x>160</x>
+                    <y>370</y>
+                    <width>230</width>
+                    <height>25</height>
+                </rect>
+            </property>
+        </widget>
+        <widget class="KPushButton">
+            <property name="name">
+                <cstring>m_PlayButton</cstring>
+            </property>
+            <property name="geometry">
+                <rect>
+                    <x>390</x>
+                    <y>238</y>
+                    <width>80</width>
+                    <height>30</height>
+                </rect>
+            </property>
+            <property name="text">
+                <string>Play</string>
+            </property>
+        </widget>
     </widget>
 </widget>
+<customwidgets>
+</customwidgets>
 <images>
     <image name="image0">
         <data format="PNG" length="472">89504e470d0a1a0a0000000d4948445200000020000000200806000000737a7af40000019f494441545885c556c19183300c5c6528247df0a3916be47c8ccf34922b841fd4914e740f621f185b1666b8ec27d16425add68a8118ef4513be31d25a0844e04b7432886e62f3d76f0cbaa23f00e0a66231709588a64c390f6682d74f91d93a0700088704660283922ead9b2f65b61cbd00a1b9d4a004bd808a1588c59d137011740268bf3c25e4a64f2e219150bcf6dfa7cc235e5431b05f20edd49ab34ed563103512410b222e6e7faef6db97f0f44dc81caeb82c2467ab0484a67f1daa9a1f16a099f64873b580a38d431ea828e2d2ab5803d1819a05bbee61a4685e83ac80d2f4ea5bb2e0480300ce0ee8ee1dc6e7183e250cd661bacf1b7ec8fbda8bf62206eb367c7cac1c189f233a44cd05f131dfc712623eb012d0dd3b8c782913303fa624dfc7f3cf947d7d8bf941c091497293afe3f97bc260dd26cfc731ff965216268910ce30c14fc58375202c27697a03d39b1d9f7829ccc109fced40870e6ddf269d70d625f9a9d8f42699ffd91bcaee808fa7c7de09bc266afb3614979c70d171f8fce0c06c272e4d9273e20c18a0ec0ea49c70d6651da985f43afa2ff80593f4f4903dfb44b90000000049454e44ae426082</data>
@@ -693,12 +698,12 @@ icon</string>
     <includehint>kpushbutton.h</includehint>
     <includehint>kpushbutton.h</includehint>
     <includehint>klineedit.h</includehint>
-    <includehint>kpushbutton.h</includehint>
     <includehint>klineedit.h</includehint>
     <includehint>kpushbutton.h</includehint>
     <includehint>klineedit.h</includehint>
     <includehint>kpushbutton.h</includehint>
     <includehint>kpushbutton.h</includehint>
     <includehint>klineedit.h</includehint>
+    <includehint>kpushbutton.h</includehint>
 </includehints>
 </UI>

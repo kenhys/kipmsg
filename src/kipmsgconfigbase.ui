@@ -8,8 +8,8 @@
         <rect>
             <x>0</x>
             <y>0</y>
-            <width>470</width>
-            <height>580</height>
+            <width>570</width>
+            <height>630</height>
         </rect>
     </property>
     <property name="sizePolicy">
@@ -22,19 +22,19 @@
     </property>
     <property name="minimumSize">
         <size>
-            <width>470</width>
-            <height>580</height>
+            <width>570</width>
+            <height>630</height>
         </size>
     </property>
     <property name="maximumSize">
         <size>
-            <width>470</width>
+            <width>570</width>
             <height>580</height>
         </size>
     </property>
     <property name="baseSize">
         <size>
-            <width>470</width>
+            <width>570</width>
             <height>580</height>
         </size>
     </property>
@@ -47,81 +47,109 @@
     <property name="modal">
         <bool>true</bool>
     </property>
-    <widget class="QGroupBox">
+    <widget class="QFrame">
         <property name="name">
-            <cstring>groupBox3</cstring>
+            <cstring>frame4</cstring>
         </property>
         <property name="geometry">
             <rect>
-                <x>10</x>
+                <x>320</x>
                 <y>80</y>
-                <width>235</width>
-                <height>180</height>
+                <width>240</width>
+                <height>230</height>
             </rect>
         </property>
-        <property name="title">
-            <string>Send/Recieve options</string>
+        <property name="frameShape">
+            <enum>StyledPanel</enum>
         </property>
-        <vbox>
+        <property name="frameShadow">
+            <enum>Raised</enum>
+        </property>
+        <property name="lineWidth">
+            <number>0</number>
+        </property>
+        <widget class="QFrame">
             <property name="name">
-                <cstring>unnamed</cstring>
+                <cstring>frame6</cstring>
             </property>
-            <widget class="QCheckBox">
+            <property name="geometry">
+                <rect>
+                    <x>0</x>
+                    <y>90</y>
+                    <width>240</width>
+                    <height>139</height>
+                </rect>
+            </property>
+            <property name="frameShape">
+                <enum>StyledPanel</enum>
+            </property>
+            <property name="frameShadow">
+                <enum>Raised</enum>
+            </property>
+            <vbox>
                 <property name="name">
-                    <cstring>m_ConfirmOpenCheckbox</cstring>
+                    <cstring>unnamed</cstring>
                 </property>
-                <property name="text">
-                    <string>Confirm to &amp;open message</string>
-                </property>
-                <property name="accel">
-                    <string>Alt+O</string>
-                </property>
-            </widget>
-            <widget class="QCheckBox">
-                <property name="name">
-                    <cstring>m_NoPopupCheckbox</cstring>
-                </property>
-                <property name="text">
-                    <string>No pop&amp;up on recieve</string>
-                </property>
-                <property name="accel">
-                    <string>Alt+U</string>
-                </property>
-            </widget>
-            <widget class="QCheckBox">
-                <property name="name">
-                    <cstring>m_NoSoundCheckbox</cstring>
-                </property>
-                <property name="text">
-                    <string>&amp;No sound on recieve</string>
-                </property>
-                <property name="accel">
-                    <string>Alt+N</string>
-                </property>
-            </widget>
-            <widget class="QCheckBox">
-                <property name="name">
-                    <cstring>m_SecretDefaultCheckbox</cstring>
-                </property>
-                <property name="text">
-                    <string>Secret checkbo&amp;x's default as true</string>
-                </property>
-                <property name="accel">
-                    <string>Alt+X</string>
-                </property>
-            </widget>
-            <widget class="QCheckBox">
-                <property name="name">
-                    <cstring>m_QuoteDefaultCheckbox</cstring>
-                </property>
-                <property name="text">
-                    <string>&amp;Quote checkbox's default as true</string>
-                </property>
-                <property name="accel">
-                    <string>Alt+Q</string>
-                </property>
-            </widget>
-        </vbox>
+                <widget class="KPushButton">
+                    <property name="name">
+                        <cstring>m_DetailAndLogConfigButton</cstring>
+                    </property>
+                    <property name="text">
+                        <string>Detail &amp;&amp; Lo&amp;g setup</string>
+                    </property>
+                    <property name="accel">
+                        <string>Alt+G</string>
+                    </property>
+                </widget>
+                <widget class="KPushButton">
+                    <property name="name">
+                        <cstring>m_ClickableURLConfigButton</cstring>
+                    </property>
+                    <property name="text">
+                        <string>Clicka&amp;ble URL setup</string>
+                    </property>
+                    <property name="accel">
+                        <string>Alt+B</string>
+                    </property>
+                </widget>
+                <widget class="KPushButton">
+                    <property name="name">
+                        <cstring>m_UnlockPasswordConfigButton</cstring>
+                    </property>
+                    <property name="text">
+                        <string>Unlo&amp;ck password setup</string>
+                    </property>
+                    <property name="accel">
+                        <string>Alt+C</string>
+                    </property>
+                </widget>
+            </vbox>
+        </widget>
+        <widget class="QLabel">
+            <property name="name">
+                <cstring>textLabel1</cstring>
+            </property>
+            <property name="geometry">
+                <rect>
+                    <x>0</x>
+                    <y>10</y>
+                    <width>240</width>
+                    <height>70</height>
+                </rect>
+            </property>
+            <property name="frameShape">
+                <enum>LineEditPanel</enum>
+            </property>
+            <property name="frameShadow">
+                <enum>Sunken</enum>
+            </property>
+            <property name="text">
+                <string>Send/Recieve window --&gt; Display &amp; Sort configuration on Right Click</string>
+            </property>
+            <property name="alignment">
+                <set>WordBreak|AlignVCenter</set>
+            </property>
+        </widget>
     </widget>
     <widget class="QGroupBox">
         <property name="name">
@@ -130,8 +158,8 @@
         <property name="geometry">
             <rect>
                 <x>10</x>
-                <y>360</y>
-                <width>450</width>
+                <y>410</y>
+                <width>550</width>
                 <height>170</height>
             </rect>
         </property>
@@ -202,19 +230,6 @@
                 <string>&lt;&lt;</string>
             </property>
         </widget>
-        <widget class="KListBox">
-            <property name="name">
-                <cstring>m_BroadcastListbox</cstring>
-            </property>
-            <property name="geometry">
-                <rect>
-                    <x>260</x>
-                    <y>30</y>
-                    <width>180</width>
-                    <height>130</height>
-                </rect>
-            </property>
-        </widget>
         <widget class="KPushButton">
             <property name="name">
                 <cstring>m_AddToBroadcastButton</cstring>
@@ -231,6 +246,98 @@
                 <string>&gt;&gt;</string>
             </property>
         </widget>
+        <widget class="KListBox">
+            <property name="name">
+                <cstring>m_BroadcastListbox</cstring>
+            </property>
+            <property name="geometry">
+                <rect>
+                    <x>260</x>
+                    <y>30</y>
+                    <width>280</width>
+                    <height>130</height>
+                </rect>
+            </property>
+        </widget>
+    </widget>
+    <widget class="QFrame">
+        <property name="name">
+            <cstring>frame5</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>10</x>
+                <y>590</y>
+                <width>550</width>
+                <height>40</height>
+            </rect>
+        </property>
+        <property name="frameShape">
+            <enum>StyledPanel</enum>
+        </property>
+        <property name="frameShadow">
+            <enum>Raised</enum>
+        </property>
+        <property name="lineWidth">
+            <number>0</number>
+        </property>
+        <widget class="KPushButton">
+            <property name="name">
+                <cstring>m_ApplyButton</cstring>
+            </property>
+            <property name="geometry">
+                <rect>
+                    <x>440</x>
+                    <y>0</y>
+                    <width>100</width>
+                    <height>30</height>
+                </rect>
+            </property>
+            <property name="text">
+                <string>Appl&amp;y</string>
+            </property>
+            <property name="accel">
+                <string>Alt+Y</string>
+            </property>
+        </widget>
+        <widget class="KPushButton">
+            <property name="name">
+                <cstring>m_CancelButton</cstring>
+            </property>
+            <property name="geometry">
+                <rect>
+                    <x>280</x>
+                    <y>0</y>
+                    <width>100</width>
+                    <height>30</height>
+                </rect>
+            </property>
+            <property name="text">
+                <string>Canc&amp;el</string>
+            </property>
+            <property name="accel">
+                <string>Alt+E</string>
+            </property>
+        </widget>
+        <widget class="KPushButton">
+            <property name="name">
+                <cstring>m_OKButton</cstring>
+            </property>
+            <property name="geometry">
+                <rect>
+                    <x>170</x>
+                    <y>0</y>
+                    <width>100</width>
+                    <height>30</height>
+                </rect>
+            </property>
+            <property name="text">
+                <string>&amp;OK</string>
+            </property>
+            <property name="accel">
+                <string>Alt+O</string>
+            </property>
+        </widget>
     </widget>
     <widget class="QFrame">
         <property name="name">
@@ -240,7 +347,7 @@
             <rect>
                 <x>0</x>
                 <y>0</y>
-                <width>470</width>
+                <width>560</width>
                 <height>82</height>
             </rect>
         </property>
@@ -259,7 +366,7 @@
             </property>
             <property name="geometry">
                 <rect>
-                    <x>230</x>
+                    <x>320</x>
                     <y>10</y>
                     <width>230</width>
                     <height>60</height>
@@ -290,8 +397,8 @@
                 <rect>
                     <x>10</x>
                     <y>10</y>
-                    <width>210</width>
-                    <height>60</height>
+                    <width>306</width>
+                    <height>62</height>
                 </rect>
             </property>
             <property name="title">
@@ -309,185 +416,81 @@
             </hbox>
         </widget>
     </widget>
-    <widget class="QFrame">
+    <widget class="QGroupBox">
         <property name="name">
-            <cstring>frame4</cstring>
+            <cstring>groupBox3</cstring>
         </property>
         <property name="geometry">
             <rect>
-                <x>250</x>
+                <x>10</x>
                 <y>80</y>
-                <width>220</width>
-                <height>180</height>
+                <width>306</width>
+                <height>230</height>
             </rect>
         </property>
-        <property name="frameShape">
-            <enum>StyledPanel</enum>
+        <property name="title">
+            <string>Send/Recieve options</string>
         </property>
-        <property name="frameShadow">
-            <enum>Raised</enum>
-        </property>
-        <property name="lineWidth">
-            <number>0</number>
-        </property>
-        <widget class="QFrame">
+        <vbox>
             <property name="name">
-                <cstring>frame6</cstring>
+                <cstring>unnamed</cstring>
             </property>
-            <property name="geometry">
-                <rect>
-                    <x>0</x>
-                    <y>60</y>
-                    <width>210</width>
-                    <height>118</height>
-                </rect>
-            </property>
-            <property name="frameShape">
-                <enum>StyledPanel</enum>
-            </property>
-            <property name="frameShadow">
-                <enum>Raised</enum>
-            </property>
-            <vbox>
+            <widget class="QCheckBox">
                 <property name="name">
-                    <cstring>unnamed</cstring>
+                    <cstring>m_ConfirmOpenCheckbox</cstring>
                 </property>
-                <widget class="KPushButton">
-                    <property name="name">
-                        <cstring>m_DetailAndLogConfigButton</cstring>
-                    </property>
-                    <property name="text">
-                        <string>Det&amp;ail &amp;&amp; Log setup</string>
-                    </property>
-                    <property name="accel">
-                        <string>Alt+A</string>
-                    </property>
-                </widget>
-                <widget class="KPushButton">
-                    <property name="name">
-                        <cstring>m_ClickableURLConfigButton</cstring>
-                    </property>
-                    <property name="text">
-                        <string>Clicka&amp;ble URL setup</string>
-                    </property>
-                    <property name="accel">
-                        <string>Alt+B</string>
-                    </property>
-                </widget>
-                <widget class="KPushButton">
-                    <property name="name">
-                        <cstring>m_UnlockPasswordConfigButton</cstring>
-                    </property>
-                    <property name="text">
-                        <string>Unlo&amp;ck password setup</string>
-                    </property>
-                    <property name="accel">
-                        <string>Alt+C</string>
-                    </property>
-                </widget>
-            </vbox>
-        </widget>
-        <widget class="QLabel">
-            <property name="name">
-                <cstring>textLabel1</cstring>
-            </property>
-            <property name="geometry">
-                <rect>
-                    <x>0</x>
-                    <y>10</y>
-                    <width>210</width>
-                    <height>50</height>
-                </rect>
-            </property>
-            <property name="frameShape">
-                <enum>LineEditPanel</enum>
-            </property>
-            <property name="frameShadow">
-                <enum>Sunken</enum>
-            </property>
-            <property name="text">
-                <string>Send/Recieve window --&gt; Display &amp; Sort configuration on Right Click</string>
-            </property>
-            <property name="alignment">
-                <set>WordBreak|AlignVCenter</set>
-            </property>
-        </widget>
-    </widget>
-    <widget class="QFrame">
-        <property name="name">
-            <cstring>frame5</cstring>
-        </property>
-        <property name="geometry">
-            <rect>
-                <x>0</x>
-                <y>530</y>
-                <width>470</width>
-                <height>50</height>
-            </rect>
-        </property>
-        <property name="frameShape">
-            <enum>StyledPanel</enum>
-        </property>
-        <property name="frameShadow">
-            <enum>Raised</enum>
-        </property>
-        <property name="lineWidth">
-            <number>0</number>
-        </property>
-        <widget class="KPushButton">
-            <property name="name">
-                <cstring>m_OKButton</cstring>
-            </property>
-            <property name="geometry">
-                <rect>
-                    <x>140</x>
-                    <y>10</y>
-                    <width>80</width>
-                    <height>28</height>
-                </rect>
-            </property>
-            <property name="text">
-                <string>OK</string>
-            </property>
-        </widget>
-        <widget class="KPushButton">
-            <property name="name">
-                <cstring>m_CancelButton</cstring>
-            </property>
-            <property name="geometry">
-                <rect>
-                    <x>250</x>
-                    <y>10</y>
-                    <width>80</width>
-                    <height>28</height>
-                </rect>
-            </property>
-            <property name="text">
-                <string>Canc&amp;el</string>
-            </property>
-            <property name="accel">
-                <string>Alt+E</string>
-            </property>
-        </widget>
-        <widget class="KPushButton">
-            <property name="name">
-                <cstring>m_ApplyButton</cstring>
-            </property>
-            <property name="geometry">
-                <rect>
-                    <x>390</x>
-                    <y>10</y>
-                    <width>70</width>
-                    <height>28</height>
-                </rect>
-            </property>
-            <property name="text">
-                <string>Appl&amp;y</string>
-            </property>
-            <property name="accel">
-                <string>Alt+Y</string>
-            </property>
-        </widget>
+                <property name="text">
+                    <string>Confirm to open &amp;message</string>
+                </property>
+                <property name="accel">
+                    <string>Alt+M</string>
+                </property>
+            </widget>
+            <widget class="QCheckBox">
+                <property name="name">
+                    <cstring>m_NoPopupCheckbox</cstring>
+                </property>
+                <property name="text">
+                    <string>No pop&amp;up on recieve</string>
+                </property>
+                <property name="accel">
+                    <string>Alt+U</string>
+                </property>
+            </widget>
+            <widget class="QCheckBox">
+                <property name="name">
+                    <cstring>m_NoSoundCheckbox</cstring>
+                </property>
+                <property name="text">
+                    <string>&amp;No sound on recieve</string>
+                </property>
+                <property name="accel">
+                    <string>Alt+N</string>
+                </property>
+            </widget>
+            <widget class="QCheckBox">
+                <property name="name">
+                    <cstring>m_SecretDefaultCheckbox</cstring>
+                </property>
+                <property name="text">
+                    <string>Secret checkbo&amp;x's default as true</string>
+                </property>
+                <property name="accel">
+                    <string>Alt+X</string>
+                </property>
+            </widget>
+            <widget class="QCheckBox">
+                <property name="name">
+                    <cstring>m_QuoteDefaultCheckbox</cstring>
+                </property>
+                <property name="text">
+                    <string>&amp;Quote checkbox's default as true</string>
+                </property>
+                <property name="accel">
+                    <string>Alt+Q</string>
+                </property>
+            </widget>
+        </vbox>
     </widget>
     <widget class="QGroupBox">
         <property name="name">
@@ -496,8 +499,8 @@
         <property name="geometry">
             <rect>
                 <x>10</x>
-                <y>260</y>
-                <width>450</width>
+                <y>310</y>
+                <width>550</width>
                 <height>90</height>
             </rect>
         </property>
@@ -506,13 +509,29 @@
         </property>
         <widget class="QLabel">
             <property name="name">
+                <cstring>textLabel2_2_2</cstring>
+            </property>
+            <property name="geometry">
+                <rect>
+                    <x>10</x>
+                    <y>50</y>
+                    <width>350</width>
+                    <height>25</height>
+                </rect>
+            </property>
+            <property name="text">
+                <string>Local Filesystem encoding</string>
+            </property>
+        </widget>
+        <widget class="QLabel">
+            <property name="name">
                 <cstring>textLabel2_2</cstring>
             </property>
             <property name="geometry">
                 <rect>
                     <x>11</x>
                     <y>20</y>
-                    <width>290</width>
+                    <width>350</width>
                     <height>25</height>
                 </rect>
             </property>
@@ -732,34 +751,18 @@
                 </property>
             </item>
             <property name="name">
-                <cstring>m_MessageEncodingCombobox</cstring>
+                <cstring>m_LocalFilesystemEncodingCombobox</cstring>
             </property>
             <property name="geometry">
                 <rect>
-                    <x>300</x>
-                    <y>20</y>
-                    <width>140</width>
-                    <height>25</height>
+                    <x>370</x>
+                    <y>55</y>
+                    <width>170</width>
+                    <height>30</height>
                 </rect>
             </property>
             <property name="currentItem">
-                <number>9</number>
-            </property>
-        </widget>
-        <widget class="QLabel">
-            <property name="name">
-                <cstring>textLabel2_2_2</cstring>
-            </property>
-            <property name="geometry">
-                <rect>
-                    <x>10</x>
-                    <y>50</y>
-                    <width>290</width>
-                    <height>25</height>
-                </rect>
-            </property>
-            <property name="text">
-                <string>Local Filesystem encoding</string>
+                <number>3</number>
             </property>
         </widget>
         <widget class="KComboBox">
@@ -974,18 +977,18 @@
                 </property>
             </item>
             <property name="name">
-                <cstring>m_LocalFilesystemEncodingCombobox</cstring>
+                <cstring>m_MessageEncodingCombobox</cstring>
             </property>
             <property name="geometry">
                 <rect>
-                    <x>299</x>
-                    <y>50</y>
-                    <width>140</width>
-                    <height>25</height>
+                    <x>371</x>
+                    <y>20</y>
+                    <width>170</width>
+                    <height>30</height>
                 </rect>
             </property>
             <property name="currentItem">
-                <number>3</number>
+                <number>9</number>
             </property>
         </widget>
     </widget>
@@ -1079,19 +1082,19 @@
 </slots>
 <layoutdefaults spacing="6" margin="11"/>
 <includehints>
+    <includehint>kpushbutton.h</includehint>
+    <includehint>kpushbutton.h</includehint>
+    <includehint>kpushbutton.h</includehint>
     <includehint>klineedit.h</includehint>
     <includehint>kpushbutton.h</includehint>
+    <includehint>kpushbutton.h</includehint>
     <includehint>klistbox.h</includehint>
+    <includehint>kpushbutton.h</includehint>
+    <includehint>kpushbutton.h</includehint>
     <includehint>kpushbutton.h</includehint>
     <includehint>kcombobox.h</includehint>
     <includehint>klineedit.h</includehint>
     <includehint>klineedit.h</includehint>
-    <includehint>kpushbutton.h</includehint>
-    <includehint>kpushbutton.h</includehint>
-    <includehint>kpushbutton.h</includehint>
-    <includehint>kpushbutton.h</includehint>
-    <includehint>kpushbutton.h</includehint>
-    <includehint>kpushbutton.h</includehint>
     <includehint>kcombobox.h</includehint>
     <includehint>kcombobox.h</includehint>
 </includehints>

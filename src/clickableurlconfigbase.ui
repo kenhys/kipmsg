@@ -8,7 +8,7 @@
         <rect>
             <x>0</x>
             <y>0</y>
-            <width>470</width>
+            <width>500</width>
             <height>380</height>
         </rect>
     </property>
@@ -22,19 +22,19 @@
     </property>
     <property name="minimumSize">
         <size>
-            <width>470</width>
+            <width>500</width>
             <height>380</height>
         </size>
     </property>
     <property name="maximumSize">
         <size>
-            <width>470</width>
+            <width>500</width>
             <height>380</height>
         </size>
     </property>
     <property name="baseSize">
         <size>
-            <width>470</width>
+            <width>500</width>
             <height>380</height>
         </size>
     </property>
@@ -49,13 +49,45 @@
     </property>
     <widget class="QGroupBox">
         <property name="name">
+            <cstring>groupBox19</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>10</x>
+                <y>0</y>
+                <width>480</width>
+                <height>60</height>
+            </rect>
+        </property>
+        <property name="title">
+            <string>Clickable URL - Default configuration</string>
+        </property>
+        <hbox>
+            <property name="name">
+                <cstring>unnamed</cstring>
+            </property>
+            <widget class="QCheckBox">
+                <property name="name">
+                    <cstring>m_DefaultBrowserCheckbox</cstring>
+                </property>
+                <property name="text">
+                    <string>&amp;Use default browser(case of no protocol specification)</string>
+                </property>
+                <property name="accel">
+                    <string>Alt+U</string>
+                </property>
+            </widget>
+        </hbox>
+    </widget>
+    <widget class="QGroupBox">
+        <property name="name">
             <cstring>groupBox20</cstring>
         </property>
         <property name="geometry">
             <rect>
                 <x>10</x>
                 <y>60</y>
-                <width>450</width>
+                <width>480</width>
                 <height>120</height>
             </rect>
         </property>
@@ -100,19 +132,6 @@
                 </rect>
             </property>
         </widget>
-        <widget class="KLineEdit">
-            <property name="name">
-                <cstring>m_ProgramNameEditbox</cstring>
-            </property>
-            <property name="geometry">
-                <rect>
-                    <x>130</x>
-                    <y>60</y>
-                    <width>310</width>
-                    <height>25</height>
-                </rect>
-            </property>
-        </widget>
         <widget class="KPushButton">
             <property name="name">
                 <cstring>m_BrowseProgramButton</cstring>
@@ -121,8 +140,8 @@
                 <rect>
                     <x>360</x>
                     <y>20</y>
-                    <width>80</width>
-                    <height>28</height>
+                    <width>110</width>
+                    <height>30</height>
                 </rect>
             </property>
             <property name="text">
@@ -132,6 +151,19 @@
                 <string>Alt+B</string>
             </property>
         </widget>
+        <widget class="KLineEdit">
+            <property name="name">
+                <cstring>m_ProgramNameEditbox</cstring>
+            </property>
+            <property name="geometry">
+                <rect>
+                    <x>130</x>
+                    <y>50</y>
+                    <width>340</width>
+                    <height>25</height>
+                </rect>
+            </property>
+        </widget>
         <widget class="QLabel">
             <property name="name">
                 <cstring>textLabel4</cstring>
@@ -139,8 +171,8 @@
             <property name="geometry">
                 <rect>
                     <x>130</x>
-                    <y>20</y>
-                    <width>230</width>
+                    <y>30</y>
+                    <width>210</width>
                     <height>20</height>
                 </rect>
             </property>
@@ -151,45 +183,13 @@
     </widget>
     <widget class="QGroupBox">
         <property name="name">
-            <cstring>groupBox19</cstring>
-        </property>
-        <property name="geometry">
-            <rect>
-                <x>10</x>
-                <y>0</y>
-                <width>450</width>
-                <height>58</height>
-            </rect>
-        </property>
-        <property name="title">
-            <string>Clickable URL - Default configuration</string>
-        </property>
-        <hbox>
-            <property name="name">
-                <cstring>unnamed</cstring>
-            </property>
-            <widget class="QCheckBox">
-                <property name="name">
-                    <cstring>m_DefaultBrowserCheckbox</cstring>
-                </property>
-                <property name="text">
-                    <string>&amp;Use default browser(case of no protocol specification)</string>
-                </property>
-                <property name="accel">
-                    <string>Alt+U</string>
-                </property>
-            </widget>
-        </hbox>
-    </widget>
-    <widget class="QGroupBox">
-        <property name="name">
             <cstring>groupBox4</cstring>
         </property>
         <property name="geometry">
             <rect>
                 <x>10</x>
                 <y>180</y>
-                <width>450</width>
+                <width>480</width>
                 <height>130</height>
             </rect>
         </property>
@@ -204,7 +204,7 @@
                 <rect>
                     <x>10</x>
                     <y>20</y>
-                    <width>430</width>
+                    <width>460</width>
                     <height>100</height>
                 </rect>
             </property>
@@ -228,7 +228,7 @@ implemented in Single Click.</string>
             <rect>
                 <x>0</x>
                 <y>320</y>
-                <width>470</width>
+                <width>490</width>
                 <height>50</height>
             </rect>
         </property>
@@ -243,14 +243,33 @@ implemented in Single Click.</string>
         </property>
         <widget class="KPushButton">
             <property name="name">
+                <cstring>m_ApplyButton</cstring>
+            </property>
+            <property name="geometry">
+                <rect>
+                    <x>390</x>
+                    <y>10</y>
+                    <width>100</width>
+                    <height>30</height>
+                </rect>
+            </property>
+            <property name="text">
+                <string>Appl&amp;y</string>
+            </property>
+            <property name="accel">
+                <string>Alt+Y</string>
+            </property>
+        </widget>
+        <widget class="KPushButton">
+            <property name="name">
                 <cstring>m_OKButton</cstring>
             </property>
             <property name="geometry">
                 <rect>
-                    <x>140</x>
+                    <x>150</x>
                     <y>10</y>
-                    <width>80</width>
-                    <height>28</height>
+                    <width>100</width>
+                    <height>30</height>
                 </rect>
             </property>
             <property name="text">
@@ -266,10 +285,10 @@ implemented in Single Click.</string>
             </property>
             <property name="geometry">
                 <rect>
-                    <x>250</x>
+                    <x>260</x>
                     <y>10</y>
-                    <width>80</width>
-                    <height>28</height>
+                    <width>100</width>
+                    <height>30</height>
                 </rect>
             </property>
             <property name="text">
@@ -277,25 +296,6 @@ implemented in Single Click.</string>
             </property>
             <property name="accel">
                 <string>Alt+N</string>
-            </property>
-        </widget>
-        <widget class="KPushButton">
-            <property name="name">
-                <cstring>m_ApplyButton</cstring>
-            </property>
-            <property name="geometry">
-                <rect>
-                    <x>390</x>
-                    <y>10</y>
-                    <width>70</width>
-                    <height>28</height>
-                </rect>
-            </property>
-            <property name="text">
-                <string>&amp;Apply</string>
-            </property>
-            <property name="accel">
-                <string>Alt+A</string>
             </property>
         </widget>
     </widget>
@@ -365,8 +365,8 @@ implemented in Single Click.</string>
 <layoutdefaults spacing="6" margin="11"/>
 <includehints>
     <includehint>klistbox.h</includehint>
-    <includehint>klineedit.h</includehint>
     <includehint>kpushbutton.h</includehint>
+    <includehint>klineedit.h</includehint>
     <includehint>kpushbutton.h</includehint>
     <includehint>kpushbutton.h</includehint>
     <includehint>kpushbutton.h</includehint>

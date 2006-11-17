@@ -8,7 +8,7 @@
         <rect>
             <x>0</x>
             <y>0</y>
-            <width>606</width>
+            <width>716</width>
             <height>325</height>
         </rect>
     </property>
@@ -84,7 +84,7 @@
                     </property>
                     <property name="minimumSize">
                         <size>
-                            <width>320</width>
+                            <width>380</width>
                             <height>30</height>
                         </size>
                     </property>
@@ -109,10 +109,10 @@
                         </property>
                         <property name="geometry">
                             <rect>
-                                <x>240</x>
+                                <x>280</x>
                                 <y>0</y>
-                                <width>80</width>
-                                <height>28</height>
+                                <width>100</width>
+                                <height>30</height>
                             </rect>
                         </property>
                         <property name="text">
@@ -128,17 +128,17 @@
                         </property>
                         <property name="geometry">
                             <rect>
-                                <x>110</x>
+                                <x>120</x>
                                 <y>0</y>
-                                <width>120</width>
-                                <height>28</height>
+                                <width>150</width>
+                                <height>30</height>
                             </rect>
                         </property>
                         <property name="text">
-                            <string>Add Directories</string>
+                            <string>&amp;Add Directories</string>
                         </property>
                         <property name="accel">
-                            <string></string>
+                            <string>Alt+A</string>
                         </property>
                     </widget>
                     <widget class="KPushButton">
@@ -149,8 +149,8 @@
                             <rect>
                                 <x>0</x>
                                 <y>0</y>
-                                <width>100</width>
-                                <height>28</height>
+                                <width>110</width>
+                                <height>30</height>
                             </rect>
                         </property>
                         <property name="text">
@@ -187,7 +187,7 @@
                     </property>
                     <property name="minimumSize">
                         <size>
-                            <width>170</width>
+                            <width>220</width>
                             <height>30</height>
                         </size>
                     </property>
@@ -208,33 +208,14 @@
                     </property>
                     <widget class="KPushButton">
                         <property name="name">
-                            <cstring>m_OkButton</cstring>
-                        </property>
-                        <property name="geometry">
-                            <rect>
-                                <x>0</x>
-                                <y>0</y>
-                                <width>80</width>
-                                <height>28</height>
-                            </rect>
-                        </property>
-                        <property name="text">
-                            <string>O&amp;K</string>
-                        </property>
-                        <property name="accel">
-                            <string>Alt+K</string>
-                        </property>
-                    </widget>
-                    <widget class="KPushButton">
-                        <property name="name">
                             <cstring>m_CancelButton</cstring>
                         </property>
                         <property name="geometry">
                             <rect>
-                                <x>90</x>
+                                <x>110</x>
                                 <y>0</y>
-                                <width>80</width>
-                                <height>28</height>
+                                <width>100</width>
+                                <height>30</height>
                             </rect>
                         </property>
                         <property name="text">
@@ -242,6 +223,25 @@
                         </property>
                         <property name="accel">
                             <string>Alt+N</string>
+                        </property>
+                    </widget>
+                    <widget class="KPushButton">
+                        <property name="name">
+                            <cstring>m_OkButton</cstring>
+                        </property>
+                        <property name="geometry">
+                            <rect>
+                                <x>0</x>
+                                <y>0</y>
+                                <width>100</width>
+                                <height>30</height>
+                            </rect>
+                        </property>
+                        <property name="text">
+                            <string>O&amp;K</string>
+                        </property>
+                        <property name="accel">
+                            <string>Alt+K</string>
                         </property>
                     </widget>
                 </widget>
