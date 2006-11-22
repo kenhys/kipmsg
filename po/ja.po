@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ja\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-11-17 23:44+0900\n"
+"POT-Creation-Date: 2006-11-18 01:53+0900\n"
 "PO-Revision-Date: 2006-11-17 23:46+0900\n"
 "Last-Translator: \n"
 "Language-Team:  <ja@li.org>\n"
@@ -1265,7 +1265,8 @@ msgstr "ユーザリストの表示項目＆オプション"
 msgid ""
 "You able to change Fields show order with Drag and Drop on List Header.(Save "
 "on \"Saving List Header\")"
-msgstr "リストヘッダのドラッグ＆ドロップで項目順を変更可（リストヘッダ保存で記憶）"
+msgstr ""
+"リストヘッダのドラッグ＆ドロップで項目順を変更可（リストヘッダ保存で記憶）"
 
 #: ../src/showconfigbase.cpp:238
 msgid "&GroupName"
@@ -1318,4 +1319,3 @@ msgstr "旧パスワード"
 #: ../src/unlockpasswordconfigbase.cpp:166
 msgid "C&ancel"
 msgstr "キャンセル"
-
