@@ -51,34 +51,64 @@
 
 extern QPtrList<SendDialog> sendDialogs;
 
+class KIpMsgHostListViewItem : public QListViewItem {
+  private:
+    HostListItem m_host;
+  public:
+    KIpMsgHostListViewItem( QListView *parent, QTextCodec *codec, HostListItem host ) :
+			QListViewItem( parent, 
+					codec->toUnicode( host.Nickname().c_str() ),
+					codec->toUnicode( host.GroupName().c_str() ),
+					codec->toUnicode( host.HostName().c_str() ),
+					codec->toUnicode( host.IpAddress().c_str() ),
+					codec->toUnicode( host.UserName().c_str() ),
+					codec->toUnicode( host.Priority().c_str() ),
+					codec->toUnicode( host.EncodingName().c_str() ) )
+	{
+		m_host = host;
+		
+	};
+    HostListItem host(){ return m_host; }
+};
+
+/*
+ * ファイル名コンバータのネットワークエンコーディングからファイルシステムエンコーディングへの変換メソッド。
+ */
 string
 KIpMsgFileNameConverter::ConvertNetworkToLocal( string original_file_name ){
 	QTextCodec *fsCodec = QTextCodec::codecForName( KIpMsgSettings::localFilesystemEncoding() );
 	QTextCodec *msgCodec = QTextCodec::codecForName( KIpMsgSettings::messageEncoding() );
 	return fsCodec->fromUnicode( msgCodec->toUnicode( original_file_name.c_str() ) ).data();
 }
+/*
+ * ファイル名コンバータのファイルシステムエンコーディングからネットワークエンコーディングへの変換メソッド。
+ */
 string
 KIpMsgFileNameConverter::ConvertLocalToNetwork( string original_file_name ){
 	QTextCodec *msgCodec = QTextCodec::codecForName( KIpMsgSettings::messageEncoding() );
 	QTextCodec *fsCodec = QTextCodec::codecForName( KIpMsgSettings::localFilesystemEncoding() );
 	return msgCodec->fromUnicode( fsCodec->toUnicode( original_file_name.c_str() ) ).data();
 }
-	
+
+/*
+ * 編集領域Widgetのコンストラクタ。
+ */
 KTextEditNoDnD::KTextEditNoDnD(QWidget *parent, const char *name) : KTextEdit(parent, name){
 	DnDPopup = new KPopupMenu(this);
 	DnDPopup->insertItem(SmallIcon("text"),tr2i18n("Add as Text"), this, SLOT( slotAddAsText( void ) ) );
 	DnDPopup->insertItem(SmallIcon("attach"), tr2i18n("Add as Attachment"), this, SLOT( slotAddAsFile( void ) ) );
 };
 
+/*
+ * 編集領域Widgetのデストラクタ。
+ */
 KTextEditNoDnD::~KTextEditNoDnD(){
 	delete DnDPopup;
 };
 
-void KTextEditNoDnD::contentsDragEnterEvent(QDragEnterEvent *e){
-	printf("ContentsDragEnterEvent\n");
-	fflush(stdout);
-};
-
+/*
+ * 編集領域Widgetのコンテンツドロップイベント。
+ */
 void KTextEditNoDnD::contentsDropEvent(QDropEvent *e){
 	printf("ContentsDropEvent\n");
 	fflush(stdout);
@@ -90,10 +120,17 @@ void KTextEditNoDnD::contentsDropEvent(QDropEvent *e){
 	}
 };
 
+/*
+ * 編集領域WidgetのDND対象をテキストとして追加。
+ */
 void KTextEditNoDnD::slotAddAsText( void ){
 	insert(dropText.replace("\r\n", "\n"));
 	dropText = "";
 }
+
+/*
+ * 編集領域WidgetのDND対象をファイルとして追加。
+ */
 void KTextEditNoDnD::slotAddAsFile( void ){
 	SendDialog *top = dynamic_cast<SendDialog*>(topLevelWidget());
 	if ( top != NULL ){
@@ -114,7 +151,7 @@ SendDialog::SendDialog(QWidget* parent, const char* name, WFlags fl)
 	defaultWidth = width();
 	defaultHeight = height();
 
-	recvdialog = NULL;
+	recvDialog = NULL;
 	setAcceptDrops( TRUE );
 
     m_MessageEditbox = new KTextEditNoDnD( m_MessageFrame, "m_MessageEditbox" );
@@ -131,53 +168,53 @@ SendDialog::SendDialog(QWidget* parent, const char* name, WFlags fl)
 	m_HostListView->setFont( KIpMsgSettings::listFont() );
 	m_MessageEditbox->setFont( KIpMsgSettings::editFont() );
 
-    SendPopup = new KPopupMenu(this);
+    sendPopup = new KPopupMenu(this);
 
-	SortPopup = new KPopupMenu(this);
-	move_priority1_menu_item = SortPopup->insertItem(SmallIcon("move"),tr2i18n("Move to Priority 1"), this, SLOT( slotMoveToPriority1Clicked( void ) ) );
-	move_priority2_menu_item = SortPopup->insertItem(SmallIcon("move"),tr2i18n("Move to Priority 2"), this, SLOT( slotMoveToPriority2Clicked( void ) ) );
-	move_priority3_menu_item = SortPopup->insertItem(SmallIcon("move"),tr2i18n("Move to Priority 3"), this, SLOT( slotMoveToPriority3Clicked( void ) ) );
-	move_priority4_menu_item = SortPopup->insertItem(SmallIcon("move"),tr2i18n("Move to Priority 4"), this, SLOT( slotMoveToPriority4Clicked( void ) ) );
-	move_default_menu_item = SortPopup->insertItem(SmallIcon("move"),tr2i18n("Move to default"), this, SLOT( slotMoveToDefaultClicked( void ) ) );
-	move_hidden_menu_item = SortPopup->insertItem(SmallIcon("move"),tr2i18n("Move to hidden"), this, SLOT( slotMoveToHiddenClicked( void ) ) );
-	SortPopup->insertSeparator();
-	show_hidden_menu_item = SortPopup->insertItem(tr2i18n("Show Hidden(temporary)"), this, SLOT( slotShowHiddenTempClicked( void ) ) );
-	SortPopup->setItemChecked( show_hidden_menu_item, FALSE );
-	SortPopup->insertItem(SmallIcon("undo"),tr2i18n("Restore All to default"), this, SLOT( slotRestoreAllClicked( void ) ) );
-	SendPopup->insertItem(SmallIcon("filter"),tr2i18n("Sort Filter"), SortPopup );
+	sortPopup = new KPopupMenu(this);
+	moveToPriority1MenuId = sortPopup->insertItem(SmallIcon("move"),tr2i18n("Move to Priority 1"), this, SLOT( slotMoveToPriority1Clicked( void ) ) );
+	moveToPriority2MenuId = sortPopup->insertItem(SmallIcon("move"),tr2i18n("Move to Priority 2"), this, SLOT( slotMoveToPriority2Clicked( void ) ) );
+	moveToPriority3MenuId = sortPopup->insertItem(SmallIcon("move"),tr2i18n("Move to Priority 3"), this, SLOT( slotMoveToPriority3Clicked( void ) ) );
+	moveToPriority4MenuId = sortPopup->insertItem(SmallIcon("move"),tr2i18n("Move to Priority 4"), this, SLOT( slotMoveToPriority4Clicked( void ) ) );
+	moveToDefaultMenuId = sortPopup->insertItem(SmallIcon("move"),tr2i18n("Move to default"), this, SLOT( slotMoveToDefaultClicked( void ) ) );
+	moveToHiddenMenuId = sortPopup->insertItem(SmallIcon("move"),tr2i18n("Move to hidden"), this, SLOT( slotMoveToHiddenClicked( void ) ) );
+	sortPopup->insertSeparator();
+	showHiddenMenuId = sortPopup->insertItem(tr2i18n("Show Hidden(temporary)"), this, SLOT( slotShowHiddenTempClicked( void ) ) );
+	sortPopup->setItemChecked( showHiddenMenuId, FALSE );
+	sortPopup->insertItem(SmallIcon("undo"),tr2i18n("Restore All to default"), this, SLOT( slotRestoreAllClicked( void ) ) );
+	sendPopup->insertItem(SmallIcon("filter"),tr2i18n("Sort Filter"), sortPopup );
 
-	GroupPopup = new KPopupMenu(this);
-	SendPopup->insertItem(tr2i18n("Group Select"), GroupPopup );
+	groupPopup = new KPopupMenu(this);
+	sendPopup->insertItem(tr2i18n("Group Select"), groupPopup );
 
-	EncodingPopup = new KPopupMenu(this);
-	SendPopup->insertItem(SmallIcon("charset"), tr2i18n("Encoding Select"), EncodingPopup );
+	encodingPopup = new KPopupMenu(this);
+	sendPopup->insertItem(SmallIcon("charset"), tr2i18n("Encoding Select"), encodingPopup );
 
-	SendPopup->insertItem(tr2i18n("Configure Encoding..."), this, SLOT( slotEncodingConfigClicked( void ) ) );
+	sendPopup->insertItem(tr2i18n("Configure Encoding..."), this, SLOT( slotEncodingConfigClicked( void ) ) );
 
-	SendPopup->insertItem(SmallIcon("search_user"),tr2i18n("Search User..."), this, SLOT( slotSearchUserClicked( void ) ) );
-	SendPopup->insertItem(SmallIcon("attach"),tr2i18n("Attach file..."), this, SLOT( slotAttachFileClicked( void ) ) );
-	SendPopup->insertItem(SmallIcon("attach"),tr2i18n("Attach directory..."), this, SLOT( slotAttachDirectoryClicked( void ) ) );
-	SendPopup->insertSeparator();
+	sendPopup->insertItem(SmallIcon("search_user"),tr2i18n("Search User..."), this, SLOT( slotSearchUserClicked( void ) ) );
+	sendPopup->insertItem(SmallIcon("attach"),tr2i18n("Attach file..."), this, SLOT( slotAttachFileClicked( void ) ) );
+	sendPopup->insertItem(SmallIcon("attach"),tr2i18n("Attach directory..."), this, SLOT( slotAttachDirectoryClicked( void ) ) );
+	sendPopup->insertSeparator();
 
-	SendPopup->insertItem(SmallIcon("fileexport"),tr2i18n("Save Header"), this, SLOT( slotSaveListHeaderClicked( void ) ) );
+	sendPopup->insertItem(SmallIcon("fileexport"),tr2i18n("Save Header"), this, SLOT( slotSaveListHeaderClicked( void ) ) );
 
-	FontPopup = new KPopupMenu(this);
-	FontPopup->insertItem(tr2i18n("List..."), this, SLOT( slotFontSelectListClicked( void ) ) );
-	FontPopup->insertItem(tr2i18n("Edit..."), this, SLOT( slotFontSelectEditClicked( void ) ) );
-	FontPopup->insertItem(SmallIcon("undo"),tr2i18n("Restore default"), this, SLOT( slotFontRestoreToDefaultClicked( void ) ) );
-	SendPopup->insertItem(SmallIcon("fonts"),tr2i18n("Font Select"), FontPopup );
+	fontPopup = new KPopupMenu(this);
+	fontPopup->insertItem(tr2i18n("List..."), this, SLOT( slotFontSelectListClicked( void ) ) );
+	fontPopup->insertItem(tr2i18n("Edit..."), this, SLOT( slotFontSelectEditClicked( void ) ) );
+	fontPopup->insertItem(SmallIcon("undo"),tr2i18n("Restore default"), this, SLOT( slotFontRestoreToDefaultClicked( void ) ) );
+	sendPopup->insertItem(SmallIcon("fonts"),tr2i18n("Font Select"), fontPopup );
 
-	SizePopup = new KPopupMenu(this);
-	save_size_menu_item = SizePopup->insertItem(SmallIcon("fileexport"),tr2i18n("Save Size"), this, SLOT( slotSaveSizeClicked( void ) ) );
-	SizePopup->insertItem(SmallIcon("undo"),tr2i18n("Restore default(temporary)"), this, SLOT( slotRestoreSizeTempClicked( void ) ) );
-	SendPopup->insertItem(SmallIcon("configure"),tr2i18n("Size Configuration"), SizePopup );
+	sizePopup = new KPopupMenu(this);
+	saveSizeMenuId = sizePopup->insertItem(SmallIcon("fileexport"),tr2i18n("Save Size"), this, SLOT( slotSaveSizeClicked( void ) ) );
+	sizePopup->insertItem(SmallIcon("undo"),tr2i18n("Restore default(temporary)"), this, SLOT( slotRestoreSizeTempClicked( void ) ) );
+	sendPopup->insertItem(SmallIcon("configure"),tr2i18n("Size Configuration"), sizePopup );
 
-	SizePopup->setItemChecked( save_size_menu_item, KIpMsgSettings::sendDialogSaveSize() );
+	sizePopup->setItemChecked( saveSizeMenuId, KIpMsgSettings::sendDialogSaveSize() );
 
-	fixize_pos_menu_item = SendPopup->insertItem(tr2i18n("Fixize Position"), this, SLOT( slotFixizePositionClicked( void ) ) );
-	SendPopup->insertItem(SmallIcon("configure"),tr2i18n("View Detail Configuration"), this, SLOT( slotViewDetailConfigurationClicked( void ) ) );
+	fixizePositionMenuId = sendPopup->insertItem(tr2i18n("Fixize Position"), this, SLOT( slotFixizePositionClicked( void ) ) );
+	sendPopup->insertItem(SmallIcon("configure"),tr2i18n("View Detail Configuration"), this, SLOT( slotViewDetailConfigurationClicked( void ) ) );
 
-	SendPopup->setItemChecked( fixize_pos_menu_item, KIpMsgSettings::sendDialogFixizePosition() );
+	sendPopup->setItemChecked( fixizePositionMenuId, KIpMsgSettings::sendDialogFixizePosition() );
 
 	if ( KIpMsgSettings::fireIntercept()  ) {
 		m_SendButton->setText(tr2i18n( "Fire") );
@@ -201,9 +238,15 @@ SendDialog::SendDialog(QWidget* parent, const char* name, WFlags fl)
 	refreshHostList();
 }
 
+/*
+ * デストラクタ
+ */
 SendDialog::~SendDialog()
 {}
 
+/*
+ * 返信用のメッセージ設定メソッド（公開）
+ */
 void SendDialog::setMessageText(QString text){
 	m_MessageEditbox->setText( text );
 }
@@ -222,12 +265,12 @@ void SendDialog::setMenuStatus()
 		}
 		it++;
 	}
-	SortPopup->setItemEnabled( move_priority1_menu_item, sel_count != 0 );
-	SortPopup->setItemEnabled( move_priority2_menu_item, sel_count != 0 );
-	SortPopup->setItemEnabled( move_priority3_menu_item, sel_count != 0 );
-	SortPopup->setItemEnabled( move_priority4_menu_item, sel_count != 0 );
-	SortPopup->setItemEnabled( move_default_menu_item, sel_count != 0 );
-	SortPopup->setItemEnabled( move_hidden_menu_item, sel_count != 0 );
+	sortPopup->setItemEnabled( moveToPriority1MenuId, sel_count != 0 );
+	sortPopup->setItemEnabled( moveToPriority2MenuId, sel_count != 0 );
+	sortPopup->setItemEnabled( moveToPriority3MenuId, sel_count != 0 );
+	sortPopup->setItemEnabled( moveToPriority4MenuId, sel_count != 0 );
+	sortPopup->setItemEnabled( moveToDefaultMenuId, sel_count != 0 );
+	sortPopup->setItemEnabled( moveToHiddenMenuId, sel_count != 0 );
 }
 
 /*
@@ -237,7 +280,7 @@ void SendDialog::mousePressEvent( QMouseEvent *e )
 {
 	if(e->button() == RightButton ){
 		setMenuStatus();
-		SendPopup->popup(QCursor::pos() );
+		sendPopup->popup(QCursor::pos() );
 	} else if(e->button() == LeftButton ){
 		QRect rectSplitter = m_MainSplitter->geometry();
 		if ( rectSplitter.top() <= e->y() && rectSplitter.bottom() >= e->y() &&
@@ -293,7 +336,10 @@ void SendDialog::dragEnterEvent(QDragEnterEvent *e)
 	e->accept( QTextDrag::canDecode(e) );
 }
 
-const char *url_decode( string url )
+/*
+ * URLのデコード。
+ */
+const char *decodeUrl( string url )
 {
 	string ret;
 	char hex[3];
@@ -327,7 +373,7 @@ const char *url_decode( string url )
 }
 
 /*
- * ドロップ時の処理。URLの先頭が"file://"以外は受け付けない。CR+LFで複数ファイルが区切られることが有る
+ * ドロップ時の処理。
  */
 void SendDialog::dropEvent(QDropEvent *e)
 {
@@ -339,6 +385,10 @@ void SendDialog::dropEvent(QDropEvent *e)
 	refreshFiles();
 }
 
+/*
+ * DNDされたファイルを追加する。
+ * URLの先頭が"file://"以外は受け付けない。CR+LFで複数ファイルが区切られることが有る。
+ */
 void SendDialog::addDnDFiles(QString fileUrl){
 	QTextCodec *fsCodec = QTextCodec::codecForName( KIpMsgSettings::localFilesystemEncoding() );
 	QStringList dropFileList = QStringList::split("\r\n", fileUrl.data() );
@@ -347,14 +397,14 @@ void SendDialog::addDnDFiles(QString fileUrl){
 	for( QStringList::iterator it = dropFileList.begin(); it != dropFileList.end(); it++ ){
 		AttachFile file;
 		QString fileUrl = *it;
-		fileUrl = url_decode( string( fileUrl.data() ) );
+		fileUrl = decodeUrl( string( fileUrl.data() ) );
 		if ( fileUrl.left( 7 ) != "file://" ) {
 			isDropObjectNotAFile = true;
 			dropFileNames += dropFileNames + "\n[" + fileUrl + "]";
 		} else {
 			file.setFullPath( fileUrl.mid( 7 ).data() );
 			file.GetLocalFileInfo();
-			files.AddFile( file );
+			attachFileList.AddFile( file );
 		}
 	}
 	if ( isDropObjectNotAFile ) {
@@ -364,6 +414,7 @@ void SendDialog::addDnDFiles(QString fileUrl){
 }
 
 /*$SPECIALIZATION$*/
+
 /*
  * メッセージ送信が押された。複数ホストが選択されているなら複数ホストに送信する。
  * ファイルも添付することが有る。
@@ -375,18 +426,22 @@ void SendDialog::slotMessageSendClicked()
 	QListViewItemIterator it( m_HostListView );
 	QStringList encodings = KIpMsgSettings::encodingSettings();
 	vector<HostListItem> targets;
+	//選択中のホストを送信対象ホストリストに追加する。
 	while ( it.current() != NULL ) {
-		QListViewItem *item = it.current();
+		KIpMsgHostListViewItem *item = dynamic_cast<KIpMsgHostListViewItem *>(it.current());
+//		QListViewItem *item = it.current();
 		if ( item != NULL && item->isSelected() ) {
-			HostListItem host;
+			//TODO ホストリストはHostListViewItemから取得できる。
+			HostListItem host = item->host();
+//			HostListItem host;
 			host.setEncodingName( string( m_EncodingCombobox->currentText().data() ) );
+#if 0
 			QTextCodec *codec = QTextCodec::codecForName( host.EncodingName().c_str() );
 			host.setNickname( codec->fromUnicode( item->text( ColumnUser ) ).data() );
 			host.setGroupName( codec->fromUnicode( item->text( ColumnGroup ) ).data() );
 			host.setHostName( codec->fromUnicode( item->text( ColumnHost ) ).data() );
 			host.setIpAddress( codec->fromUnicode( item->text( ColumnIpAddress ) ).data() );
 			host.setUserName( codec->fromUnicode( item->text( ColumnLogin ) ).data() );
-			host.setIpAddress( codec->fromUnicode( item->text( ColumnIpAddress ) ).data() );
 			char *dmyptr;
 			host.setEncryptionCapacity( strtoul( codec->fromUnicode( item->text( ColumnEncryptionCapacity ) ).data(), &dmyptr, 16 ) );
 			host.setEncryptMethodHex( codec->fromUnicode( item->text( ColumnRsaMethod ) ).data() );
@@ -394,17 +449,19 @@ void SendDialog::slotMessageSendClicked()
 
 			item->setText( ColumnEncoding, m_EncodingCombobox->currentText() );
 			host.setPortNo( 2425 );
+#endif
 			targets.push_back( host );
 		}
 		++it;
 	}
 
+	//送信対象ホストリストを基にメッセージを送信する。
 	agent->SetFileNameConverter( new KIpMsgFileNameConverter() );
 	for( vector<HostListItem>::iterator host = targets.begin(); host != targets.end(); host++ ) {
 		QTextCodec *codec = QTextCodec::codecForName( host->EncodingName().c_str() );
 		string msg = codec->fromUnicode( m_MessageEditbox->text() ).data();
 		KIpMessengerLogger::GetInstance()->PutSentMessage( 
-			agent->SendMsg( *host, msg, m_SecretCheckbox->isChecked(), files, m_LockCheckbox->isChecked(), targets.size() ) );
+			agent->SendMsg( *host, msg, m_SecretCheckbox->isChecked(), attachFileList, m_LockCheckbox->isChecked(), targets.size() ) );
 		QString ip = codec->toUnicode( host->IpAddress().c_str() );
 		QString login = codec->toUnicode( host->UserName().c_str() );
 		for( QStringList::iterator ite = encodings.begin(); ite != encodings.end(); ite++ ){
@@ -418,11 +475,12 @@ void SendDialog::slotMessageSendClicked()
 		encodings << ip + ":" + login + ":" + m_EncodingCombobox->currentText();
 		send_count++;
 	}
+	//エンコーディングの設定を更新する。
 	if ( send_count > 0 ) {
 		KIpMsgSettings::setEncodingSettings( encodings );
 		KIpMsgSettings::writeConfig();
-		if ( recvdialog != NULL && recvdialog->isShown() && !KIpMsgSettings::noHide() ) {
-			recvdialog->close();
+		if ( recvDialog != NULL && recvDialog->isShown() && !KIpMsgSettings::noHide() ) {
+			recvDialog->close();
 		}
 		close();
 	}
@@ -589,7 +647,10 @@ void SendDialog::refreshHostList()
 		if ( ix->Priority() == "" ) {
 			ix->setPriority( "-" );
 		}
-		if ( ix->Priority() != "X" || SortPopup->isItemChecked( show_hidden_menu_item ) ) {
+		if ( ix->Priority() != "X" || sortPopup->isItemChecked( showHiddenMenuId ) ) {
+			//TODO new KIpMsgHostListItem( m_HostListView, *ix );
+		    KIpMsgHostListViewItem *item = new KIpMsgHostListViewItem( m_HostListView, codec, *ix );
+#if 0
 			QListViewItem *item = new QListViewItem( m_HostListView,
 													codec->toUnicode( ix->Nickname().c_str() ),
 													codec->toUnicode( ix->GroupName().c_str() ),
@@ -598,12 +659,14 @@ void SendDialog::refreshHostList()
 													codec->toUnicode( ix->UserName().c_str() ),
 													codec->toUnicode( ix->Priority().c_str() ),
 													codec->toUnicode( ix->EncodingName().c_str() ) );
-
+			//TODO --> 不要になる。
 			char buf[100];
 			snprintf( buf, sizeof( buf ), "%lx", ix->EncryptionCapacity() );
 			item->setText( ColumnEncryptionCapacity, codec->toUnicode( buf ) );
 			item->setText( ColumnRsaMethod, codec->toUnicode( ix->EncryptMethodHex().c_str() ) );
 			item->setText( ColumnRsaPublicKey, codec->toUnicode( ix->PubKeyHex().c_str() ) );
+			//TODO <-- 不要になる。
+#endif
 		}
 	}
 	//件数を表示
@@ -622,9 +685,9 @@ void SendDialog::refreshHostList()
 	}
 	
 	//グループ選択メニュー再構築
-	GroupPopup->clear();
-	group_menu.clear();
-	group_menu.setAutoDelete( TRUE );
+	groupPopup->clear();
+	groupMenuIdList.clear();
+	groupMenuIdList.setAutoDelete( TRUE );
 	vector<string> groups = agent->GetGroupList();
 	for( vector<string>::iterator ixgr = groups.begin(); ixgr != groups.end();ixgr++ ){
 		if ( *ixgr != "" ) {
@@ -634,22 +697,22 @@ void SendDialog::refreshHostList()
 //			} else {
 				codec = QTextCodec::codecForName( KIpMsgSettings::messageEncoding() );
 //			}
-			int menu_item = GroupPopup->insertItem( codec->toUnicode( QString( ixgr->c_str() ) ) );
-			connect( GroupPopup, SIGNAL( activated(int) ), this, SLOT( slotGroupSelect( int ) ) );
-			group_menu.insert( menu_item, new QString( codec->toUnicode( QString( ixgr->c_str() ) ) ) );
+			int menu_item = groupPopup->insertItem( codec->toUnicode( QString( ixgr->c_str() ) ) );
+			connect( groupPopup, SIGNAL( activated(int) ), this, SLOT( slotGroupSelect( int ) ) );
+			groupMenuIdList.insert( menu_item, new QString( codec->toUnicode( QString( ixgr->c_str() ) ) ) );
 		}
 	}
 	//エンコーディング選択メニュー再構築
-	EncodingPopup->clear();
-	encoding_menu.clear();
-	encoding_menu.setAutoDelete( TRUE );
+	encodingPopup->clear();
+	encodingMenuIdList.clear();
+	encodingMenuIdList.setAutoDelete( TRUE );
 	it = QListViewItemIterator( m_HostListView );
 	while ( it.current() != NULL ) {
 		QListViewItem *item = it.current();
 		QString enc = item->text( ColumnEncoding );
 		if ( enc != "" ) {
 			bool isFound = false;
-			QIntDictIterator<QString> ite( encoding_menu );
+			QIntDictIterator<QString> ite( encodingMenuIdList );
 			while ( ite.current() != NULL ) {
 				if ( *ite == enc ){
 					isFound = true;
@@ -658,9 +721,9 @@ void SendDialog::refreshHostList()
 				++ite;
 			}
 			if ( !isFound ) {
-				int menu_item = EncodingPopup->insertItem( enc );
-				connect( EncodingPopup, SIGNAL( activated(int) ), this, SLOT( slotEncodingSelect( int ) ) );
-				encoding_menu.insert( menu_item, new QString( enc ) );
+				int menu_item = encodingPopup->insertItem( enc );
+				connect( encodingPopup, SIGNAL( activated(int) ), this, SLOT( slotEncodingSelect( int ) ) );
+				encodingMenuIdList.insert( menu_item, new QString( enc ) );
 			}
 		}
 		it++;
@@ -673,11 +736,9 @@ void SendDialog::refreshHostList()
 void SendDialog::slotAttacheFileListButtonClicked()
 {
 	KIpMessengerAttachedFileDialog *afdialog = new KIpMessengerAttachedFileDialog(this,0,TRUE);
-	afdialog->setFiles( files );
-printf("afdialog->show()before\n");
+	afdialog->setFiles( attachFileList );
 	afdialog->exec();
-printf("afdialog->show()after\n");
-	files = afdialog->getFiles();
+	attachFileList = afdialog->getFiles();
 	refreshFiles();
 }
 
@@ -691,13 +752,10 @@ void SendDialog::slotGroupSelect( int menu_item )
 		prev_menu = 0;
 		return;
 	}
-	printf("menu_item %d[%s]\n", menu_item, (*group_menu[menu_item]).data() );
 	QListViewItemIterator it( m_HostListView );
 	while ( it.current() != NULL ) {
 		QListViewItem *item = it.current();
-		printf("item [%s]\n", item->text( ColumnGroup ).data() );
-		if ( *group_menu[menu_item] == item->text( ColumnGroup ) ) {
-			printf("item->setSelected( TRUE )[%s]\n", item->text( ColumnGroup ).data() );
+		if ( *groupMenuIdList[menu_item] == item->text( ColumnGroup ) ) {
 			m_HostListView->setSelected( item, TRUE );
 		}
 		it++;
@@ -715,13 +773,10 @@ void SendDialog::slotEncodingSelect( int menu_item )
 		prev_menu = 0;
 		return;
 	}
-	printf("menu_item %d[%s]\n", menu_item, (*encoding_menu[menu_item]).data() );
 	QListViewItemIterator it( m_HostListView );
 	while ( it.current() != NULL ) {
 		QListViewItem *item = it.current();
-		printf("item [%s]\n", item->text( ColumnEncoding ).data() );
-		if ( *encoding_menu[menu_item] == item->text( ColumnEncoding ) ) {
-			printf("item->setSelected( TRUE )[%s]\n", item->text( ColumnEncoding ).data() );
+		if ( *encodingMenuIdList[menu_item] == item->text( ColumnEncoding ) ) {
 			m_HostListView->setSelected( item, TRUE );
 		}
 		it++;
@@ -729,7 +784,10 @@ void SendDialog::slotEncodingSelect( int menu_item )
 	prev_menu = menu_item;
 }
 
-void SendDialog::deleteFromList( QStringList &base, QStringList items )
+/*
+ * 優先度から削除する。
+ */
+void SendDialog::deleteFromPriorityList( QStringList &base, QStringList items )
 {
 	for( QStringList::iterator it = base.begin(); it != base.end(); it++ ) {
 		for( QStringList::iterator pit = items.begin(); pit != items.end(); pit++ ) {
@@ -757,31 +815,31 @@ void SendDialog::setPriority( string pri, QStringList &priList )
 	}
 
 	QStringList tmpList = KIpMsgSettings::priorityLevel1();
-	deleteFromList( tmpList, priList );
+	deleteFromPriorityList( tmpList, priList );
 	KIpMsgSettings::setPriorityLevel1( tmpList );
 
 	tmpList = KIpMsgSettings::priorityLevel2();
-	deleteFromList( tmpList, priList );
+	deleteFromPriorityList( tmpList, priList );
 	KIpMsgSettings::setPriorityLevel2( tmpList );
 
 	tmpList = KIpMsgSettings::priorityLevel3();
-	deleteFromList( tmpList, priList );
+	deleteFromPriorityList( tmpList, priList );
 	KIpMsgSettings::setPriorityLevel3( tmpList );
 
 	tmpList = KIpMsgSettings::priorityLevel4();
-	deleteFromList( tmpList, priList );
+	deleteFromPriorityList( tmpList, priList );
 	KIpMsgSettings::setPriorityLevel4( tmpList );
 
 	tmpList = KIpMsgSettings::priorityLevel4();
-	deleteFromList( tmpList, priList );
+	deleteFromPriorityList( tmpList, priList );
 	KIpMsgSettings::setPriorityLevel4( tmpList );
 
 	tmpList = KIpMsgSettings::priorityDefault();
-	deleteFromList( tmpList, priList );
+	deleteFromPriorityList( tmpList, priList );
 	KIpMsgSettings::setPriorityDefault( tmpList );
 
 	tmpList = KIpMsgSettings::priorityHidden();
-	deleteFromList( tmpList, priList );
+	deleteFromPriorityList( tmpList, priList );
 	KIpMsgSettings::setPriorityHidden( tmpList );
 }
 
@@ -868,7 +926,7 @@ void SendDialog::slotMoveToHiddenClicked()
  */
 void SendDialog::slotShowHiddenTempClicked()
 {
-	SortPopup->setItemChecked( show_hidden_menu_item, !SortPopup->isItemChecked( show_hidden_menu_item ) );
+	sortPopup->setItemChecked( showHiddenMenuId, !sortPopup->isItemChecked( showHiddenMenuId ) );
 	refreshHostList();
 }
 
@@ -899,7 +957,7 @@ void SendDialog::slotRestoreAllClicked()
 }
 
 /*
- * 検索。
+ * ユーザ検索ダイアログを表示。
  */
 void SendDialog::slotSearchUserClicked()
 {
@@ -918,7 +976,7 @@ void SendDialog::slotAttachFileClicked()
 		AttachFile file;
 		file.setFullPath( attachFileName.data() );
 		file.GetLocalFileInfo();
-		files.AddFile( file );
+		attachFileList.AddFile( file );
 	}
 	refreshFiles();
 }
@@ -933,7 +991,7 @@ void SendDialog::slotAttachDirectoryClicked()
 		AttachFile file;
 		file.setFullPath( attachDirName.data() );
 		file.GetLocalFileInfo();
-		files.AddFile( file );
+		attachFileList.AddFile( file );
 	}
 	refreshFiles();
 }
@@ -981,10 +1039,15 @@ void SendDialog::slotSaveListHeaderClicked()
  */
 void SendDialog::slotFontSelectListClicked()
 {
+	//現在のフォントを取得
 	QFont font = m_HostListView->font();
+	//現在のフォントでフォントダイアログを表示
 	int result = KFontDialog::getFont(font);
+	//フォントが変更された
 	if ( result == KFontDialog::Accepted ) {
+		//フォントをホストリストのビューに反映
 		m_HostListView->setFont(font);
+		//フォント設定を保存
 		KIpMsgSettings::setListFont( m_HostListView->font() );
 		KIpMsgSettings::writeConfig();
 	}
@@ -995,10 +1058,15 @@ void SendDialog::slotFontSelectListClicked()
  */
 void SendDialog::slotFontSelectEditClicked()
 {
+	//現在のフォントを取得
 	QFont font = m_MessageEditbox->font();
+	//現在のフォントでフォントダイアログを表示
 	int result = KFontDialog::getFont(font);
+	//フォントが変更された
 	if ( result == KFontDialog::Accepted ) {
+		//フォントをメッセージのビューに反映
 		m_MessageEditbox->setFont(font);
+		//フォント設定を保存
 		KIpMsgSettings::setListFont( m_MessageEditbox->font() );
 		KIpMsgSettings::writeConfig();
 	}
@@ -1009,8 +1077,10 @@ void SendDialog::slotFontSelectEditClicked()
  */
 void SendDialog::slotFontRestoreToDefaultClicked()
 {
+	//フォント未設定状態にする。
 	m_HostListView->unsetFont();
 	m_MessageEditbox->unsetFont();
+	//フォント設定を保存
 	KIpMsgSettings::setListFont( m_HostListView->font() );
 	KIpMsgSettings::setEditFont( m_MessageEditbox->font() );
 	KIpMsgSettings::writeConfig();
@@ -1033,7 +1103,7 @@ void SendDialog::synchronizeMenu()
 }
 void SendDialog::setSaveSizeMenu()
 {
-	SizePopup->setItemChecked( save_size_menu_item, KIpMsgSettings::sendDialogSaveSize() );
+	sizePopup->setItemChecked( saveSizeMenuId, KIpMsgSettings::sendDialogSaveSize() );
 }
 void SendDialog::slotSaveSizeClicked()
 {
@@ -1055,7 +1125,7 @@ void SendDialog::slotRestoreSizeTempClicked()
 
 void SendDialog::setFixsizePotisionMenu()
 {
-	SendPopup->setItemChecked( fixize_pos_menu_item, KIpMsgSettings::sendDialogFixizePosition() );
+	sendPopup->setItemChecked( fixizePositionMenuId, KIpMsgSettings::sendDialogFixizePosition() );
 }
 /*
  * 位置固定。
@@ -1086,7 +1156,7 @@ void SendDialog::slotViewDetailConfigurationClicked()
 void SendDialog::slotListContextMenuRequested( QListViewItem *item, const QPoint &pos, int col )
 {
 	setMenuStatus();
-	SendPopup->popup( QCursor::pos() );
+	sendPopup->popup( QCursor::pos() );
 }
 
 /*
@@ -1096,6 +1166,7 @@ void SendDialog::slotEncodingConfigClicked()
 {
 	KIPMsgEncodingConfigDialog *encconfig = new KIPMsgEncodingConfigDialog(this,0,TRUE);
 	encconfig->exec();
+	refreshHostList();
 }
 
 /*
@@ -1123,7 +1194,7 @@ void SendDialog::doResize( QSize size )
 	QSize sizeMainSplitter = m_MainSplitter->size();
 	
 	QSize sizeHostFrame = m_HostFrame->size();
-	m_MessageFrame->setGeometry( 2, rectMainSplitter.bottom(), size.width() - 2, size.height() - sizeHostFrame.height() - sizeMainSplitter.height() - rectOperationFrame.height() );
+	m_MessageFrame->setGeometry( 2, rectMainSplitter.bottom() + 2, size.width() - 4, size.height() - sizeHostFrame.height() - sizeMainSplitter.height() - rectOperationFrame.height() );
 	QRect rectm_MessageFrame = m_MessageFrame->geometry();
 	refreshFiles();
 }
@@ -1141,7 +1212,7 @@ void SendDialog::refreshFiles()
 //	}
 
  	m_AttachFileButton->setHidden( TRUE );
-	if ( files.size() > 0 ) {
+	if ( attachFileList.size() > 0 ) {
 		QSize sizem_MessageFrame = m_MessageFrame->size();
 		//ダウンロードボタン位置設定
 		QRect rectAttachedFileList;
@@ -1160,7 +1231,7 @@ void SendDialog::refreshFiles()
 		m_MessageEditbox->setGeometry( rectMessageEditbox );
 		m_AttachFileButton->setHidden( FALSE );
 		QString AttachedFileListCaption = "";
-		for( vector<AttachFile>::iterator it = files.begin(); it != files.end(); it++ ){
+		for( vector<AttachFile>::iterator it = attachFileList.begin(); it != attachFileList.end(); it++ ){
 			AttachedFileListCaption += codec->toUnicode( it->FileName().c_str() ) + " ";
 		}
 		m_AttachFileButton->setText( AttachedFileListCaption );

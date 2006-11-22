@@ -65,6 +65,63 @@
             </widget>
         </vbox>
     </widget>
+    <widget class="KPushButton">
+        <property name="name">
+            <cstring>m_ApplyButton</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>340</x>
+                <y>300</y>
+                <width>100</width>
+                <height>30</height>
+            </rect>
+        </property>
+        <property name="text">
+            <string>&amp;Apply</string>
+        </property>
+        <property name="accel">
+            <string>Alt+A</string>
+        </property>
+    </widget>
+    <widget class="KPushButton">
+        <property name="name">
+            <cstring>m_CancelButton</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>230</x>
+                <y>300</y>
+                <width>100</width>
+                <height>30</height>
+            </rect>
+        </property>
+        <property name="text">
+            <string>Ca&amp;ncel</string>
+        </property>
+        <property name="accel">
+            <string>Alt+N</string>
+        </property>
+    </widget>
+    <widget class="KPushButton">
+        <property name="name">
+            <cstring>m_OKButton</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>120</x>
+                <y>300</y>
+                <width>100</width>
+                <height>30</height>
+            </rect>
+        </property>
+        <property name="text">
+            <string>O&amp;K</string>
+        </property>
+        <property name="accel">
+            <string>Alt+K</string>
+        </property>
+    </widget>
     <widget class="QGroupBox">
         <property name="name">
             <cstring>groupBox2</cstring>
@@ -80,60 +137,7 @@
         <property name="title">
             <string>Entried host information</string>
         </property>
-        <widget class="QLabel">
-            <property name="name">
-                <cstring>textLabel1</cstring>
-            </property>
-            <property name="geometry">
-                <rect>
-                    <x>10</x>
-                    <y>20</y>
-                    <width>100</width>
-                    <height>20</height>
-                </rect>
-            </property>
-            <property name="text">
-                <string>Nickname</string>
-            </property>
-        </widget>
-        <widget class="QLabel">
-            <property name="name">
-                <cstring>textLabel1_2</cstring>
-            </property>
-            <property name="geometry">
-                <rect>
-                    <x>10</x>
-                    <y>50</y>
-                    <width>100</width>
-                    <height>20</height>
-                </rect>
-            </property>
-            <property name="text">
-                <string>GroupName</string>
-            </property>
-        </widget>
-        <widget class="QLabel">
-            <property name="name">
-                <cstring>textLabel3</cstring>
-            </property>
-            <property name="geometry">
-                <rect>
-                    <x>10</x>
-                    <y>80</y>
-                    <width>100</width>
-                    <height>20</height>
-                </rect>
-            </property>
-            <property name="text">
-                <string>Encoding</string>
-            </property>
-        </widget>
         <widget class="KComboBox">
-            <item>
-                <property name="text">
-                    <string>Latin1</string>
-                </property>
-            </item>
             <item>
                 <property name="text">
                     <string>Big5</string>
@@ -344,14 +348,14 @@
             </property>
             <property name="geometry">
                 <rect>
-                    <x>110</x>
+                    <x>190</x>
                     <y>80</y>
-                    <width>310</width>
+                    <width>230</width>
                     <height>30</height>
                 </rect>
             </property>
             <property name="currentItem">
-                <number>9</number>
+                <number>8</number>
             </property>
         </widget>
         <widget class="QLabel">
@@ -360,9 +364,9 @@
             </property>
             <property name="geometry">
                 <rect>
-                    <x>110</x>
+                    <x>190</x>
                     <y>50</y>
-                    <width>310</width>
+                    <width>230</width>
                     <height>23</height>
                 </rect>
             </property>
@@ -382,9 +386,9 @@
             </property>
             <property name="geometry">
                 <rect>
-                    <x>110</x>
+                    <x>190</x>
                     <y>20</y>
-                    <width>310</width>
+                    <width>230</width>
                     <height>23</height>
                 </rect>
             </property>
@@ -395,63 +399,54 @@
                 <enum>Sunken</enum>
             </property>
         </widget>
-    </widget>
-    <widget class="KPushButton">
-        <property name="name">
-            <cstring>m_ApplyButton</cstring>
-        </property>
-        <property name="geometry">
-            <rect>
-                <x>340</x>
-                <y>300</y>
-                <width>100</width>
-                <height>30</height>
-            </rect>
-        </property>
-        <property name="text">
-            <string>&amp;Apply</string>
-        </property>
-        <property name="accel">
-            <string>Alt+A</string>
-        </property>
-    </widget>
-    <widget class="KPushButton">
-        <property name="name">
-            <cstring>m_CancelButton</cstring>
-        </property>
-        <property name="geometry">
-            <rect>
-                <x>230</x>
-                <y>300</y>
-                <width>100</width>
-                <height>30</height>
-            </rect>
-        </property>
-        <property name="text">
-            <string>Ca&amp;ncel</string>
-        </property>
-        <property name="accel">
-            <string>Alt+N</string>
-        </property>
-    </widget>
-    <widget class="KPushButton">
-        <property name="name">
-            <cstring>m_OKButton</cstring>
-        </property>
-        <property name="geometry">
-            <rect>
-                <x>120</x>
-                <y>300</y>
-                <width>100</width>
-                <height>30</height>
-            </rect>
-        </property>
-        <property name="text">
-            <string>O&amp;K</string>
-        </property>
-        <property name="accel">
-            <string>Alt+K</string>
-        </property>
+        <widget class="QLabel">
+            <property name="name">
+                <cstring>textLabel1</cstring>
+            </property>
+            <property name="geometry">
+                <rect>
+                    <x>10</x>
+                    <y>20</y>
+                    <width>180</width>
+                    <height>20</height>
+                </rect>
+            </property>
+            <property name="text">
+                <string>Nickname</string>
+            </property>
+        </widget>
+        <widget class="QLabel">
+            <property name="name">
+                <cstring>textLabel1_2</cstring>
+            </property>
+            <property name="geometry">
+                <rect>
+                    <x>10</x>
+                    <y>50</y>
+                    <width>180</width>
+                    <height>20</height>
+                </rect>
+            </property>
+            <property name="text">
+                <string>GroupName</string>
+            </property>
+        </widget>
+        <widget class="QLabel">
+            <property name="name">
+                <cstring>textLabel3</cstring>
+            </property>
+            <property name="geometry">
+                <rect>
+                    <x>10</x>
+                    <y>80</y>
+                    <width>180</width>
+                    <height>20</height>
+                </rect>
+            </property>
+            <property name="text">
+                <string>Encoding</string>
+            </property>
+        </widget>
     </widget>
 </widget>
 <customwidgets>
@@ -503,9 +498,9 @@
 <layoutdefaults spacing="6" margin="11"/>
 <includehints>
     <includehint>klistview.h</includehint>
+    <includehint>kpushbutton.h</includehint>
+    <includehint>kpushbutton.h</includehint>
+    <includehint>kpushbutton.h</includehint>
     <includehint>kcombobox.h</includehint>
-    <includehint>kpushbutton.h</includehint>
-    <includehint>kpushbutton.h</includehint>
-    <includehint>kpushbutton.h</includehint>
 </includehints>
 </UI>

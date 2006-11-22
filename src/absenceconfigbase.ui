@@ -107,12 +107,36 @@
                 </rect>
             </property>
         </widget>
+        <widget class="QLabel">
+            <property name="name">
+                <cstring>textLabel1_2</cstring>
+            </property>
+            <property name="geometry">
+                <rect>
+                    <x>10</x>
+                    <y>60</y>
+                    <width>110</width>
+                    <height>20</height>
+                </rect>
+            </property>
+            <property name="text">
+                <string>Encoding</string>
+            </property>
+        </widget>
+        <widget class="KTextEdit">
+            <property name="name">
+                <cstring>m_DescriptionTextbox</cstring>
+            </property>
+            <property name="geometry">
+                <rect>
+                    <x>10</x>
+                    <y>100</y>
+                    <width>400</width>
+                    <height>170</height>
+                </rect>
+            </property>
+        </widget>
         <widget class="KComboBox">
-            <item>
-                <property name="text">
-                    <string>Latin1</string>
-                </property>
-            </item>
             <item>
                 <property name="text">
                     <string>Big5</string>
@@ -330,36 +354,7 @@
                 </rect>
             </property>
             <property name="currentItem">
-                <number>9</number>
-            </property>
-        </widget>
-        <widget class="QLabel">
-            <property name="name">
-                <cstring>textLabel1_2</cstring>
-            </property>
-            <property name="geometry">
-                <rect>
-                    <x>10</x>
-                    <y>60</y>
-                    <width>110</width>
-                    <height>20</height>
-                </rect>
-            </property>
-            <property name="text">
-                <string>Encoding</string>
-            </property>
-        </widget>
-        <widget class="KTextEdit">
-            <property name="name">
-                <cstring>m_DescriptionTextbox</cstring>
-            </property>
-            <property name="geometry">
-                <rect>
-                    <x>10</x>
-                    <y>100</y>
-                    <width>400</width>
-                    <height>170</height>
-                </rect>
+                <number>8</number>
             </property>
         </widget>
     </widget>
@@ -515,10 +510,10 @@
                 </rect>
             </property>
             <property name="text">
-                <string>Au&amp;to absence mode enabled.</string>
+                <string>Auto absence &amp;mode enabled.</string>
             </property>
             <property name="accel">
-                <string>Alt+T</string>
+                <string>Alt+M</string>
             </property>
         </widget>
         <widget class="QLabel">
@@ -655,8 +650,8 @@
 <includehints>
     <includehint>kpushbutton.h</includehint>
     <includehint>klineedit.h</includehint>
-    <includehint>kcombobox.h</includehint>
     <includehint>ktextedit.h</includehint>
+    <includehint>kcombobox.h</includehint>
     <includehint>kpushbutton.h</includehint>
     <includehint>kpushbutton.h</includehint>
     <includehint>klistbox.h</includehint>

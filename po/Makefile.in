@@ -258,8 +258,8 @@ xdg_directorydir = @xdg_directorydir@
 xdg_menudir = @xdg_menudir@
 #>- POFILES = AUTO
 #>+ 2
-POFILES = kipmsg.po
-GMOFILES = kipmsg.gmo
+POFILES = ja.po kipmsg.po
+GMOFILES = ja.gmo kipmsg.gmo
 subdir = po
 mkinstalldirs = $(SHELL) $(top_srcdir)/admin/mkinstalldirs
 CONFIG_HEADER = $(top_builddir)/config.h
@@ -277,7 +277,7 @@ $(srcdir)/Makefile.in:  Makefile.am  $(top_srcdir)/configure.in $(ACLOCAL_M4)
 #>+ 3
 	cd $(top_srcdir) && \
 	  $(AUTOMAKE) --gnu  po/Makefile
-	cd $(top_srcdir) && perl admin/am_edit po/Makefile.in
+	cd $(top_srcdir) && perl admin/am_edit -padmin po/Makefile.in
 Makefile:  $(srcdir)/Makefile.in  $(top_builddir)/config.status
 	cd $(top_builddir) && $(SHELL) ./config.status $(subdir)/$@ $(am__depfiles_maybe)
 
@@ -414,21 +414,25 @@ uninstall-am: uninstall-info-am
 # Otherwise a system limit (for SysV at least) may be exceeded.
 .NOEXPORT:
 
-#>+ 2
-KDE_DIST=kipmsg.gmo kipmsg.po kipmsg.pot makepo.sh 
 
-#>+ 4
+#>+ 2
+KDE_DIST=ja.gmo kipmsg.gmo ja.po kipmsg.po kipmsg.pot makepo.sh 
+
+#>+ 7
+ja.gmo: ja.po
+	rm -f ja.gmo; $(GMSGFMT) -o ja.gmo $(srcdir)/ja.po
+	test ! -f ja.gmo || touch ja.gmo
 kipmsg.gmo: kipmsg.po
 	rm -f kipmsg.gmo; $(GMSGFMT) -o kipmsg.gmo $(srcdir)/kipmsg.po
 	test ! -f kipmsg.gmo || touch kipmsg.gmo
 
 #>+ 3
 clean-nls:
-	-rm -f  kipmsg.gmo
+	-rm -f  ja.gmo kipmsg.gmo
 
 #>+ 10
 install-nls:
-	@for base in kipmsg ; do \
+	@for base in ja kipmsg ; do \
 	  echo $(INSTALL_DATA) $$base.gmo $(DESTDIR)$(kde_locale)/$$base/LC_MESSAGES/$(PACKAGE).mo ;\
 	  $(mkinstalldirs) $(DESTDIR)$(kde_locale)/$$base/LC_MESSAGES ; \
 	  if test -f $$base.gmo; then $(INSTALL_DATA) $$base.gmo $(DESTDIR)$(kde_locale)/$$base/LC_MESSAGES/$(PACKAGE).mo ;\
@@ -437,8 +441,9 @@ install-nls:
 	done
 
 
-#>+ 3
+#>+ 4
 uninstall-nls:
+	rm -f $(DESTDIR)$(kde_locale)/ja/LC_MESSAGES/$(PACKAGE).mo
 	rm -f $(DESTDIR)$(kde_locale)/kipmsg/LC_MESSAGES/$(PACKAGE).mo
 
 #>+ 2
@@ -465,7 +470,7 @@ docs-am:
 force-reedit:
 		cd $(top_srcdir) && \
 	  $(AUTOMAKE) --gnu  po/Makefile
-	cd $(top_srcdir) && perl admin/am_edit po/Makefile.in
+	cd $(top_srcdir) && perl admin/am_edit -padmin po/Makefile.in
 
 
 #>+ 21

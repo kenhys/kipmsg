@@ -1,5 +1,13 @@
-2006-11-14 Niki, Kuninobu <nikikuni@yehoo.co.jp>
+2006-11-22 Niki, Kuninobu <nikikuni@yahoo.co.jp>
+- Fix:SEGV when SendDialog Encoding combobox changed.
+- Fix:SEGV when SendDialog Encoding combobox changed after sent.(Latin1 Only -> Latin1 delete from Support)
+- Fix:Initial listview selection is not shown detail in EncodingConfigDialog.
+- Fix:No refreash HostList in SendDialog when Returned from EncodingConfigDialog.
+- Fix:Before KHTML version's KTextEdit deleted.
+- Fix:Spliter moving in SendDialog,But no change mouse cursor.
+
+2006-11-14 Niki, Kuninobu <nikikuni@yahoo.co.jp>
 - 0.1.0 release.
 
-2006-08-11 Niki, Kuninobu <nikikuni@yehoo.co.jp>
+2006-08-11 Niki, Kuninobu <nikikuni@yahoo.co.jp>
 - Implementation Start.

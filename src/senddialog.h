@@ -49,7 +49,6 @@ public slots:
 	virtual void slotAddAsFile( void );
 
 protected:
-	virtual void contentsDragEnterEvent(QDragEnterEvent *e);
 	virtual void contentsDropEvent(QDropEvent *e);
 private:
 	KPopupMenu *DnDPopup;
@@ -65,7 +64,7 @@ public:
     ~SendDialog();
     /*$PUBLIC_FUNCTIONS$*/
 	void refreshHostList();
-	void setRecieveDialog( QDialog *_recvdialog ) { recvdialog = _recvdialog; };
+	void setRecieveDialog( QDialog *_recvdialog ) { recvDialog = _recvdialog; };
 	void setFixsizePotisionMenu();
 	void setSaveSizeMenu();
 	void synchronizeMenu();
@@ -130,27 +129,27 @@ protected slots:
 
 private:
 	KTextEditNoDnD *m_MessageEditbox;
-	KPopupMenu *SendPopup;
-	KPopupMenu *SortPopup;
-	KPopupMenu *GroupPopup;
-	KPopupMenu *EncodingPopup;
-	KPopupMenu *FontPopup;
-	KPopupMenu *SizePopup;
-	int move_priority1_menu_item;
-	int move_priority2_menu_item;
-	int move_priority3_menu_item;
-	int move_priority4_menu_item;
-	int move_default_menu_item;
-	int move_hidden_menu_item;
-	int show_hidden_menu_item;
-	int fixize_pos_menu_item;
-	int save_size_menu_item;
-	QIntDict<QString> group_menu;
-	QIntDict<QString> encoding_menu;
-	AttachFileList files;
+	KPopupMenu *sendPopup;
+	KPopupMenu *sortPopup;
+	KPopupMenu *groupPopup;
+	KPopupMenu *encodingPopup;
+	KPopupMenu *fontPopup;
+	KPopupMenu *sizePopup;
+	int moveToPriority1MenuId;
+	int moveToPriority2MenuId;
+	int moveToPriority3MenuId;
+	int moveToPriority4MenuId;
+	int moveToDefaultMenuId;
+	int moveToHiddenMenuId;
+	int showHiddenMenuId;
+	int fixizePositionMenuId;
+	int saveSizeMenuId;
+	QIntDict<QString> groupMenuIdList;
+	QIntDict<QString> encodingMenuIdList;
+	AttachFileList attachFileList;
 	bool isMainSplitterDragging;
 	bool isDownloadSplitterDragging;
-	QDialog *recvdialog;
+	QDialog *recvDialog;
 
 	int defaultX;
 	int defaultY;
@@ -159,7 +158,7 @@ private:
 
 	HostList	hosts;
 	void setPriority( string pri, QStringList &priList );
-	void deleteFromList( QStringList &base, QStringList items );
+	void deleteFromPriorityList( QStringList &base, QStringList items );
 	void setMenuStatus();
 	void doResize( QSize size );
 };

@@ -46,6 +46,11 @@ KIPMsgEncodingConfigDialog::KIPMsgEncodingConfigDialog(QWidget* parent, const ch
 	m_HostListView->addColumn(tr2i18n("Login"));
 	m_HostListView->addColumn(tr2i18n("Encoding"));
     refreshEncoding();
+	QListViewItemIterator it( m_HostListView );
+	if ( it.current() != NULL ) {
+		QListViewItem *item = it.current();
+		slotHostSelected( item );
+	}
 }
 
 void

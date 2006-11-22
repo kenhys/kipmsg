@@ -263,11 +263,6 @@
             <widget class="KComboBox">
                 <item>
                     <property name="text">
-                        <string>Latin1</string>
-                    </property>
-                </item>
-                <item>
-                    <property name="text">
                         <string>Big5</string>
                     </property>
                 </item>
@@ -475,7 +470,7 @@
                     <cstring>m_EncodingCombobox</cstring>
                 </property>
                 <property name="currentItem">
-                    <number>9</number>
+                    <number>8</number>
                 </property>
             </widget>
             <widget class="QFrame">
@@ -670,12 +665,6 @@
         <slot>slotMessageSendClicked()</slot>
     </connection>
     <connection>
-        <sender>m_EncodingCombobox</sender>
-        <signal>activated(int)</signal>
-        <receiver>SendDialogBase</receiver>
-        <slot>slotEncodingSelect(int)</slot>
-    </connection>
-    <connection>
         <sender>m_AttachFileButton</sender>
         <signal>clicked()</signal>
         <receiver>SendDialogBase</receiver>
@@ -710,6 +699,7 @@
     <slot>slotEncodingSelect(int)</slot>
     <slot>slotEncodingConfigClicked()</slot>
     <slot>slotAttacheFileListButtonClicked()</slot>
+    <slot>slotEncodingChange(int)</slot>
 </slots>
 <layoutdefaults spacing="6" margin="11"/>
 <includehints>

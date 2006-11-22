@@ -117,10 +117,10 @@
                         <cstring>m_UnlockPasswordConfigButton</cstring>
                     </property>
                     <property name="text">
-                        <string>Unlo&amp;ck password setup</string>
+                        <string>Unloc&amp;k password setup</string>
                     </property>
                     <property name="accel">
-                        <string>Alt+C</string>
+                        <string>Alt+K</string>
                     </property>
                 </widget>
             </vbox>
@@ -542,9 +542,225 @@
         <widget class="KComboBox">
             <item>
                 <property name="text">
-                    <string>Latin1</string>
+                    <string>Big5</string>
                 </property>
             </item>
+            <item>
+                <property name="text">
+                    <string>Big5-HKSCS</string>
+                </property>
+            </item>
+            <item>
+                <property name="text">
+                    <string>eucJP</string>
+                </property>
+            </item>
+            <item>
+                <property name="text">
+                    <string>eucKR</string>
+                </property>
+            </item>
+            <item>
+                <property name="text">
+                    <string>GB2312</string>
+                </property>
+            </item>
+            <item>
+                <property name="text">
+                    <string>GBK</string>
+                </property>
+            </item>
+            <item>
+                <property name="text">
+                    <string>GB18030</string>
+                </property>
+            </item>
+            <item>
+                <property name="text">
+                    <string>JIS7</string>
+                </property>
+            </item>
+            <item>
+                <property name="text">
+                    <string>Shift-JIS</string>
+                </property>
+            </item>
+            <item>
+                <property name="text">
+                    <string>TSCII</string>
+                </property>
+            </item>
+            <item>
+                <property name="text">
+                    <string>utf8</string>
+                </property>
+            </item>
+            <item>
+                <property name="text">
+                    <string>KOI8-R</string>
+                </property>
+            </item>
+            <item>
+                <property name="text">
+                    <string>KOI8-U</string>
+                </property>
+            </item>
+            <item>
+                <property name="text">
+                    <string>ISO8859-1</string>
+                </property>
+            </item>
+            <item>
+                <property name="text">
+                    <string>ISO8859-2</string>
+                </property>
+            </item>
+            <item>
+                <property name="text">
+                    <string>ISO8859-3</string>
+                </property>
+            </item>
+            <item>
+                <property name="text">
+                    <string>ISO8859-4</string>
+                </property>
+            </item>
+            <item>
+                <property name="text">
+                    <string>ISO8859-5</string>
+                </property>
+            </item>
+            <item>
+                <property name="text">
+                    <string>ISO8859-6</string>
+                </property>
+            </item>
+            <item>
+                <property name="text">
+                    <string>ISO8859-7</string>
+                </property>
+            </item>
+            <item>
+                <property name="text">
+                    <string>ISO8859-8</string>
+                </property>
+            </item>
+            <item>
+                <property name="text">
+                    <string>ISO8859-8-i</string>
+                </property>
+            </item>
+            <item>
+                <property name="text">
+                    <string>ISO8859-9</string>
+                </property>
+            </item>
+            <item>
+                <property name="text">
+                    <string>ISO8859-10</string>
+                </property>
+            </item>
+            <item>
+                <property name="text">
+                    <string>ISO8859-13</string>
+                </property>
+            </item>
+            <item>
+                <property name="text">
+                    <string>ISO8859-14</string>
+                </property>
+            </item>
+            <item>
+                <property name="text">
+                    <string>ISO8859-15</string>
+                </property>
+            </item>
+            <item>
+                <property name="text">
+                    <string>IBM 850</string>
+                </property>
+            </item>
+            <item>
+                <property name="text">
+                    <string>IBM 866</string>
+                </property>
+            </item>
+            <item>
+                <property name="text">
+                    <string>CP874</string>
+                </property>
+            </item>
+            <item>
+                <property name="text">
+                    <string>CP1250</string>
+                </property>
+            </item>
+            <item>
+                <property name="text">
+                    <string>CP1251</string>
+                </property>
+            </item>
+            <item>
+                <property name="text">
+                    <string>CP1252</string>
+                </property>
+            </item>
+            <item>
+                <property name="text">
+                    <string>CP1253</string>
+                </property>
+            </item>
+            <item>
+                <property name="text">
+                    <string>CP1254</string>
+                </property>
+            </item>
+            <item>
+                <property name="text">
+                    <string>CP1255</string>
+                </property>
+            </item>
+            <item>
+                <property name="text">
+                    <string>CP1256</string>
+                </property>
+            </item>
+            <item>
+                <property name="text">
+                    <string>CP1257</string>
+                </property>
+            </item>
+            <item>
+                <property name="text">
+                    <string>CP1258</string>
+                </property>
+            </item>
+            <item>
+                <property name="text">
+                    <string>Apple Roman</string>
+                </property>
+            </item>
+            <item>
+                <property name="text">
+                    <string>TIS-620</string>
+                </property>
+            </item>
+            <property name="name">
+                <cstring>m_MessageEncodingCombobox</cstring>
+            </property>
+            <property name="geometry">
+                <rect>
+                    <x>371</x>
+                    <y>20</y>
+                    <width>170</width>
+                    <height>30</height>
+                </rect>
+            </property>
+            <property name="currentItem">
+                <number>8</number>
+            </property>
+        </widget>
+        <widget class="KComboBox">
             <item>
                 <property name="text">
                     <string>Big5</string>
@@ -762,233 +978,7 @@
                 </rect>
             </property>
             <property name="currentItem">
-                <number>3</number>
-            </property>
-        </widget>
-        <widget class="KComboBox">
-            <item>
-                <property name="text">
-                    <string>Latin1</string>
-                </property>
-            </item>
-            <item>
-                <property name="text">
-                    <string>Big5</string>
-                </property>
-            </item>
-            <item>
-                <property name="text">
-                    <string>Big5-HKSCS</string>
-                </property>
-            </item>
-            <item>
-                <property name="text">
-                    <string>eucJP</string>
-                </property>
-            </item>
-            <item>
-                <property name="text">
-                    <string>eucKR</string>
-                </property>
-            </item>
-            <item>
-                <property name="text">
-                    <string>GB2312</string>
-                </property>
-            </item>
-            <item>
-                <property name="text">
-                    <string>GBK</string>
-                </property>
-            </item>
-            <item>
-                <property name="text">
-                    <string>GB18030</string>
-                </property>
-            </item>
-            <item>
-                <property name="text">
-                    <string>JIS7</string>
-                </property>
-            </item>
-            <item>
-                <property name="text">
-                    <string>Shift-JIS</string>
-                </property>
-            </item>
-            <item>
-                <property name="text">
-                    <string>TSCII</string>
-                </property>
-            </item>
-            <item>
-                <property name="text">
-                    <string>utf8</string>
-                </property>
-            </item>
-            <item>
-                <property name="text">
-                    <string>KOI8-R</string>
-                </property>
-            </item>
-            <item>
-                <property name="text">
-                    <string>KOI8-U</string>
-                </property>
-            </item>
-            <item>
-                <property name="text">
-                    <string>ISO8859-1</string>
-                </property>
-            </item>
-            <item>
-                <property name="text">
-                    <string>ISO8859-2</string>
-                </property>
-            </item>
-            <item>
-                <property name="text">
-                    <string>ISO8859-3</string>
-                </property>
-            </item>
-            <item>
-                <property name="text">
-                    <string>ISO8859-4</string>
-                </property>
-            </item>
-            <item>
-                <property name="text">
-                    <string>ISO8859-5</string>
-                </property>
-            </item>
-            <item>
-                <property name="text">
-                    <string>ISO8859-6</string>
-                </property>
-            </item>
-            <item>
-                <property name="text">
-                    <string>ISO8859-7</string>
-                </property>
-            </item>
-            <item>
-                <property name="text">
-                    <string>ISO8859-8</string>
-                </property>
-            </item>
-            <item>
-                <property name="text">
-                    <string>ISO8859-8-i</string>
-                </property>
-            </item>
-            <item>
-                <property name="text">
-                    <string>ISO8859-9</string>
-                </property>
-            </item>
-            <item>
-                <property name="text">
-                    <string>ISO8859-10</string>
-                </property>
-            </item>
-            <item>
-                <property name="text">
-                    <string>ISO8859-13</string>
-                </property>
-            </item>
-            <item>
-                <property name="text">
-                    <string>ISO8859-14</string>
-                </property>
-            </item>
-            <item>
-                <property name="text">
-                    <string>ISO8859-15</string>
-                </property>
-            </item>
-            <item>
-                <property name="text">
-                    <string>IBM 850</string>
-                </property>
-            </item>
-            <item>
-                <property name="text">
-                    <string>IBM 866</string>
-                </property>
-            </item>
-            <item>
-                <property name="text">
-                    <string>CP874</string>
-                </property>
-            </item>
-            <item>
-                <property name="text">
-                    <string>CP1250</string>
-                </property>
-            </item>
-            <item>
-                <property name="text">
-                    <string>CP1251</string>
-                </property>
-            </item>
-            <item>
-                <property name="text">
-                    <string>CP1252</string>
-                </property>
-            </item>
-            <item>
-                <property name="text">
-                    <string>CP1253</string>
-                </property>
-            </item>
-            <item>
-                <property name="text">
-                    <string>CP1254</string>
-                </property>
-            </item>
-            <item>
-                <property name="text">
-                    <string>CP1255</string>
-                </property>
-            </item>
-            <item>
-                <property name="text">
-                    <string>CP1256</string>
-                </property>
-            </item>
-            <item>
-                <property name="text">
-                    <string>CP1257</string>
-                </property>
-            </item>
-            <item>
-                <property name="text">
-                    <string>CP1258</string>
-                </property>
-            </item>
-            <item>
-                <property name="text">
-                    <string>Apple Roman</string>
-                </property>
-            </item>
-            <item>
-                <property name="text">
-                    <string>TIS-620</string>
-                </property>
-            </item>
-            <property name="name">
-                <cstring>m_MessageEncodingCombobox</cstring>
-            </property>
-            <property name="geometry">
-                <rect>
-                    <x>371</x>
-                    <y>20</y>
-                    <width>170</width>
-                    <height>30</height>
-                </rect>
-            </property>
-            <property name="currentItem">
-                <number>9</number>
+                <number>2</number>
             </property>
         </widget>
     </widget>
