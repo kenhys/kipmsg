@@ -299,7 +299,7 @@ $(srcdir)/Makefile.in:  Makefile.am  $(top_srcdir)/configure.in $(ACLOCAL_M4)
 #>+ 3
 	cd $(top_srcdir) && \
 	  $(AUTOMAKE) --gnu  Makefile
-	cd $(top_srcdir) && perl admin/am_edit Makefile.in
+	cd $(top_srcdir) && perl admin/am_edit -padmin Makefile.in
 Makefile:  $(srcdir)/Makefile.in  $(top_builddir)/config.status
 	cd $(top_builddir) && $(SHELL) ./config.status $@ $(am__depfiles_maybe)
 
@@ -655,6 +655,7 @@ dist-hook:
 # Otherwise a system limit (for SysV at least) may be exceeded.
 .NOEXPORT:
 
+
 #>+ 2
 KDE_DIST=stamp-h.in subdirs kipmsg.kdevelop.pcs configure.files kipmsg.kdevses Makefile.cvs Doxyfile kipmsg.kdevelop 
 
@@ -665,7 +666,7 @@ docs-am:
 force-reedit:
 		cd $(top_srcdir) && \
 	  $(AUTOMAKE) --gnu  Makefile
-	cd $(top_srcdir) && perl admin/am_edit Makefile.in
+	cd $(top_srcdir) && perl admin/am_edit -padmin Makefile.in
 
 
 #>+ 21

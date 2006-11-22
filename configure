@@ -31149,8 +31149,6 @@ done
 
           ac_config_files="$ac_config_files po/Makefile"
 
-          ac_config_files="$ac_config_files po/ja/Makefile"
-
           ac_config_files="$ac_config_files src/Makefile"
 
 cat >confcache <<\_ACEOF
@@ -31707,7 +31705,6 @@ do
   "doc/en/Makefile" ) CONFIG_FILES="$CONFIG_FILES doc/en/Makefile" ;;
   "icons/Makefile" ) CONFIG_FILES="$CONFIG_FILES icons/Makefile" ;;
   "po/Makefile" ) CONFIG_FILES="$CONFIG_FILES po/Makefile" ;;
-  "po/ja/Makefile" ) CONFIG_FILES="$CONFIG_FILES po/ja/Makefile" ;;
   "src/Makefile" ) CONFIG_FILES="$CONFIG_FILES src/Makefile" ;;
   "depfiles" ) CONFIG_COMMANDS="$CONFIG_COMMANDS depfiles" ;;
   "config.h" ) CONFIG_HEADERS="$CONFIG_HEADERS config.h" ;;
