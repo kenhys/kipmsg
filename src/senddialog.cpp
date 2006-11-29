@@ -110,8 +110,8 @@ KTextEditNoDnD::~KTextEditNoDnD(){
  * 編集領域Widgetのコンテンツドロップイベント。
  */
 void KTextEditNoDnD::contentsDropEvent(QDropEvent *e){
-	printf("ContentsDropEvent\n");
-	fflush(stdout);
+//	printf("ContentsDropEvent\n");
+//	fflush(stdout);
 
 	if ( QTextDrag::decode( e, dropText ) ){
 		DnDPopup->popup( QCursor::pos() );
@@ -502,13 +502,13 @@ void SendDialog::slotSecretClicked()
  */
 void SendDialog::slotHostListUpdateClicked()
 {
-	refreshHostList();
+	refreshHostList( true );
 }
 
 /*
  * ホストリストをリフレッシュする。
  */
-void SendDialog::refreshHostList()
+void SendDialog::refreshHostList( bool isUpdate )
 {
 	//選択状態を保存して
 	QListViewItemIterator it( m_HostListView );
@@ -523,7 +523,11 @@ void SendDialog::refreshHostList()
 
 	//ホストリストを再取得
 	IpMessengerAgent *agent = IpMessengerAgent::GetInstance();
-	hosts = agent->UpdateHostList();
+	if ( isUpdate ) {
+		hosts = agent->UpdateHostList();
+	} else {
+		hosts = agent->GetHostList();
+	}
 	//ホストリストを再設定
 	m_HostListView->clear();
 	m_HostListView->setRootIsDecorated(FALSE);

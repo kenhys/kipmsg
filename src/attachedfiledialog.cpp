@@ -92,7 +92,7 @@ void KIpMessengerAttachedFileDialog::slotDeleteClicked()
 	while ( it.current() != NULL ) {
 		QListViewItem *item = it.current();
 		if ( item->isSelected() ) {
-printf("item->text( 3 ).data() = %s\n", codec->fromUnicode( item->text( 3 ) ).data() );
+//printf("item->text( 3 ).data() = %s\n", codec->fromUnicode( item->text( 3 ) ).data() );
 			vector<AttachFile>::iterator i = files.FindByFullPath( codec->fromUnicode( item->text( 3 ) ).data() );
 			if ( i != files.end() ) {
 				files.erase( i );

@@ -63,7 +63,7 @@ public:
     SendDialog(QWidget* parent = 0, const char* name = 0, WFlags fl = 0 );
     ~SendDialog();
     /*$PUBLIC_FUNCTIONS$*/
-	void refreshHostList();
+	void refreshHostList( bool isUpdate=false);
 	void setRecieveDialog( QDialog *_recvdialog ) { recvDialog = _recvdialog; };
 	void setFixsizePotisionMenu();
 	void setSaveSizeMenu();

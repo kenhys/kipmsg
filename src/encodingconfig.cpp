@@ -168,31 +168,51 @@ void KIPMsgEncodingConfigDialog::slotApplyClicked()
 	QListViewItemIterator it( m_HostListView );
 	while ( it.current() != NULL ) {
 		QListViewItem *item = it.current();
-		if ( item != NULL ) {
+		if ( item != NULL && item->text( COL_ENCODING ).data() != NULL ) {
+			printf("item != NULL\n");
+			fflush(stdout);
 			HostListItem host;
+			printf("item != NULL\n");
+			fflush(stdout);
 			host.setEncodingName( item->text( COL_ENCODING ).data() );
-			QTextCodec *codec = QTextCodec::codecForName( host.EncodingName().c_str() );
-			host.setIpAddress( codec->fromUnicode( item->text( COL_IPADDR ) ).data() );
-			host.setUserName( codec->fromUnicode( item->text( COL_LOGIN ) ).data() );
-			targets.push_back( host );
+			if ( host.EncodingName() != "" ){
+				printf("ENCNAME != NULL B\n");
+				fflush(stdout);
+				QTextCodec *codec = QTextCodec::codecForName( host.EncodingName().c_str() );
+				host.setIpAddress( codec->fromUnicode( item->text( COL_IPADDR ) ).data() );
+				host.setUserName( codec->fromUnicode( item->text( COL_LOGIN ) ).data() );
+				targets.push_back( host );
+				printf("ENCNAME != NULL A\n");
+				fflush(stdout);
+			}
 		}
 		++it;
 	}
+	printf("LOOP END\n");
+	fflush(stdout);
 	QStringList encodings = KIpMsgSettings::encodingSettings();
 	for( vector<HostListItem>::iterator host = targets.begin(); host != targets.end(); host++ ) {
-		QTextCodec *codec = QTextCodec::codecForName( host->EncodingName().c_str() );
-		QString ip = codec->toUnicode( host->IpAddress().c_str() );
-		QString login = codec->toUnicode( host->UserName().c_str() );
-		QString enc = codec->toUnicode( host->EncodingName().c_str() );
-		for( QStringList::iterator ite = encodings.begin(); ite != encodings.end(); ite++ ){
-			QStringList fields = QStringList::split( ":", *ite );
-			if ( ip == fields[0] &&
-				login == fields[1] ) {
-				encodings.remove( ite );
-				break;
+		if ( host->EncodingName() != "" ){
+			printf("ENC ADD B\n");
+			fflush(stdout);
+			QTextCodec *codec = QTextCodec::codecForName( host->EncodingName().c_str() );
+			QString ip = codec->toUnicode( host->IpAddress().c_str() );
+			QString login = codec->toUnicode( host->UserName().c_str() );
+			QString enc = codec->toUnicode( host->EncodingName().c_str() );
+			for( QStringList::iterator ite = encodings.begin(); ite != encodings.end(); ite++ ){
+				QStringList fields = QStringList::split( ":", *ite );
+				if ( ip == fields[0] &&
+					login == fields[1] ) {
+					encodings.remove( ite );
+					break;
+				}
 			}
+			printf("ENC ADD A\n");
+			fflush(stdout);
+			encodings << ip + ":" + login + ":" + enc;
 		}
-		encodings << ip + ":" + login + ":" + enc;
+		printf("LOOP INNER END\n");
+		fflush(stdout);
 	}
 	KIpMsgSettings::setEncodingSettings( encodings );
 	KIpMsgSettings::writeConfig();

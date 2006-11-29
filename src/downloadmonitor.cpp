@@ -140,7 +140,7 @@ void KIpMsgDownloadMonitor::refreshDownloadFileList()
 				snprintf( done, sizeof(done),"%d", iDone );
 				snprintf( trans, sizeof(trans),"%d", iTrans );
 				snprintf( p_no, sizeof(p_no),"%ld", m->PacketNo() );
-				printf( "%ld", m->PacketNo() );
+//				printf( "%ld", m->PacketNo() );
 				QListViewItem *item = new QListViewItem( m_FileListView,
 														QString(i_s),
 														fileNames,

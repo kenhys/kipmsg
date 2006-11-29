@@ -209,7 +209,7 @@ USER_LDFLAGS =
 USE_EXCEPTIONS = -fexceptions
 USE_RTTI = 
 USE_THREADS = 
-VERSION = 0.1.0
+VERSION = 0.1.1
 WOVERLOADED_VIRTUAL = 
 XGETTEXT = /usr/bin/xgettext
 XMLLINT = /usr/bin/xmllint
@@ -299,7 +299,7 @@ $(srcdir)/Makefile.in:  Makefile.am  $(top_srcdir)/configure.in $(ACLOCAL_M4)
 #>+ 3
 	cd $(top_srcdir) && \
 	  $(AUTOMAKE) --gnu  Makefile
-	cd $(top_srcdir) && perl admin/am_edit -padmin Makefile.in
+	cd $(top_srcdir) && perl admin/am_edit Makefile.in
 Makefile:  $(srcdir)/Makefile.in  $(top_builddir)/config.status
 	cd $(top_builddir) && $(SHELL) ./config.status $@ $(am__depfiles_maybe)
 
@@ -655,9 +655,8 @@ dist-hook:
 # Otherwise a system limit (for SysV at least) may be exceeded.
 .NOEXPORT:
 
-
 #>+ 2
-KDE_DIST=stamp-h.in subdirs kipmsg.kdevelop.pcs configure.files kipmsg.kdevses Makefile.cvs Doxyfile kipmsg.kdevelop 
+KDE_DIST=stamp-h.in subdirs kipmsg.kdevelop.pcs configure.files kipmsg-0.1.0.tar.gz kipmsg.kdevses Makefile.cvs Doxyfile kipmsg.kdevelop 
 
 #>+ 2
 docs-am:
@@ -666,7 +665,7 @@ docs-am:
 force-reedit:
 		cd $(top_srcdir) && \
 	  $(AUTOMAKE) --gnu  Makefile
-	cd $(top_srcdir) && perl admin/am_edit -padmin Makefile.in
+	cd $(top_srcdir) && perl admin/am_edit Makefile.in
 
 
 #>+ 21

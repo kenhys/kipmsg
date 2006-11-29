@@ -396,11 +396,30 @@
         </widget>
         <widget class="QCheckBox">
             <property name="name">
+                <cstring>m_LoginCheckbox</cstring>
+            </property>
+            <property name="geometry">
+                <rect>
+                    <x>10</x>
+                    <y>50</y>
+                    <width>140</width>
+                    <height>23</height>
+                </rect>
+            </property>
+            <property name="text">
+                <string>LoginName</string>
+            </property>
+            <property name="accel">
+                <string></string>
+            </property>
+        </widget>
+        <widget class="QCheckBox">
+            <property name="name">
                 <cstring>m_HostCheckbox</cstring>
             </property>
             <property name="geometry">
                 <rect>
-                    <x>160</x>
+                    <x>150</x>
                     <y>20</y>
                     <width>140</width>
                     <height>23</height>
@@ -419,7 +438,7 @@
             </property>
             <property name="geometry">
                 <rect>
-                    <x>160</x>
+                    <x>150</x>
                     <y>50</y>
                     <width>140</width>
                     <height>23</height>
@@ -438,9 +457,9 @@
             </property>
             <property name="geometry">
                 <rect>
-                    <x>310</x>
+                    <x>300</x>
                     <y>20</y>
-                    <width>140</width>
+                    <width>150</width>
                     <height>23</height>
                 </rect>
             </property>
@@ -457,9 +476,9 @@
             </property>
             <property name="geometry">
                 <rect>
-                    <x>310</x>
+                    <x>300</x>
                     <y>50</y>
-                    <width>140</width>
+                    <width>150</width>
                     <height>23</height>
                 </rect>
             </property>
@@ -468,25 +487,6 @@
             </property>
             <property name="accel">
                 <string>Alt+E</string>
-            </property>
-        </widget>
-        <widget class="QCheckBox">
-            <property name="name">
-                <cstring>m_LoginCheckbox</cstring>
-            </property>
-            <property name="geometry">
-                <rect>
-                    <x>10</x>
-                    <y>50</y>
-                    <width>140</width>
-                    <height>23</height>
-                </rect>
-            </property>
-            <property name="text">
-                <string>LoginName</string>
-            </property>
-            <property name="accel">
-                <string></string>
             </property>
         </widget>
     </widget>

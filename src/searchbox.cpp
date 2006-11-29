@@ -37,7 +37,7 @@ void KIpMsgSearchBox::slotOkClicked()
 }
 void KIpMsgSearchBox::slotSearchClicked()
 {
-printf("search_clicked()\n");
+//printf("search_clicked()\n");
 	if ( m_SearchAllCheckbox->isChecked() ) {
 		QListViewItemIterator its( m_HostListView );
 		while ( its.current() != NULL ) {
@@ -51,7 +51,7 @@ printf("search_clicked()\n");
 				 item->text( SendDialog::ColumnPriority ).find( m_SearchWordCombobox->currentText() ) >= 0 ||
 				 item->text( SendDialog::ColumnEncoding ).find( m_SearchWordCombobox->currentText() ) >= 0 ) {
 				m_HostListView->setSelected( item, TRUE );
-printf("found all\n");
+//printf("found all\n");
 			}
 			++its;
 		}
@@ -62,7 +62,7 @@ printf("found all\n");
 			item->setSelected( FALSE );
 			if ( item->text( SendDialog::ColumnUser ).find( m_SearchWordCombobox->currentText() ) >= 0 ) {
 				m_HostListView->setSelected( item, TRUE );
-printf("found\n");
+//printf("found\n");
 			}
 			++its;
 		}

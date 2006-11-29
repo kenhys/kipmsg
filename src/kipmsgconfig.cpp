@@ -113,6 +113,14 @@ void KIPMsgConfigDialog::slotApplyClicked()
 	KIpMsgSettings::setConnectDialup( m_DialupCheckbox->isChecked() );
 
 	KIpMsgSettings::writeConfig();
+
+	IpMessengerAgent *agent = IpMessengerAgent::GetInstance();
+	agent->ClearBroadcastAddress();
+	QStringList broadcastNetworkAddress = KIpMsgSettings::broadcastNetworkAddress();
+	for( QStringList::iterator it = broadcastNetworkAddress.begin(); it != broadcastNetworkAddress.end(); it++){
+		QString broadcastAddress = *it;
+		agent->AddBroadcastAddress( broadcastAddress.data() );
+	}
 }
 
 #include "kipmsgconfig.moc"

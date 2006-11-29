@@ -63,6 +63,12 @@ kipmsgWidget::kipmsgWidget(QWidget* parent, const char* name, WFlags fl)
 	IpMsgAgent = IpMessengerAgent::GetInstance();
 	IpMsgAgent->SetAbortDownloadAtFileChanged( KIpMsgSettings::notPermitedIfModified() );
 
+	QStringList broadcastNetworkAddress = KIpMsgSettings::broadcastNetworkAddress();
+	for( QStringList::iterator it = broadcastNetworkAddress.begin(); it != broadcastNetworkAddress.end(); it++){
+		QString broadcastAddress = *it;
+		IpMsgAgent->AddBroadcastAddress( broadcastAddress.data() );
+	}
+
     MainPopup = new KPopupMenu(this);
 	AbsencePopup = new KPopupMenu(this);
 	rebuildMenu();

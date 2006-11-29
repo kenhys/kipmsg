@@ -9,25 +9,25 @@
             <x>0</x>
             <y>0</y>
             <width>450</width>
-            <height>340</height>
+            <height>450</height>
         </rect>
     </property>
     <property name="minimumSize">
         <size>
             <width>450</width>
-            <height>340</height>
+            <height>450</height>
         </size>
     </property>
     <property name="maximumSize">
         <size>
             <width>450</width>
-            <height>340</height>
+            <height>450</height>
         </size>
     </property>
     <property name="baseSize">
         <size>
             <width>450</width>
-            <height>340</height>
+            <height>450</height>
         </size>
     </property>
     <property name="caption">
@@ -36,35 +36,6 @@
     <property name="icon">
         <pixmap>image0</pixmap>
     </property>
-    <widget class="QGroupBox">
-        <property name="name">
-            <cstring>groupBox1</cstring>
-        </property>
-        <property name="geometry">
-            <rect>
-                <x>10</x>
-                <y>10</y>
-                <width>430</width>
-                <height>160</height>
-            </rect>
-        </property>
-        <property name="title">
-            <string>Entried host</string>
-        </property>
-        <vbox>
-            <property name="name">
-                <cstring>unnamed</cstring>
-            </property>
-            <widget class="KListView">
-                <property name="name">
-                    <cstring>m_HostListView</cstring>
-                </property>
-                <property name="allColumnsShowFocus">
-                    <bool>true</bool>
-                </property>
-            </widget>
-        </vbox>
-    </widget>
     <widget class="KPushButton">
         <property name="name">
             <cstring>m_ApplyButton</cstring>
@@ -72,7 +43,7 @@
         <property name="geometry">
             <rect>
                 <x>340</x>
-                <y>300</y>
+                <y>410</y>
                 <width>100</width>
                 <height>30</height>
             </rect>
@@ -86,12 +57,31 @@
     </widget>
     <widget class="KPushButton">
         <property name="name">
+            <cstring>m_OKButton</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>120</x>
+                <y>410</y>
+                <width>100</width>
+                <height>30</height>
+            </rect>
+        </property>
+        <property name="text">
+            <string>&amp;OK</string>
+        </property>
+        <property name="accel">
+            <string>Alt+O</string>
+        </property>
+    </widget>
+    <widget class="KPushButton">
+        <property name="name">
             <cstring>m_CancelButton</cstring>
         </property>
         <property name="geometry">
             <rect>
                 <x>230</x>
-                <y>300</y>
+                <y>410</y>
                 <width>100</width>
                 <height>30</height>
             </rect>
@@ -103,25 +93,6 @@
             <string>Alt+N</string>
         </property>
     </widget>
-    <widget class="KPushButton">
-        <property name="name">
-            <cstring>m_OKButton</cstring>
-        </property>
-        <property name="geometry">
-            <rect>
-                <x>120</x>
-                <y>300</y>
-                <width>100</width>
-                <height>30</height>
-            </rect>
-        </property>
-        <property name="text">
-            <string>O&amp;K</string>
-        </property>
-        <property name="accel">
-            <string>Alt+K</string>
-        </property>
-    </widget>
     <widget class="QGroupBox">
         <property name="name">
             <cstring>groupBox2</cstring>
@@ -129,7 +100,7 @@
         <property name="geometry">
             <rect>
                 <x>10</x>
-                <y>170</y>
+                <y>280</y>
                 <width>430</width>
                 <height>120</height>
             </rect>
@@ -448,6 +419,35 @@
             </property>
         </widget>
     </widget>
+    <widget class="QGroupBox">
+        <property name="name">
+            <cstring>groupBox1</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>10</x>
+                <y>10</y>
+                <width>430</width>
+                <height>260</height>
+            </rect>
+        </property>
+        <property name="title">
+            <string>Entried host</string>
+        </property>
+        <vbox>
+            <property name="name">
+                <cstring>unnamed</cstring>
+            </property>
+            <widget class="KListView">
+                <property name="name">
+                    <cstring>m_HostListView</cstring>
+                </property>
+                <property name="allColumnsShowFocus">
+                    <bool>true</bool>
+                </property>
+            </widget>
+        </vbox>
+    </widget>
 </widget>
 <customwidgets>
 </customwidgets>
@@ -497,10 +497,10 @@
 </slots>
 <layoutdefaults spacing="6" margin="11"/>
 <includehints>
-    <includehint>klistview.h</includehint>
     <includehint>kpushbutton.h</includehint>
     <includehint>kpushbutton.h</includehint>
     <includehint>kpushbutton.h</includehint>
     <includehint>kcombobox.h</includehint>
+    <includehint>klistview.h</includehint>
 </includehints>
 </UI>

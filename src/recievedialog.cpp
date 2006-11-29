@@ -166,8 +166,8 @@ void RecieveDialog::slotFixizePositionClicked()
 }
 
 void RecieveDialog::slotOpenURL( const KURL &url ){
-	printf("URL on [%s]\n", url.url().data() );
-	fflush(stdout);
+//	printf("URL on [%s]\n", url.url().data() );
+//	fflush(stdout);
 	/*
     bool mUseDefaultBrowser;
     QStringList mExecutePrograms;
@@ -186,13 +186,13 @@ void RecieveDialog::slotOpenURL( const KURL &url ){
 			QString val = item.mid( pos + 1 );
 			val.stripWhiteSpace();
 			protocols[key] = val;
-printf("for[%s][%s]\n", key.data(), val.data());
-fflush(stdout);
+//printf("for[%s][%s]\n", key.data(), val.data());
+//fflush(stdout);
 		}
 	}
 	if ( protocols.contains( url.protocol().upper() ) && protocols[url.protocol().upper()].isEmpty() ) {
 		if ( KIpMsgSettings::useDefaultBrowser() ) {
-printf("KRun\n");
+//printf("KRun\n");
 fflush(stdout);
 			( new KRun( url ) )->setAutoDelete( true );
 		}
@@ -204,7 +204,7 @@ fflush(stdout);
 			KMessageBox::sorry( 0, tr2i18n( "Specified application is not executable.\n" ) + "[" + exe.fileName() + "]", "KIpMessenger" );
 		} else {
 			QString cmd = protocols[url.protocol().upper()] + " \"" + url.url() + "\"";
-printf("RunCommand[%s]\n", cmd.data());
+//printf("RunCommand[%s]\n", cmd.data());
 fflush(stdout);
 			KRun::runCommand( cmd );
 		}
