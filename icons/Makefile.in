@@ -276,7 +276,7 @@ $(srcdir)/Makefile.in:  Makefile.am  $(top_srcdir)/configure.in $(ACLOCAL_M4)
 #>+ 3
 	cd $(top_srcdir) && \
 	  $(AUTOMAKE) --gnu  icons/Makefile
-	cd $(top_srcdir) && perl admin/am_edit -padmin icons/Makefile.in
+	cd $(top_srcdir) && perl admin/am_edit icons/Makefile.in
 Makefile:  $(srcdir)/Makefile.in  $(top_builddir)/config.status
 	cd $(top_builddir) && $(SHELL) ./config.status $(subdir)/$@ $(am__depfiles_maybe)
 
@@ -407,7 +407,6 @@ uninstall-am: uninstall-kde-icons  uninstall-info-am
 # Otherwise a system limit (for SysV at least) may be exceeded.
 .NOEXPORT:
 
-
 #>+ 2
 KDE_DIST=hi32-app-kipmsg.png hi22-action-kipmsg_download.png hi48-app-kipmsg.png hi64-app-kipmsg.png hi22-app-kipmsg.png hi16-app-kipmsg.png hi22-app-kipmsg_absence.png hi22-action-kipmsg_about.png 
 
@@ -445,7 +444,7 @@ uninstall-kde-icons:
 force-reedit:
 		cd $(top_srcdir) && \
 	  $(AUTOMAKE) --gnu  icons/Makefile
-	cd $(top_srcdir) && perl admin/am_edit -padmin icons/Makefile.in
+	cd $(top_srcdir) && perl admin/am_edit icons/Makefile.in
 
 
 #>+ 21
