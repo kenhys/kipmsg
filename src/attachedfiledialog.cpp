@@ -118,11 +118,11 @@ void KIpMessengerAttachedFileDialog::setFileNames()
 		}
 		time_t mtime = it->MTime();
 		ctime_r( &mtime, timebuf );
-		QListViewItem *item = new QListViewItem( m_AttachFileListView,
-												codec->toUnicode( it->FileName().c_str() ),
-												size,
-												timebuf,
-												codec->toUnicode( it->FullPath().c_str() ) );
+		new QListViewItem( m_AttachFileListView,
+						   codec->toUnicode( it->FileName().c_str() ),
+						   size,
+						   timebuf,
+						   codec->toUnicode( it->FullPath().c_str() ) );
 	}
 }
 

@@ -86,12 +86,13 @@ void KIpMsgDownloadMonitor::refreshDownloadFileList()
 	IpMessengerAgent *agent = IpMessengerAgent::GetInstance();
 	vector<SentMessage> msgs = agent->CloneSentMessages();
 	int i = 0;
-	char size[200];
-	char i_s[200];
-	char all[200];
-	char done[200];
-	char trans[200];
-	char p_no[200];
+	char sizeBuffer[200];
+	char seqBuffer[200];
+	char allBuffer[200];
+	char doneBuffer[200];
+	char transBuffer[200];
+	char packetNoBuffer[200];
+
 	QTextCodec *codec = QTextCodec::codecForName( KIpMsgSettings::localFilesystemEncoding() );
 	if ( codec == NULL ) {
 		return;
@@ -115,41 +116,41 @@ void KIpMsgDownloadMonitor::refreshDownloadFileList()
 	for( vector<SentMessage>::iterator m = msgs.begin(); m != msgs.end(); m++ ) {
 		if ( m->Files().size() > 0 ) {
 			QString fileNames = "";
-			long long llsize = 0LL;
-			int iAll = 0;
-			int iDone = 0;
-			int iTrans = 0;
+			long long fileSizeTotal = 0LL;
+			int allFileCount = 0;
+			int doneFileCount = 0;
+			int transFileCount = 0;
 			for( vector<AttachFile>::iterator f = m->Files().begin(); f != m->Files().end(); f++ ){
 				fileNames += codec->toUnicode( f->FileName().c_str() );
 				if ( f->IsDirectory() ) {
 					fileNames += "(DIR)";
 				}
 				fileNames += " ";
-				llsize += f->FileSize();
+				fileSizeTotal += f->FileSize();
 				if ( f->IsDownloaded() ) {
-					iDone++;
+					doneFileCount++;
 				} else if ( f->IsDownloading() ) {
-					iTrans++;
+					transFileCount++;
 				}
-				iAll++;
+				allFileCount++;
 			}
-			if ( iAll > iDone ){
-				snprintf( size, sizeof(size),"%lld", llsize );
-				snprintf( i_s, sizeof(i_s),"%d", i++ );
-				snprintf( all, sizeof(all),"%d", iAll );
-				snprintf( done, sizeof(done),"%d", iDone );
-				snprintf( trans, sizeof(trans),"%d", iTrans );
-				snprintf( p_no, sizeof(p_no),"%ld", m->PacketNo() );
+			if ( allFileCount > doneFileCount ){
+				snprintf( sizeBuffer, sizeof(sizeBuffer),"%lld", fileSizeTotal );
+				snprintf( seqBuffer, sizeof(seqBuffer),"%d", i++ );
+				snprintf( allBuffer, sizeof(allBuffer),"%d", allFileCount );
+				snprintf( doneBuffer, sizeof(doneBuffer),"%d", doneFileCount );
+				snprintf( transBuffer, sizeof(transBuffer),"%d", transFileCount );
+				snprintf( packetNoBuffer, sizeof(packetNoBuffer),"%ld", m->PacketNo() );
 //				printf( "%ld", m->PacketNo() );
-				QListViewItem *item = new QListViewItem( m_FileListView,
-														QString(i_s),
-														fileNames,
-														size,
-														QString(all),
-														QString(done),
-														QString(trans),
-														codec->toUnicode( m->Host().UserName().c_str() ),
-														QString(p_no) );
+				new QListViewItem( m_FileListView,
+								QString(seqBuffer),
+								fileNames,
+								sizeBuffer,
+								QString(allBuffer),
+								QString(doneBuffer),
+								QString(transBuffer),
+								codec->toUnicode( m->Host().UserName().c_str() ),
+								QString(packetNoBuffer) );
 			}
 		}
 	}

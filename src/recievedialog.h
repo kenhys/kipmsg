@@ -82,7 +82,7 @@ private:
 
 	bool isDownloadSplitterDragging;
 	RecievedMessage msg;
-	void doResize();
+	void doResize( QResizeEvent *e = NULL );
 	QString getSaveFileName( QString fileName, KFile::Mode mode );
 	QString convertMessageToHTML( QString msg );
 	void renderMessage( QString msg );

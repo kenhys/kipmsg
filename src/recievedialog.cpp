@@ -399,13 +399,13 @@ QString RecieveDialog::getSaveFileName( QString fileName, KFile::Mode mode )
  */
 void RecieveDialog::resizeEvent( QResizeEvent *e )
 {
-	doResize();
+	doResize( e );
 }
 
 /**
  *	リサイズ実行
  */
-void RecieveDialog::doResize()
+void RecieveDialog::doResize( QResizeEvent *e )
 {
 	char buf[30];
 
@@ -581,7 +581,7 @@ bool RecieveDialog::isUrlCharWithoutAmp( QChar c )
 			/* 0xf8 */ false, /* 0xf9 */ false, /* 0xfa */ false, /* 0xfb */ false,
 			/* 0xfc */ false, /* 0xfd */ false, /* 0xfd */ false, /* 0xff */ false,
 	};
-	return isUrlCharResult[c.latin1()];
+	return isUrlCharResult[(int)c.latin1()];
 }
 
 void RecieveDialog::renderMessage( QString msg )

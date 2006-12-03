@@ -78,13 +78,13 @@ KIPMsgEncodingConfigDialog::refreshEncoding()
 		} else {
 			codec = QTextCodec::codecForName( KIpMsgSettings::messageEncoding() );
 		}
-		QListViewItem *item = new QListViewItem( m_HostListView,
-												codec->toUnicode( ix->Nickname().c_str() ),
-												codec->toUnicode( ix->GroupName().c_str() ),
-												codec->toUnicode( ix->HostName().c_str() ),
-												codec->toUnicode( ix->IpAddress().c_str() ),
-												codec->toUnicode( ix->UserName().c_str() ),
-												codec->toUnicode( ix->EncodingName().c_str() ) );
+		new QListViewItem( m_HostListView,
+						   codec->toUnicode( ix->Nickname().c_str() ),
+						   codec->toUnicode( ix->GroupName().c_str() ),
+						   codec->toUnicode( ix->HostName().c_str() ),
+						   codec->toUnicode( ix->IpAddress().c_str() ),
+						   codec->toUnicode( ix->UserName().c_str() ),
+						   codec->toUnicode( ix->EncodingName().c_str() ) );
 	}
 	
 	QListViewItemIterator it( m_HostListView );
