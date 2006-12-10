@@ -40,6 +40,9 @@ class kipmsgWidget : public kipmsgWidgetBase
 public:
     kipmsgWidget(QWidget* parent = 0, const char* name = 0, WFlags fl = 0 );
     ~kipmsgWidget();
+	static bool isRecievedOnNonePopup();
+	static bool popupRecieve();
+	static void playSound();
     /*$PUBLIC_FUNCTIONS$*/
 
 public slots:
@@ -79,9 +82,6 @@ private:
 	QPtrList<OpenConfirmDialog> confirmDialogs;
 
 	void rebuildMenu();
-	bool isRecievedOnNonePopup();
-	bool popupRecieve();
-	void playSound();
 	void loadIcon();
 
 };

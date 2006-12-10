@@ -35,7 +35,8 @@ kipmsg_SOURCES = main.cpp kipmsgwidget.cpp kipmsgwidgetbase.ui \
 	attachedfiledialog.cpp attachedfiledialog.h attachedfiledialogbase.ui \
 	downloaderrordialog.cpp downloaderrordialog.h downloaderrordialogbase.ui \
 	kipmsglogger.cpp kipmsglogger.h \
-	downloadcompletedialog.cpp downloadcompletedialog.h downloadcompletedialogbase.ui
+	downloadcompletedialog.cpp downloadcompletedialog.h downloadcompletedialogbase.ui \
+	kipmsgevent.cpp kipmsgevent.h
 
 kipmsg_LDFLAGS = $(KDE_RPATH) $(all_libraries)
 kipmsg_LDADD = $(LIB_KDEUI) $(LIB_KIO) $(LIB_KHTML) -lipmsg -lcrypto -lssl

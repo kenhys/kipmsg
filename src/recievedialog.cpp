@@ -19,9 +19,6 @@
  ***************************************************************************/
 
 
-//#include <sys/types.h>
-//#include <sys/stat.h>
-
 #include <qlabel.h>
 #include <qrect.h>
 #include <qcheckbox.h>
@@ -46,8 +43,7 @@
 #include "downloaderrordialog.h"
 #include "kipmsgsettings.h"
 #include "kipmsglogger.h"
-
-extern QPtrList<RecieveDialog> recieveDialogs;
+#include "kipmsgevent.h"
 
 RecieveDialog::RecieveDialog(QWidget* parent, const char* name, WFlags fl)
         : RecieveDialogBase(parent,name,fl)
@@ -77,13 +73,9 @@ RecieveDialog::RecieveDialog(QWidget* parent, const char* name, WFlags fl)
     connect( m_RecievedMessageHTMLPart->browserExtension(),
 			 SIGNAL( openURLRequest( const KURL &, const KParts::URLArgs & ) ), this,
 			 SLOT( slotOpenURL( const KURL & ) ) );
-//    m_RecievedMessageHTMLPart->view()->resize( 216 - 10, 100 - 54 );
-//    m_RecievedMessageHTMLPart->setGeometry( QRect( 10, 54, 216, 100 ) );
-//    m_RecievedMessageHTMLPart->setMinimumSize( QSize( 0, 100 ) );
 
 
 	m_DownloadButton->setHidden( TRUE );
-//	m_RecievedMessageEditbox->setHidden( TRUE );
     m_RecievedMessageHTMLPart->view()->setHidden( TRUE );
 
 	if ( KIpMsgSettings::fireIntercept()  ) {
@@ -112,7 +104,9 @@ RecieveDialog::~RecieveDialog()
 
 void RecieveDialog::synchronizeMenu()
 {
-	QPtrListIterator<RecieveDialog> recieveIt(recieveDialogs);
+	KIpMsgEvent *evt = dynamic_cast<KIpMsgEvent *>(IpMessengerAgent::GetInstance()->GetEventObject());
+	QPtrListIterator<RecieveDialog> recieveIt(evt->GetRecieveDialogs());
+
 	RecieveDialog *recieveDlg;
 	while( ( recieveDlg = recieveIt.current() ) != 0 ) {
 		if ( recieveDlg->isShown() && recieveDlg->winId() != winId() ) {
@@ -166,13 +160,6 @@ void RecieveDialog::slotFixizePositionClicked()
 }
 
 void RecieveDialog::slotOpenURL( const KURL &url ){
-//	printf("URL on [%s]\n", url.url().data() );
-//	fflush(stdout);
-	/*
-    bool mUseDefaultBrowser;
-    QStringList mExecutePrograms;
-    bool mExecuteDoubleClick;
-	+*/
 	QMap<QString,QString> protocols;
 	QStringList pro = KIpMsgSettings::executePrograms();
 
@@ -186,14 +173,10 @@ void RecieveDialog::slotOpenURL( const KURL &url ){
 			QString val = item.mid( pos + 1 );
 			val.stripWhiteSpace();
 			protocols[key] = val;
-//printf("for[%s][%s]\n", key.data(), val.data());
-//fflush(stdout);
 		}
 	}
 	if ( protocols.contains( url.protocol().upper() ) && protocols[url.protocol().upper()].isEmpty() ) {
 		if ( KIpMsgSettings::useDefaultBrowser() ) {
-//printf("KRun\n");
-fflush(stdout);
 			( new KRun( url ) )->setAutoDelete( true );
 		}
 	} else {
@@ -204,8 +187,6 @@ fflush(stdout);
 			KMessageBox::sorry( 0, tr2i18n( "Specified application is not executable.\n" ) + "[" + exe.fileName() + "]", "KIpMessenger" );
 		} else {
 			QString cmd = protocols[url.protocol().upper()] + " \"" + url.url() + "\"";
-//printf("RunCommand[%s]\n", cmd.data());
-fflush(stdout);
 			KRun::runCommand( cmd );
 		}
 	}
@@ -236,7 +217,6 @@ void RecieveDialog::slotMessageOpenClicked()
 		m_DownloadButton->setHidden( TRUE );
 	}
 	m_OpenButton->setHidden( TRUE );
-//	m_RecievedMessageEditbox->setHidden( FALSE );
     m_RecievedMessageHTMLPart->view()->setHidden( FALSE );
 	IpMessengerAgent *agent = IpMessengerAgent::GetInstance();
 	agent->ConfirmMessage( msg );
@@ -246,7 +226,6 @@ void RecieveDialog::slotEncodingChange( int index )
 {
 	/* エンコーディングを変更したのでメッセージを再表示 */
 	QTextCodec *codec = QTextCodec::codecForName( m_EncodingCombobox->text( index ) );
-//	m_RecievedMessageEditbox->setText( codec->toUnicode( msg.Message().c_str() ) );
 	renderMessage( codec->toUnicode( msg.Message().c_str() ) );
 	/* エンコーディングを変更したので設定保存 */
 	QStringList encodings = KIpMsgSettings::encodingSettings();
@@ -267,7 +246,6 @@ void RecieveDialog::slotReplyClicked()
 {
     SendDialog *send = new SendDialog();
 	if ( m_QuoteCheckbox->isChecked() ) {
-//		QStringList RecvMsg = QStringList::split("\n", m_RecievedMessageEditbox->text() );
 		if ( !m_RecievedMessageHTMLPart->hasSelection() ) {
 			m_RecievedMessageHTMLPart->selectAll();
 		}
@@ -297,7 +275,6 @@ void RecieveDialog::slotReplyClicked()
 		item->setSelected( FALSE );
 		if ( item->text( SendDialog::ColumnIpAddress ).find( IpAddr ) >= 0 ) {
 			send->m_HostListView->setSelected( item, TRUE );
-//printf("found\n");
 			break;
 		}
 		++its;
@@ -436,7 +413,6 @@ void RecieveDialog::doResize( QResizeEvent *e )
 		slotMessageOpenClicked();
 	}
 	if ( msg.Files().size() > 0 ) {
-	//if ( msg.Files().size() > 0 ) {
 		QRect rectSplitter = m_DownloadSplitterLabel->geometry();
 		//ダウンロードボタン位置設定
 		QRect rectDownloadButton = rectOpenButton;
@@ -449,22 +425,18 @@ void RecieveDialog::doResize( QResizeEvent *e )
 		//メッセージ位置設定
 		QRect rectEditMessage = rectOpenButton;
 		rectEditMessage.setTop( rectSplitter.bottom() + 2 );
-//		m_RecievedMessageEditbox->setGeometry( rectEditMessage );
     	m_RecievedMessageHTMLPart->view()->setGeometry( rectEditMessage );
 	} else {
 		//メッセージ位置設定
-//		m_RecievedMessageEditbox->setGeometry( rectOpenButton );
     	m_RecievedMessageHTMLPart->view()->setGeometry( rectOpenButton );
 	}
 	QTextCodec *codec = QTextCodec::codecForName( m_EncodingCombobox->currentText() );
 	string fromUser = msg.Host().Nickname() + "(" + msg.Host().HostName() + "/" + msg.Host().GroupName() + ")";
 	m_MessageFromLabel->setText( codec->toUnicode( fromUser.c_str() ) );
-//	m_RecievedMessageEditbox->setText( codec->toUnicode( msg.Message().c_str() ) );
 	m_RecievedMessageHTMLPart->setJScriptEnabled(false);
 	m_RecievedMessageHTMLPart->setJavaEnabled(false);
 	m_RecievedMessageHTMLPart->setMetaRefreshEnabled(false);
 	m_RecievedMessageHTMLPart->setPluginsEnabled(false);
-//    m_RecievedMessageHTMLPart->write( codec->toUnicode( msg.Message().c_str() ) );
 	renderMessage( codec->toUnicode( msg.Message().c_str() ) );
 }
 
@@ -636,7 +608,6 @@ void RecieveDialog::mouseMoveEvent (QMouseEvent *e)
 		QSize sizeDownloadButton = m_DownloadButton->size();
 
 		QSize minsizeDownloadButton = m_DownloadButton->minimumSize();
-//		QSize minsizeRecievedMessage = m_RecievedMessageEditbox->minimumSize();
 		QSize minsizeRecievedMessage = m_RecievedMessageHTMLPart->view()->minimumSize();
 
 		QSize sizeRecvAreaFrame = m_RecvAreaFrame->size();
