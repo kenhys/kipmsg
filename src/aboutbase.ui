@@ -85,7 +85,7 @@
             <enum>Sunken</enum>
         </property>
         <property name="text">
-            <string>IP Messenger for KDE version 1.0</string>
+            <string>IP Messenger for KDE version 0.1.1</string>
         </property>
         <property name="alignment">
             <set>AlignCenter</set>
