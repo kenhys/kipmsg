@@ -61,7 +61,8 @@ kipmsgWidget::kipmsgWidget(QWidget* parent, const char* name, WFlags fl)
         : kipmsgWidgetBase(parent,name,fl)
 {
 	IpMsgAgent = IpMessengerAgent::GetInstance();
-	IpMsgAgent->setAbortDownloadAtFileChanged( KIpMsgSettings::notPermitedIfModified() );
+	IpMsgAgent->SetAbortDownloadAtFileChanged( KIpMsgSettings::notPermitedIfModified() );
+	IpMsgAgent->setIsDialup( KIpMsgSettings::connectDialup() );
 
 	QStringList broadcastNetworkAddress = KIpMsgSettings::broadcastNetworkAddress();
 	for( QStringList::iterator it = broadcastNetworkAddress.begin(); it != broadcastNetworkAddress.end(); it++){
