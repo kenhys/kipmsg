@@ -1,3 +1,7 @@
+2006-12-10 Niki, Kuninobu <nikikuni@yahoo.co.jp>
+- Update:Add DialUp Option.
+- Fix:Version info Miss.
+
 2006-11-29 Niki, Kuninobu <nikikuni@yahoo.co.jp>
 - Fix:SEGV when push Encoding setting dialog's OK/Apply button.
 - Fix:Encoding setting dialog's Listview size.
