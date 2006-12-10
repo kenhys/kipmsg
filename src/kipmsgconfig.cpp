@@ -115,6 +115,7 @@ void KIPMsgConfigDialog::slotApplyClicked()
 	KIpMsgSettings::writeConfig();
 
 	IpMessengerAgent *agent = IpMessengerAgent::GetInstance();
+	agent->setIsDialup( KIpMsgSettings::connectDialup() );
 	agent->ClearBroadcastAddress();
 	QStringList broadcastNetworkAddress = KIpMsgSettings::broadcastNetworkAddress();
 	for( QStringList::iterator it = broadcastNetworkAddress.begin(); it != broadcastNetworkAddress.end(); it++){
