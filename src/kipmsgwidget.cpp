@@ -53,8 +53,8 @@
 #include "kipmsgevent.h"
 #include "openconfirm.h"
 
-QPtrList<SendDialog> sendDialogs;
 #if 0
+QPtrList<SendDialog> sendDialogs;
 QPtrList<RecieveDialog> recieveDialogs;
 #endif
 
@@ -223,9 +223,15 @@ void kipmsgWidget::mousePressEvent( QMouseEvent *e )
 //			}
 		}
 		if ( KIpMsgSettings::openBySingleClick() ) {
+			KIpMsgEvent *evt = dynamic_cast<KIpMsgEvent *>(IpMsgAgent->GetEventObject());
+			if ( evt != NULL ) {
+				evt->ShowSendDlg();
+			}
+#if 0
 			SendDialog *sendWin = new SendDialog();
 			sendWin->show();
 			sendDialogs.append( sendWin );
+#endif
 		}
 	}
 }
@@ -247,9 +253,15 @@ void kipmsgWidget::playSound()
 void kipmsgWidget::mouseDoubleClickEvent (QMouseEvent *e)
 {
 	if ( !KIpMsgSettings::openBySingleClick() ) {
+		KIpMsgEvent *evt = dynamic_cast<KIpMsgEvent *>(IpMsgAgent->GetEventObject());
+		if ( evt != NULL ) {
+			evt->ShowSendDlg();
+		}
+#if 0
 		SendDialog *sendWin = new SendDialog();
 		sendWin->show();
 		sendDialogs.append( sendWin );
+#endif
 	}
 }
 void kipmsgWidget::slotConfigureClicked()
@@ -268,6 +280,11 @@ void kipmsgWidget::slotDownloadMonitorClicked()
 }
 void kipmsgWidget::slotHideAllOpenConfirmClicked()
 {
+	KIpMsgEvent *evt = dynamic_cast<KIpMsgEvent *>(IpMsgAgent->GetEventObject());
+	if ( evt != NULL ) {
+		evt->HideAllOpenConfirm();
+	}
+#if 0
 	QPtrListIterator<OpenConfirmDialog> itp(confirmDialogs);
 	OpenConfirmDialog *dlg;
 	while( ( dlg = itp.current() ) != 0 ) {
@@ -279,6 +296,7 @@ void kipmsgWidget::slotHideAllOpenConfirmClicked()
 	while( confirmDialogs.count() > 0 ){
 		confirmDialogs.remove( 0U );
 	}
+#endif
 }
 void kipmsgWidget::slotStayOnTopAllWindowsClick()
 {
@@ -303,7 +321,6 @@ void kipmsgWidget::slotStayOnTopAllWindowsClick()
 		}
 		++recieveIt;
 	}
-#endif
 	QPtrListIterator<SendDialog> sendIt(sendDialogs);
 	SendDialog *sendDlg;
 	while( ( sendDlg = sendIt.current() ) != 0 ) {
@@ -312,6 +329,7 @@ void kipmsgWidget::slotStayOnTopAllWindowsClick()
 		}
 		++sendIt;
 	}
+#endif
 }
 void kipmsgWidget::slotAbsenceModeConfigClicked()
 {
@@ -348,8 +366,8 @@ bool kipmsgWidget::isRecievedOnNonePopup()
 	return ( IpMessengerAgent::GetInstance()->IsAbsence() && KIpMsgSettings::nonePopupOnAbsence() ) || KIpMsgSettings::noPopup();
 }
 
-bool kipmsgWidget::popupRecieve()
-{
+//bool kipmsgWidget::popupRecieve()
+//{
 #if 0
 	int hasMsg = 0;
 	while( IpMsgAgent->GetRecievedMessageCount() > 0 ){
@@ -367,8 +385,8 @@ bool kipmsgWidget::popupRecieve()
 	}
 	return hasMsg > 0;
 #endif
-	return true;
-}
+//	return true;
+//}
 
 void kipmsgWidget::slotPollingTimeout()
 {
@@ -488,7 +506,6 @@ void kipmsgWidget::slotPollingTimeout()
 		}
 		++confirmIt;
 	}
-#endif
 	QPtrListIterator<SendDialog> sendIt(sendDialogs);
 	SendDialog *sendDlg;
 	while( ( sendDlg = sendIt.current() ) != 0 ) {
@@ -498,7 +515,6 @@ void kipmsgWidget::slotPollingTimeout()
 		}
 		++sendIt;
 	}
-#if 0
 	QPtrListIterator<RecieveDialog> recieveIt(recieveDialogs);
 	RecieveDialog *recieveDlg;
 	while( ( recieveDlg = recieveIt.current() ) != 0 ) {

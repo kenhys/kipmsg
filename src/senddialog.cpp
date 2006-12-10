@@ -48,6 +48,7 @@
 #include "showconfig.h"
 #include "attachedfiledialog.h"
 #include "encodingconfig.h"
+#include "kipmsgevent.h"
 
 extern QPtrList<SendDialog> sendDialogs;
 
@@ -1095,7 +1096,9 @@ void SendDialog::slotFontRestoreToDefaultClicked()
  */
 void SendDialog::synchronizeMenu()
 {
-	QPtrListIterator<SendDialog> sendIt(sendDialogs);
+	KIpMsgEvent *evt = dynamic_cast<KIpMsgEvent *>(IpMessengerAgent::GetInstance()->GetEventObject());
+	QPtrListIterator<SendDialog> sendIt(evt->GetSendDialogs());
+
 	SendDialog *sendDlg;
 	while( ( sendDlg = sendIt.current() ) != 0 ) {
 		if ( sendDlg->isShown() && sendDlg->winId() != winId() ) {

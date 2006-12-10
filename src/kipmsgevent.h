@@ -27,6 +27,7 @@
 #include "IpMessenger.h"
 #include "kipmsgsettings.h"
 #include "recievedialog.h"
+#include "senddialog.h"
 #include "openconfirm.h"
 
 class KIpMsgEvent: public IpMessengerEvent {
@@ -44,13 +45,17 @@ class KIpMsgEvent: public IpMessengerEvent {
 		virtual void EntryAfter( HostList& hostList );
 		virtual void ExitAfter( HostList& hostList );
 
+		void ShowSendDlg();
 		void ShowHiddenRecieveMsg();
+		void HideAllOpenConfirm();
 		void TimerEvent();
 		int GetRecievedMessageCount();
 		void StayOnTopAllWindows();
 		QPtrList<RecieveDialog>& GetRecieveDialogs();
+		QPtrList<SendDialog>& GetSendDialogs();
 	private:
 		void ShowRecieveMsg( RecievedMessage& msg );
+		QPtrList<SendDialog> sendDialogs;
 		QPtrList<RecieveDialog> recieveDialogs;
 		QPtrList<OpenConfirmDialog> confirmDialogs;
 		vector<RecievedMessage> hiddenMessages;

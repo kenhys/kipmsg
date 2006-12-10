@@ -41,7 +41,7 @@ public:
     kipmsgWidget(QWidget* parent = 0, const char* name = 0, WFlags fl = 0 );
     ~kipmsgWidget();
 	static bool isRecievedOnNonePopup();
-	static bool popupRecieve();
+//	static bool popupRecieve();
 	static void playSound();
     /*$PUBLIC_FUNCTIONS$*/
 

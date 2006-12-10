@@ -70,6 +70,33 @@ KIpMsgEvent::GetRecieveDialogs(){
 	return recieveDialogs;
 }
 
+QPtrList<SendDialog>&
+KIpMsgEvent::GetSendDialogs(){
+	return sendDialogs;
+}
+
+void
+KIpMsgEvent::ShowSendDlg(){
+	SendDialog *sendWin = new SendDialog();
+	sendWin->show();
+	sendDialogs.append( sendWin );
+}
+
+void
+KIpMsgEvent::HideAllOpenConfirm(){
+	QPtrListIterator<OpenConfirmDialog> itp(confirmDialogs);
+	OpenConfirmDialog *dlg;
+	while( ( dlg = itp.current() ) != 0 ) {
+		if ( dlg->isShown() ) {
+			dlg->setHidden(TRUE);
+		}
+		++itp;
+	}
+	while( confirmDialogs.count() > 0 ){
+		confirmDialogs.remove( 0U );
+	}
+}
+
 void
 KIpMsgEvent::StayOnTopAllWindows(){
 	QPtrListIterator<OpenConfirmDialog> confirmIt(confirmDialogs);
@@ -87,6 +114,14 @@ KIpMsgEvent::StayOnTopAllWindows(){
 			KWin::activateWindow( recieveDlg->winId() );
 		}
 		++recieveIt;
+	}
+	QPtrListIterator<SendDialog> sendIt(sendDialogs);
+	SendDialog *sendDlg;
+	while( ( sendDlg = sendIt.current() ) != 0 ) {
+		if ( sendDlg->isShown() ) {
+			KWin::activateWindow( sendDlg->winId() );
+		}
+		++sendIt;
 	}
 }
 
@@ -106,6 +141,17 @@ KIpMsgEvent::TimerEvent(){
 		}
 		++confirmIt;
 	}
+
+	QPtrListIterator<SendDialog> sendIt(sendDialogs);
+	SendDialog *sendDlg;
+	while( ( sendDlg = sendIt.current() ) != 0 ) {
+		if ( !sendDlg->isShown() ) {
+			sendDialogs.remove(sendDlg);
+			continue;
+		}
+		++sendIt;
+	}
+
 	QPtrListIterator<RecieveDialog> recieveIt(recieveDialogs);
 	RecieveDialog *recieveDlg;
 	while( ( recieveDlg = recieveIt.current() ) != 0 ) {
