@@ -211,20 +211,21 @@ KIpMsgEvent::OpenAfter( SentMessage& msg ){
 	}
 }
 void
-KIpMsgEvent::DownloadStart( SentMessage& msg, AttachFile& file ){
+KIpMsgEvent::DownloadStart( RecievedMessage& msg, AttachFile& file ){
 	printf("DownloadStart KIPMSG\n");
 }
 void
-KIpMsgEvent::DownloadProcessing( SentMessage& msg, AttachFile& file ){
+KIpMsgEvent::DownloadProcessing( RecievedMessage& msg, AttachFile& file ){
 	printf("DownloadProcessing KIPMSG\n");
 }
 void
-KIpMsgEvent::DownloadEnd( SentMessage& msg, AttachFile& file ){
+KIpMsgEvent::DownloadEnd( RecievedMessage& msg, AttachFile& file, DownloadInfo& info ){
 	printf("DownloadEnd KIPMSG\n");
 }
-void
-KIpMsgEvent::DownloadError( SentMessage& msg, AttachFile& file ){
+bool
+KIpMsgEvent::DownloadError( RecievedMessage& msg, AttachFile& file, DownloadInfo& info ){
 	printf("DownloadError KIPMSG\n");
+	return false;
 }
 void
 KIpMsgEvent::EntryAfter( HostList& hostList ){

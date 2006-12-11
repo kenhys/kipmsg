@@ -192,7 +192,6 @@ void RecieveDialog::slotOpenURL( const KURL &url ){
 	}
 }
 
-
 void RecieveDialog::slotDialogCloseClicked()
 {
 	close();

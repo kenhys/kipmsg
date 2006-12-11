@@ -38,10 +38,10 @@ class KIpMsgEvent: public IpMessengerEvent {
 		virtual void SendAfter( SentMessage& msg );
 		virtual void SendRetryError( SentMessage& msg );
 		virtual void OpenAfter( SentMessage& msg );
-		virtual void DownloadStart( SentMessage& msg, AttachFile& file );
-		virtual void DownloadProcessing( SentMessage& msg, AttachFile& file );
-		virtual void DownloadEnd( SentMessage& msg, AttachFile& file );
-		virtual void DownloadError( SentMessage& msg, AttachFile& file );
+		virtual void DownloadStart( RecievedMessage& msg, AttachFile& file );
+		virtual void DownloadProcessing( RecievedMessage& msg, AttachFile& file );
+		virtual void DownloadEnd( RecievedMessage& msg, AttachFile& file, DownloadInfo& info );
+		virtual bool DownloadError( RecievedMessage& msg, AttachFile& file, DownloadInfo& info );
 		virtual void EntryAfter( HostList& hostList );
 		virtual void ExitAfter( HostList& hostList );
 
