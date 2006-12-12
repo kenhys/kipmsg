@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ja\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2006-12-04 23:47+0900\n"
-"PO-Revision-Date: 2006-12-04 23:48+0900\n"
+"POT-Creation-Date: 2006-12-12 23:36+0900\n"
+"PO-Revision-Date: 2006-12-12 23:37+0900\n"
 "Last-Translator: \n"
 "Language-Team:  <ja@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -16,13 +16,13 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: KBabel 1.11.4\n"
 
-#: ../src/aboutbase.cpp:179 ../src/kipmsgwidget.cpp:103
+#: ../src/aboutbase.cpp:179 ../src/kipmsgwidget.cpp:109
 msgid "About KIpMessenger"
 msgstr "KIpMessengerについて"
 
 #: ../src/aboutbase.cpp:180
-msgid "IP Messenger for KDE version 1.0"
-msgstr "IP Messenger for KDE version 1.0"
+msgid "IP Messenger for KDE version 0.1.1"
+msgstr "IP Messenger for KDE version 0.1.1"
 
 #: ../src/aboutbase.cpp:181
 msgid "http://www.ipms&g.org"
@@ -80,7 +80,7 @@ msgstr "Alt+S"
 
 #: ../src/absenceconfigbase.cpp:191 ../src/encodingconfig.cpp:47
 #: ../src/encodingconfigbase.cpp:219 ../src/recievedialogbase.cpp:211
-#: ../src/senddialog.cpp:572 ../src/senddialog.cpp:574
+#: ../src/senddialog.cpp:573 ../src/senddialog.cpp:575
 #: ../src/senddialogbase.cpp:221
 msgid "Encoding"
 msgstr "エンコーディング"
@@ -660,23 +660,23 @@ msgstr "不在アイコン"
 msgid "Play"
 msgstr "再生"
 
-#: ../src/downloadcompletedialog.cpp:70
+#: ../src/downloadcompletedialog.cpp:78
 msgid "Open folder as Konqueror"
 msgstr "Konquerorで開く"
 
-#: ../src/downloadcompletedialog.cpp:80
+#: ../src/downloadcompletedialog.cpp:93
 msgid "Open as Application"
 msgstr "アプリケーションで開く"
 
-#: ../src/downloadcompletedialog.cpp:82
+#: ../src/downloadcompletedialog.cpp:95
 msgid "Open as '%1'"
 msgstr "'%1'で開く"
 
-#: ../src/downloadcompletedialog.cpp:88 ../src/downloaderrordialog.cpp:47
+#: ../src/downloadcompletedialog.cpp:101 ../src/downloaderrordialog.cpp:47
 msgid "Total %1 (%2)"
 msgstr "合計 %1 (%2)"
 
-#: ../src/downloadcompletedialog.cpp:89 ../src/downloaderrordialog.cpp:48
+#: ../src/downloadcompletedialog.cpp:102 ../src/downloaderrordialog.cpp:48
 msgid "%1 sec  %2 files"
 msgstr "%1 秒  %2 個のファイル"
 
@@ -754,27 +754,27 @@ msgstr "ファイルに変更が有った場合、ダウンロード不許可"
 msgid "&Close"
 msgstr "閉じる"
 
-#: ../src/encodingconfig.cpp:42 ../src/senddialog.cpp:545
+#: ../src/encodingconfig.cpp:42 ../src/senddialog.cpp:546
 msgid "User"
 msgstr "ユーザ名"
 
-#: ../src/encodingconfig.cpp:43 ../src/senddialog.cpp:547
-#: ../src/senddialog.cpp:549
+#: ../src/encodingconfig.cpp:43 ../src/senddialog.cpp:548
+#: ../src/senddialog.cpp:550
 msgid "Group"
 msgstr "グループ名"
 
-#: ../src/encodingconfig.cpp:44 ../src/senddialog.cpp:552
-#: ../src/senddialog.cpp:554
+#: ../src/encodingconfig.cpp:44 ../src/senddialog.cpp:553
+#: ../src/senddialog.cpp:555
 msgid "Host"
 msgstr "ホスト名"
 
-#: ../src/encodingconfig.cpp:45 ../src/senddialog.cpp:557
-#: ../src/senddialog.cpp:559
+#: ../src/encodingconfig.cpp:45 ../src/senddialog.cpp:558
+#: ../src/senddialog.cpp:560
 msgid "IP address"
 msgstr "IPアドレス"
 
-#: ../src/encodingconfig.cpp:46 ../src/senddialog.cpp:562
-#: ../src/senddialog.cpp:564
+#: ../src/encodingconfig.cpp:46 ../src/senddialog.cpp:563
+#: ../src/senddialog.cpp:565
 msgid "Login"
 msgstr "ログイン名"
 
@@ -914,39 +914,39 @@ msgstr "(エンコーディングが変更されました)"
 msgid "(Attach File)"
 msgstr "(添付)"
 
-#: ../src/kipmsgwidget.cpp:97
+#: ../src/kipmsgwidget.cpp:103
 msgid "Download Monitor"
 msgstr "ダウンロードモニタ"
 
-#: ../src/kipmsgwidget.cpp:99
+#: ../src/kipmsgwidget.cpp:105
 msgid "Hide all open confirm windows"
 msgstr "開封を全消去"
 
-#: ../src/kipmsgwidget.cpp:100
+#: ../src/kipmsgwidget.cpp:106
 msgid "All windows stay on top"
 msgstr "全Windowを前に"
 
-#: ../src/kipmsgwidget.cpp:102
+#: ../src/kipmsgwidget.cpp:108
 msgid "Configuration..."
 msgstr "設定..."
 
-#: ../src/kipmsgwidget.cpp:104
+#: ../src/kipmsgwidget.cpp:110
 msgid "View logs"
 msgstr "ログ参照"
 
-#: ../src/kipmsgwidget.cpp:124
+#: ../src/kipmsgwidget.cpp:130
 msgid "Detail Configuration..."
 msgstr "詳細設定"
 
-#: ../src/kipmsgwidget.cpp:132
+#: ../src/kipmsgwidget.cpp:138
 msgid "Absense mode"
 msgstr "不在モード"
 
-#: ../src/kipmsgwidget.cpp:135
+#: ../src/kipmsgwidget.cpp:141
 msgid "Reset absence mode"
 msgstr "解除"
 
-#: ../src/kipmsgwidget.cpp:138
+#: ../src/kipmsgwidget.cpp:144
 msgid "Quit"
 msgstr "終了"
 
@@ -978,39 +978,39 @@ msgstr "新パスワード"
 msgid "&Unlock"
 msgstr "開錠"
 
-#: ../src/recievedialog.cpp:62 ../src/senddialog.cpp:208
+#: ../src/recievedialog.cpp:58 ../src/senddialog.cpp:209
 msgid "Save Size"
 msgstr "サイズ保存"
 
-#: ../src/recievedialog.cpp:63 ../src/senddialog.cpp:209
+#: ../src/recievedialog.cpp:59 ../src/senddialog.cpp:210
 msgid "Restore default(temporary)"
 msgstr "デフォルトに戻す（一時）"
 
-#: ../src/recievedialog.cpp:64 ../src/senddialog.cpp:210
+#: ../src/recievedialog.cpp:60 ../src/senddialog.cpp:211
 msgid "Size Configuration"
 msgstr "サイズ設定"
 
-#: ../src/recievedialog.cpp:68 ../src/senddialog.cpp:214
+#: ../src/recievedialog.cpp:64 ../src/senddialog.cpp:215
 msgid "Fixize Position"
 msgstr "位置固定"
 
-#: ../src/recievedialog.cpp:90
+#: ../src/recievedialog.cpp:82
 msgid "Intercept"
 msgstr "迎撃"
 
-#: ../src/recievedialog.cpp:202
+#: ../src/recievedialog.cpp:185
 msgid "Specified application was not found.\n"
 msgstr "指定されたアプリケーションが見付かりません。\n"
 
-#: ../src/recievedialog.cpp:204
+#: ../src/recievedialog.cpp:187
 msgid "Specified application is not executable.\n"
 msgstr "指定されたアプリケーションは実行可能ではありません。\n"
 
-#: ../src/recievedialog.cpp:387
+#: ../src/recievedialog.cpp:382
 msgid "Save As"
 msgstr "名前を付けて保存"
 
-#: ../src/recievedialog.cpp:419
+#: ../src/recievedialog.cpp:414
 msgid "Open(Password Locked)"
 msgstr "開封（錠付き）"
 
@@ -1058,123 +1058,123 @@ msgstr "検索"
 msgid "Search &All Fields"
 msgstr "全項目検索"
 
-#: ../src/senddialog.cpp:98
+#: ../src/senddialog.cpp:99
 msgid "Add as Text"
 msgstr "テキストとして追加"
 
-#: ../src/senddialog.cpp:99
+#: ../src/senddialog.cpp:100
 msgid "Add as Attachment"
 msgstr "添付ファイルとして追加"
 
-#: ../src/senddialog.cpp:174
+#: ../src/senddialog.cpp:175
 msgid "Move to Priority 1"
 msgstr "表示優先度 1 に移動"
 
-#: ../src/senddialog.cpp:175
+#: ../src/senddialog.cpp:176
 msgid "Move to Priority 2"
 msgstr "表示優先度 2 に移動"
 
-#: ../src/senddialog.cpp:176
+#: ../src/senddialog.cpp:177
 msgid "Move to Priority 3"
 msgstr "表示優先度 3 に移動"
 
-#: ../src/senddialog.cpp:177
+#: ../src/senddialog.cpp:178
 msgid "Move to Priority 4"
 msgstr "表示優先度 4 に移動"
 
-#: ../src/senddialog.cpp:178
+#: ../src/senddialog.cpp:179
 msgid "Move to default"
 msgstr "デフォルト に移動"
 
-#: ../src/senddialog.cpp:179
+#: ../src/senddialog.cpp:180
 msgid "Move to hidden"
 msgstr "非表示 に移動"
 
-#: ../src/senddialog.cpp:181
+#: ../src/senddialog.cpp:182
 msgid "Show Hidden(temporary)"
 msgstr "非表示を一時表示（この画面のみ）"
 
-#: ../src/senddialog.cpp:183
+#: ../src/senddialog.cpp:184
 msgid "Restore All to default"
 msgstr "デフォルトに戻す"
 
-#: ../src/senddialog.cpp:184
+#: ../src/senddialog.cpp:185
 msgid "Sort Filter"
 msgstr "ソートフィルタ"
 
-#: ../src/senddialog.cpp:187
+#: ../src/senddialog.cpp:188
 msgid "Group Select"
 msgstr "グループ選択"
 
-#: ../src/senddialog.cpp:190
+#: ../src/senddialog.cpp:191
 msgid "Encoding Select"
 msgstr "エンコーディング選択"
 
-#: ../src/senddialog.cpp:192
+#: ../src/senddialog.cpp:193
 msgid "Configure Encoding..."
 msgstr "エンコーディングの設定"
 
-#: ../src/senddialog.cpp:194
+#: ../src/senddialog.cpp:195
 msgid "Search User..."
 msgstr "ユーザ検索"
 
-#: ../src/senddialog.cpp:195
+#: ../src/senddialog.cpp:196
 msgid "Attach file..."
 msgstr "ファイル添付"
 
-#: ../src/senddialog.cpp:196
+#: ../src/senddialog.cpp:197
 msgid "Attach directory..."
 msgstr "ディレクトリ添付"
 
-#: ../src/senddialog.cpp:199
+#: ../src/senddialog.cpp:200
 msgid "Save Header"
 msgstr "ヘッダ保存"
 
-#: ../src/senddialog.cpp:202
+#: ../src/senddialog.cpp:203
 msgid "List..."
 msgstr "リスト部..."
 
-#: ../src/senddialog.cpp:203
+#: ../src/senddialog.cpp:204
 msgid "Edit..."
 msgstr "エディット部..."
 
-#: ../src/senddialog.cpp:204
+#: ../src/senddialog.cpp:205
 msgid "Restore default"
 msgstr "デフォルトに戻す"
 
-#: ../src/senddialog.cpp:205
+#: ../src/senddialog.cpp:206
 msgid "Font Select"
 msgstr "フォント選択"
 
-#: ../src/senddialog.cpp:215
+#: ../src/senddialog.cpp:216
 msgid "View Detail Configuration"
 msgstr "詳細表示設定"
 
-#: ../src/senddialog.cpp:220
+#: ../src/senddialog.cpp:221
 msgid "Fire"
 msgstr "発射"
 
-#: ../src/senddialog.cpp:411
+#: ../src/senddialog.cpp:412
 msgid "Dropped object is not a file or directory."
 msgstr "ドロップされたオブジェクトはファイル／ディレクトリではありません。"
 
-#: ../src/senddialog.cpp:567 ../src/senddialog.cpp:569
+#: ../src/senddialog.cpp:568 ../src/senddialog.cpp:570
 msgid "Priority"
 msgstr "表示優先度"
 
-#: ../src/senddialog.cpp:576
+#: ../src/senddialog.cpp:577
 msgid "Encryption Flags"
 msgstr "Encryption Flags"
 
-#: ../src/senddialog.cpp:577
+#: ../src/senddialog.cpp:578
 msgid "RSA Method"
 msgstr "RSA Method"
 
-#: ../src/senddialog.cpp:578
+#: ../src/senddialog.cpp:579
 msgid "RSA Public Key"
 msgstr "RSA Public Key"
 
-#: ../src/senddialog.cpp:942
+#: ../src/senddialog.cpp:943
 msgid "Change to default.Are you sure?"
 msgstr "デフォルトに戻します。よろしいですか？"
 
