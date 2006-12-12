@@ -39,12 +39,19 @@
 #include "senddialog.h"
 #include "passworddialog.h"
 #include "recievedialog.h"
-#include "downloadcompletedialog.h"
-#include "downloaderrordialog.h"
 #include "kipmsgsettings.h"
 #include "kipmsglogger.h"
 #include "kipmsgevent.h"
 
+/**
+ * コンストラクタ
+ * ・メニューの初期設定。
+ * ・画面の表示項目の初期設定。
+ * ・リサイズ。
+ * @param parent 親ウィジェット
+ * @param name 名前
+ * @param fl フラグ
+ */
 RecieveDialog::RecieveDialog(QWidget* parent, const char* name, WFlags fl)
         : RecieveDialogBase(parent,name,fl)
 {
@@ -97,11 +104,18 @@ RecieveDialog::RecieveDialog(QWidget* parent, const char* name, WFlags fl)
 	}
 }
 
+/**
+ * デストラクタ
+ * ・特にすること無し。
+ */
 RecieveDialog::~RecieveDialog()
 {}
 
 /*$SPECIALIZATION$*/
 
+/**
+ * メニュー同期
+ */
 void RecieveDialog::synchronizeMenu()
 {
 	KIpMsgEvent *evt = dynamic_cast<KIpMsgEvent *>(IpMessengerAgent::GetInstance()->GetEventObject());
@@ -116,11 +130,16 @@ void RecieveDialog::synchronizeMenu()
 		++recieveIt;
 	}
 }
+
+/**
+ * 「サイズを保存」メニュー設定
+ */
 void RecieveDialog::setSaveSizeMenu()
 {
 	SizePopup->setItemChecked( save_size_menu_item, KIpMsgSettings::recieveDialogSaveSize() );
 }
-/*
+
+/**
  * サイズ保存。
  */
 void RecieveDialog::slotSaveSizeClicked()
@@ -133,7 +152,7 @@ void RecieveDialog::slotSaveSizeClicked()
 	synchronizeMenu();
 }
 
-/*
+/**
  * サイズを一時的に戻す。
  */
 void RecieveDialog::slotRestoreSizeTempClicked()
@@ -141,12 +160,15 @@ void RecieveDialog::slotRestoreSizeTempClicked()
 	resize( defaultWidth, defaultHeight );
 }
 
+/**
+ * 「位置固定」メニュー設定
+ */
 void RecieveDialog::setFixsizePotisionMenu()
 {
 	RecvPopup->setItemChecked( fixize_pos_menu_item, KIpMsgSettings::recieveDialogFixizePosition() );
 }
 
-/*
+/**
  * 位置固定。
  */
 void RecieveDialog::slotFixizePositionClicked()
@@ -159,6 +181,9 @@ void RecieveDialog::slotFixizePositionClicked()
 	synchronizeMenu();
 }
 
+/**
+ * クリッカブルURLクリック
+ */
 void RecieveDialog::slotOpenURL( const KURL &url ){
 	QMap<QString,QString> protocols;
 	QStringList pro = KIpMsgSettings::executePrograms();
@@ -192,11 +217,17 @@ void RecieveDialog::slotOpenURL( const KURL &url ){
 	}
 }
 
+/**
+ * 閉じるボタンクリック
+ */
 void RecieveDialog::slotDialogCloseClicked()
 {
 	close();
 }
 
+/**
+ * 開封ボタンクリック
+ */
 void RecieveDialog::slotMessageOpenClicked()
 {
 	if ( msg.IsPasswordLock() ) {
@@ -221,6 +252,9 @@ void RecieveDialog::slotMessageOpenClicked()
 	agent->ConfirmMessage( msg );
 }
 
+/**
+ * エンコーディングコンボ変更
+ */
 void RecieveDialog::slotEncodingChange( int index )
 {
 	/* エンコーディングを変更したのでメッセージを再表示 */
@@ -241,6 +275,9 @@ void RecieveDialog::slotEncodingChange( int index )
 	KIpMessengerLogger::GetInstance()->PutRecivedMessage( msg, TRUE );
 }
 
+/**
+ * 返信／迎撃クリック
+ */
 void RecieveDialog::slotReplyClicked()
 {
     SendDialog *send = new SendDialog();
@@ -282,6 +319,9 @@ void RecieveDialog::slotReplyClicked()
     send->show();
 }
 
+/**
+ * 添付ファイルリストからダウンロードファイル名をダウンロードボタンに設定
+ */
 void RecieveDialog::setDownloadFiles()
 {
 	string fileNames;
@@ -292,6 +332,9 @@ void RecieveDialog::setDownloadFiles()
 	m_DownloadButton->setText( codec->toUnicode( fileNames.c_str() ) );
 }
 
+/**
+ * ダウンロードボタンクリック
+ */
 void RecieveDialog::slotDownloadClicked()
 {
 	vector<AttachFile>::iterator ix = msg.Files().begin();
@@ -301,55 +344,24 @@ void RecieveDialog::slotDownloadClicked()
 	DownloadInfo info;
 	//保存対象がディレクトリ
 	if ( ix->IsDirectory() ){
-		while( 1 ) {
-			QString saveFileName = getSaveFileName( networkFileName, static_cast<KFile::Mode>( KFile::Directory | KFile::LocalOnly ) );
-			if ( saveFileName != "" ) {
-				int pos = saveFileName.findRev( "/" );
-				if ( pos >= 0 ) {
-					QString saveDirName = fsCodec->fromUnicode( saveFileName.left( pos + 1 ) );
-					QString saveBaseFileName = fsCodec->fromUnicode( saveFileName.mid( pos + 1 ) );
-					AttachFile file( *ix );
-					if ( msg.DownloadDir( file, saveBaseFileName.data(), saveDirName.data(), info, codec ) ){
-						DownloadCompleteDialog *dlg = new DownloadCompleteDialog(this, 0, TRUE);
-						dlg->setDownloadInfo( info, fsCodec->fromUnicode( saveFileName ).data(), *ix );
-						dlg->exec();
-						delete dlg;
-						msg.Files().erase( ix );
-					} else {
-						DownloadErrorDialog *dlg = new DownloadErrorDialog(this, 0, TRUE);
-						dlg->setDownloadInfo( info );
-						if ( dlg->exec() == QDialog::Accepted ) {
-							continue;
-						}
-					}
-				}
+		QString saveFileName = getSaveFileName( networkFileName, static_cast<KFile::Mode>( KFile::Directory | KFile::LocalOnly ) );
+		if ( saveFileName != "" ) {
+			int pos = saveFileName.findRev( "/" );
+			if ( pos >= 0 ) {
+				QString saveDirName = fsCodec->fromUnicode( saveFileName.left( pos + 1 ) );
+				QString saveBaseFileName = fsCodec->fromUnicode( saveFileName.mid( pos + 1 ) );
+				msg.DownloadDir( *ix, saveBaseFileName.data(), saveDirName.data(), info, codec, this );
 			}
-			break;
 		}
 	//保存対象が一般ファイル
 	} else if ( ix->IsRegularFile() ){
-		while( 1 ) {
-			QString saveFileName = getSaveFileName( networkFileName, static_cast<KFile::Mode>( KFile::File | KFile::LocalOnly ) );
-			if ( saveFileName != "" ) {
-				int pos = saveFileName.findRev( "/" );
-				if ( pos >= 0 ) {
-					AttachFile file( *ix );
-					if ( msg.DownloadFile( file, saveFileName.data(), info ) ) {
-						DownloadCompleteDialog *dlg = new DownloadCompleteDialog(this, 0, TRUE);
-						dlg->setDownloadInfo( info, fsCodec->fromUnicode( saveFileName ).data(), *ix );
-						dlg->exec();
-						delete dlg;
-						msg.Files().erase( ix );
-					} else {
-						DownloadErrorDialog *dlg = new DownloadErrorDialog(this, 0, TRUE);
-						dlg->setDownloadInfo( info );
-						if ( dlg->exec() == QDialog::Accepted ) {
-							continue;
-						}
-					}
-				}
+		QString saveFileName = getSaveFileName( networkFileName, static_cast<KFile::Mode>( KFile::File | KFile::LocalOnly ) );
+		saveFileName = fsCodec->fromUnicode( saveFileName );
+		if ( saveFileName != "" ) {
+			int pos = saveFileName.findRev( "/" );
+			if ( pos >= 0 ) {
+				msg.DownloadFile( *ix, saveFileName.data(), info, codec, this );
 			}
-			break;
 		}
 	}
 	delete codec;
@@ -357,6 +369,11 @@ void RecieveDialog::slotDownloadClicked()
 	doResize();
 }
 
+/**
+ * 保存ファイル名を取得（コモンダイアログを開く）
+ * @param fileName ファイル名
+ * @param mode モード（ディレクトリ／ファイル）
+ */
 QString RecieveDialog::getSaveFileName( QString fileName, KFile::Mode mode )
 {
 	KFileDialog dlg( QString::null, QString::null, 0L, "save_as", true);
@@ -372,6 +389,7 @@ QString RecieveDialog::getSaveFileName( QString fileName, KFile::Mode mode )
 
 /**
  *	リサイズイベント
+ * @param e リサイズイベント
  */
 void RecieveDialog::resizeEvent( QResizeEvent *e )
 {
@@ -380,6 +398,7 @@ void RecieveDialog::resizeEvent( QResizeEvent *e )
 
 /**
  *	リサイズ実行
+ * @param e リサイズイベント
  */
 void RecieveDialog::doResize( QResizeEvent *e )
 {
@@ -439,6 +458,10 @@ void RecieveDialog::doResize( QResizeEvent *e )
 	renderMessage( codec->toUnicode( msg.Message().c_str() ) );
 }
 
+/**
+ *	メッセージをHTMLに変換
+ * @param msg メッセージ
+ */
 QString RecieveDialog::convertMessageToHTML( QString msg )
 {
 	QString htmlBody = msg
@@ -484,6 +507,10 @@ QString RecieveDialog::convertMessageToHTML( QString msg )
     return "<html><body>" + returnHtmlBody.replace('\n', "<br>") + "</body></html>";
 }
 
+/**
+ *	＆文字かどうかを判定
+ * @param c 判定対象の文字
+ */
 bool RecieveDialog::isUrlCharWithoutAmp( QChar c )
 {
 	const bool isUrlCharResult[] = {
@@ -555,6 +582,10 @@ bool RecieveDialog::isUrlCharWithoutAmp( QChar c )
 	return isUrlCharResult[(int)c.latin1()];
 }
 
+/**
+ *	メッセージ描画
+ * @param msg メッセージ
+ */
 void RecieveDialog::renderMessage( QString msg )
 {
 	//Clear Message
@@ -567,6 +598,10 @@ void RecieveDialog::renderMessage( QString msg )
     m_RecievedMessageHTMLPart->end();
 }
 
+/**
+ *	ダイアログクローズ
+ * @param e クローズイベント
+ */
 void RecieveDialog::closeEvent ( QCloseEvent * e )
 {
 	IpMessengerAgent *agent = IpMessengerAgent::GetInstance();
@@ -574,6 +609,10 @@ void RecieveDialog::closeEvent ( QCloseEvent * e )
 	e->accept();
 }
 
+/**
+ *	マウス押下（スプリッターの処理）
+ * @param e マウスイベント
+ */
 void RecieveDialog::mousePressEvent (QMouseEvent *e)
 {
 	if(e->button() == RightButton ){
@@ -590,12 +629,20 @@ void RecieveDialog::mousePressEvent (QMouseEvent *e)
 	}
 }
 
+/**
+ *	マウス解放（スプリッターの処理）
+ * @param e マウスイベント
+ */
 void RecieveDialog::mouseReleaseEvent (QMouseEvent *e)
 {
 	mouseMoveEvent(e);
 	isDownloadSplitterDragging = false;
 }
 
+/**
+ *	マウス移動（スプリッターの処理）
+ * @param e マウスイベント
+ */
 void RecieveDialog::mouseMoveEvent (QMouseEvent *e)
 {
 	if ( isDownloadSplitterDragging ){

@@ -36,6 +36,13 @@
 #define COL_LOGIN 4
 #define COL_ENCODING 5
 
+/**
+ * コンストラクタ
+ * ・設定をロードし画面に表示
+ * @param parent 親ウィジェット
+ * @param name 名前
+ * @param fl フラグ
+ */
 KIPMsgEncodingConfigDialog::KIPMsgEncodingConfigDialog(QWidget* parent, const char* name, WFlags fl)
         : KIPMsgEncodingConfigDialogBase(parent,name,fl)
 {
@@ -53,6 +60,17 @@ KIPMsgEncodingConfigDialog::KIPMsgEncodingConfigDialog(QWidget* parent, const ch
 	}
 }
 
+/**
+ * デストラクタ
+ * ・特にすること無し。
+ */
+KIPMsgEncodingConfigDialog::~KIPMsgEncodingConfigDialog()
+{}
+
+/**
+ * エンコーディングを再表示。
+ * ・ホストリストを再取得し、設定されているエンコーディングとマージし画面に表示しなおす。
+ */
 void
 KIPMsgEncodingConfigDialog::refreshEncoding()
 {
@@ -94,21 +112,31 @@ KIPMsgEncodingConfigDialog::refreshEncoding()
 	}
 }
 
-KIPMsgEncodingConfigDialog::~KIPMsgEncodingConfigDialog()
-{}
-
 /*$SPECIALIZATION$*/
+/**
+ * OKクリックイベント
+ * ・設定を保存してダイアログを閉じる。
+ */
 void KIPMsgEncodingConfigDialog::slotOkClicked()
 {
 	slotApplyClicked();
 	close();
 }
 
+/**
+ * キャンセルクリックイベント
+ * ・ダイアログを閉じる。
+ */
 void KIPMsgEncodingConfigDialog::slotCancelClicked()
 {
 	close();
 }
 
+/**
+ * ホスト選択イベント
+ * ・選択されたホストを設定済のエンコーディングで
+ *   ホストの項目（ユーザ名／グループ名）を表示する。
+ */
 void KIPMsgEncodingConfigDialog::slotHostSelected( QListViewItem *item )
 {
 	if ( item == NULL ) {
@@ -127,6 +155,11 @@ void KIPMsgEncodingConfigDialog::slotHostSelected( QListViewItem *item )
 	}
 }
 
+/**
+ * エンコーディング変更イベント
+ * ・指定されたエンコーディングをホストリストに設定する。
+ * ・指定されたエンコーディングでホストの項目（ユーザ名／グループ名）を再表示する。
+ */
 void KIPMsgEncodingConfigDialog::slotEncodingComboChanged(int index)
 {
 	string userName;
@@ -162,6 +195,10 @@ void KIPMsgEncodingConfigDialog::slotEncodingComboChanged(int index)
 	}
 }
 
+/**
+ * 適用クリックイベント
+ * ・設定を保存する。
+ */
 void KIPMsgEncodingConfigDialog::slotApplyClicked()
 {
 	vector<HostListItem> targets;
@@ -169,32 +206,44 @@ void KIPMsgEncodingConfigDialog::slotApplyClicked()
 	while ( it.current() != NULL ) {
 		QListViewItem *item = it.current();
 		if ( item != NULL && item->text( COL_ENCODING ).data() != NULL ) {
+#ifdef DEBUG
 			printf("item != NULL\n");
 			fflush(stdout);
+#endif
 			HostListItem host;
+#ifdef DEBUG
 			printf("item != NULL\n");
 			fflush(stdout);
+#endif
 			host.setEncodingName( item->text( COL_ENCODING ).data() );
 			if ( host.EncodingName() != "" ){
+#ifdef DEBUG
 				printf("ENCNAME != NULL B\n");
 				fflush(stdout);
+#endif
 				QTextCodec *codec = QTextCodec::codecForName( host.EncodingName().c_str() );
 				host.setIpAddress( codec->fromUnicode( item->text( COL_IPADDR ) ).data() );
 				host.setUserName( codec->fromUnicode( item->text( COL_LOGIN ) ).data() );
 				targets.push_back( host );
+#ifdef DEBUG
 				printf("ENCNAME != NULL A\n");
 				fflush(stdout);
+#endif
 			}
 		}
 		++it;
 	}
+#ifdef DEBUG
 	printf("LOOP END\n");
 	fflush(stdout);
+#endif
 	QStringList encodings = KIpMsgSettings::encodingSettings();
 	for( vector<HostListItem>::iterator host = targets.begin(); host != targets.end(); host++ ) {
 		if ( host->EncodingName() != "" ){
+#ifdef DEBUG
 			printf("ENC ADD B\n");
 			fflush(stdout);
+#endif
 			QTextCodec *codec = QTextCodec::codecForName( host->EncodingName().c_str() );
 			QString ip = codec->toUnicode( host->IpAddress().c_str() );
 			QString login = codec->toUnicode( host->UserName().c_str() );
@@ -207,12 +256,16 @@ void KIPMsgEncodingConfigDialog::slotApplyClicked()
 					break;
 				}
 			}
+#ifdef DEBUG
 			printf("ENC ADD A\n");
 			fflush(stdout);
+#endif
 			encodings << ip + ":" + login + ":" + enc;
 		}
+#ifdef DEBUG
 		printf("LOOP INNER END\n");
 		fflush(stdout);
+#endif
 	}
 	KIpMsgSettings::setEncodingSettings( encodings );
 	KIpMsgSettings::writeConfig();

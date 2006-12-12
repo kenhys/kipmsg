@@ -61,7 +61,7 @@ KIpMsgAbsenceModeConfigDialog::~KIpMsgAbsenceModeConfigDialog()
 void KIpMsgAbsenceModeConfigDialog::slotConfigAndAbsenceModeClicked()
 {
 	save();
-	//Goto AbsenceMode
+	// TODO Goto AbsenceMode
 	close();
 }
 /**
@@ -76,6 +76,12 @@ void KIpMsgAbsenceModeConfigDialog::slotConfigOnlyClicked()
 }
 /**
  * 設定をロード
+ * ・不在キー、不在エンコーディング、不在タイトル、不在詳細は
+ *    それぞれQStringListとして保存されている。
+ * ・キーをエンコーディング、タイトル、詳細をまとめたクラスを
+ *    「設定[不在キー][エンコーディング]」のマップに格納
+ * ・リストボックスに展開
+ * ・自動不在に関する設定を画面に初期設定
  */
 void KIpMsgAbsenceModeConfigDialog::load()
 {
@@ -106,6 +112,11 @@ void KIpMsgAbsenceModeConfigDialog::load()
 }
 /**
  * 設定を保存
+ * ・キーをエンコーディング、タイトル、詳細をまとめたクラスを
+ *   「設定[不在キー][エンコーディング]」のマップから取り出し、
+ * ・不在キー、不在エンコーディング、不在タイトル、不在詳細を
+ *   それぞれ別々のQStringListに保存する。
+ * ・自動不在に関する設定を保存
  */
 void KIpMsgAbsenceModeConfigDialog::save()
 {

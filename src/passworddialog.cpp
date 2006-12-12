@@ -26,22 +26,37 @@
 #include "passworddialog.h"
 #include "kipmsgsettings.h"
 
+/**
+ * コンストラクタ
+ * ・特にすること無し。
+ * @param parent 親ウィジェット
+ * @param name 名前
+ * @param fl フラグ
+ */
 KIpMessengerPasswordDialog::KIpMessengerPasswordDialog(QWidget* parent, const char* name, WFlags fl)
         : KIpMessengerPasswordDialogBase(parent,name,fl)
 {}
 
+/**
+ * デストラクタ
+ * ・特にすること無し。
+ */
 KIpMessengerPasswordDialog::~KIpMessengerPasswordDialog()
 {}
 
 /*$SPECIALIZATION$*/
+/**
+ * 開錠クリックイベント
+ * ・パスワード一致判定を行い、
+ *   不一致ならメッセージ表示。
+ *   一致ならダイアログを閉じる。
+ */
 void KIpMessengerPasswordDialog::slotUnlockClicked()
 {
 	if ( m_PasswordInputbox->password() != KIpMsgSettings::unlockPassword() ) {
 		KMessageBox::sorry( 0, tr2i18n( "This Password cannot confirmed." ), "KIpMessenger" );
 		return;
 	}
-//	setResult( QDialog::Accepted );
-//	close();
 	accept();
 }
 

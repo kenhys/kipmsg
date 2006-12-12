@@ -26,6 +26,13 @@
 #include "kipmsgsettings.h"
 #include "unlockpasswordconfig.h"
 
+/**
+ * コンストラクタ
+ * ・設定をロードし画面に表示
+ * @param parent 親ウィジェット
+ * @param name 名前
+ * @param fl フラグ
+ */
 KIPMsgUnlockPasswordConfigDialog::KIPMsgUnlockPasswordConfigDialog(QWidget* parent, const char* name, WFlags fl)
         : KIPMsgUnlockPasswordConfigDialogBase(parent,name,fl)
 {
@@ -35,20 +42,39 @@ KIPMsgUnlockPasswordConfigDialog::KIPMsgUnlockPasswordConfigDialog(QWidget* pare
 	}
 }
 
+/**
+ * デストラクタ
+ * ・特にすること無し。
+ */
 KIPMsgUnlockPasswordConfigDialog::~KIPMsgUnlockPasswordConfigDialog()
 {}
 
 /*$SPECIALIZATION$*/
+/**
+ * OKクリックイベント
+ * ・設定を保存してダイアログを閉じる。
+ */
 void KIPMsgUnlockPasswordConfigDialog::slotOkClicked()
 {
 	if ( save() ) {
 		close();
 	}
 }
+
+/**
+ * キャンセルクリックイベント
+ * ・ダイアログを閉じる。
+ */
 void KIPMsgUnlockPasswordConfigDialog::slotCancelClicked()
 {
 	close();
 }
+
+/**
+ * 設定保存
+ * ・設定を保存する。
+ * @retval TRUE:パスワード問題無し。保存された。FALSE:パスワードに問題がある。保存されなかった。
+ */
 bool KIPMsgUnlockPasswordConfigDialog::save()
 {
 	if ( m_OldPasswordInputbox->isEnabled() ) {
@@ -66,6 +92,11 @@ bool KIPMsgUnlockPasswordConfigDialog::save()
 	KIpMsgSettings::writeConfig();
 	return true;
 }
+
+/**
+ * 適用クリックイベント
+ * ・設定を保存する。
+ */
 void KIPMsgUnlockPasswordConfigDialog::slotApplyClicked()
 {
 	save();

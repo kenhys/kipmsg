@@ -25,6 +25,11 @@
 
 static KIpMessengerLogger *_instance = NULL;
 
+/**
+ * ロガーインスタンス取得
+ * ・ロガーのインスタンスがまだ生成されていなければ生成して取得
+ * @retval ロガーのインスタンス
+ */
 KIpMessengerLogger *KIpMessengerLogger::GetInstance()
 {
 	if ( _instance == NULL ){
@@ -33,6 +38,12 @@ KIpMessengerLogger *KIpMessengerLogger::GetInstance()
 	return _instance;
 }
 
+/**
+ * 受信メッセージをログに書き込む
+ * ・設定でログ記録が有効ならUTF-8でログを出力
+ * @param msg 受信メッセージ
+ * @param encodingChanged エンコーディングが変更された
+ */
 void KIpMessengerLogger::PutRecivedMessage( RecievedMessage msg, bool encodingChanged )
 {
 	if ( !KIpMsgSettings::log() ){
@@ -129,6 +140,11 @@ void KIpMessengerLogger::PutRecivedMessage( RecievedMessage msg, bool encodingCh
 	fclose( fp );
 }
 
+/**
+ * 送信メッセージをログに書き込む
+ * ・設定でログ記録が有効ならUTF-8でログを出力
+ * @param msg 送信メッセージ
+ */
 void KIpMessengerLogger::PutSentMessage( SentMessage msg )
 {
 	if ( !KIpMsgSettings::log() ){
@@ -222,9 +238,17 @@ void KIpMessengerLogger::PutSentMessage( SentMessage msg )
 	fclose( fp );
 }
 
+/**
+ * コンストラクタ
+ * ・特にすること無し。
+ */
 KIpMessengerLogger::KIpMessengerLogger()
 {
 }
+/**
+ * デストラクタ
+ * ・特にすること無し。
+ */
 KIpMessengerLogger::~KIpMessengerLogger()
 {
 }

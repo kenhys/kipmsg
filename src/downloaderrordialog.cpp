@@ -25,24 +25,48 @@
 #include "IpMessenger.h"
 #include "downloaderrordialog.h"
 
+/**
+ * コンストラクタ
+ * ・特にすること無し。
+ * @param parent 親ウィジェット
+ * @param name 名前
+ * @param fl フラグ
+ */
 DownloadErrorDialog::DownloadErrorDialog(QWidget* parent, const char* name, WFlags fl)
         : DownloadErrorDialogBase(parent,name,fl)
 {}
 
+/**
+ * デストラクタ
+ * ・特にすること無し。
+ */
 DownloadErrorDialog::~DownloadErrorDialog()
 {}
 
 /*$SPECIALIZATION$*/
+/**
+ * キャンセルボタンクリック
+ * ・リジェクトして画面を閉じる。
+ */
 void DownloadErrorDialog::slotCancelClicked()
 {
 	reject();
 }
 
+/**
+ * 再試行ボタンクリック
+ * ・アクセプトして画面を閉じる。
+ */
 void DownloadErrorDialog::slotRetryClicked()
 {
 	accept();
 }
 
+/**
+ * ダウンロード情報設定（外部から）
+ * ・ダウンロード情報を画面に表示。
+ * @param info ダウンロード情報
+ */
 void DownloadErrorDialog::setDownloadInfo( DownloadInfo info ){
     m_DetailLabel1->setText( QString( tr2i18n( "Total %1 (%2)" ) ).arg( info.getSizeString().c_str() ).arg( info.getSpeedString().c_str() ) );
     m_DetailLabel2->setText( QString( tr2i18n( "%1 sec  %2 files" ) ).arg( info.Time() ).arg( info.FileCount() ) );

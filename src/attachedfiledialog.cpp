@@ -28,6 +28,13 @@
 #include "kipmsgsettings.h"
 #include "IpMessenger.h"
 
+/**
+ * コンストラクタ
+ * ・リストビューの初期設定。
+ * @param parent 親ウィジェット
+ * @param name 名前
+ * @param fl フラグ
+ */
 KIpMessengerAttachedFileDialog::KIpMessengerAttachedFileDialog(QWidget* parent, const char* name, WFlags fl)
         : KIpMessengerAttachedFileDialogBase(parent,name,fl)
 {
@@ -37,30 +44,57 @@ KIpMessengerAttachedFileDialog::KIpMessengerAttachedFileDialog(QWidget* parent, 
 	m_AttachFileListView->addColumn( tr2i18n( "Full Path" ) );
 }
 
+/**
+ * デストラクタ
+ * ・特にすること無し。
+ */
 KIpMessengerAttachedFileDialog::~KIpMessengerAttachedFileDialog()
 {}
 
 /*$SPECIALIZATION$*/
+
+/**
+ * 添付ファイルリスト設定
+ * ・添付ファイルリストを保存。
+ * ・添付ファイルリストからリストビューに表示。
+ */
 void KIpMessengerAttachedFileDialog::setFiles( AttachFileList _files )
 {
 	files = _files;
 	setFileNames();
 }
 
+/**
+ * 添付ファイルリスト取得
+ * ・添付ファイルリストを返す。
+ */
 AttachFileList KIpMessengerAttachedFileDialog::getFiles()
 {
 	return files;
 }
 
+/**
+ * OKクリックイベント
+ * ・アクセプトによりダイアログを閉じる。
+ */
 void KIpMessengerAttachedFileDialog::slotOkClicked()
 {
 	accept();
 }
+
+/**
+ * キャンセルクリックイベント
+ * ・リジェクトによりダイアログを閉じる。
+ */
 void KIpMessengerAttachedFileDialog::slotCancelClicked()
 {
 	reject();
 }
 
+/**
+ * ファイル追加クリックイベント
+ * ・コモンダイアログによりファイルを選択しリストビューに追加。
+ */
 void KIpMessengerAttachedFileDialog::slotAddFilesClicked()
 {
 	QString attachFileName = KFileDialog::getOpenFileName();
@@ -73,6 +107,10 @@ void KIpMessengerAttachedFileDialog::slotAddFilesClicked()
 	setFileNames();
 }
 
+/**
+ * ディレクトリ追加クリックイベント
+ * ・コモンダイアログによりディレクトリを選択しリストビューに追加。
+ */
 void KIpMessengerAttachedFileDialog::slotAddDirectoriesClicked()
 {
 	QString attachDirName = KFileDialog::getExistingDirectory();
@@ -85,6 +123,10 @@ void KIpMessengerAttachedFileDialog::slotAddDirectoriesClicked()
 	setFileNames();
 }
 
+/**
+ * 削除クリックイベント
+ * ・リストビューの選択中のアイテムを削除。
+ */
 void KIpMessengerAttachedFileDialog::slotDeleteClicked()
 {
 	QTextCodec *codec = QTextCodec::codecForName( KIpMsgSettings::localFilesystemEncoding() );
@@ -92,7 +134,6 @@ void KIpMessengerAttachedFileDialog::slotDeleteClicked()
 	while ( it.current() != NULL ) {
 		QListViewItem *item = it.current();
 		if ( item->isSelected() ) {
-//printf("item->text( 3 ).data() = %s\n", codec->fromUnicode( item->text( 3 ) ).data() );
 			vector<AttachFile>::iterator i = files.FindByFullPath( codec->fromUnicode( item->text( 3 ) ).data() );
 			if ( i != files.end() ) {
 				files.erase( i );
@@ -103,6 +144,10 @@ void KIpMessengerAttachedFileDialog::slotDeleteClicked()
 	setFileNames();
 }
 
+/**
+ * ・添付ファイルリスト表示
+ * ・添付ファイルリストからリストビューに表示。
+ */
 void KIpMessengerAttachedFileDialog::setFileNames()
 {
 	m_AttachFileListView->clear();

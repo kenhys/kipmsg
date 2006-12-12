@@ -26,6 +26,13 @@
 #include "senddialog.h"
 #include "showconfig.h"
 
+/**
+ * コンストラクタ
+ * ・設定をロードし画面に表示
+ * @param parent 親ウィジェット
+ * @param name 名前
+ * @param fl フラグ
+ */
 KIPMsgShowConfigDialog::KIPMsgShowConfigDialog(QWidget* parent, const char* name, WFlags fl)
         : KIPMsgShowConfigDialogBase(parent,name,fl)
 {
@@ -45,19 +52,37 @@ KIPMsgShowConfigDialog::KIPMsgShowConfigDialog(QWidget* parent, const char* name
 	m_PriorityMultiBytesCheckbox->setChecked( KIpMsgSettings::priorityMultiBytes() );
 }
 
+/**
+ * デストラクタ
+ * ・特にすること無し。
+ */
 KIPMsgShowConfigDialog::~KIPMsgShowConfigDialog()
 {}
 
 /*$SPECIALIZATION$*/
+/**
+ * OKクリックイベント
+ * ・設定を保存してダイアログを閉じる。
+ */
 void KIPMsgShowConfigDialog::slotOkClicked()
 {
 	slotApplyClicked();
 	close();
 }
+
+/**
+ * キャンセルクリックイベント
+ * ・ダイアログを閉じる。
+ */
 void KIPMsgShowConfigDialog::slotCancelClicked()
 {
 	close();
 }
+
+/**
+ * 適用クリックイベント
+ * ・設定を保存する。
+ */
 void KIPMsgShowConfigDialog::slotApplyClicked()
 {
 	KIpMsgSettings::setShowGroupName( m_GroupCheckbox->isChecked() );

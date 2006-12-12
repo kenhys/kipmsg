@@ -24,20 +24,33 @@
 
 #include "openconfirm.h"
 
+/**
+ * コンストラクタ
+ * ・特にすること無し。
+ * @param parent 親ウィジェット
+ * @param name 名前
+ * @param fl フラグ
+ */
 OpenConfirmDialog::OpenConfirmDialog(QWidget* parent, const char* name, WFlags fl)
         : OpenConfirmDialogBase(parent,name,fl)
 {}
 
+/**
+ * デストラクタ
+ * ・特にすること無し。
+ */
 OpenConfirmDialog::~OpenConfirmDialog()
 {}
 
 /*$SPECIALIZATION$*/
+/**
+ * OKクリックイベント
+ * ・ウインドウを閉じる
+ */
 void OpenConfirmDialog::slotOkClicked()
 {
 	close();
 }
-
-
 
 #include "openconfirm.moc"
 

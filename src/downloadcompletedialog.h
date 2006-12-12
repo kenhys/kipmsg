@@ -33,7 +33,7 @@ public:
     DownloadCompleteDialog(QWidget* parent = 0, const char* name = 0, WFlags fl = 0 );
     ~DownloadCompleteDialog();
     /*$PUBLIC_FUNCTIONS$*/
-	void setDownloadInfo( DownloadInfo info, string localFileName, AttachFile file );
+	void setDownloadInfo( DownloadInfo info );
 
 public slots:
     /*$PUBLIC_SLOTS$*/
@@ -47,8 +47,7 @@ protected slots:
     /*$PROTECTED_SLOTS$*/
 
 private:
-	string LocalFileName;
-	AttachFile File;
+	DownloadInfo Info;
 };
 
 #endif

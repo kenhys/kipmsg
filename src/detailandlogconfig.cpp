@@ -30,6 +30,13 @@
 #include "detailandlogconfig.h"
 #include "kipmsgsettings.h"
 
+/**
+ * コンストラクタ
+ * ・設定をロードし画面に表示
+ * @param parent 親ウィジェット
+ * @param name 名前
+ * @param fl フラグ
+ */
 KIPMsgDetailConfigDialog::KIPMsgDetailConfigDialog(QWidget* parent, const char* name, WFlags fl)
         : KIPMsgDetailConfigDialogBase(parent,name,fl)
 {
@@ -53,10 +60,19 @@ KIPMsgDetailConfigDialog::KIPMsgDetailConfigDialog(QWidget* parent, const char* 
 	m_LogFileNameEditbox->setText( KIpMsgSettings::logFileName() );
 }
 
+/**
+ * デストラクタ
+ * ・特にすること無し。
+ */
 KIPMsgDetailConfigDialog::~KIPMsgDetailConfigDialog()
 {}
 
 /*$SPECIALIZATION$*/
+
+/**
+ * 受信音選択クリックイベント
+ * ・サウンドファイルをコモンダイアログ(Load)を表示し選択させる。
+ */
 void KIPMsgDetailConfigDialog::slotRecievedSoundClicked()
 {
 	QString soundFileName = KFileDialog::getOpenFileName();
@@ -65,6 +81,10 @@ void KIPMsgDetailConfigDialog::slotRecievedSoundClicked()
 	}
 }
 
+/**
+ * 受信音再生クリックイベント
+ * ・受信音を再生する。
+ */
 void KIPMsgDetailConfigDialog::slotPlaySoundClicked()
 {
 	QString soundFile = m_RecieveSoundFileNameEditbox->text();
@@ -75,6 +95,10 @@ void KIPMsgDetailConfigDialog::slotPlaySoundClicked()
 	}
 }
 
+/**
+ * アイコン選択クリックイベント
+ * ・画像ファイルをコモンダイアログ(Load)を表示し選択させ、アイコンを表示する。
+ */
 void KIPMsgDetailConfigDialog::slotIconClicked()
 {
 	QString iconFileName = KFileDialog::getOpenFileName();
@@ -84,10 +108,18 @@ void KIPMsgDetailConfigDialog::slotIconClicked()
 	loadNormalIcon( iconFileName );
 }
 
+/**
+ * アイコン変更イベント
+ * ・アイコンを表示する。
+ */
 void KIPMsgDetailConfigDialog::slotIconNameChanged(const QString &text){
 	loadNormalIcon( m_IconFileNameEditbox->text() );
 }
 
+/**
+ * アイコン表示
+ * ・アイコンをロードしラベルに設定する。
+ */
 void KIPMsgDetailConfigDialog::loadNormalIcon(QString iconFileName){
 	if ( iconFileName != "" ) {
 		QPixmap icon;
@@ -100,6 +132,10 @@ void KIPMsgDetailConfigDialog::loadNormalIcon(QString iconFileName){
 	}
 }
 
+/**
+ * 不在アイコン選択クリックイベント
+ * ・画像ファイルをコモンダイアログ(Load)を表示し選択させ、アイコンを表示する。
+ */
 void KIPMsgDetailConfigDialog::slotAbsenceIconClicked()
 {
 	QString iconFileName = KFileDialog::getOpenFileName();
@@ -109,10 +145,18 @@ void KIPMsgDetailConfigDialog::slotAbsenceIconClicked()
 	loadAbsenceIcon(iconFileName);
 }
 
+/**
+ * 不在アイコン変更イベント
+ * ・不在アイコンを表示する。
+ */
 void KIPMsgDetailConfigDialog::slotAbsenceIconNameChanged(const QString &text){
 	loadAbsenceIcon( m_AbsenceIconFileNameEditbox->text() );
 }
 
+/**
+ * 不在アイコン表示
+ * ・不在アイコンをロードしラベルに設定する。
+ */
 void KIPMsgDetailConfigDialog::loadAbsenceIcon(QString iconFileName){
 	if ( iconFileName != "" ) {
 		QPixmap icon;
@@ -125,6 +169,10 @@ void KIPMsgDetailConfigDialog::loadAbsenceIcon(QString iconFileName){
 	}
 }
 
+/**
+ * ログファイル選択クリックイベント
+ * ・ログファイルをコモンダイアログ(SaveAs)を表示し選択させる。
+ */
 void KIPMsgDetailConfigDialog::slotLogFileClicked()
 {
 	QString logFileName = KFileDialog::getSaveFileName();
@@ -132,15 +180,30 @@ void KIPMsgDetailConfigDialog::slotLogFileClicked()
 		m_LogFileNameEditbox->setText( logFileName );
 	}
 }
+
+/**
+ * OKクリックイベント
+ * ・設定を保存してダイアログを閉じる。
+ */
 void KIPMsgDetailConfigDialog::slotOkClicked()
 {
 	slotApplyClicked();
 	close();
 }
+
+/**
+ * キャンセルクリックイベント
+ * ・ダイアログを閉じる。
+ */
 void KIPMsgDetailConfigDialog::slotCancelClicked()
 {
 	close();
 }
+
+/**
+ * 適用クリックイベント
+ * ・設定を保存する。
+ */
 void KIPMsgDetailConfigDialog::slotApplyClicked()
 {
 	//詳細

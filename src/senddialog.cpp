@@ -72,8 +72,10 @@ class KIpMsgHostListViewItem : public QListViewItem {
     HostListItem host(){ return m_host; }
 };
 
-/*
+/**
  * ファイル名コンバータのネットワークエンコーディングからファイルシステムエンコーディングへの変換メソッド。
+ * @param ネットワークエンコーディングのファイル名
+ * @retval ファイルシステムエンコーディングに変換されたファイル名
  */
 string
 KIpMsgFileNameConverter::ConvertNetworkToLocal( string original_file_name ){
@@ -81,8 +83,10 @@ KIpMsgFileNameConverter::ConvertNetworkToLocal( string original_file_name ){
 	QTextCodec *msgCodec = QTextCodec::codecForName( KIpMsgSettings::messageEncoding() );
 	return fsCodec->fromUnicode( msgCodec->toUnicode( original_file_name.c_str() ) ).data();
 }
-/*
+/**
  * ファイル名コンバータのファイルシステムエンコーディングからネットワークエンコーディングへの変換メソッド。
+ * @param ファイルシステムエンコーディングのファイル名
+ * @retval ネットワークエンコーディングに変換されたファイル名
  */
 string
 KIpMsgFileNameConverter::ConvertLocalToNetwork( string original_file_name ){
@@ -91,8 +95,12 @@ KIpMsgFileNameConverter::ConvertLocalToNetwork( string original_file_name ){
 	return msgCodec->fromUnicode( fsCodec->toUnicode( original_file_name.c_str() ) ).data();
 }
 
-/*
+/**
  * 編集領域Widgetのコンストラクタ。
+ * ・ポップアップメニューの生成
+ * @param parent 親ウィジェット
+ * @param name 名前
+ * @param fl フラグ
  */
 KTextEditNoDnD::KTextEditNoDnD(QWidget *parent, const char *name) : KTextEdit(parent, name){
 	DnDPopup = new KPopupMenu(this);
@@ -100,20 +108,20 @@ KTextEditNoDnD::KTextEditNoDnD(QWidget *parent, const char *name) : KTextEdit(pa
 	DnDPopup->insertItem(SmallIcon("attach"), tr2i18n("Add as Attachment"), this, SLOT( slotAddAsFile( void ) ) );
 };
 
-/*
+/**
  * 編集領域Widgetのデストラクタ。
+ * ・ポップアップメニューの削除
  */
 KTextEditNoDnD::~KTextEditNoDnD(){
 	delete DnDPopup;
 };
 
-/*
+/**
  * 編集領域Widgetのコンテンツドロップイベント。
+ * ・ポップアップメニューを表示
+ * @param e ドロップイベント
  */
 void KTextEditNoDnD::contentsDropEvent(QDropEvent *e){
-//	printf("ContentsDropEvent\n");
-//	fflush(stdout);
-
 	if ( QTextDrag::decode( e, dropText ) ){
 		DnDPopup->popup( QCursor::pos() );
 	} else {
@@ -121,16 +129,18 @@ void KTextEditNoDnD::contentsDropEvent(QDropEvent *e){
 	}
 };
 
-/*
+/**
  * 編集領域WidgetのDND対象をテキストとして追加。
+ * ・テキストとして追加
  */
 void KTextEditNoDnD::slotAddAsText( void ){
 	insert(dropText.replace("\r\n", "\n"));
 	dropText = "";
 }
 
-/*
+/**
  * 編集領域WidgetのDND対象をファイルとして追加。
+ * ・ファイルとして追加
  */
 void KTextEditNoDnD::slotAddAsFile( void ){
 	SendDialog *top = dynamic_cast<SendDialog*>(topLevelWidget());
@@ -141,8 +151,16 @@ void KTextEditNoDnD::slotAddAsFile( void ){
 	dropText = "";
 }
 
-/*
- * コンストラクタ。ポップアップメニューを初期化。
+/**
+ * コンストラクタ。
+ * ・表示初期設定
+ * ・ポップアップメニューの生成
+ * ・リサイズ
+ * ・封書設定
+ * ・ホストリストの更新
+ * @param parent 親ウィジェット
+ * @param name 名前
+ * @param fl フラグ
  */
 SendDialog::SendDialog(QWidget* parent, const char* name, WFlags fl)
         : SendDialogBase(parent,name,fl)
@@ -164,7 +182,6 @@ SendDialog::SendDialog(QWidget* parent, const char* name, WFlags fl)
 
 
 	m_MessageEditbox->setAcceptDrops( TRUE );
-	//m_MessageEditbox->setAcceptDrops( FALSE );
 
 	m_HostListView->setFont( KIpMsgSettings::listFont() );
 	m_MessageEditbox->setFont( KIpMsgSettings::editFont() );
@@ -233,27 +250,30 @@ SendDialog::SendDialog(QWidget* parent, const char* name, WFlags fl)
 	}else{
 		resize( defaultWidth, defaultHeight );
 	}
-	
+
 	slotSecretClicked();
 
 	refreshHostList();
 }
 
-/*
+/**
  * デストラクタ
+ * ・特にすることなし。
  */
 SendDialog::~SendDialog()
 {}
 
-/*
+/**
  * 返信用のメッセージ設定メソッド（公開）
+ * ・返信にメッセージを設定
  */
 void SendDialog::setMessageText(QString text){
 	m_MessageEditbox->setText( text );
 }
 
-/*
+/**
  * ソートメニューの移動メニューの有効／無効を設定
+ * ・選択中のホストがある場合、移動メニューは有効。無い場合無効に設定
  */
 void SendDialog::setMenuStatus()
 {
@@ -274,8 +294,9 @@ void SendDialog::setMenuStatus()
 	sortPopup->setItemEnabled( moveToHiddenMenuId, sel_count != 0 );
 }
 
-/*
- * マウス押下時の処理。スプリッターフラグオン
+/**
+ * マウス押下時の処理。
+ * ・スプリッターフラグオン
  */
 void SendDialog::mousePressEvent( QMouseEvent *e )
 {
@@ -291,8 +312,10 @@ void SendDialog::mousePressEvent( QMouseEvent *e )
 	}
 }
 
-/*
- * マウス解放時の処理。スプリッターを動かす。フラグリセット
+/**
+ * マウス解放時の処理。
+ * ・スプリッターを動かす。
+ * ・フラグリセット
  */
 void SendDialog::mouseReleaseEvent(QMouseEvent *e){
 	mouseMoveEvent(e);
@@ -300,8 +323,9 @@ void SendDialog::mouseReleaseEvent(QMouseEvent *e){
 	isDownloadSplitterDragging = false;
 }
 
-/*
- * マウス移動時の処理。スプリッターを動かす。
+/**
+ * マウス移動時の処理。
+ * ・スプリッターを動かす。
  */
 void SendDialog::mouseMoveEvent(QMouseEvent *e){
 	if ( isMainSplitterDragging ){
@@ -329,16 +353,18 @@ void SendDialog::mouseMoveEvent(QMouseEvent *e){
 	doResize( size() );
 }
 
-/*
- * ドラッグ開始時の処理。受け付けることをシステムに通知する。
+/**
+ * ドラッグ開始時の処理。
+ * ・受け付けることをシステムに通知する。
  */
 void SendDialog::dragEnterEvent(QDragEnterEvent *e)
 {
 	e->accept( QTextDrag::canDecode(e) );
 }
 
-/*
+/**
  * URLのデコード。
+ * ・%NN+%NN形式に変換する。
  */
 const char *decodeUrl( string url )
 {
@@ -373,8 +399,9 @@ const char *decodeUrl( string url )
 
 }
 
-/*
+/**
  * ドロップ時の処理。
+ * ・テキストエリア外にドロップされた場合はファイルを追加する。
  */
 void SendDialog::dropEvent(QDropEvent *e)
 {
@@ -386,9 +413,9 @@ void SendDialog::dropEvent(QDropEvent *e)
 	refreshFiles();
 }
 
-/*
+/**
  * DNDされたファイルを追加する。
- * URLの先頭が"file://"以外は受け付けない。CR+LFで複数ファイルが区切られることが有る。
+ * ・URLの先頭が"file://"以外は受け付けない。CR+LFで複数ファイルが区切られることが有る。
  */
 void SendDialog::addDnDFiles(QString fileUrl){
 	QTextCodec *fsCodec = QTextCodec::codecForName( KIpMsgSettings::localFilesystemEncoding() );
@@ -416,9 +443,10 @@ void SendDialog::addDnDFiles(QString fileUrl){
 
 /*$SPECIALIZATION$*/
 
-/*
- * メッセージ送信が押された。複数ホストが選択されているなら複数ホストに送信する。
- * ファイルも添付することが有る。
+/**
+ * メッセージ送信が押された。
+ * ・複数ホストが選択されているなら複数ホストに送信する。
+ * ・ファイルも添付することが有る。
  */
 void SendDialog::slotMessageSendClicked()
 {
@@ -430,27 +458,10 @@ void SendDialog::slotMessageSendClicked()
 	//選択中のホストを送信対象ホストリストに追加する。
 	while ( it.current() != NULL ) {
 		KIpMsgHostListViewItem *item = dynamic_cast<KIpMsgHostListViewItem *>(it.current());
-//		QListViewItem *item = it.current();
 		if ( item != NULL && item->isSelected() ) {
-			//TODO ホストリストはHostListViewItemから取得できる。
+			//ホストリストはHostListViewItemから取得できる。
 			HostListItem host = item->host();
-//			HostListItem host;
 			host.setEncodingName( string( m_EncodingCombobox->currentText().data() ) );
-#if 0
-			QTextCodec *codec = QTextCodec::codecForName( host.EncodingName().c_str() );
-			host.setNickname( codec->fromUnicode( item->text( ColumnUser ) ).data() );
-			host.setGroupName( codec->fromUnicode( item->text( ColumnGroup ) ).data() );
-			host.setHostName( codec->fromUnicode( item->text( ColumnHost ) ).data() );
-			host.setIpAddress( codec->fromUnicode( item->text( ColumnIpAddress ) ).data() );
-			host.setUserName( codec->fromUnicode( item->text( ColumnLogin ) ).data() );
-			char *dmyptr;
-			host.setEncryptionCapacity( strtoul( codec->fromUnicode( item->text( ColumnEncryptionCapacity ) ).data(), &dmyptr, 16 ) );
-			host.setEncryptMethodHex( codec->fromUnicode( item->text( ColumnRsaMethod ) ).data() );
-			host.setPubKeyHex( codec->fromUnicode( item->text( ColumnRsaPublicKey ) ).data() );
-
-			item->setText( ColumnEncoding, m_EncodingCombobox->currentText() );
-			host.setPortNo( 2425 );
-#endif
 			targets.push_back( host );
 		}
 		++it;
@@ -487,8 +498,9 @@ void SendDialog::slotMessageSendClicked()
 	}
 }
 
-/*
- * 封書チェックが押された。オフにされたときは錠をクリアして無効にする。
+/**
+ * 封書チェックが押された。
+ * ・オフにされたときは錠をクリアして無効にする。
  */
 void SendDialog::slotSecretClicked()
 {
@@ -498,16 +510,19 @@ void SendDialog::slotSecretClicked()
 	}
 }
 
-/*
+/**
  * 更新ボタンが押された。
+ * ・ホストリストを実際にネットワークからリフレッシュ
  */
 void SendDialog::slotHostListUpdateClicked()
 {
 	refreshHostList( true );
 }
 
-/*
+/**
  * ホストリストをリフレッシュする。
+ * ・ホストリストをリフレッシュ
+ * @param isUpdate TRUE:ネットワークから。FALSE:エージェントの内部変数から。
  */
 void SendDialog::refreshHostList( bool isUpdate )
 {
@@ -653,25 +668,7 @@ void SendDialog::refreshHostList( bool isUpdate )
 			ix->setPriority( "-" );
 		}
 		if ( ix->Priority() != "X" || sortPopup->isItemChecked( showHiddenMenuId ) ) {
-			//TODO new KIpMsgHostListItem( m_HostListView, *ix );
 		    KIpMsgHostListViewItem *item = new KIpMsgHostListViewItem( m_HostListView, codec, *ix );
-#if 0
-			QListViewItem *item = new QListViewItem( m_HostListView,
-													codec->toUnicode( ix->Nickname().c_str() ),
-													codec->toUnicode( ix->GroupName().c_str() ),
-													codec->toUnicode( ix->HostName().c_str() ),
-													codec->toUnicode( ix->IpAddress().c_str() ),
-													codec->toUnicode( ix->UserName().c_str() ),
-													codec->toUnicode( ix->Priority().c_str() ),
-													codec->toUnicode( ix->EncodingName().c_str() ) );
-			//TODO --> 不要になる。
-			char buf[100];
-			snprintf( buf, sizeof( buf ), "%lx", ix->EncryptionCapacity() );
-			item->setText( ColumnEncryptionCapacity, codec->toUnicode( buf ) );
-			item->setText( ColumnRsaMethod, codec->toUnicode( ix->EncryptMethodHex().c_str() ) );
-			item->setText( ColumnRsaPublicKey, codec->toUnicode( ix->PubKeyHex().c_str() ) );
-			//TODO <-- 不要になる。
-#endif
 		}
 	}
 	//件数を表示
@@ -697,11 +694,7 @@ void SendDialog::refreshHostList( bool isUpdate )
 	for( vector<string>::iterator ixgr = groups.begin(); ixgr != groups.end();ixgr++ ){
 		if ( *ixgr != "" ) {
 			QTextCodec *codec;
-//			if ( ix->EncodingName != "" ) {
-//				codec = QTextCodec::codecForName( ix->EncodingName.c_str() );
-//			} else {
-				codec = QTextCodec::codecForName( KIpMsgSettings::messageEncoding() );
-//			}
+			codec = QTextCodec::codecForName( KIpMsgSettings::messageEncoding() );
 			int menu_item = groupPopup->insertItem( codec->toUnicode( QString( ixgr->c_str() ) ) );
 			connect( groupPopup, SIGNAL( activated(int) ), this, SLOT( slotGroupSelect( int ) ) );
 			groupMenuIdList.insert( menu_item, new QString( codec->toUnicode( QString( ixgr->c_str() ) ) ) );
@@ -735,8 +728,10 @@ void SendDialog::refreshHostList( bool isUpdate )
 	}
 }
 
-/*
+/**
  * 添付ファイルリスト表示。
+ * ・添付ファイルリストダイアログ表示。
+ * ・添付ファイル横一覧を再表示
  */
 void SendDialog::slotAttacheFileListButtonClicked()
 {
@@ -747,8 +742,9 @@ void SendDialog::slotAttacheFileListButtonClicked()
 	refreshFiles();
 }
 
-/*
+/**
  * グループ選択メニューからグループを選択した。
+ * ・グループが一致するホストを一括選択する。
  */
 void SendDialog::slotGroupSelect( int menu_item )
 {
@@ -768,8 +764,9 @@ void SendDialog::slotGroupSelect( int menu_item )
 	prev_menu = menu_item;
 }
 
-/*
+/**
  * エンコーディング選択メニューからエンコーディングを選択した。
+ * ・エンコーディングが一致するホストを一括選択する。
  */
 void SendDialog::slotEncodingSelect( int menu_item )
 {
@@ -789,7 +786,7 @@ void SendDialog::slotEncodingSelect( int menu_item )
 	prev_menu = menu_item;
 }
 
-/*
+/**
  * 優先度から削除する。
  */
 void SendDialog::deleteFromPriorityList( QStringList &base, QStringList items )
@@ -804,7 +801,7 @@ void SendDialog::deleteFromPriorityList( QStringList &base, QStringList items )
 	}
 }
 
-/*
+/**
  * 優先度を設定する。
  */
 void SendDialog::setPriority( string pri, QStringList &priList )
@@ -848,7 +845,7 @@ void SendDialog::setPriority( string pri, QStringList &priList )
 	KIpMsgSettings::setPriorityHidden( tmpList );
 }
 
-/*
+/**
  * 優先度1に移動する。
  */
 void SendDialog::slotMoveToPriority1Clicked()
@@ -861,7 +858,7 @@ void SendDialog::slotMoveToPriority1Clicked()
 	refreshHostList();
 }
 
-/*
+/**
  * 優先度2に移動する。
  */
 void SendDialog::slotMoveToPriority2Clicked()
@@ -874,7 +871,7 @@ void SendDialog::slotMoveToPriority2Clicked()
 	refreshHostList();
 }
 
-/*
+/**
  * 優先度3に移動する。
  */
 void SendDialog::slotMoveToPriority3Clicked()
@@ -887,7 +884,7 @@ void SendDialog::slotMoveToPriority3Clicked()
 	refreshHostList();
 }
 
-/*
+/**
  * 優先度1に移動する。
  */
 void SendDialog::slotMoveToPriority4Clicked()
@@ -900,7 +897,7 @@ void SendDialog::slotMoveToPriority4Clicked()
 	refreshHostList();
 }
 
-/*
+/**
  * デフォルトに移動する。
  */
 void SendDialog::slotMoveToDefaultClicked()
@@ -913,7 +910,7 @@ void SendDialog::slotMoveToDefaultClicked()
 	refreshHostList();
 }
 
-/*
+/**
  * 非表示に移動する。
  */
 void SendDialog::slotMoveToHiddenClicked()
@@ -926,7 +923,7 @@ void SendDialog::slotMoveToHiddenClicked()
 	refreshHostList();
 }
 
-/*
+/**
  * 非表示を一時解除。
  */
 void SendDialog::slotShowHiddenTempClicked()
@@ -935,7 +932,7 @@ void SendDialog::slotShowHiddenTempClicked()
 	refreshHostList();
 }
 
-/*
+/**
  * 全てデフォルトに戻す。
  */
 void SendDialog::slotRestoreAllClicked()
@@ -961,7 +958,7 @@ void SendDialog::slotRestoreAllClicked()
 	refreshHostList();
 }
 
-/*
+/**
  * ユーザ検索ダイアログを表示。
  */
 void SendDialog::slotSearchUserClicked()
@@ -971,7 +968,7 @@ void SendDialog::slotSearchUserClicked()
 	searchbox->show();
 }
 
-/*
+/**
  * ファイル添付。
  */
 void SendDialog::slotAttachFileClicked()
@@ -986,7 +983,7 @@ void SendDialog::slotAttachFileClicked()
 	refreshFiles();
 }
 
-/*
+/**
  * ディレクトリ添付。
  */
 void SendDialog::slotAttachDirectoryClicked()
@@ -1001,7 +998,7 @@ void SendDialog::slotAttachDirectoryClicked()
 	refreshFiles();
 }
 
-/*
+/**
  * ヘッダ保存。
  */
 void SendDialog::slotSaveListHeaderClicked()
@@ -1039,7 +1036,7 @@ void SendDialog::slotSaveListHeaderClicked()
 	KIpMsgSettings::writeConfig();
 }
 
-/*
+/**
  * ホストリストのフォントを選択。
  */
 void SendDialog::slotFontSelectListClicked()
@@ -1058,7 +1055,7 @@ void SendDialog::slotFontSelectListClicked()
 	}
 }
 
-/*
+/**
  * 本文のフォントを選択。
  */
 void SendDialog::slotFontSelectEditClicked()
@@ -1077,7 +1074,7 @@ void SendDialog::slotFontSelectEditClicked()
 	}
 }
 
-/*
+/**
  * フォントをデフォルトに設定。
  */
 void SendDialog::slotFontRestoreToDefaultClicked()
@@ -1091,8 +1088,9 @@ void SendDialog::slotFontRestoreToDefaultClicked()
 	KIpMsgSettings::writeConfig();
 }
 
-/*
- * サイズ保存。
+/**
+ * メニュー同期。
+ * ・全ての表示中の送信ダイアログのブーリアン状態をそろえる（位置固定、サイズ保存）
  */
 void SendDialog::synchronizeMenu()
 {
@@ -1108,10 +1106,18 @@ void SendDialog::synchronizeMenu()
 		++sendIt;
 	}
 }
+
+/**
+ * サイズ保存。の状態を保存。
+ */
 void SendDialog::setSaveSizeMenu()
 {
 	sizePopup->setItemChecked( saveSizeMenuId, KIpMsgSettings::sendDialogSaveSize() );
 }
+
+/**
+ * サイズ保存。
+ */
 void SendDialog::slotSaveSizeClicked()
 {
 	KIpMsgSettings::setSendDialogSaveSize( !KIpMsgSettings::sendDialogSaveSize() );
@@ -1122,7 +1128,7 @@ void SendDialog::slotSaveSizeClicked()
 	synchronizeMenu();
 }
 
-/*
+/**
  * サイズを一時的に戻す。
  */
 void SendDialog::slotRestoreSizeTempClicked()
@@ -1130,11 +1136,15 @@ void SendDialog::slotRestoreSizeTempClicked()
 	resize( defaultWidth, defaultHeight );
 }
 
+/**
+ * 位置固定。の状態を設定。
+ */
 void SendDialog::setFixsizePotisionMenu()
 {
 	sendPopup->setItemChecked( fixizePositionMenuId, KIpMsgSettings::sendDialogFixizePosition() );
 }
-/*
+
+/**
  * 位置固定。
  */
 void SendDialog::slotFixizePositionClicked()
@@ -1147,7 +1157,7 @@ void SendDialog::slotFixizePositionClicked()
 	synchronizeMenu();
 }
 
-/*
+/**
  * 表示詳細設定。
  */
 void SendDialog::slotViewDetailConfigurationClicked()
@@ -1157,7 +1167,7 @@ void SendDialog::slotViewDetailConfigurationClicked()
 	showconfig->show();
 }
 
-/*
+/**
  * ホストリストでのコンテキストメニュー表示要求。
  */
 void SendDialog::slotListContextMenuRequested( QListViewItem *item, const QPoint &pos, int col )
@@ -1166,7 +1176,7 @@ void SendDialog::slotListContextMenuRequested( QListViewItem *item, const QPoint
 	sendPopup->popup( QCursor::pos() );
 }
 
-/*
+/**
  * エンコーディング設定表示。
  */
 void SendDialog::slotEncodingConfigClicked()
@@ -1176,16 +1186,18 @@ void SendDialog::slotEncodingConfigClicked()
 	refreshHostList();
 }
 
-/*
+/**
  * リサイズイベント。
+ * @param e リサイズイベント
  */
 void SendDialog::resizeEvent( QResizeEvent *e )
 {
 	doResize( e->size() );
 }
 
-/*
+/**
  * リサイズ実行（共通）。
+ * @param size サイズ
  */
 void SendDialog::doResize( QSize size )
 {
@@ -1206,17 +1218,13 @@ void SendDialog::doResize( QSize size )
 	refreshFiles();
 }
 
-/*
+/**
  * ボタンにファイル名を設定。
  */
 void SendDialog::refreshFiles()
 {
 	QTextCodec *codec;
-//	if ( ix->EncodingName != "" ) {
-//		codec = QTextCodec::codecForName( ix->EncodingName.c_str() );
-//	} else {
-		codec = QTextCodec::codecForName( KIpMsgSettings::localFilesystemEncoding() );
-//	}
+	codec = QTextCodec::codecForName( KIpMsgSettings::localFilesystemEncoding() );
 
  	m_AttachFileButton->setHidden( TRUE );
 	if ( attachFileList.size() > 0 ) {

@@ -1,3 +1,7 @@
+2006-12-13 Niki, Kuninobu <nikikuni@yahoo.co.jp>
+Fix:Comments.
+Fix:Download Bug, It is Download finished, But can't terminated.
+
 2006-12-10 Niki, Kuninobu <nikikuni@yahoo.co.jp>
 - Update:Add DialUp Option.
 - Fix:Version info Miss.

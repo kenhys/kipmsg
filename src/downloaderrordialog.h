@@ -47,8 +47,7 @@ protected slots:
     /*$PROTECTED_SLOTS$*/
 
 private:
-	QString LocalFileName;
-	AttachFile File;
+	DownloadInfo Info;
 };
 
 #endif

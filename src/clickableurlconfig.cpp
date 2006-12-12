@@ -28,6 +28,13 @@
 #include "clickableurlconfig.h"
 #include "kipmsgsettings.h"
 
+/**
+ * コンストラクタ
+ * ・設定をロードし画面に表示
+ * @param parent 親ウィジェット
+ * @param name 名前
+ * @param fl フラグ
+ */
 KIPMsgClickableURLConfigDialog::KIPMsgClickableURLConfigDialog(QWidget* parent, const char* name, WFlags fl)
         : KIPMsgClickableURLConfigDialogBase(parent,name,fl)
 {
@@ -51,14 +58,30 @@ KIPMsgClickableURLConfigDialog::KIPMsgClickableURLConfigDialog(QWidget* parent, 
 	}
 }
 
+/**
+ * デストラクタ
+ * ・特にすること無し。
+ */
 KIPMsgClickableURLConfigDialog::~KIPMsgClickableURLConfigDialog()
 {}
 
 /*$SPECIALIZATION$*/
+
+/**
+ * プログラム変更イベント
+ * ・変更されたプログラムをプロトコルに対応づける。
+ * @param text 変更されたテキスト
+ */
 void KIPMsgClickableURLConfigDialog::slotProgramNameChanged(const QString& text)
 {
 	protocols[m_ProtocolsListbox->currentText()] = text;
 }
+
+/**
+ * プロトコル選択イベント
+ * ・プロトコルに設定されているプログラムを表示する。
+ * @param item リストボックスアイテム
+ */
 void KIPMsgClickableURLConfigDialog::slotBrowseClicked()
 {
 	QString programName = KFileDialog::getOpenFileName();
@@ -67,15 +90,30 @@ void KIPMsgClickableURLConfigDialog::slotBrowseClicked()
 		m_ProgramNameEditbox->setText( protocols[m_ProtocolsListbox->currentText()] );
 	}
 }
+
+/**
+ * OKクリックイベント
+ * ・設定を保存してダイアログを閉じる。
+ */
 void KIPMsgClickableURLConfigDialog::slotOkClicked()
 {
 	slotApplyClicked();
 	close();
 }
+
+/**
+ * キャンセルクリックイベント
+ * ・ダイアログを閉じる。
+ */
 void KIPMsgClickableURLConfigDialog::slotCancelClicked()
 {
 	close();
 }
+
+/**
+ * 適用クリックイベント
+ * ・設定を保存する。
+ */
 void KIPMsgClickableURLConfigDialog::slotApplyClicked()
 {
 	KIpMsgSettings::setUseDefaultBrowser( m_DefaultBrowserCheckbox->isChecked() );
@@ -89,6 +127,12 @@ void KIPMsgClickableURLConfigDialog::slotApplyClicked()
 
 	KIpMsgSettings::writeConfig();
 }
+
+/**
+ * プロトコル選択イベント
+ * ・プロトコルに設定されているプログラムを表示する。
+ * @param item リストボックスアイテム
+ */
 void KIPMsgClickableURLConfigDialog::slotProtocolClicked(QListBoxItem* item)
 {
 	m_ProgramNameEditbox->setText( protocols[item->text()] );

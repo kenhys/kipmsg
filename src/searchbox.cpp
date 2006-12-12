@@ -23,18 +23,37 @@
 #include <kcombobox.h>
 #include "searchbox.h"
 
+/**
+ * コンストラクタ
+ * ・特にすること無し。
+ * @param parent 親ウィジェット
+ * @param name 名前
+ * @param fl フラグ
+ */
 KIpMsgSearchBox::KIpMsgSearchBox(QWidget* parent, const char* name, WFlags fl)
         : KIpMsgSearchBoxBase(parent,name,fl)
 {}
 
+/**
+ * デストラクタ
+ * ・特にすること無し。
+ */
 KIpMsgSearchBox::~KIpMsgSearchBox()
 {}
 
 /*$SPECIALIZATION$*/
+/**
+ * OKクリックイベント
+ * ・ウインドウを閉じる
+ */
 void KIpMsgSearchBox::slotOkClicked()
 {
 	close();
 }
+/**
+ * 検索クリックイベント
+ * ・送信ダイアログのホストリストから入力値を検索し、選択状態にする。
+ */
 void KIpMsgSearchBox::slotSearchClicked()
 {
 //printf("search_clicked()\n");
@@ -51,7 +70,6 @@ void KIpMsgSearchBox::slotSearchClicked()
 				 item->text( SendDialog::ColumnPriority ).find( m_SearchWordCombobox->currentText() ) >= 0 ||
 				 item->text( SendDialog::ColumnEncoding ).find( m_SearchWordCombobox->currentText() ) >= 0 ) {
 				m_HostListView->setSelected( item, TRUE );
-//printf("found all\n");
 			}
 			++its;
 		}
@@ -62,7 +80,6 @@ void KIpMsgSearchBox::slotSearchClicked()
 			item->setSelected( FALSE );
 			if ( item->text( SendDialog::ColumnUser ).find( m_SearchWordCombobox->currentText() ) >= 0 ) {
 				m_HostListView->setSelected( item, TRUE );
-//printf("found\n");
 			}
 			++its;
 		}

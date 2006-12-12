@@ -53,13 +53,18 @@
 #include "kipmsgevent.h"
 #include "openconfirm.h"
 
-#if 0
-QPtrList<SendDialog> sendDialogs;
-QPtrList<RecieveDialog> recieveDialogs;
-#endif
-
 #define POLLING_INTERVAL_MSEC 500
 
+/**
+ * コンストラクタ
+ * ・IPメッセンジャーエージェントの設定
+ * ・設定に応じた初期化（アプリ）
+ * ・メニューの生成
+ * ・タイマの開始
+ * @param parent 親ウィジェット
+ * @param name 名前
+ * @param fl フラグ
+ */
 kipmsgWidget::kipmsgWidget(QWidget* parent, const char* name, WFlags fl)
         : kipmsgWidgetBase(parent,name,fl)
 {
@@ -91,11 +96,19 @@ kipmsgWidget::kipmsgWidget(QWidget* parent, const char* name, WFlags fl)
 	QToolTip::add( this, "KIpMsg(0)" );
 }
 
+/**
+ * デストラクタ
+ * ・IPメッセンジャーエージェントの解放
+ */
 kipmsgWidget::~kipmsgWidget()
 {
 	IpMessengerAgent::Release();
 }
 
+/**
+ * メニューの再構築
+ * ・不在などの状態に応じたメニューを再構築する。
+ */
 void kipmsgWidget::rebuildMenu()
 {
 	MainPopup->clear();
@@ -144,6 +157,11 @@ void kipmsgWidget::rebuildMenu()
 	MainPopup->insertItem( SmallIcon( "exit"), tr2i18n("Quit"), this, SLOT( slotExitClicked( void ) ) );
 }
 
+/**
+ * 不在モード選択
+ * ・キーから不在モードを取得し、不在モードに遷移。
+ * @param menu_item メニュー項目
+ */
 void kipmsgWidget::slotAbsenceModeSelect( int menu_item )
 {
 	static int prev_menu = 0;
@@ -176,6 +194,10 @@ void kipmsgWidget::slotAbsenceModeSelect( int menu_item )
 	IpMsgAgent->SetAbsence( KIpMsgSettings::messageEncoding().data(), absence );
 }
 
+/**
+ * アイコンロード
+ * ・アイコンと不在アイコンをロードしラベルに設定
+ */
 void kipmsgWidget::loadIcon()
 {
 	if ( KIpMsgSettings::iconFileName() == "" ) {
@@ -194,6 +216,13 @@ void kipmsgWidget::loadIcon()
 	}
 }
 
+/**
+ * マウス押下イベント
+ * ・右ボタンならメインメニューをポップアップ
+ * ・左ボタンならシングルクリックで送信画面表示の設定であれば、送信ダイアログ表示。
+ * ・また、不在時にノンポップアップ受信していたメッセージを一括表示。
+ * @param e マウスイベント
+ */
 void kipmsgWidget::mousePressEvent( QMouseEvent *e )
 {
 	if(e->button() == RightButton ){
@@ -217,25 +246,21 @@ void kipmsgWidget::mousePressEvent( QMouseEvent *e )
 			if ( evt != NULL ) {
 				evt->ShowHiddenRecieveMsg();
 			}
-//			if ( kipmsgWidget::popupRecieve() ) {
-//				kipmsgWidget::playSound();
-//				return;
-//			}
 		}
 		if ( KIpMsgSettings::openBySingleClick() ) {
 			KIpMsgEvent *evt = dynamic_cast<KIpMsgEvent *>(IpMsgAgent->GetEventObject());
 			if ( evt != NULL ) {
 				evt->ShowSendDlg();
 			}
-#if 0
-			SendDialog *sendWin = new SendDialog();
-			sendWin->show();
-			sendDialogs.append( sendWin );
-#endif
 		}
 	}
 }
 
+/**
+ * 受信音再生
+ * ・設定されているファイルがあればサウンドファイルから再生。
+ * ・以外はシステムビープ
+ */
 void kipmsgWidget::playSound()
 {
 	QString soundFile = KIpMsgSettings::recieveSoundFileName();
@@ -250,6 +275,11 @@ void kipmsgWidget::playSound()
 }
 
 /*$SPECIALIZATION$*/
+/**
+ * マウスダブルクリックイベント
+ * ・送信画面表示の設定でなければ、送信ダイアログ表示。
+ * @param e マウスイベント
+ */
 void kipmsgWidget::mouseDoubleClickEvent (QMouseEvent *e)
 {
 	if ( !KIpMsgSettings::openBySingleClick() ) {
@@ -257,13 +287,14 @@ void kipmsgWidget::mouseDoubleClickEvent (QMouseEvent *e)
 		if ( evt != NULL ) {
 			evt->ShowSendDlg();
 		}
-#if 0
-		SendDialog *sendWin = new SendDialog();
-		sendWin->show();
-		sendDialogs.append( sendWin );
-#endif
 	}
 }
+
+/**
+ * 設定メニュークリックイベント
+ * ・設定ダイアログを表示。
+ * ・アイコンを再ロード。
+ */
 void kipmsgWidget::slotConfigureClicked()
 {
 	KIPMsgConfigDialog *configWin = new KIPMsgConfigDialog(this,0,TRUE);
@@ -271,6 +302,10 @@ void kipmsgWidget::slotConfigureClicked()
 	loadIcon();
 }
 
+/**
+ * ダウンロードモニターメニュークリックイベント
+ * ・ダウンロードモニターが未表示ならダウンロードモニターを表示。
+ */
 void kipmsgWidget::slotDownloadMonitorClicked()
 {
 	if ( downMonitor == NULL ) {
@@ -278,59 +313,35 @@ void kipmsgWidget::slotDownloadMonitorClicked()
 	}
 	downMonitor->show();
 }
+
+/**
+ * 全ての開封を消去メニュークリックイベント
+ * ・イベントオブジェクトの全ての開封を消去メソッドを実行
+ */
 void kipmsgWidget::slotHideAllOpenConfirmClicked()
 {
 	KIpMsgEvent *evt = dynamic_cast<KIpMsgEvent *>(IpMsgAgent->GetEventObject());
 	if ( evt != NULL ) {
 		evt->HideAllOpenConfirm();
 	}
-#if 0
-	QPtrListIterator<OpenConfirmDialog> itp(confirmDialogs);
-	OpenConfirmDialog *dlg;
-	while( ( dlg = itp.current() ) != 0 ) {
-		if ( dlg->isShown() ) {
-			dlg->setHidden(TRUE);
-		}
-		++itp;
-	}
-	while( confirmDialogs.count() > 0 ){
-		confirmDialogs.remove( 0U );
-	}
-#endif
 }
+
+/**
+ * 全てのウインドウを前面にメニュークリックイベント
+ * ・イベントオブジェクトの全てのウインドウを前面にメソッドを実行
+ */
 void kipmsgWidget::slotStayOnTopAllWindowsClick()
 {
 	KIpMsgEvent *evt = dynamic_cast<KIpMsgEvent *>(IpMsgAgent->GetEventObject());
 	if ( evt != NULL ) {
 		evt->StayOnTopAllWindows();
 	}
-#if 0
-	QPtrListIterator<OpenConfirmDialog> confirmIt(confirmDialogs);
-	OpenConfirmDialog *confirmDlg;
-	while( ( confirmDlg = confirmIt.current() ) != 0 ) {
-		if ( confirmDlg->isShown() ) {
-			KWin::activateWindow( confirmDlg->winId() );
-		}
-		++confirmIt;
-	}
-	QPtrListIterator<RecieveDialog> recieveIt(recieveDialogs);
-	RecieveDialog *recieveDlg;
-	while( ( recieveDlg = recieveIt.current() ) != 0 ) {
-		if ( recieveDlg->isShown() ) {
-			KWin::activateWindow( recieveDlg->winId() );
-		}
-		++recieveIt;
-	}
-	QPtrListIterator<SendDialog> sendIt(sendDialogs);
-	SendDialog *sendDlg;
-	while( ( sendDlg = sendIt.current() ) != 0 ) {
-		if ( sendDlg->isShown() ) {
-			KWin::activateWindow( sendDlg->winId() );
-		}
-		++sendIt;
-	}
-#endif
 }
+
+/**
+ * 不在設定メニュークリックイベント
+ * ・不在設定ダイアログを表示
+ */
 void kipmsgWidget::slotAbsenceModeConfigClicked()
 {
 	KIpMsgAbsenceModeConfigDialog *absencewin = new KIpMsgAbsenceModeConfigDialog(this,0,TRUE);
@@ -338,15 +349,29 @@ void kipmsgWidget::slotAbsenceModeConfigClicked()
 	rebuildMenu();
 }
 
+/**
+ * KIpMessengerについてメニュークリックイベント
+ * ・アバウトダイアログを表示
+ */
 void kipmsgWidget::slotAboutClicked()
 {
 	KIpMessengerAboutDialog *aboutWin = new KIpMessengerAboutDialog();
 	aboutWin->show();
 }
+
+/**
+ * ログ参照メニュークリックイベント
+ * ・kwriteでログを表示
+ */
 void kipmsgWidget::slotViewLogClicked()
 {
 	KRun::run( "kwrite", QStringList( KIpMsgSettings::logFileName()));
 }
+
+/**
+ * 終了メニュークリックイベント
+ * ・アプリケーションを終了する。
+ */
 void kipmsgWidget::slotExitClicked()
 {
 	IpMsgAgent->Logout();
@@ -355,39 +380,34 @@ void kipmsgWidget::slotExitClicked()
 	exit(0);
 }
 
+/**
+ * 不在解除メニュークリックイベント
+ * ・不在を解除する。
+ */
 void kipmsgWidget::slotResetAbsenceModeClicked()
 {
 	IpMsgAgent->ResetAbsence();
 	currentAbsenceMode="";
 }
 
+/**
+ * 不在解除メニュークリックイベント
+ * ・不在を解除する。
+ */
 bool kipmsgWidget::isRecievedOnNonePopup()
 {
 	return ( IpMessengerAgent::GetInstance()->IsAbsence() && KIpMsgSettings::nonePopupOnAbsence() ) || KIpMsgSettings::noPopup();
 }
 
-//bool kipmsgWidget::popupRecieve()
-//{
-#if 0
-	int hasMsg = 0;
-	while( IpMsgAgent->GetRecievedMessageCount() > 0 ){
-		RecieveDialog *recv = new RecieveDialog();
-		RecievedMessage msg = IpMsgAgent->PopRecievedMessage();
-		recv->setMessage( msg );
-		recv->setDownloadFiles();
-		recv->show();
-		if ( !KIpMsgSettings::recordAfterUnlock() ){
-			KIpMessengerLogger::GetInstance()->PutRecivedMessage( msg );
-		}
-		KWin::activateWindow( recv->winId() );
-		recieveDialogs.append( recv );
-		hasMsg++;
-	}
-	return hasMsg > 0;
-#endif
-//	return true;
-//}
 
+/**
+ * タイマーイベント
+ * ・パケット受信。
+ * ・アイコン点滅／不在に変更。
+ * ・ダウンロードモニタのファイル一覧を更新。
+ * ・タイムオーバーなら自動不在への移行。
+ * ・参加者数の更新。
+ */
 void kipmsgWidget::slotPollingTimeout()
 {
 	static long c = 0;
@@ -396,54 +416,6 @@ void kipmsgWidget::slotPollingTimeout()
 	//送受信キューを処理します。
 	IpMsgAgent->Process();
 
-	//ポップアップ受信
-#if 0
-	if ( !kipmsgWidget::isRecievedOnNonePopup() ) {
-		if ( kipmsgWidget::popupRecieve() ) {
-			kipmsgWidget::playSound();
-		}
-	}
-#endif
-	//開封を表示。
-#if 0
-	time_t t = time( NULL );
-	char timebuf[30];
-	ctime_r( &t, timebuf );
-	timebuf[strlen(timebuf) - 1] = 0;
-	vector<SentMessage> *msg = IpMsgAgent->GetSentMessages();
-	for(vector<SentMessage>::iterator it = msg->begin(); it != msg->end(); it++ ){
-		if ( it->IsSecret() && it->IsConfirmed() && !it->IsConfirmAnswered() ) {
-			QString encode = "";
-			if ( it->Host().EncodingName() == "" ) {
-				encode = it->Host().EncodingName().c_str();
-			}else {
-				encode = KIpMsgSettings::messageEncoding();
-			}
-			QStringList encodings = KIpMsgSettings::encodingSettings();
-			QString IpAddr = it->Host().IpAddress().c_str();
-			QString UserName = it->Host().UserName().c_str();
-			for( QStringList::iterator ite = encodings.begin(); ite != encodings.end(); ite++ ){
-				QStringList fields = QStringList::split( ":", *ite );
-				if ( IpAddr == fields[0] && UserName == fields[1] ) {
-					encode = fields[2];
-					break;
-				}
-			}
-			QTextCodec *codec = QTextCodec::codecForName( encode );
-			OpenConfirmDialog *opendlg = new OpenConfirmDialog();
-			IpMsgAgent->AcceptConfirmNotify( *it );
-			opendlg->m_NicknameLabel->setText( codec->toUnicode( it->Host().Nickname().c_str() ) );
-			opendlg->m_TimeLabel->setText( "(" + QString(timebuf) + ")" );
-			opendlg->show();
-			if ( KIpMsgSettings::confirmIcon() ) {
-				KWin::iconifyWindow( opendlg->winId() );
-			} else {
-				KWin::activateWindow( opendlg->winId() );
-			}
-			confirmDialogs.append(opendlg);
-		}
-	}
-#endif
 	//メッセージが到着している
 	KIpMsgEvent *evt = dynamic_cast<KIpMsgEvent *>(IpMsgAgent->GetEventObject());
 	if ( evt != NULL && evt->GetRecievedMessageCount() > 0 ) {
@@ -496,35 +468,7 @@ void kipmsgWidget::slotPollingTimeout()
 	if ( evt != NULL ) {
 		evt->TimerEvent();
 	}
-#if 0
-	QPtrListIterator<OpenConfirmDialog> confirmIt(confirmDialogs);
-	OpenConfirmDialog *confirmDlg;
-	while( ( confirmDlg = confirmIt.current() ) != 0 ) {
-		if ( !confirmDlg->isShown() ) {
-			confirmDialogs.remove(confirmDlg);
-			continue;
-		}
-		++confirmIt;
-	}
-	QPtrListIterator<SendDialog> sendIt(sendDialogs);
-	SendDialog *sendDlg;
-	while( ( sendDlg = sendIt.current() ) != 0 ) {
-		if ( !sendDlg->isShown() ) {
-			sendDialogs.remove(sendDlg);
-			continue;
-		}
-		++sendIt;
-	}
-	QPtrListIterator<RecieveDialog> recieveIt(recieveDialogs);
-	RecieveDialog *recieveDlg;
-	while( ( recieveDlg = recieveIt.current() ) != 0 ) {
-		if ( !recieveDlg->isShown() ) {
-			recieveDialogs.remove(recieveDlg);
-			continue;
-		}
-		++recieveIt;
-	}
-#endif
+
 	int userSize = IpMsgAgent->GetHostList().size();
 	if ( userSize != prevUserSize ) {
 		QToolTip::remove( this );

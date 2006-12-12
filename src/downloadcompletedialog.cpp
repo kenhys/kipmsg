@@ -20,6 +20,7 @@
 
 
 #include <qlabel.h>
+#include <qtextcodec.h>
 #include <krun.h>
 #include <klocale.h>
 #include <kmimetype.h>
@@ -28,27 +29,52 @@
 #include <kpushbutton.h>
 #include "IpMessenger.h"
 #include "downloadcompletedialog.h"
+#include "kipmsgsettings.h"
 
+/**
+ * コンストラクタ
+ * ・特にすること無し。
+ * @param parent 親ウィジェット
+ * @param name 名前
+ * @param fl フラグ
+ */
 DownloadCompleteDialog::DownloadCompleteDialog(QWidget* parent, const char* name, WFlags fl)
         : DownloadCompleteDialogBase(parent,name,fl)
 {}
 
+/**
+ * デストラクタ
+ * ・特にすること無し。
+ */
 DownloadCompleteDialog::~DownloadCompleteDialog()
 {}
 
 /*$SPECIALIZATION$*/
+/**
+ * 閉じるボタンクリック
+ * ・リジェクトして画面を閉じる。
+ */
 void DownloadCompleteDialog::slotCloseClicked()
 {
 	reject();
 }
 
+/**
+ * 「なんとか」で開くボタンクリック
+ * ・ローカルファイル名からURLを生成。
+ * ・KDEにMIMETYPEを問い合わせ、サービスを得る。
+ * ・サービスが取得出来ない場合、ユーザに対応アプリケーションを選択させアプリケーションで開く。
+ * ・サービスが取得出来た場合、KDEのMIMEの関連付けに基づきアプリケーションで開く。
+ * ・アクセプトして画面を閉じる。
+ */
 void DownloadCompleteDialog::slotOpenAsClicked()
 {
-	KURL url( string( "file://" + LocalFileName ).c_str() );
+	QTextCodec *fsCodec = QTextCodec::codecForName( KIpMsgSettings::localFilesystemEncoding() );
+	KURL url = KURL::fromPathOrURL( QString( fsCodec->toUnicode( Info.LocalFileName().c_str() ) ) );
 	
-	if ( File.IsDirectory() ) {
+	if ( Info.File().IsDirectory() ) {
 		( new KRun( url ) )->setAutoDelete( true );
-	} else if ( File.IsRegularFile() ) {
+	} else if ( Info.File().IsRegularFile() ) {
 		KMimeType::Ptr mimetype = KMimeType::findByURL( url );
 		if ( mimetype == NULL ) {
 			return;
@@ -63,13 +89,22 @@ void DownloadCompleteDialog::slotOpenAsClicked()
 	accept();
 }
 
-void DownloadCompleteDialog::setDownloadInfo( DownloadInfo info, string localFileName, AttachFile file ){
-	LocalFileName = localFileName;
-	File = file;
-	if ( file.IsDirectory() ) {
+/**
+ * ダウンロード情報設定（外部から）
+ * ・ローカルファイル名からURLを生成。
+ * ・KDEにMIMETYPEを問い合わせ、サービスを得る。
+ * ・サービスが取得出来ない場合、ボタンフェイスを「アプリケーションで開く」に設定。
+ * ・サービスが取得出来た場合、KDEのMIMEの関連付けに基づき「”なんとかかんとか”で開く」に設定。
+ * ・ダウンロード情報を基に各種情報を表示。
+ * @param info ダウンロード情報
+ */
+void DownloadCompleteDialog::setDownloadInfo( DownloadInfo info ){
+	QTextCodec *fsCodec = QTextCodec::codecForName( KIpMsgSettings::localFilesystemEncoding() );
+	Info = info;
+	if ( Info.File().IsDirectory() ) {
 		m_OpenAsButton->setText( tr2i18n( "Open folder as Konqueror" ) );
-	} else if ( file.IsRegularFile() ) {
-		KURL url( string( "file://" + LocalFileName ).c_str() );
+	} else if ( Info.File().IsRegularFile() ) {
+		KURL url = KURL::fromPathOrURL( QString( fsCodec->toUnicode( Info.LocalFileName().c_str() ) ) );
 		KMimeType::Ptr mimetype = KMimeType::findByURL( url );
 		if ( mimetype == NULL ) {
 			m_OpenAsButton->setHidden( TRUE );
@@ -90,4 +125,3 @@ void DownloadCompleteDialog::setDownloadInfo( DownloadInfo info, string localFil
 }
 
 #include "downloadcompletedialog.moc"
-

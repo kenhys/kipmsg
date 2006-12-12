@@ -33,6 +33,13 @@
 #include "kipmsgsettings.h"
 #include "IpMessenger.h"
 
+/**
+ * コンストラクタ
+ * ・設定をロードし画面に表示する。
+ * @param parent 親ウィジェット
+ * @param name 名前
+ * @param fl フラグ
+ */
 KIPMsgConfigDialog::KIPMsgConfigDialog(QWidget* parent, const char* name, WFlags fl)
         : KIPMsgConfigDialogBase(parent,name,fl)
 {
@@ -55,44 +62,83 @@ KIPMsgConfigDialog::KIPMsgConfigDialog(QWidget* parent, const char* name, WFlags
 	m_DialupCheckbox->setChecked( KIpMsgSettings::connectDialup() );
 }
 
+/**
+ * デストラクタ
+ * ・特にすること無し。
+ */
 KIPMsgConfigDialog::~KIPMsgConfigDialog()
 {}
 
 /*$SPECIALIZATION$*/
+/**
+ * 詳細＋ログ設定クリックイベント
+ * ・詳細＋ログ設定ダイアログを開く
+ */
 void KIPMsgConfigDialog::slotDetailAndLogSetupClicked()
 {
 	KIPMsgDetailConfigDialog *detailConfig = new KIPMsgDetailConfigDialog(this,0,TRUE);
 	detailConfig->exec();
 }
+/**
+ * クリッカブルURLクリックイベント
+ * ・クリッカブルURL設定ダイアログを開く
+ */
 void KIPMsgConfigDialog::slotClickableUrlClicked()
 {
 	KIPMsgClickableURLConfigDialog *clickableUrl = new KIPMsgClickableURLConfigDialog(this,0,TRUE);
 	clickableUrl->exec();
 }
+/**
+ * 鍵開封パスワードクリックイベント
+ * ・鍵開封パスワード設定ダイアログを開く
+ */
 void KIPMsgConfigDialog::slotUnlockPasswordSetup()
 {
 	KIPMsgUnlockPasswordConfigDialog *passwordConfig = new KIPMsgUnlockPasswordConfigDialog(this,0,TRUE);
 	passwordConfig->exec();
 }
+/**
+ * 「>>」クリックイベント
+ * ・左のネットワークアドレス入力ボックスから右のリストボックスに移動し、
+ * ・左のネットワークアドレス入力ボックスをクリア
+ */
 void KIPMsgConfigDialog::slotAddBroadcastAddressClicked()
 {
 	m_BroadcastListbox->insertItem( m_IpAddressOrFQDNEditbox->text() );
 	m_IpAddressOrFQDNEditbox->setText("");
 }
+/**
+ * 「<<」クリックイベント
+ * ・右のリストボックスの選択中のアドレスのデータを左のネットワークアドレス入力ボックスにコピーし、
+ * ・右のリストボックスの選択中のアドレスを削除
+ */
 void KIPMsgConfigDialog::slotDeleteBroadcastAddressClicked()
 {
 	m_IpAddressOrFQDNEditbox->setText( m_BroadcastListbox->currentText() );
 	m_BroadcastListbox->removeItem( m_BroadcastListbox->currentItem() );
 }
+/**
+ * OKクリックイベント
+ * ・設定を保存
+ * ・ダイアログを閉じる
+ */
 void KIPMsgConfigDialog::slotOkClicked()
 {
 	slotApplyClicked();
 	close();
 }
+/**
+ * キャンセルクリックイベント
+ * ・ダイアログを閉じる
+ */
 void KIPMsgConfigDialog::slotCancelClicked()
 {
 	close();
 }
+/**
+ * 適用クリックイベント
+ * ・設定を保存
+ */
 void KIPMsgConfigDialog::slotApplyClicked()
 {
 	KIpMsgSettings::setUserName( m_UserNameEditbox->text() );

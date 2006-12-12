@@ -41,6 +41,14 @@ static KCmdLineOptions options[] =
     KCmdLineLastOption
 };
 
+/**
+ * メイン
+ * ・アバウトデータの設定
+ * ・ユニークインスタンスアプリの生成
+ * ・システムトレイの設定
+ * ・Widget表示
+ * ・実行。
+ */
 int main(int argc, char **argv)
 {
     KAboutData about("kipmsg", I18N_NOOP("kipmsg"), version, description,

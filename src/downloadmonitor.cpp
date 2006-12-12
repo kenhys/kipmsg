@@ -30,6 +30,15 @@
 
 #define COLUMN_PACKET 7
 
+/**
+ * コンストラクタ
+ * ・ファイルリストの表示。
+ * ・タイマ開始。
+ * ・設定のロード。
+ * @param parent 親ウィジェット
+ * @param name 名前
+ * @param fl フラグ
+ */
 KIpMsgDownloadMonitor::KIpMsgDownloadMonitor(QWidget* parent, const char* name, WFlags fl)
         : KIpMsgDownloadMonitorBase(parent,name,fl)
 {
@@ -49,10 +58,19 @@ KIpMsgDownloadMonitor::KIpMsgDownloadMonitor(QWidget* parent, const char* name, 
 							IpMessengerAgent::GetInstance()->GetAbortDownloadAtFileChanged() );
 }
 
+/**
+ * デストラクタ
+ * ・特にすること無し。
+ */
 KIpMsgDownloadMonitor::~KIpMsgDownloadMonitor()
 {}
 
 /*$SPECIALIZATION$*/
+
+/**
+ * 削除クリックイベント
+ * ・ファイルリストから削除する。
+ */
 void KIpMsgDownloadMonitor::slotDeleteClicked()
 {
 	QListViewItemIterator it( m_FileListView, QListViewItemIterator::Selected );
@@ -64,15 +82,30 @@ void KIpMsgDownloadMonitor::slotDeleteClicked()
 		++it;
 	}
 }
+
+/**
+ * 閉じるクリックイベント
+ * ・ウインドウを閉じる
+ */
 void KIpMsgDownloadMonitor::slotCloseClicked()
 {
 	close();
 }
+
+/**
+ * タイマイベント
+ * ・ファイルリストを更新する。
+ */
 void KIpMsgDownloadMonitor::slotPollingTimeout()
 {
 	refreshDownloadFileList();
 }
 
+/**
+ * 「ファイルが更新されたらダウンロードを許可しない。」クリックイベント
+ * ・エージェントに設定。
+ * ・設定を保存。
+ */
 void KIpMsgDownloadMonitor::slotNotPermitedIfModifiedCheckboxClicked()
 {
 	IpMessengerAgent::GetInstance()->SetAbortDownloadAtFileChanged(
@@ -81,6 +114,12 @@ void KIpMsgDownloadMonitor::slotNotPermitedIfModifiedCheckboxClicked()
 	KIpMsgSettings::writeConfig();
 }
 
+/**
+ * ファイルリストを更新
+ * ・選択状態を保存して。
+ * ・再表示。
+ * ・選択状態を再設定。
+ */
 void KIpMsgDownloadMonitor::refreshDownloadFileList()
 {
 	IpMessengerAgent *agent = IpMessengerAgent::GetInstance();
