@@ -408,12 +408,12 @@ uninstall-am: uninstall-kde-icons  uninstall-info-am
 .NOEXPORT:
 
 #>+ 2
-KDE_DIST=hi32-app-kipmsg.png hi22-action-kipmsg_download.png hi48-app-kipmsg.png hi64-app-kipmsg.png hi22-app-kipmsg.png hi16-app-kipmsg.png hi22-app-kipmsg_absence.png hi22-action-kipmsg_about.png 
+KDE_DIST=hi22-app-kipmsg_v1abs.png hi32-app-kipmsg.png hi22-action-kipmsg_download.png hi48-app-kipmsg.png hi22-app-kipmsg_rev.png hi64-app-kipmsg.png hi22-app-kipmsg.png hi16-app-kipmsg.png hi22-app-kipmsg_absence.png hi22-app-kipmsg_fileabs.png hi22-app-kipmsg_file.png hi22-app-kipmsg_normal.png hi22-app-kipmsg_v1.png hi22-action-kipmsg_about.png 
 
 #>+ 2
 docs-am:
 
-#>+ 26
+#>+ 38
 install-kde-icons:
 	$(mkinstalldirs) $(DESTDIR)$(kde_icondir)/hicolor/16x16/apps
 	$(INSTALL_DATA) $(srcdir)/hi16-app-kipmsg.png $(DESTDIR)$(kde_icondir)/hicolor/16x16/apps/kipmsg.png
@@ -422,23 +422,35 @@ install-kde-icons:
 	$(INSTALL_DATA) $(srcdir)/hi22-action-kipmsg_download.png $(DESTDIR)$(kde_icondir)/hicolor/22x22/actions/kipmsg_download.png
 	$(mkinstalldirs) $(DESTDIR)$(kde_icondir)/hicolor/22x22/apps
 	$(INSTALL_DATA) $(srcdir)/hi22-app-kipmsg.png $(DESTDIR)$(kde_icondir)/hicolor/22x22/apps/kipmsg.png
-	$(INSTALL_DATA) $(srcdir)/hi22-app-kipmsg_absence.png $(DESTDIR)$(kde_icondir)/hicolor/22x22/apps/kipmsg_absence.png
 	$(mkinstalldirs) $(DESTDIR)$(kde_icondir)/hicolor/32x32/apps
 	$(INSTALL_DATA) $(srcdir)/hi32-app-kipmsg.png $(DESTDIR)$(kde_icondir)/hicolor/32x32/apps/kipmsg.png
 	$(mkinstalldirs) $(DESTDIR)$(kde_icondir)/hicolor/48x48/apps
 	$(INSTALL_DATA) $(srcdir)/hi48-app-kipmsg.png $(DESTDIR)$(kde_icondir)/hicolor/48x48/apps/kipmsg.png
 	$(mkinstalldirs) $(DESTDIR)$(kde_icondir)/hicolor/64x64/apps
 	$(INSTALL_DATA) $(srcdir)/hi64-app-kipmsg.png $(DESTDIR)$(kde_icondir)/hicolor/64x64/apps/kipmsg.png
+	$(INSTALL_DATA) $(srcdir)/hi22-app-kipmsg_normal.png $(DESTDIR)$(kde_icondir)/hicolor/22x22/apps/kipmsg_normal.png
+	$(INSTALL_DATA) $(srcdir)/hi22-app-kipmsg_rev.png $(DESTDIR)$(kde_icondir)/hicolor/22x22/apps/kipmsg_rev.png
+	$(INSTALL_DATA) $(srcdir)/hi22-app-kipmsg_absence.png $(DESTDIR)$(kde_icondir)/hicolor/22x22/apps/kipmsg_absence.png
+	$(INSTALL_DATA) $(srcdir)/hi22-app-kipmsg_v1.png $(DESTDIR)$(kde_icondir)/hicolor/22x22/apps/kipmsg_v1.png
+	$(INSTALL_DATA) $(srcdir)/hi22-app-kipmsg_v1abs.png $(DESTDIR)$(kde_icondir)/hicolor/22x22/apps/kipmsg_v1abs.png
+	$(INSTALL_DATA) $(srcdir)/hi22-app-kipmsg_file.png $(DESTDIR)$(kde_icondir)/hicolor/22x22/apps/kipmsg_file.png
+	$(INSTALL_DATA) $(srcdir)/hi22-app-kipmsg_fileabs.png $(DESTDIR)$(kde_icondir)/hicolor/22x22/apps/kipmsg_fileabs.png
 
 uninstall-kde-icons:
 	-rm -f $(DESTDIR)$(kde_icondir)/hicolor/16x16/apps/kipmsg.png
 	-rm -f $(DESTDIR)$(kde_icondir)/hicolor/22x22/actions/kipmsg_about.png
 	-rm -f $(DESTDIR)$(kde_icondir)/hicolor/22x22/actions/kipmsg_download.png
 	-rm -f $(DESTDIR)$(kde_icondir)/hicolor/22x22/apps/kipmsg.png
-	-rm -f $(DESTDIR)$(kde_icondir)/hicolor/22x22/apps/kipmsg_absence.png
 	-rm -f $(DESTDIR)$(kde_icondir)/hicolor/32x32/apps/kipmsg.png
 	-rm -f $(DESTDIR)$(kde_icondir)/hicolor/48x48/apps/kipmsg.png
 	-rm -f $(DESTDIR)$(kde_icondir)/hicolor/64x64/apps/kipmsg.png
+	-rm -f $(DESTDIR)$(kde_icondir)/hicolor/22x22/apps/kipmsg_normal.png
+	-rm -f $(DESTDIR)$(kde_icondir)/hicolor/22x22/apps/kipmsg_rev.png
+	-rm -f $(DESTDIR)$(kde_icondir)/hicolor/22x22/apps/kipmsg_absence.png
+	-rm -f $(DESTDIR)$(kde_icondir)/hicolor/22x22/apps/kipmsg_v1.png
+	-rm -f $(DESTDIR)$(kde_icondir)/hicolor/22x22/apps/kipmsg_v1abs.png
+	-rm -f $(DESTDIR)$(kde_icondir)/hicolor/22x22/apps/kipmsg_file.png
+	-rm -f $(DESTDIR)$(kde_icondir)/hicolor/22x22/apps/kipmsg_fileabs.png
 
 #>+ 6
 force-reedit:

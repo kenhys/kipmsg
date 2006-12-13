@@ -144,7 +144,7 @@ void kipmsgWidget::rebuildMenu()
 
 	QPixmap iconImage;
 	if ( KIpMsgSettings::absenceIconFileName() == "") {
-		iconImage = SmallIcon("kipmsg_absence");
+		iconImage = SmallIcon("kipmsg_rev");
 	} else {
 		iconImage.load( KIpMsgSettings::absenceIconFileName() );
 	}

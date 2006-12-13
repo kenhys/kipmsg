@@ -371,7 +371,7 @@ const char *decodeUrl( string url )
 	string ret;
 	char hex[3];
 	for( int i = 0 ; i < url.size(); ){
-		unsigned char c = url.at( i );
+		int c = url.at( i );
 		if ( c == '%' ) {
 			memset( hex, 0, sizeof( hex ) );
 			i++;
@@ -668,7 +668,24 @@ void SendDialog::refreshHostList( bool isUpdate )
 			ix->setPriority( "-" );
 		}
 		if ( ix->Priority() != "X" || sortPopup->isItemChecked( showHiddenMenuId ) ) {
-		    KIpMsgHostListViewItem *item = new KIpMsgHostListViewItem( m_HostListView, codec, *ix );
+			KIpMsgHostListViewItem *item = new KIpMsgHostListViewItem( m_HostListView, codec, *ix );
+			if ( ix->IsAbsence() ) {
+				if ( ix->IsFileAttachSupport() && !ix->IsEncryptSupport() ){
+					item->setPixmap( 0 ,SmallIcon("kipmsg_fileabs") );
+				} else if ( !ix->IsFileAttachSupport() && !ix->IsEncryptSupport() ){
+					item->setPixmap( 0 ,SmallIcon("kipmsg_v1abs") );
+				} else {
+					item->setPixmap( 0 ,SmallIcon("kipmsg_absence") );
+				}
+			} else {
+				if ( ix->IsFileAttachSupport() && !ix->IsEncryptSupport() ){
+					item->setPixmap( 0 ,SmallIcon("kipmsg_file") );
+				} else if ( !ix->IsFileAttachSupport() && !ix->IsEncryptSupport() ){
+					item->setPixmap( 0 ,SmallIcon("kipmsg_v1") );
+				} else {
+					item->setPixmap( 0 ,SmallIcon("kipmsg_normal") );
+				}
+			}
 		}
 	}
 	//件数を表示
