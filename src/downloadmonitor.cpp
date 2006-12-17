@@ -123,7 +123,7 @@ void KIpMsgDownloadMonitor::slotNotPermitedIfModifiedCheckboxClicked()
 void KIpMsgDownloadMonitor::refreshDownloadFileList()
 {
 	IpMessengerAgent *agent = IpMessengerAgent::GetInstance();
-	vector<SentMessage> msgs = agent->CloneSentMessages();
+	SentMessageList msgs = agent->CloneSentMessages();
 	int i = 0;
 	char sizeBuffer[200];
 	char seqBuffer[200];
