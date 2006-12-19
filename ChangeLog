@@ -1,3 +1,10 @@
+2006-12-19 Niki, Kuninobu <nikikuni@yahoo.co.jp>
+- Update:Add Sort support.
+- Update:Add enum ColumnMax.
+- Fix:Do not write configuration.
+- Fix:Show Identifir with sort.
+- Fix:Warnings.
+
 2006-12-14 Niki, Kuninobu <nikikuni@yahoo.co.jp>
 - Fix:HostList's ICON
 
