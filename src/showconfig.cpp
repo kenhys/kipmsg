@@ -99,6 +99,7 @@ void KIPMsgShowConfigDialog::slotApplyClicked()
 	KIpMsgSettings::setSort2ndGroupingDesc( m_2ndOrderDescButton->isOn() );
 	KIpMsgSettings::setIgnoreCaseAsSingleByte( m_IgnoreCaseSingleByteCheckbox->isChecked() );
 	KIpMsgSettings::setPriorityMultiBytes( m_PriorityMultiBytesCheckbox->isChecked() );
+	KIpMsgSettings::writeConfig();
 	if ( senddialog != NULL ) senddialog->refreshHostList();
 }
 
