@@ -41,6 +41,7 @@
 #include <knotifyclient.h>
 #include <time.h>
 #include <stdlib.h>
+#include <ctype.h>
 
 #include "kipmsgwidget.h"
 #include "senddialog.h"
@@ -54,6 +55,114 @@
 #include "openconfirm.h"
 
 #define POLLING_INTERVAL_MSEC 500
+
+class KIpMsgHostListComparator: public HostListComparator{
+	public:
+		virtual int compare( vector<HostListItem>::iterator host1, vector<HostListItem>::iterator host2 ){
+			int ret = 0;
+			if ( KIpMsgSettings::sortUserName() ){
+				ret = strCompare( host1->Nickname().c_str(), host2->Nickname().c_str() );
+			} else if ( KIpMsgSettings::sortIpAddress() ) {
+				ret = ipCompare( host1->IpAddress().c_str(), host2->IpAddress().c_str() );
+			} else if ( KIpMsgSettings::sortHostName() ) {
+				ret = strCompare( host1->HostName().c_str(), host2->HostName().c_str() );
+			}
+			if ( KIpMsgSettings::sort2ndGroupingDesc() ) {
+				ret *= -1;
+			}
+			if ( KIpMsgSettings::sortGroupName() ){
+				int retGroup = strCompare( host1->GroupName().c_str(), host2->GroupName().c_str() );
+				//反転設定の場合は評価を逆転する
+				if ( KIpMsgSettings::sort1stGroupingDesc() ){
+					retGroup *= -1;
+				}
+				if ( retGroup != 0 ) {
+					ret = retGroup;
+				}
+			}
+			printf("compare:ret=%d\n", ret);
+			return ret;
+		};
+	private:
+		int ipCompare( const char *s1, const char *s2 ){
+printf("hip1[%s]hip2[%s]\n", s1, s2 );
+			in_addr_t hip1 = inet_addr( s1 );
+			in_addr_t hip2 = inet_addr( s2 );
+			if ( hip1 == hip2 ){
+				return 0;
+			} else if ( hip1 < hip2 ){
+				return -1;
+			} else {
+				return 1;
+			}
+			return 0;
+		}
+		int strCompare( const char *s1, const char *s2 ){
+			char *p1 = (char *)(s1);
+			char *p2 = (char *)(s2);
+
+			if ( *p1 == '\0' && *p2 != '\0' ){
+				return -1;
+			}
+			if ( *p1 != '\0' && *p2 == '\0' ){
+				return 1;
+			}
+			if ( !KIpMsgSettings::priorityMultiBytes() && !KIpMsgSettings::ignoreCaseAsSingleByte() ){
+printf("strcmp([%s],[%s])==[%d]\n", s1, s2, strcmp(s1, s2 ) );
+				return strcmp( s1, s2 );
+			} else if ( !KIpMsgSettings::priorityMultiBytes() && KIpMsgSettings::ignoreCaseAsSingleByte() ){
+printf("strcasecmp([%s],[%s])==[%d]\n", s1, s2, strcasecmp(s1, s2 ) );
+				return strcasecmp( s1, s2 );
+			} else if ( KIpMsgSettings::priorityMultiBytes() && !KIpMsgSettings::ignoreCaseAsSingleByte() ){
+				while( *p1 != '\0' && *p2 != '\0' ) {
+					//おそらくp1がマルチバイト文字
+					if ( !isprint( *p1 ) && isprint( *p2 ) ) {
+printf("strcmpのつもりでマルチバイト優先([%s],[%s])==[1]\n", s1, s2 );
+						return -1;
+					//おそらくp2がマルチバイト文字
+					} else if ( isprint( *p1 ) && !isprint( *p2 ) ) {
+printf("strcmpのつもりでマルチバイト優先([%s],[%s])==[-1]\n", s1, s2 );
+						return 1;
+					}
+					//両方シングルバイト、両方マルチバイトならそのまま比較を続ける。
+					if ( *p1 < *p2 ) {
+printf("strcmpのつもりでマルチバイト優先でもシングルバイト([%s],[%s])==[1]\n", s1, s2 );
+						return -1;
+					} else if ( *p1 < *p2 ) {
+printf("strcmpのつもりでマルチバイト優先でもシングルバイト([%s],[%s])==[-1]\n", s1, s2 );
+						return 1;
+					}
+					p1++;
+					p2++;
+				}
+printf("strcmpのつもりでマルチバイト優先([%s],[%s])==[0]\n", s1, s2 );
+			} else if ( KIpMsgSettings::priorityMultiBytes() && KIpMsgSettings::ignoreCaseAsSingleByte() ){
+				while( *p1 != '\0' && *p2 != '\0' ){
+					//おそらくp1がマルチバイト文字
+					if ( !isprint( *p1 ) && isprint( *p2 ) ) {
+printf("strcasecmpのつもりでマルチバイト優先([%s],[%s])==[1]\n", s1, s2 );
+						return -1;
+					//おそらくp2がマルチバイト文字
+					} else if ( isprint( *p1 ) && !isprint( *p2 ) ) {
+printf("strcasecmpのつもりでマルチバイト優先([%s],[%s])==[-1]\n", s1, s2 );
+						return 1;
+					}
+					//両方シングルバイト、両方マルチバイトならそのまま比較を続ける。
+					if ( toupper( *p1 ) < toupper( *p2 ) ) {
+printf("strcasecmpのつもりでマルチバイト優先でもシングルバイト([%s],[%s])==[1]\n", s1, s2 );
+						return -1;
+					} else if ( toupper( *p1 ) < toupper( *p2 ) ) {
+printf("strcasecmpのつもりでマルチバイト優先でもシングルバイト([%s],[%s])==[-1]\n", s1, s2 );
+						return 1;
+					}
+					p1++;
+					p2++;
+				}
+printf("strcasecmpのつもりでマルチバイト優先([%s],[%s])==[0]\n", s1, s2 );
+			}
+			return 0;
+		};
+};
 
 /**
  * コンストラクタ
@@ -70,6 +179,7 @@ kipmsgWidget::kipmsgWidget(QWidget* parent, const char* name, WFlags fl)
 {
 	IpMsgAgent = IpMessengerAgent::GetInstance();
 	IpMsgAgent->SetEventObject( new KIpMsgEvent() );
+	IpMsgAgent->SetSortHostListComparator( new KIpMsgHostListComparator() );
 	IpMsgAgent->SetAbortDownloadAtFileChanged( KIpMsgSettings::notPermitedIfModified() );
 	IpMsgAgent->setIsDialup( KIpMsgSettings::connectDialup() );
 	IpMsgAgent->setSaveRecievedMessage( false );
@@ -280,7 +390,7 @@ void kipmsgWidget::playSound()
  * ・送信画面表示の設定でなければ、送信ダイアログ表示。
  * @param e マウスイベント
  */
-void kipmsgWidget::mouseDoubleClickEvent (QMouseEvent *e)
+void kipmsgWidget::mouseDoubleClickEvent (QMouseEvent * /*e*/)
 {
 	if ( !KIpMsgSettings::openBySingleClick() ) {
 		KIpMsgEvent *evt = dynamic_cast<KIpMsgEvent *>(IpMsgAgent->GetEventObject());
