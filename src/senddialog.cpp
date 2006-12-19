@@ -72,6 +72,7 @@ class KIpMsgHostListViewItem : public QListViewItem {
     HostListItem host(){ return m_host; }
 };
 
+
 /**
  * ファイル名コンバータのネットワークエンコーディングからファイルシステムエンコーディングへの変換メソッド。
  * @param ネットワークエンコーディングのファイル名
@@ -183,6 +184,7 @@ SendDialog::SendDialog(QWidget* parent, const char* name, WFlags fl)
 
 	m_MessageEditbox->setAcceptDrops( TRUE );
 
+	m_HostListView->setSortColumn( ColumnMax );
 	m_HostListView->setFont( KIpMsgSettings::listFont() );
 	m_MessageEditbox->setFont( KIpMsgSettings::editFont() );
 
@@ -370,7 +372,7 @@ const char *decodeUrl( string url )
 {
 	string ret;
 	char hex[3];
-	for( int i = 0 ; i < url.size(); ){
+	for( unsigned int i = 0 ; i < url.size(); ){
 		int c = url.at( i );
 		if ( c == '%' ) {
 			memset( hex, 0, sizeof( hex ) );
@@ -418,7 +420,6 @@ void SendDialog::dropEvent(QDropEvent *e)
  * ・URLの先頭が"file://"以外は受け付けない。CR+LFで複数ファイルが区切られることが有る。
  */
 void SendDialog::addDnDFiles(QString fileUrl){
-	QTextCodec *fsCodec = QTextCodec::codecForName( KIpMsgSettings::localFilesystemEncoding() );
 	QStringList dropFileList = QStringList::split("\r\n", fileUrl.data() );
 	QString dropFileNames;
 	bool isDropObjectNotAFile = false;
@@ -594,6 +595,7 @@ void SendDialog::refreshHostList( bool isUpdate )
 	m_HostListView->addColumn(tr2i18n("RSA Public Key"), 0 );
 
 	//ヘッダー順序を設定
+	m_HostListView->setSortColumn( ColumnMax );
 	QHeader *header = m_HostListView->header();
 	header->moveSection( ColumnUser, KIpMsgSettings::userNameColumnIndex() );
 	header->moveSection( ColumnGroup, KIpMsgSettings::groupNameColumnIndex() );
@@ -668,6 +670,7 @@ void SendDialog::refreshHostList( bool isUpdate )
 			ix->setPriority( "-" );
 		}
 		if ( ix->Priority() != "X" || sortPopup->isItemChecked( showHiddenMenuId ) ) {
+printf("Added host = [%s]\n", ix->IpAddress().c_str() );
 			KIpMsgHostListViewItem *item = new KIpMsgHostListViewItem( m_HostListView, codec, *ix );
 			if ( ix->IsAbsence() ) {
 				if ( ix->IsFileAttachSupport() && !ix->IsEncryptSupport() ){
@@ -1187,7 +1190,7 @@ void SendDialog::slotViewDetailConfigurationClicked()
 /**
  * ホストリストでのコンテキストメニュー表示要求。
  */
-void SendDialog::slotListContextMenuRequested( QListViewItem *item, const QPoint &pos, int col )
+void SendDialog::slotListContextMenuRequested( QListViewItem * /*item*/, const QPoint & /*pos*/, int /* col */ )
 {
 	setMenuStatus();
 	sendPopup->popup( QCursor::pos() );
