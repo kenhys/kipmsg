@@ -83,6 +83,7 @@ public:
 		ColumnEncryptionCapacity,
 		ColumnRsaMethod,
 		ColumnRsaPublicKey,
+		ColumnMax=99,
 	};
 			
 public slots:
