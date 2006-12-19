@@ -294,6 +294,10 @@ void RecieveDialog::slotReplyClicked()
 			QString quotePart = *quote;
 			for( unsigned int i=0; i < quotePart.length();i++){
 				//&nbsp;なら空白に
+				printf( "%%ld=%ld\n", quotePart.at( i ).latin1() );
+				printf( "%%d =%d\n" , quotePart.at( i ).latin1() );
+				printf( "%%c =%c\n" , quotePart.at( i ).latin1() );
+				fflush( stdout );
 				if ( quotePart.at( i ).latin1() == 0xffffffa0 ) {
 					quoteStr.append( " " );
 				} else {
@@ -400,7 +404,7 @@ void RecieveDialog::resizeEvent( QResizeEvent *e )
  *	リサイズ実行
  * @param e リサイズイベント
  */
-void RecieveDialog::doResize( QResizeEvent *e )
+void RecieveDialog::doResize( QResizeEvent * /*e*/ )
 {
 	char buf[30];
 
