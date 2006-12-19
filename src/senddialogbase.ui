@@ -80,9 +80,12 @@
                     </size>
                 </property>
                 <property name="selectionMode" stdset="0">
-                    <enum>Multi</enum>
+                    <enum>Extended</enum>
                 </property>
                 <property name="allColumnsShowFocus">
+                    <bool>true</bool>
+                </property>
+                <property name="showSortIndicator">
                     <bool>true</bool>
                 </property>
                 <property name="rootIsDecorated">
