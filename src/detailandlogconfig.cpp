@@ -112,7 +112,7 @@ void KIPMsgDetailConfigDialog::slotIconClicked()
  * アイコン変更イベント
  * ・アイコンを表示する。
  */
-void KIPMsgDetailConfigDialog::slotIconNameChanged(const QString &text){
+void KIPMsgDetailConfigDialog::slotIconNameChanged(const QString & /*text*/){
 	loadNormalIcon( m_IconFileNameEditbox->text() );
 }
 
@@ -149,7 +149,7 @@ void KIPMsgDetailConfigDialog::slotAbsenceIconClicked()
  * 不在アイコン変更イベント
  * ・不在アイコンを表示する。
  */
-void KIPMsgDetailConfigDialog::slotAbsenceIconNameChanged(const QString &text){
+void KIPMsgDetailConfigDialog::slotAbsenceIconNameChanged(const QString & /*text*/){
 	loadAbsenceIcon( m_AbsenceIconFileNameEditbox->text() );
 }
 

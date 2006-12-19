@@ -160,7 +160,7 @@ void KIPMsgEncodingConfigDialog::slotHostSelected( QListViewItem *item )
  * ・指定されたエンコーディングをホストリストに設定する。
  * ・指定されたエンコーディングでホストの項目（ユーザ名／グループ名）を再表示する。
  */
-void KIPMsgEncodingConfigDialog::slotEncodingComboChanged(int index)
+void KIPMsgEncodingConfigDialog::slotEncodingComboChanged(int /*index*/)
 {
 	string userName;
 	string groupName;

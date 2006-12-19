@@ -36,7 +36,7 @@
  * @param hostList ホストリスト
  */
 void
-KIpMsgEvent::UpdateHostListAfter( HostList& hostList ){
+KIpMsgEvent::UpdateHostListAfter( HostList& /*hostList*/ ){
 	QPtrListIterator<SendDialog> sendIt(sendDialogs);
 	SendDialog *sendDlg;
 	while( ( sendDlg = sendIt.current() ) != 0 ) {
@@ -78,7 +78,7 @@ KIpMsgEvent::RecieveAfter( RecievedMessage& msg ){
  * @param msg メッセージ
  */
 void
-KIpMsgEvent::SendAfter( SentMessage& msg ){
+KIpMsgEvent::SendAfter( SentMessage& /*msg*/ ){
 	printf("SendAfter KIPMSG\n");
 }
 
@@ -88,7 +88,7 @@ KIpMsgEvent::SendAfter( SentMessage& msg ){
  * @param msg メッセージ
  */
 void
-KIpMsgEvent::SendRetryError( SentMessage& msg ){
+KIpMsgEvent::SendRetryError( SentMessage& /*msg*/ ){
 	printf("SendRetryError KIPMSG\n");
 }
 
@@ -145,7 +145,7 @@ KIpMsgEvent::OpenAfter( SentMessage& msg ){
  * @param data 付加データ
  */
 void
-KIpMsgEvent::DownloadStart( RecievedMessage& msg, AttachFile& file, DownloadInfo& info, void *data ){
+KIpMsgEvent::DownloadStart( RecievedMessage& /*msg*/, AttachFile& /*file*/, DownloadInfo& /*info*/, void * /*data*/ ){
 	printf("DownloadStart KIPMSG\n");
 }
 
@@ -158,7 +158,7 @@ KIpMsgEvent::DownloadStart( RecievedMessage& msg, AttachFile& file, DownloadInfo
  * @param data 付加データ
  */
 void
-KIpMsgEvent::DownloadProcessing( RecievedMessage& msg, AttachFile& file, DownloadInfo& info, void *data ){
+KIpMsgEvent::DownloadProcessing( RecievedMessage& /*msg*/, AttachFile& /*file*/, DownloadInfo& /*info*/, void * /*data*/ ){
 	printf("DownloadProcessing KIPMSG\n");
 }
 
@@ -191,7 +191,7 @@ KIpMsgEvent::DownloadEnd( RecievedMessage& msg, AttachFile& file, DownloadInfo& 
  * @param data 付加データ
  */
 bool
-KIpMsgEvent::DownloadError( RecievedMessage& msg, AttachFile& file, DownloadInfo& info, void *data ){
+KIpMsgEvent::DownloadError( RecievedMessage& /*msg*/, AttachFile& /*file*/, DownloadInfo& info, void *data ){
 	RecieveDialog *recvDlg = static_cast<RecieveDialog *>(data);
 	DownloadErrorDialog *dlg = new DownloadErrorDialog(recvDlg, 0, TRUE);
 	dlg->setDownloadInfo( info );
@@ -208,7 +208,7 @@ KIpMsgEvent::DownloadError( RecievedMessage& msg, AttachFile& file, DownloadInfo
  * @param hostList ホストリスト
  */
 void
-KIpMsgEvent::EntryAfter( HostList& hostList ){
+KIpMsgEvent::EntryAfter( HostList& /*hostList*/ ){
 	QPtrListIterator<SendDialog> sendIt(sendDialogs);
 	SendDialog *sendDlg;
 	while( ( sendDlg = sendIt.current() ) != 0 ) {
@@ -226,7 +226,7 @@ KIpMsgEvent::EntryAfter( HostList& hostList ){
  * @param hostList ホストリスト
  */
 void
-KIpMsgEvent::ExitAfter( HostList& hostList ){
+KIpMsgEvent::ExitAfter( HostList& /*hostList*/ ){
 	QPtrListIterator<SendDialog> sendIt(sendDialogs);
 	SendDialog *sendDlg;
 	while( ( sendDlg = sendIt.current() ) != 0 ) {
