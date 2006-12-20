@@ -34,7 +34,7 @@
 #include <kstandarddirs.h>
 #include <kservice.h>
 #include <krun.h>
-#include <kaudioplayer.h>
+#include <kprocess.h>
 #include <kpopupmenu.h>
 #include <klocale.h>
 #include <kiconloader.h>
@@ -382,7 +382,10 @@ void kipmsgWidget::playSound()
 	if ( soundFile == "" ) {
 		KNotifyClient::beep();
 	} else {
-		KAudioPlayer::play( soundFile );
+		KProcess recv;
+		recv << "artsplay";
+		recv << soundFile;
+		recv.start(KProcess::DontCare);
 	}
 }
 

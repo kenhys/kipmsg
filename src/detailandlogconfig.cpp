@@ -23,7 +23,7 @@
 #include <qcheckbox.h>
 #include <klineedit.h>
 #include <knotifyclient.h>
-#include <kaudioplayer.h>
+#include <kprocess.h>
 #include <klocale.h>
 #include <kfiledialog.h>
 
@@ -91,7 +91,10 @@ void KIPMsgDetailConfigDialog::slotPlaySoundClicked()
 	if ( soundFile == "" ) {
 		KNotifyClient::beep();
 	} else {
-		KAudioPlayer::play( soundFile );
+		KProcess test;
+		test << "artsplay";
+		test << soundFile;
+		test.start(KProcess::DontCare);
 	}
 }
 
