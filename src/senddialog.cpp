@@ -670,7 +670,6 @@ void SendDialog::refreshHostList( bool isUpdate )
 			ix->setPriority( "-" );
 		}
 		if ( ix->Priority() != "X" || sortPopup->isItemChecked( showHiddenMenuId ) ) {
-printf("Added host = [%s]\n", ix->IpAddress().c_str() );
 			KIpMsgHostListViewItem *item = new KIpMsgHostListViewItem( m_HostListView, codec, *ix );
 			if ( ix->IsAbsence() ) {
 				if ( ix->IsFileAttachSupport() && !ix->IsEncryptSupport() ){
