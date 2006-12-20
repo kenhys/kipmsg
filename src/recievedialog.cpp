@@ -281,10 +281,13 @@ void RecieveDialog::slotEncodingChange( int index )
 void RecieveDialog::slotReplyClicked()
 {
     SendDialog *send = new SendDialog();
+	//引用チェック済
 	if ( m_QuoteCheckbox->isChecked() ) {
+		//選択範囲があるなら選択範囲を引用の対象に。選択範囲が無いなら全てを引用の対象にする。
 		if ( !m_RecievedMessageHTMLPart->hasSelection() ) {
 			m_RecievedMessageHTMLPart->selectAll();
 		}
+		//引用文字を行頭に付加する。(改行文字で分割)
 		QStringList RecvMsg = QStringList::split("\n", m_RecievedMessageHTMLPart->selectedText() );
 		QString quoteStr;
 		QString quoteChar = KIpMsgSettings::quoteChar();
@@ -293,12 +296,8 @@ void RecieveDialog::slotReplyClicked()
 			quoteStr.append(  " " );
 			QString quotePart = *quote;
 			for( unsigned int i=0; i < quotePart.length();i++){
-				//&nbsp;なら空白に
-				printf( "%%ld=%ld\n", quotePart.at( i ).latin1() );
-				printf( "%%d =%d\n" , quotePart.at( i ).latin1() );
-				printf( "%%c =%c\n" , quotePart.at( i ).latin1() );
-				fflush( stdout );
-				if ( quotePart.at( i ).latin1() == 0xffffffa0 ) {
+				//&nbsp;なら空白に(KHTMLで&nbsp;は -96 (0xffffffa0)が戻ってくるらしいので化けてしまう。空白に無理矢理変換)
+				if ( ( unsigned int )quotePart.at( i ).latin1() == 0xffffffa0U ) {
 					quoteStr.append( " " );
 				} else {
 					quoteStr.append( quotePart.at( i ) );
@@ -306,8 +305,10 @@ void RecieveDialog::slotReplyClicked()
 			}
 			quoteStr.append( "\n" );
 		}
+		//送信ダイアログに設定
 		send->setMessageText( quoteStr );
 	}
+	//ホストリストを選択。
 	QString IpAddr = msg.Host().IpAddress().c_str();
 	QListViewItemIterator its( send->m_HostListView );
 	while ( its.current() != NULL ) {
@@ -319,7 +320,9 @@ void RecieveDialog::slotReplyClicked()
 		}
 		++its;
 	}
+	//送信ダイアログから受信ダイアログを閉じるので教えてあげる。
 	send->setRecieveDialog( this );
+	//送信ダイアログを表示。
     send->show();
 }
 
