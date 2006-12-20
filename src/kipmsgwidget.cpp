@@ -56,6 +56,10 @@
 
 #define POLLING_INTERVAL_MSEC 500
 
+/**
+ * IP Messnger for KDE用のソート比較オブジェクト
+ * ・設定によりソート順序を操作する。
+ */
 class KIpMsgHostListComparator: public HostListComparator{
 	public:
 		virtual int compare( vector<HostListItem>::iterator host1, vector<HostListItem>::iterator host2 ){
@@ -80,12 +84,16 @@ class KIpMsgHostListComparator: public HostListComparator{
 					ret = retGroup;
 				}
 			}
-			printf("compare:ret=%d\n", ret);
 			return ret;
 		};
 	private:
+		/**
+		 * IPアドレスの比較
+		 * @param s1 IPアドレスの文字列表現1
+		 * @param s2 IPアドレスの文字列表現2
+		 * @retval 0:同じ、1:s1が大きい、-1:s2が大きい。
+		 */
 		int ipCompare( const char *s1, const char *s2 ){
-printf("hip1[%s]hip2[%s]\n", s1, s2 );
 			in_addr_t hip1 = inet_addr( s1 );
 			in_addr_t hip2 = inet_addr( s2 );
 			if ( hip1 == hip2 ){
@@ -97,6 +105,12 @@ printf("hip1[%s]hip2[%s]\n", s1, s2 );
 			}
 			return 0;
 		}
+		/**
+		 * 文字列の比較
+		 * @param s1 文字列1
+		 * @param s2 文字列2
+		 * @retval 0:同じ、1:s1が大きい、-1:s2が大きい。
+		 */
 		int strCompare( const char *s1, const char *s2 ){
 			char *p1 = (char *)(s1);
 			char *p2 = (char *)(s2);
@@ -108,57 +122,45 @@ printf("hip1[%s]hip2[%s]\n", s1, s2 );
 				return 1;
 			}
 			if ( !KIpMsgSettings::priorityMultiBytes() && !KIpMsgSettings::ignoreCaseAsSingleByte() ){
-printf("strcmp([%s],[%s])==[%d]\n", s1, s2, strcmp(s1, s2 ) );
 				return strcmp( s1, s2 );
 			} else if ( !KIpMsgSettings::priorityMultiBytes() && KIpMsgSettings::ignoreCaseAsSingleByte() ){
-printf("strcasecmp([%s],[%s])==[%d]\n", s1, s2, strcasecmp(s1, s2 ) );
 				return strcasecmp( s1, s2 );
 			} else if ( KIpMsgSettings::priorityMultiBytes() && !KIpMsgSettings::ignoreCaseAsSingleByte() ){
 				while( *p1 != '\0' && *p2 != '\0' ) {
-					//おそらくp1がマルチバイト文字
+					//おそらくp1がマルチバイト文字(ダメなやりかた)
 					if ( !isprint( *p1 ) && isprint( *p2 ) ) {
-printf("strcmpのつもりでマルチバイト優先([%s],[%s])==[1]\n", s1, s2 );
 						return -1;
-					//おそらくp2がマルチバイト文字
+					//おそらくp2がマルチバイト文字(ダメなやりかた)
 					} else if ( isprint( *p1 ) && !isprint( *p2 ) ) {
-printf("strcmpのつもりでマルチバイト優先([%s],[%s])==[-1]\n", s1, s2 );
 						return 1;
 					}
 					//両方シングルバイト、両方マルチバイトならそのまま比較を続ける。
 					if ( *p1 < *p2 ) {
-printf("strcmpのつもりでマルチバイト優先でもシングルバイト([%s],[%s])==[1]\n", s1, s2 );
 						return -1;
 					} else if ( *p1 < *p2 ) {
-printf("strcmpのつもりでマルチバイト優先でもシングルバイト([%s],[%s])==[-1]\n", s1, s2 );
 						return 1;
 					}
 					p1++;
 					p2++;
 				}
-printf("strcmpのつもりでマルチバイト優先([%s],[%s])==[0]\n", s1, s2 );
 			} else if ( KIpMsgSettings::priorityMultiBytes() && KIpMsgSettings::ignoreCaseAsSingleByte() ){
 				while( *p1 != '\0' && *p2 != '\0' ){
-					//おそらくp1がマルチバイト文字
+					//おそらくp1がマルチバイト文字(ダメなやりかた)
 					if ( !isprint( *p1 ) && isprint( *p2 ) ) {
-printf("strcasecmpのつもりでマルチバイト優先([%s],[%s])==[1]\n", s1, s2 );
 						return -1;
-					//おそらくp2がマルチバイト文字
+					//おそらくp2がマルチバイト文字(ダメなやりかた)
 					} else if ( isprint( *p1 ) && !isprint( *p2 ) ) {
-printf("strcasecmpのつもりでマルチバイト優先([%s],[%s])==[-1]\n", s1, s2 );
 						return 1;
 					}
 					//両方シングルバイト、両方マルチバイトならそのまま比較を続ける。
 					if ( toupper( *p1 ) < toupper( *p2 ) ) {
-printf("strcasecmpのつもりでマルチバイト優先でもシングルバイト([%s],[%s])==[1]\n", s1, s2 );
 						return -1;
 					} else if ( toupper( *p1 ) < toupper( *p2 ) ) {
-printf("strcasecmpのつもりでマルチバイト優先でもシングルバイト([%s],[%s])==[-1]\n", s1, s2 );
 						return 1;
 					}
 					p1++;
 					p2++;
 				}
-printf("strcasecmpのつもりでマルチバイト優先([%s],[%s])==[0]\n", s1, s2 );
 			}
 			return 0;
 		};
