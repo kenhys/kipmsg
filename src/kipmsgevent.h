@@ -33,10 +33,10 @@
 class KIpMsgEvent: public IpMessengerEvent {
 	public:
 		virtual void UpdateHostListAfter( HostList& hostList );
-		virtual void GetHostListRetryError();
+		virtual bool GetHostListRetryError();
 		virtual bool RecieveAfter( RecievedMessage& msg );
 		virtual void SendAfter( SentMessage& msg );
-		virtual void SendRetryError( SentMessage& msg );
+		virtual bool SendRetryError( SentMessage& msg );
 		virtual void OpenAfter( SentMessage& msg );
 		virtual void DownloadStart( RecievedMessage& msg, AttachFile& file, DownloadInfo& info, void *data );
 		virtual void DownloadProcessing( RecievedMessage& msg, AttachFile& file, DownloadInfo& info, void *data );

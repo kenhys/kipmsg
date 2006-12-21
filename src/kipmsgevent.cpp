@@ -19,6 +19,8 @@
  ***************************************************************************/
 
 
+#include <kmessagebox.h>
+#include <klocale.h>
 #include <kwin.h>
 #include <qtextcodec.h>
 #include <qlabel.h>
@@ -51,9 +53,10 @@ KIpMsgEvent::UpdateHostListAfter( HostList& /*hostList*/ ){
  * ホストリスト更新リトライエラーイベント
  * ・特にすること無し。
  */
-void
+bool
 KIpMsgEvent::GetHostListRetryError(){
 	printf("GetHostListRetryError KIPMSG\n");
+	return false;
 }
 
 /**
@@ -87,9 +90,25 @@ KIpMsgEvent::SendAfter( SentMessage& /*msg*/ ){
  * ・特にすること無し。
  * @param msg メッセージ
  */
-void
-KIpMsgEvent::SendRetryError( SentMessage& /*msg*/ ){
-	printf("SendRetryError KIPMSG\n");
+bool
+KIpMsgEvent::SendRetryError( SentMessage& msg ){
+	QString toName = "";
+	if ( msg.Host().GroupName() != "" ) {
+		toName = string( msg.Host().Nickname() + "(" + msg.Host().GroupName() + "/" + msg.Host().HostName() + ")" ).c_str();
+	} else {
+		toName = string( msg.Host().Nickname() + "(" + msg.Host().HostName() + ")" ).c_str();
+	}
+	if ( msg.Host().EncodingName() != "" ){
+		QTextCodec *codec = QTextCodec::codecForName( msg.Host().EncodingName().c_str() );
+		if ( codec != NULL ){
+			toName = codec->toUnicode( toName );
+		}
+	}
+
+	if ( KMessageBox::warningContinueCancel( 0, QString( tr2i18n("Can't send to %1.\nDoes it Retry?") ).arg( toName ) ) == KMessageBox::Continue ){
+		return false;
+	}
+	return true;
 }
 
 /**
