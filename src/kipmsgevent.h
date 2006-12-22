@@ -44,6 +44,7 @@ class KIpMsgEvent: public IpMessengerEvent {
 		virtual bool DownloadError( RecievedMessage& msg, AttachFile& file, DownloadInfo& info, void *data );
 		virtual void EntryAfter( HostList& hostList );
 		virtual void ExitAfter( HostList& hostList );
+		virtual void AbsenceModeChangeAfter( HostList& hostList );
 
 		void ShowSendDlg();
 		void ShowHiddenRecieveMsg();
@@ -54,6 +55,7 @@ class KIpMsgEvent: public IpMessengerEvent {
 		QPtrList<RecieveDialog>& GetRecieveDialogs();
 		QPtrList<SendDialog>& GetSendDialogs();
 	private:
+		void RefreshHostListInAllSendDlg();
 		void ShowRecieveMsg( RecievedMessage& msg );
 		QPtrList<SendDialog> sendDialogs;
 		QPtrList<RecieveDialog> recieveDialogs;

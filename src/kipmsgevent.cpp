@@ -33,12 +33,13 @@
 
 /**
  * ホストリスト更新後イベント
- * ・全ての送信ウインドウのホストリストをネットワークから再取得しないで、
- *   エージェント内のホストリストでリフレッシュする
+ * ・全ての送信ウインドウのホストリストを更新する
  * @param hostList ホストリスト
  */
 void
 KIpMsgEvent::UpdateHostListAfter( HostList& /*hostList*/ ){
+	RefreshHostListInAllSendDlg();
+#if 0
 	QPtrListIterator<SendDialog> sendIt(sendDialogs);
 	SendDialog *sendDlg;
 	while( ( sendDlg = sendIt.current() ) != 0 ) {
@@ -47,6 +48,7 @@ KIpMsgEvent::UpdateHostListAfter( HostList& /*hostList*/ ){
 		}
 		++sendIt;
 	}
+#endif
 }
 
 /**
@@ -222,12 +224,13 @@ KIpMsgEvent::DownloadError( RecievedMessage& /*msg*/, AttachFile& /*file*/, Down
 
 /**
  * 参加通知後イベント
- * ・全ての送信ウインドウのホストリストをネットワークから再取得しないで、
- *   エージェント内のホストリストでリフレッシュする
+ * ・全ての送信ウインドウのホストリストを更新する
  * @param hostList ホストリスト
  */
 void
 KIpMsgEvent::EntryAfter( HostList& /*hostList*/ ){
+	RefreshHostListInAllSendDlg();
+#if 0
 	QPtrListIterator<SendDialog> sendIt(sendDialogs);
 	SendDialog *sendDlg;
 	while( ( sendDlg = sendIt.current() ) != 0 ) {
@@ -236,16 +239,49 @@ KIpMsgEvent::EntryAfter( HostList& /*hostList*/ ){
 		}
 		++sendIt;
 	}
+#endif
 }
 
 /**
  * 脱退通知後イベント
- * ・全ての送信ウインドウのホストリストをネットワークから再取得しないで、
- *   エージェント内のホストリストでリフレッシュする
+ * ・全ての送信ウインドウのホストリストを更新する
  * @param hostList ホストリスト
  */
 void
 KIpMsgEvent::ExitAfter( HostList& /*hostList*/ ){
+	RefreshHostListInAllSendDlg();
+#if 0
+	QPtrListIterator<SendDialog> sendIt(sendDialogs);
+	SendDialog *sendDlg;
+	while( ( sendDlg = sendIt.current() ) != 0 ) {
+		if ( sendDlg->isShown() ) {
+			sendDlg->refreshHostList( false );
+		}
+		++sendIt;
+	}
+#endif
+}
+
+/**
+ * 不在モード変更後イベント
+ * ・全ての送信ウインドウのホストリストを更新する
+ * @param hostList ホストリスト
+ */
+void
+KIpMsgEvent::AbsenceModeChangeAfter( HostList& /*hostList*/ )
+{
+	RefreshHostListInAllSendDlg();
+}
+//Original Methods
+
+/**
+ * 全ての送信ダイアログのホストリストを更新する。
+ * ・全ての送信ウインドウのホストリストをネットワークから再取得しないで、
+ *   エージェント内のホストリストでリフレッシュする
+ */
+void 
+KIpMsgEvent::RefreshHostListInAllSendDlg()
+{
 	QPtrListIterator<SendDialog> sendIt(sendDialogs);
 	SendDialog *sendDlg;
 	while( ( sendDlg = sendIt.current() ) != 0 ) {
@@ -255,9 +291,6 @@ KIpMsgEvent::ExitAfter( HostList& /*hostList*/ ){
 		++sendIt;
 	}
 }
-
-//Original Methods
-
 /**
  * 受信ダイアログ一覧取得
  * ・受信ダイアログリストを返す。
