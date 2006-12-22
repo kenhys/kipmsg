@@ -480,7 +480,7 @@ void kipmsgWidget::slotAboutClicked()
  */
 void kipmsgWidget::slotViewLogClicked()
 {
-	KRun::run( "kwrite", QStringList( KIpMsgSettings::logFileName()));
+	KRun::run( "kwrite --encoding utf8", QStringList( KIpMsgSettings::logFileName() ) );
 }
 
 /**
