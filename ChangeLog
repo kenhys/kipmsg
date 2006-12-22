@@ -1,6 +1,9 @@
 2006-12-22 Niki, Kuninobu <nikikuni@yahoo.co.jp>
 - Update:Add AbsenceModeChangeAfter event.
+- Update:Deleted #ifdef 0
 - Fix:Icon width.
+- Fix:Send Retry Error condition miss,case of continue.
+- Fix:Comments.
 
 2006-12-21 Niki, Kuninobu <nikikuni@yahoo.co.jp>
 - Update:Send Retry Error Implimentation.

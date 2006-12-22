@@ -39,25 +39,17 @@
 void
 KIpMsgEvent::UpdateHostListAfter( HostList& /*hostList*/ ){
 	RefreshHostListInAllSendDlg();
-#if 0
-	QPtrListIterator<SendDialog> sendIt(sendDialogs);
-	SendDialog *sendDlg;
-	while( ( sendDlg = sendIt.current() ) != 0 ) {
-		if ( sendDlg->isShown() ) {
-			sendDlg->refreshHostList( false );
-		}
-		++sendIt;
-	}
-#endif
 }
 
 /**
  * ホストリスト更新リトライエラーイベント
  * ・特にすること無し。
+ * @retval true:継続、false:中断
  */
 bool
 KIpMsgEvent::GetHostListRetryError(){
 	printf("GetHostListRetryError KIPMSG\n");
+	//継続しないのでFalseをリターン
 	return false;
 }
 
@@ -91,6 +83,7 @@ KIpMsgEvent::SendAfter( SentMessage& /*msg*/ ){
  * 送信リトライエラーイベント
  * ・特にすること無し。
  * @param msg メッセージ
+ * @retval true:継続、false:中断
  */
 bool
 KIpMsgEvent::SendRetryError( SentMessage& msg ){
@@ -108,9 +101,9 @@ KIpMsgEvent::SendRetryError( SentMessage& msg ){
 	}
 
 	if ( KMessageBox::warningContinueCancel( 0, QString( tr2i18n("Can't send to %1.\nDoes it Retry?") ).arg( toName ) ) == KMessageBox::Continue ){
-		return false;
+		return true;
 	}
-	return true;
+	return false;
 }
 
 /**
@@ -230,16 +223,6 @@ KIpMsgEvent::DownloadError( RecievedMessage& /*msg*/, AttachFile& /*file*/, Down
 void
 KIpMsgEvent::EntryAfter( HostList& /*hostList*/ ){
 	RefreshHostListInAllSendDlg();
-#if 0
-	QPtrListIterator<SendDialog> sendIt(sendDialogs);
-	SendDialog *sendDlg;
-	while( ( sendDlg = sendIt.current() ) != 0 ) {
-		if ( sendDlg->isShown() ) {
-			sendDlg->refreshHostList( false );
-		}
-		++sendIt;
-	}
-#endif
 }
 
 /**
@@ -250,16 +233,6 @@ KIpMsgEvent::EntryAfter( HostList& /*hostList*/ ){
 void
 KIpMsgEvent::ExitAfter( HostList& /*hostList*/ ){
 	RefreshHostListInAllSendDlg();
-#if 0
-	QPtrListIterator<SendDialog> sendIt(sendDialogs);
-	SendDialog *sendDlg;
-	while( ( sendDlg = sendIt.current() ) != 0 ) {
-		if ( sendDlg->isShown() ) {
-			sendDlg->refreshHostList( false );
-		}
-		++sendIt;
-	}
-#endif
 }
 
 /**
