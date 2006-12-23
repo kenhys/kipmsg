@@ -115,6 +115,8 @@ public slots:
     virtual void slotEncodingSelect(int);
     virtual void slotEncodingConfigClicked();
     virtual void slotAttacheFileListButtonClicked();
+	virtual void slotGetVersionInfoClicked();
+	virtual void slotGetAbsenceInfoClicked();
 
 protected:
     /*$PROTECTED_FUNCTIONS$*/
@@ -145,6 +147,8 @@ private:
 	int showHiddenMenuId;
 	int fixizePositionMenuId;
 	int saveSizeMenuId;
+	int getVersionInfoMenuId;
+	int getAbsenceInfoMenuId;
 	QIntDict<QString> groupMenuIdList;
 	QIntDict<QString> encodingMenuIdList;
 	AttachFileList attachFileList;

@@ -45,6 +45,8 @@ class KIpMsgEvent: public IpMessengerEvent {
 		virtual void EntryAfter( HostList& hostList );
 		virtual void ExitAfter( HostList& hostList );
 		virtual void AbsenceModeChangeAfter( HostList& hostList );
+		virtual void VersionInfoRecieveAfter( HostListItem &host, string version );
+		virtual void AbsenceDetailRecieveAfter( HostListItem &host, string absenceDetail );
 
 		void ShowSendDlg();
 		void ShowHiddenRecieveMsg();
@@ -55,6 +57,7 @@ class KIpMsgEvent: public IpMessengerEvent {
 		QPtrList<RecieveDialog>& GetRecieveDialogs();
 		QPtrList<SendDialog>& GetSendDialogs();
 	private:
+		void GetHostEncodingFromConfig( HostListItem &host );
 		void RefreshHostListInAllSendDlg();
 		void ShowRecieveMsg( RecievedMessage& msg );
 		QPtrList<SendDialog> sendDialogs;

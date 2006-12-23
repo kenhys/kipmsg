@@ -236,6 +236,10 @@ SendDialog::SendDialog(QWidget* parent, const char* name, WFlags fl)
 
 	sendPopup->setItemChecked( fixizePositionMenuId, KIpMsgSettings::sendDialogFixizePosition() );
 
+	getVersionInfoMenuId = sendPopup->insertItem(SmallIcon("kipmsg_about"),tr2i18n("Get version information"), this, SLOT( slotGetVersionInfoClicked( void ) ) );
+	getAbsenceInfoMenuId = sendPopup->insertItem(SmallIcon("kipmsg_rev"),tr2i18n("Get absence information"), this, SLOT( slotGetAbsenceInfoClicked( void ) ) );
+
+
 	if ( KIpMsgSettings::fireIntercept()  ) {
 		m_SendButton->setText(tr2i18n( "Fire") );
 	}
@@ -294,6 +298,8 @@ void SendDialog::setMenuStatus()
 	sortPopup->setItemEnabled( moveToPriority4MenuId, sel_count != 0 );
 	sortPopup->setItemEnabled( moveToDefaultMenuId, sel_count != 0 );
 	sortPopup->setItemEnabled( moveToHiddenMenuId, sel_count != 0 );
+	sendPopup->setItemEnabled( getVersionInfoMenuId, sel_count != 0 );
+	sendPopup->setItemEnabled( getAbsenceInfoMenuId, sel_count != 0 );
 }
 
 /**
@@ -305,7 +311,8 @@ void SendDialog::mousePressEvent( QMouseEvent *e )
 	if(e->button() == RightButton ){
 		setMenuStatus();
 		sendPopup->popup(QCursor::pos() );
-	} else if(e->button() == LeftButton ){
+	} else 
+	if(e->button() == LeftButton ){
 		QRect rectSplitter = m_MainSplitter->geometry();
 		if ( rectSplitter.top() <= e->y() && rectSplitter.bottom() >= e->y() &&
 			rectSplitter.left() <= e->x() && rectSplitter.right() >= e->x() ) {
@@ -1203,6 +1210,42 @@ void SendDialog::slotEncodingConfigClicked()
 	KIPMsgEncodingConfigDialog *encconfig = new KIPMsgEncodingConfigDialog(this,0,TRUE);
 	encconfig->exec();
 	refreshHostList();
+}
+
+/**
+ * バージョン情報取得。
+ */
+void SendDialog::slotGetVersionInfoClicked()
+{
+	//選択中のホストを送信対象ホストリストに追加する。
+	QListViewItemIterator it( m_HostListView );
+	while ( it.current() != NULL ) {
+		KIpMsgHostListViewItem *item = dynamic_cast<KIpMsgHostListViewItem *>(it.current());
+		if ( item != NULL && item->isSelected() ) {
+			//ホストリストはHostListViewItemから取得できる。
+			HostListItem host = item->host();
+			host.QueryVersionInfo();
+		}
+		++it;
+	}
+}
+
+/**
+ * 不在情報取得。
+ */
+void SendDialog::slotGetAbsenceInfoClicked()
+{
+	//選択中のホストを送信対象ホストリストに追加する。
+	QListViewItemIterator it( m_HostListView );
+	while ( it.current() != NULL ) {
+		KIpMsgHostListViewItem *item = dynamic_cast<KIpMsgHostListViewItem *>(it.current());
+		if ( item != NULL && item->isSelected() ) {
+			//ホストリストはHostListViewItemから取得できる。
+			HostListItem host = item->host();
+			host.QueryAbsenceInfo();
+		}
+		++it;
+	}
 }
 
 /**

@@ -209,6 +209,50 @@
     </widget>
     <widget class="QFrame">
         <property name="name">
+            <cstring>m_MessageFrame</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>1</x>
+                <y>207</y>
+                <width>534</width>
+                <height>170</height>
+            </rect>
+        </property>
+        <property name="minimumSize">
+            <size>
+                <width>0</width>
+                <height>140</height>
+            </size>
+        </property>
+        <property name="frameShape">
+            <enum>StyledPanel</enum>
+        </property>
+        <property name="frameShadow">
+            <enum>Raised</enum>
+        </property>
+        <property name="lineWidth">
+            <number>0</number>
+        </property>
+        <widget class="KPushButton">
+            <property name="name">
+                <cstring>m_AttachFileButton</cstring>
+            </property>
+            <property name="geometry">
+                <rect>
+                    <x>0</x>
+                    <y>0</y>
+                    <width>530</width>
+                    <height>30</height>
+                </rect>
+            </property>
+            <property name="text">
+                <string></string>
+            </property>
+        </widget>
+    </widget>
+    <widget class="QFrame">
+        <property name="name">
             <cstring>m_OperationFrame</cstring>
         </property>
         <property name="geometry">
@@ -590,50 +634,6 @@
             </widget>
         </hbox>
     </widget>
-    <widget class="QFrame">
-        <property name="name">
-            <cstring>m_MessageFrame</cstring>
-        </property>
-        <property name="geometry">
-            <rect>
-                <x>1</x>
-                <y>207</y>
-                <width>534</width>
-                <height>170</height>
-            </rect>
-        </property>
-        <property name="minimumSize">
-            <size>
-                <width>0</width>
-                <height>140</height>
-            </size>
-        </property>
-        <property name="frameShape">
-            <enum>StyledPanel</enum>
-        </property>
-        <property name="frameShadow">
-            <enum>Raised</enum>
-        </property>
-        <property name="lineWidth">
-            <number>0</number>
-        </property>
-        <widget class="KPushButton">
-            <property name="name">
-                <cstring>m_AttachFileButton</cstring>
-            </property>
-            <property name="geometry">
-                <rect>
-                    <x>0</x>
-                    <y>0</y>
-                    <width>530</width>
-                    <height>30</height>
-                </rect>
-            </property>
-            <property name="text">
-                <string></string>
-            </property>
-        </widget>
-    </widget>
 </widget>
 <customwidgets>
 </customwidgets>
@@ -703,13 +703,15 @@
     <slot>slotEncodingConfigClicked()</slot>
     <slot>slotAttacheFileListButtonClicked()</slot>
     <slot>slotEncodingChange(int)</slot>
+    <slot>slotGetVersionInfoClicked()</slot>
+    <slot>slotGetAbsenceInfoClicked()</slot>
 </slots>
 <layoutdefaults spacing="6" margin="11"/>
 <includehints>
     <includehint>klistview.h</includehint>
     <includehint>kpushbutton.h</includehint>
-    <includehint>kcombobox.h</includehint>
     <includehint>kpushbutton.h</includehint>
+    <includehint>kcombobox.h</includehint>
     <includehint>kpushbutton.h</includehint>
 </includehints>
 </UI>

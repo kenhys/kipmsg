@@ -24,6 +24,7 @@
 #include <kwin.h>
 #include <qtextcodec.h>
 #include <qlabel.h>
+#include <kmessagebox.h>
 #include "downloadcompletedialog.h"
 #include "downloaderrordialog.h"
 #include "kipmsgevent.h"
@@ -245,7 +246,56 @@ KIpMsgEvent::AbsenceModeChangeAfter( HostList& /*hostList*/ )
 {
 	RefreshHostListInAllSendDlg();
 }
+
+/**
+ * バージョン情報受信後イベント
+ * ・メッセージボックスにバージョン情報を表示する。
+ * @param version バージョン情報
+ */
+void KIpMsgEvent::VersionInfoRecieveAfter( HostListItem &host, string version )
+{
+	GetHostEncodingFromConfig( host );
+	string hostInfo = host.Nickname() + "(" + host.HostName() + ( host.GroupName() == "" ? ")" : "/" + host.GroupName() + ")" );
+	QString msg = ( hostInfo + "\n" + version ).c_str();
+	if ( host.EncodingName() != "" ){
+		QTextCodec *codec = QTextCodec::codecForName( host.EncodingName().c_str() );
+		msg = codec->toUnicode( hostInfo.c_str() ) + "\n" + codec->toUnicode( version.c_str() );
+	}
+	KMessageBox::information( 0, msg );
+}
+
+/**
+ * 不在モード受信後イベント
+ * ・メッセージボックスに不在詳細情報を表示する。
+ * @param absenceDetail 不在詳細情報
+ */
+void KIpMsgEvent::AbsenceDetailRecieveAfter( HostListItem &host, string absenceDetail )
+{
+	GetHostEncodingFromConfig( host );
+	string hostInfo = host.Nickname() + "(" + host.HostName() + ( host.GroupName() == "" ? ")" : "/" + host.GroupName() + ")" );
+	QString msg = ( hostInfo + "\n" + absenceDetail ).c_str();
+	if ( host.EncodingName() != "" ){
+		QTextCodec *codec = QTextCodec::codecForName( host.EncodingName().c_str() );
+		msg = codec->toUnicode( hostInfo.c_str() ) + "\n" + codec->toUnicode( absenceDetail.c_str() );
+	}
+	KMessageBox::information( 0, msg );
+}
+
 //Original Methods
+
+void 
+KIpMsgEvent::GetHostEncodingFromConfig( HostListItem &host )
+{
+	QStringList encodings = KIpMsgSettings::encodingSettings();
+	for( QStringList::iterator ite = encodings.begin(); ite != encodings.end(); ite++ ){
+		QStringList fields = QStringList::split( ":", *ite );
+		if ( QString( host.IpAddress().c_str() ) == fields[0] && 
+			QString( host.UserName().c_str() ) == fields[1] ) {
+			host.setEncodingName( string( fields[2].data() ) );
+			break;
+		}
+	}
+}
 
 /**
  * 全ての送信ダイアログのホストリストを更新する。
