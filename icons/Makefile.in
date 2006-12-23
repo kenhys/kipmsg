@@ -408,12 +408,12 @@ uninstall-am: uninstall-kde-icons  uninstall-info-am
 .NOEXPORT:
 
 #>+ 2
-KDE_DIST=hi22-app-kipmsg_v1abs.png hi32-app-kipmsg.png hi22-action-kipmsg_download.png hi48-app-kipmsg.png hi22-app-kipmsg_rev.png hi64-app-kipmsg.png hi22-app-kipmsg.png hi16-app-kipmsg.png hi22-app-kipmsg_absence.png hi22-app-kipmsg_fileabs.png hi22-app-kipmsg_file.png hi22-app-kipmsg_normal.png hi22-app-kipmsg_v1.png hi22-action-kipmsg_about.png 
+KDE_DIST=hi22-app-kipmsg_v1abs.png hi32-app-kipmsg.png hi22-action-kipmsg_download.png hi16-app-kipmsg_down_enabled.png hi16-app-kipmsg_up_enabled.png hi48-app-kipmsg.png hi16-app-kipmsg_up_disabled.png hi22-app-kipmsg_rev.png hi64-app-kipmsg.png hi22-app-kipmsg.png hi16-app-kipmsg.png hi16-app-kipmsg_down_disabled.png hi22-app-kipmsg_absence.png hi22-app-kipmsg_fileabs.png hi22-app-kipmsg_file.png hi22-app-kipmsg_normal.png hi22-app-kipmsg_v1.png hi22-action-kipmsg_about.png 
 
 #>+ 2
 docs-am:
 
-#>+ 38
+#>+ 46
 install-kde-icons:
 	$(mkinstalldirs) $(DESTDIR)$(kde_icondir)/hicolor/16x16/apps
 	$(INSTALL_DATA) $(srcdir)/hi16-app-kipmsg.png $(DESTDIR)$(kde_icondir)/hicolor/16x16/apps/kipmsg.png
@@ -435,6 +435,10 @@ install-kde-icons:
 	$(INSTALL_DATA) $(srcdir)/hi22-app-kipmsg_v1abs.png $(DESTDIR)$(kde_icondir)/hicolor/22x22/apps/kipmsg_v1abs.png
 	$(INSTALL_DATA) $(srcdir)/hi22-app-kipmsg_file.png $(DESTDIR)$(kde_icondir)/hicolor/22x22/apps/kipmsg_file.png
 	$(INSTALL_DATA) $(srcdir)/hi22-app-kipmsg_fileabs.png $(DESTDIR)$(kde_icondir)/hicolor/22x22/apps/kipmsg_fileabs.png
+	$(INSTALL_DATA) $(srcdir)/hi16-app-kipmsg_down_enabled.png $(DESTDIR)$(kde_icondir)/hicolor/16x16/apps/kipmsg_down_enabled.png
+	$(INSTALL_DATA) $(srcdir)/hi16-app-kipmsg_up_disabled.png $(DESTDIR)$(kde_icondir)/hicolor/16x16/apps/kipmsg_up_disabled.png
+	$(INSTALL_DATA) $(srcdir)/hi16-app-kipmsg_up_enabled.png $(DESTDIR)$(kde_icondir)/hicolor/16x16/apps/kipmsg_up_enabled.png
+	$(INSTALL_DATA) $(srcdir)/hi16-app-kipmsg_down_disabled.png $(DESTDIR)$(kde_icondir)/hicolor/16x16/apps/kipmsg_down_disabled.png
 
 uninstall-kde-icons:
 	-rm -f $(DESTDIR)$(kde_icondir)/hicolor/16x16/apps/kipmsg.png
@@ -451,6 +455,10 @@ uninstall-kde-icons:
 	-rm -f $(DESTDIR)$(kde_icondir)/hicolor/22x22/apps/kipmsg_v1abs.png
 	-rm -f $(DESTDIR)$(kde_icondir)/hicolor/22x22/apps/kipmsg_file.png
 	-rm -f $(DESTDIR)$(kde_icondir)/hicolor/22x22/apps/kipmsg_fileabs.png
+	-rm -f $(DESTDIR)$(kde_icondir)/hicolor/16x16/apps/kipmsg_down_enabled.png
+	-rm -f $(DESTDIR)$(kde_icondir)/hicolor/16x16/apps/kipmsg_up_disabled.png
+	-rm -f $(DESTDIR)$(kde_icondir)/hicolor/16x16/apps/kipmsg_up_enabled.png
+	-rm -f $(DESTDIR)$(kde_icondir)/hicolor/16x16/apps/kipmsg_down_disabled.png
 
 #>+ 6
 force-reedit:

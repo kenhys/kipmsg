@@ -44,21 +44,212 @@
     <property name="icon">
         <pixmap>image0</pixmap>
     </property>
+    <widget class="KPushButton">
+        <property name="name">
+            <cstring>m_ConfigAndAbsenceModeButton</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>120</x>
+                <y>410</y>
+                <width>260</width>
+                <height>30</height>
+            </rect>
+        </property>
+        <property name="text">
+            <string>Confi&amp;gure and Absence mode</string>
+        </property>
+        <property name="accel">
+            <string>Alt+G</string>
+        </property>
+    </widget>
+    <widget class="KPushButton">
+        <property name="name">
+            <cstring>m_CloseButton</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>530</x>
+                <y>410</y>
+                <width>100</width>
+                <height>30</height>
+            </rect>
+        </property>
+        <property name="text">
+            <string>C&amp;lose</string>
+        </property>
+        <property name="accel">
+            <string>Alt+L</string>
+        </property>
+    </widget>
+    <widget class="KPushButton">
+        <property name="name">
+            <cstring>m_ConfigOnlyButton</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>380</x>
+                <y>410</y>
+                <width>140</width>
+                <height>30</height>
+            </rect>
+        </property>
+        <property name="text">
+            <string>Configure onl&amp;y</string>
+        </property>
+        <property name="accel">
+            <string>Alt+Y</string>
+        </property>
+    </widget>
+    <widget class="QGroupBox">
+        <property name="name">
+            <cstring>groupBox3</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>10</x>
+                <y>290</y>
+                <width>620</width>
+                <height>110</height>
+            </rect>
+        </property>
+        <property name="title">
+            <string>Auto absence mode settings</string>
+        </property>
+        <widget class="QCheckBox">
+            <property name="name">
+                <cstring>m_AutoAbsenceModeCheckbox</cstring>
+            </property>
+            <property name="geometry">
+                <rect>
+                    <x>10</x>
+                    <y>20</y>
+                    <width>420</width>
+                    <height>23</height>
+                </rect>
+            </property>
+            <property name="text">
+                <string>Auto a&amp;bsence mode enabled.</string>
+            </property>
+            <property name="accel">
+                <string>Alt+B</string>
+            </property>
+        </widget>
+        <widget class="QLabel">
+            <property name="name">
+                <cstring>m_AutoAbsenceMinutesLabel</cstring>
+            </property>
+            <property name="geometry">
+                <rect>
+                    <x>10</x>
+                    <y>50</y>
+                    <width>470</width>
+                    <height>20</height>
+                </rect>
+            </property>
+            <property name="text">
+                <string>Auto Absence,some minutes after if no input from mouse.</string>
+            </property>
+        </widget>
+        <widget class="KIntNumInput">
+            <property name="name">
+                <cstring>m_AutoAbsenceMinutesInputbox</cstring>
+            </property>
+            <property name="geometry">
+                <rect>
+                    <x>400</x>
+                    <y>70</y>
+                    <width>143</width>
+                    <height>30</height>
+                </rect>
+            </property>
+            <property name="maximumSize">
+                <size>
+                    <width>32767</width>
+                    <height>32767</height>
+                </size>
+            </property>
+            <property name="minValue">
+                <number>1</number>
+            </property>
+        </widget>
+        <widget class="QLabel">
+            <property name="name">
+                <cstring>m_MinutesLabel</cstring>
+            </property>
+            <property name="geometry">
+                <rect>
+                    <x>550</x>
+                    <y>70</y>
+                    <width>61</width>
+                    <height>20</height>
+                </rect>
+            </property>
+            <property name="text">
+                <string>minutes</string>
+            </property>
+        </widget>
+    </widget>
     <widget class="QGroupBox">
         <property name="name">
             <cstring>groupBox7</cstring>
         </property>
         <property name="geometry">
             <rect>
-                <x>210</x>
+                <x>300</x>
                 <y>10</y>
-                <width>420</width>
+                <width>330</width>
                 <height>280</height>
             </rect>
         </property>
         <property name="title">
             <string>Settings</string>
         </property>
+        <widget class="KTextEdit">
+            <property name="name">
+                <cstring>m_DescriptionTextbox</cstring>
+            </property>
+            <property name="geometry">
+                <rect>
+                    <x>10</x>
+                    <y>60</y>
+                    <width>310</width>
+                    <height>210</height>
+                </rect>
+            </property>
+        </widget>
+        <widget class="KLineEdit">
+            <property name="name">
+                <cstring>m_TitleEditbox</cstring>
+            </property>
+            <property name="geometry">
+                <rect>
+                    <x>120</x>
+                    <y>20</y>
+                    <width>120</width>
+                    <height>30</height>
+                </rect>
+            </property>
+        </widget>
+        <widget class="KPushButton">
+            <property name="name">
+                <cstring>m_SetButton</cstring>
+            </property>
+            <property name="geometry">
+                <rect>
+                    <x>240</x>
+                    <y>20</y>
+                    <width>80</width>
+                    <height>30</height>
+                </rect>
+            </property>
+            <property name="text">
+                <string>&amp;Set</string>
+            </property>
+            <property name="accel">
+                <string>Alt+S</string>
+            </property>
+        </widget>
         <widget class="QLabel">
             <property name="name">
                 <cstring>textLabel1</cstring>
@@ -75,38 +266,22 @@
                 <string>Title</string>
             </property>
         </widget>
-        <widget class="KPushButton">
-            <property name="name">
-                <cstring>m_SetButton</cstring>
-            </property>
-            <property name="geometry">
-                <rect>
-                    <x>330</x>
-                    <y>18</y>
-                    <width>80</width>
-                    <height>30</height>
-                </rect>
-            </property>
-            <property name="text">
-                <string>&amp;Set</string>
-            </property>
-            <property name="accel">
-                <string>Alt+S</string>
-            </property>
-        </widget>
-        <widget class="KLineEdit">
-            <property name="name">
-                <cstring>m_TitleEditbox</cstring>
-            </property>
-            <property name="geometry">
-                <rect>
-                    <x>120</x>
-                    <y>20</y>
-                    <width>200</width>
-                    <height>30</height>
-                </rect>
-            </property>
-        </widget>
+    </widget>
+    <widget class="QGroupBox">
+        <property name="name">
+            <cstring>groupBox6</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>10</x>
+                <y>10</y>
+                <width>280</width>
+                <height>280</height>
+            </rect>
+        </property>
+        <property name="title">
+            <string>Absence modes</string>
+        </property>
         <widget class="QLabel">
             <property name="name">
                 <cstring>textLabel1_2</cstring>
@@ -114,8 +289,8 @@
             <property name="geometry">
                 <rect>
                     <x>10</x>
-                    <y>60</y>
-                    <width>110</width>
+                    <y>20</y>
+                    <width>150</width>
                     <height>20</height>
                 </rect>
             </property>
@@ -123,17 +298,87 @@
                 <string>Encoding</string>
             </property>
         </widget>
-        <widget class="KTextEdit">
+        <widget class="KPushButton">
             <property name="name">
-                <cstring>m_DescriptionTextbox</cstring>
+                <cstring>m_AddButton</cstring>
             </property>
             <property name="geometry">
                 <rect>
                     <x>10</x>
-                    <y>100</y>
-                    <width>400</width>
+                    <y>240</y>
+                    <width>90</width>
+                    <height>30</height>
+                </rect>
+            </property>
+            <property name="text">
+                <string>&amp;Add</string>
+            </property>
+            <property name="accel">
+                <string>Alt+A</string>
+            </property>
+        </widget>
+        <widget class="KPushButton">
+            <property name="name">
+                <cstring>m_DeleteButton</cstring>
+            </property>
+            <property name="geometry">
+                <rect>
+                    <x>100</x>
+                    <y>240</y>
+                    <width>90</width>
+                    <height>30</height>
+                </rect>
+            </property>
+            <property name="text">
+                <string>&amp;Delete</string>
+            </property>
+            <property name="accel">
+                <string>Alt+D</string>
+            </property>
+        </widget>
+        <widget class="KListBox">
+            <property name="name">
+                <cstring>m_AbsenceModeListbox</cstring>
+            </property>
+            <property name="geometry">
+                <rect>
+                    <x>10</x>
+                    <y>60</y>
+                    <width>260</width>
                     <height>170</height>
                 </rect>
+            </property>
+        </widget>
+        <widget class="KPushButton">
+            <property name="name">
+                <cstring>m_UpButton</cstring>
+            </property>
+            <property name="geometry">
+                <rect>
+                    <x>190</x>
+                    <y>240</y>
+                    <width>40</width>
+                    <height>30</height>
+                </rect>
+            </property>
+            <property name="text">
+                <string></string>
+            </property>
+        </widget>
+        <widget class="KPushButton">
+            <property name="name">
+                <cstring>m_DownButton</cstring>
+            </property>
+            <property name="geometry">
+                <rect>
+                    <x>230</x>
+                    <y>240</y>
+                    <width>40</width>
+                    <height>30</height>
+                </rect>
+            </property>
+            <property name="text">
+                <string></string>
             </property>
         </widget>
         <widget class="KComboBox">
@@ -347,227 +592,14 @@
             </property>
             <property name="geometry">
                 <rect>
-                    <x>120</x>
-                    <y>60</y>
-                    <width>290</width>
+                    <x>160</x>
+                    <y>20</y>
+                    <width>110</width>
                     <height>30</height>
                 </rect>
             </property>
             <property name="currentItem">
                 <number>8</number>
-            </property>
-        </widget>
-    </widget>
-    <widget class="QGroupBox">
-        <property name="name">
-            <cstring>groupBox6</cstring>
-        </property>
-        <property name="geometry">
-            <rect>
-                <x>10</x>
-                <y>10</y>
-                <width>190</width>
-                <height>280</height>
-            </rect>
-        </property>
-        <property name="title">
-            <string>Absence modes</string>
-        </property>
-        <widget class="KPushButton">
-            <property name="name">
-                <cstring>m_AddButton</cstring>
-            </property>
-            <property name="geometry">
-                <rect>
-                    <x>10</x>
-                    <y>240</y>
-                    <width>80</width>
-                    <height>30</height>
-                </rect>
-            </property>
-            <property name="text">
-                <string>&amp;Add</string>
-            </property>
-            <property name="accel">
-                <string>Alt+A</string>
-            </property>
-        </widget>
-        <widget class="KPushButton">
-            <property name="name">
-                <cstring>m_DeleteButton</cstring>
-            </property>
-            <property name="geometry">
-                <rect>
-                    <x>100</x>
-                    <y>240</y>
-                    <width>80</width>
-                    <height>30</height>
-                </rect>
-            </property>
-            <property name="text">
-                <string>&amp;Delete</string>
-            </property>
-            <property name="accel">
-                <string>Alt+D</string>
-            </property>
-        </widget>
-        <widget class="KListBox">
-            <property name="name">
-                <cstring>m_AbsenceModeListbox</cstring>
-            </property>
-            <property name="geometry">
-                <rect>
-                    <x>10</x>
-                    <y>30</y>
-                    <width>170</width>
-                    <height>200</height>
-                </rect>
-            </property>
-        </widget>
-    </widget>
-    <widget class="KPushButton">
-        <property name="name">
-            <cstring>m_ConfigAndAbsenceModeButton</cstring>
-        </property>
-        <property name="geometry">
-            <rect>
-                <x>120</x>
-                <y>410</y>
-                <width>260</width>
-                <height>30</height>
-            </rect>
-        </property>
-        <property name="text">
-            <string>Confi&amp;gure and Absence mode</string>
-        </property>
-        <property name="accel">
-            <string>Alt+G</string>
-        </property>
-    </widget>
-    <widget class="KPushButton">
-        <property name="name">
-            <cstring>m_CloseButton</cstring>
-        </property>
-        <property name="geometry">
-            <rect>
-                <x>530</x>
-                <y>410</y>
-                <width>100</width>
-                <height>30</height>
-            </rect>
-        </property>
-        <property name="text">
-            <string>Clos&amp;e</string>
-        </property>
-        <property name="accel">
-            <string>Alt+E</string>
-        </property>
-    </widget>
-    <widget class="KPushButton">
-        <property name="name">
-            <cstring>m_ConfigOnlyButton</cstring>
-        </property>
-        <property name="geometry">
-            <rect>
-                <x>380</x>
-                <y>410</y>
-                <width>140</width>
-                <height>30</height>
-            </rect>
-        </property>
-        <property name="text">
-            <string>Configure onl&amp;y</string>
-        </property>
-        <property name="accel">
-            <string>Alt+Y</string>
-        </property>
-    </widget>
-    <widget class="QGroupBox">
-        <property name="name">
-            <cstring>groupBox3</cstring>
-        </property>
-        <property name="geometry">
-            <rect>
-                <x>10</x>
-                <y>290</y>
-                <width>620</width>
-                <height>110</height>
-            </rect>
-        </property>
-        <property name="title">
-            <string>Auto absence mode settings</string>
-        </property>
-        <widget class="QCheckBox">
-            <property name="name">
-                <cstring>m_AutoAbsenceModeCheckbox</cstring>
-            </property>
-            <property name="geometry">
-                <rect>
-                    <x>10</x>
-                    <y>20</y>
-                    <width>420</width>
-                    <height>23</height>
-                </rect>
-            </property>
-            <property name="text">
-                <string>Auto absence &amp;mode enabled.</string>
-            </property>
-            <property name="accel">
-                <string>Alt+M</string>
-            </property>
-        </widget>
-        <widget class="QLabel">
-            <property name="name">
-                <cstring>m_AutoAbsenceMinutesLabel</cstring>
-            </property>
-            <property name="geometry">
-                <rect>
-                    <x>10</x>
-                    <y>50</y>
-                    <width>470</width>
-                    <height>20</height>
-                </rect>
-            </property>
-            <property name="text">
-                <string>Auto Absence,some minutes after if no input from mouse.</string>
-            </property>
-        </widget>
-        <widget class="KIntNumInput">
-            <property name="name">
-                <cstring>m_AutoAbsenceMinutesInputbox</cstring>
-            </property>
-            <property name="geometry">
-                <rect>
-                    <x>400</x>
-                    <y>70</y>
-                    <width>143</width>
-                    <height>30</height>
-                </rect>
-            </property>
-            <property name="maximumSize">
-                <size>
-                    <width>32767</width>
-                    <height>32767</height>
-                </size>
-            </property>
-            <property name="minValue">
-                <number>1</number>
-            </property>
-        </widget>
-        <widget class="QLabel">
-            <property name="name">
-                <cstring>m_MinutesLabel</cstring>
-            </property>
-            <property name="geometry">
-                <rect>
-                    <x>550</x>
-                    <y>70</y>
-                    <width>61</width>
-                    <height>20</height>
-                </rect>
-            </property>
-            <property name="text">
-                <string>minutes</string>
             </property>
         </widget>
     </widget>
@@ -582,9 +614,9 @@
 <connections>
     <connection>
         <sender>m_AbsenceModeListbox</sender>
-        <signal>clicked(QListBoxItem*)</signal>
+        <signal>selectionChanged(QListBoxItem*)</signal>
         <receiver>KIpMsgAbsenceModeConfigDialogBase</receiver>
-        <slot>slotAbsenceModeClicked(QListBoxItem*)</slot>
+        <slot>slotAbsenceModeChanged(QListBoxItem*)</slot>
     </connection>
     <connection>
         <sender>m_AddButton</sender>
@@ -634,31 +666,63 @@
         <receiver>KIpMsgAbsenceModeConfigDialogBase</receiver>
         <slot>slotSetClicked()</slot>
     </connection>
+    <connection>
+        <sender>m_UpButton</sender>
+        <signal>clicked()</signal>
+        <receiver>KIpMsgAbsenceModeConfigDialogBase</receiver>
+        <slot>slotUpClicked()</slot>
+    </connection>
+    <connection>
+        <sender>m_DownButton</sender>
+        <signal>clicked()</signal>
+        <receiver>KIpMsgAbsenceModeConfigDialogBase</receiver>
+        <slot>slotDownClicked()</slot>
+    </connection>
 </connections>
+<tabstops>
+    <tabstop>m_EncodingCombobox</tabstop>
+    <tabstop>m_AbsenceModeListbox</tabstop>
+    <tabstop>m_AddButton</tabstop>
+    <tabstop>m_DeleteButton</tabstop>
+    <tabstop>m_UpButton</tabstop>
+    <tabstop>m_DownButton</tabstop>
+    <tabstop>m_TitleEditbox</tabstop>
+    <tabstop>m_SetButton</tabstop>
+    <tabstop>m_DescriptionTextbox</tabstop>
+    <tabstop>m_AutoAbsenceModeCheckbox</tabstop>
+    <tabstop>m_AutoAbsenceMinutesInputbox</tabstop>
+    <tabstop>m_ConfigAndAbsenceModeButton</tabstop>
+    <tabstop>m_ConfigOnlyButton</tabstop>
+    <tabstop>m_CloseButton</tabstop>
+</tabstops>
 <slots>
     <slot>slotConfigAndAbsenceModeClicked()</slot>
     <slot>slotConfigOnlyClicked()</slot>
     <slot>slotCancelClicked()</slot>
     <slot>slotSetClicked()</slot>
-    <slot>slotAbsenceModeClicked(QListBoxItem*)</slot>
+    <slot>slotAbsenceModeChanged(QListBoxItem*)</slot>
     <slot>slotAddClicked()</slot>
     <slot>slotDeleteClicked()</slot>
     <slot>slotEncodingChanged(int)</slot>
     <slot>slotAutoAbsenceClicked()</slot>
+    <slot>slotDownClicked()</slot>
+    <slot>slotUpClicked()</slot>
 </slots>
 <layoutdefaults spacing="6" margin="11"/>
 <includehints>
     <includehint>kpushbutton.h</includehint>
-    <includehint>klineedit.h</includehint>
+    <includehint>kpushbutton.h</includehint>
+    <includehint>kpushbutton.h</includehint>
+    <includehint>knuminput.h</includehint>
+    <includehint>knuminput.h</includehint>
     <includehint>ktextedit.h</includehint>
-    <includehint>kcombobox.h</includehint>
+    <includehint>klineedit.h</includehint>
+    <includehint>kpushbutton.h</includehint>
     <includehint>kpushbutton.h</includehint>
     <includehint>kpushbutton.h</includehint>
     <includehint>klistbox.h</includehint>
     <includehint>kpushbutton.h</includehint>
     <includehint>kpushbutton.h</includehint>
-    <includehint>kpushbutton.h</includehint>
-    <includehint>knuminput.h</includehint>
-    <includehint>knuminput.h</includehint>
+    <includehint>kcombobox.h</includehint>
 </includehints>
 </UI>

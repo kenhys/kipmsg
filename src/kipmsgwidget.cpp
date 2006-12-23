@@ -241,12 +241,13 @@ void kipmsgWidget::rebuildMenu()
 	QString curEnc = KIpMsgSettings::messageEncoding();
 	absence_mode_menu.clear();
 	QString modeName="";
-	for( unsigned int i = 0; i < keys.count(); i++ ){
-		if ( encodings[i] == curEnc ) {
-			int menu_item = AbsencePopup->insertItem( keys[i] + ":" + titles[i], this, SLOT( slotAbsenceModeSelect( int ) ) );
-			absence_mode_menu.insert( menu_item, new QString( keys[i] ) );
-			if ( keys[i] == currentAbsenceMode ) {
-				modeName = titles[i];
+	for( int i = (int)titles.count() - 1; i >= 0 ; i-- ){
+		QStringList item = QStringList::split( "\a", titles[i] );
+		if ( item[1] == curEnc ) {
+			int menu_item = AbsencePopup->insertItem( item[2] == NULL ? item[0] : item[2], this, SLOT( slotAbsenceModeSelect( int ) ) );
+			absence_mode_menu.insert( menu_item, new QString( item[0] ) );
+			if ( item[0] == currentAbsenceMode ) {
+				modeName = item[2];
 			}
 		}
 	}
@@ -286,19 +287,19 @@ void kipmsgWidget::slotAbsenceModeSelect( int menu_item )
 		return;
 	}
 	QString key = (*absence_mode_menu[menu_item]).data();
-	QStringList keys = KIpMsgSettings::absenceKeys();
-	QStringList encodings = KIpMsgSettings::absenceEncodings();
 	QStringList titles = KIpMsgSettings::absenceTitles();
 	QStringList details = KIpMsgSettings::absenceDetails();
 
 	vector<AbsenceMode>absence;
-	for( unsigned int i = 0; i < keys.count(); i++ ){
-		if ( keys[i] == key && encodings[i] != "" ) {
-			QTextCodec *codec = QTextCodec::codecForName( encodings[i] );
+	for( unsigned int i = 0; i < titles.count(); i++ ){
+		QStringList item = QStringList::split( "\a", titles[i] );
+		QStringList ditem = QStringList::split( "\a", details[i] );
+		if ( item[0] == key && item[1] != "" ) {
+			QTextCodec *codec = QTextCodec::codecForName( item[1] );
 			AbsenceMode config;
-			config.setAbsenceName( codec->fromUnicode( titles[i] ).data() );
-			config.setAbsenceDescription( codec->fromUnicode( details[i] ).data() );
-			config.setEncodingName( codec->fromUnicode( encodings[i] ).data() );
+			config.setEncodingName( codec->fromUnicode( item[1] ).data() );
+			config.setAbsenceName( item[2] == NULL ? "" : codec->fromUnicode( item[2] ).data() );
+			config.setAbsenceDescription( ditem[2] == NULL ? "" : codec->fromUnicode( ditem[2] ).data() );
 			absence.push_back( config );
 		}
 	}

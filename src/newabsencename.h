@@ -19,44 +19,27 @@
  ***************************************************************************/
 
 
-#ifndef _ABSENCEMODE_H_
-#define _ABSENCEMODE_H_
+#ifndef _NAMINGNEWABSENCE_H_
+#define _NAMINGNEWABSENCE_H_
 
-#include <qmap.h>
-#include <qpixmap.h>
-#include "absenceconfigbase.h"
+#include "newabsencenamebase.h"
 
-class AbsenceSetting
-{
-public:
-	QString title;
-	QString detail;
-};
+class KIpMsgAbsenceModeConfigDialog;
 
-
-class KIpMsgAbsenceModeConfigDialog : public KIpMsgAbsenceModeConfigDialogBase
+class NamingNewAbsenceMode : public NamingNewAbsenceModeBase
 {
     Q_OBJECT
 
 public:
-    KIpMsgAbsenceModeConfigDialog(QWidget* parent = 0, const char* name = 0, WFlags fl = 0 );
-    ~KIpMsgAbsenceModeConfigDialog();
+    NamingNewAbsenceMode(QWidget* parent = 0, const char* name = 0, WFlags fl = 0 );
+    ~NamingNewAbsenceMode();
     /*$PUBLIC_FUNCTIONS$*/
-	void setNewId( QString id ){ newId = id; };
+	void setAbsenceConfigDlg( KIpMsgAbsenceModeConfigDialog* dlg ){ AbsenceConfigDlg = dlg; };
 
 public slots:
     /*$PUBLIC_SLOTS$*/
-    virtual void slotConfigAndAbsenceModeClicked();
-    virtual void slotConfigOnlyClicked();
     virtual void slotCancelClicked();
-    virtual void slotSetClicked();
-    virtual void slotAbsenceModeChanged(QListBoxItem*);
-    virtual void slotAddClicked();
-    virtual void slotDeleteClicked();
-    virtual void slotEncodingChanged(int);
-    virtual void slotAutoAbsenceClicked();
-    virtual void slotUpClicked();
-    virtual void slotDownClicked();
+    virtual void slotOkClicked();
 
 protected:
     /*$PROTECTED_FUNCTIONS$*/
@@ -65,17 +48,8 @@ protected slots:
     /*$PROTECTED_SLOTS$*/
 
 private:
-	void setStatus();
-	void setSelectedItem();
-	bool canAcceptNewId();
-	QString getSelectedAbsenceModeKey( QString text );
-	void load();
-	void save();
-	//第一キーがリストのアイテムの先頭の":"の前（通番）第二キーがエンコーディング。
-	QMap< QString, QMap< QString, AbsenceSetting > > settings;
-	QString currentKey;
-	QString currentEncoding;
-	QString newId;
+	KIpMsgAbsenceModeConfigDialog* AbsenceConfigDlg;
+
 };
 
 #endif
