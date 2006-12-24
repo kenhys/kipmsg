@@ -24,9 +24,11 @@
 #include <qcheckbox.h>
 #include <klistview.h>
 #include <klocale.h>
+#include <kiconloader.h>
 #include <IpMessenger.h>
 #include "downloadmonitor.h"
 #include "kipmsgsettings.h"
+#include "kipmsgutils.h"
 
 #define COLUMN_PACKET 7
 
@@ -156,16 +158,20 @@ void KIpMsgDownloadMonitor::refreshDownloadFileList()
 		if ( m->Files().size() > 0 ) {
 			QString fileNames = "";
 			long long fileSizeTotal = 0LL;
+			long long transFileSizeTotal = 0LL;
 			int allFileCount = 0;
 			int doneFileCount = 0;
 			int transFileCount = 0;
+			bool hasDir = false;
 			for( vector<AttachFile>::iterator f = m->Files().begin(); f != m->Files().end(); f++ ){
 				fileNames += codec->toUnicode( f->FileName().c_str() );
 				if ( f->IsDirectory() ) {
 					fileNames += "(DIR)";
+					hasDir = true;
 				}
 				fileNames += " ";
 				fileSizeTotal += f->FileSize();
+				transFileSizeTotal += f->TransSize();
 				if ( f->IsDownloaded() ) {
 					doneFileCount++;
 				} else if ( f->IsDownloading() ) {
@@ -174,22 +180,29 @@ void KIpMsgDownloadMonitor::refreshDownloadFileList()
 				allFileCount++;
 			}
 			if ( allFileCount > doneFileCount ){
+				int percentage = 0;
+				if ( hasDir ){
+					percentage = allFileCount == 0 ? 0 : (int)(100 * ( (double)doneFileCount / (double)allFileCount ) );
+				} else {
+					percentage = fileSizeTotal == 0 ? 0 : (int)(100 * ( (double)transFileSizeTotal / (double)fileSizeTotal ) );
+				}
 				snprintf( sizeBuffer, sizeof(sizeBuffer),"%lld", fileSizeTotal );
 				snprintf( seqBuffer, sizeof(seqBuffer),"%d", i++ );
 				snprintf( allBuffer, sizeof(allBuffer),"%d", allFileCount );
 				snprintf( doneBuffer, sizeof(doneBuffer),"%d", doneFileCount );
 				snprintf( transBuffer, sizeof(transBuffer),"%d", transFileCount );
 				snprintf( packetNoBuffer, sizeof(packetNoBuffer),"%ld", m->PacketNo() );
-//				printf( "%ld", m->PacketNo() );
-				new QListViewItem( m_FileListView,
-								QString(seqBuffer),
-								fileNames,
-								sizeBuffer,
-								QString(allBuffer),
-								QString(doneBuffer),
-								QString(transBuffer),
-								codec->toUnicode( m->Host().UserName().c_str() ),
-								QString(packetNoBuffer) );
+				QListViewItem *item = new QListViewItem( m_FileListView,
+														 QString(seqBuffer),
+														 fileNames,
+														 sizeBuffer,
+														 QString(allBuffer),
+														 QString(doneBuffer),
+														 QString(transBuffer),
+														 codec->toUnicode( m->Host().UserName().c_str() ),
+														 QString(packetNoBuffer) );
+				QString iconName = GetPercentageIconName( percentage );
+				item->setPixmap( 0, SmallIcon( iconName ) );
 			}
 		}
 	}
