@@ -261,7 +261,7 @@ xdg_menudir = @xdg_menudir@
 INCLUDES = $(all_includes)
 
 # these are the headers for your project
-noinst_HEADERS = 
+noinst_HEADERS = kipmsgutils.h
 
 # let automoc handle all of the meta source files (moc)
 #>- METASOURCES = AUTO
@@ -277,36 +277,38 @@ bin_PROGRAMS = kipmsg
 
 # the application source, library search path, and link libraries
 #>- kipmsg_SOURCES = main.cpp kipmsgwidget.cpp kipmsgwidgetbase.ui \
-#>- 	recievedialogbase.ui recievedialog.h recievedialog.cpp senddialogbase.ui senddialog.cpp \
-#>- 	senddialog.h kipmsgconfigbase.ui kipmsgconfig.cpp kipmsgconfig.h \
-#>- 	detailandlogconfigbase.ui detailandlogconfig.cpp detailandlogconfig.h 	clickableurlconfigbase.ui \
-#>- 	clickableurlconfig.cpp clickableurlconfig.h 	unlockpasswordconfigbase.ui \
-#>- 	unlockpasswordconfig.cpp unlockpasswordconfig.h showconfigbase.ui 	showconfig.cpp showconfig.h \
-#>- 	searchboxbase.ui searchbox.cpp searchbox.h aboutbase.ui 	about.cpp about.h \
-#>- 	downloadmonitorbase.ui downloadmonitor.cpp downloadmonitor.h 	absenceconfigbase.ui \
-#>- 	absenceconfig.cpp absenceconfig.h kipmsgsettings.kcfgc 	encodingconfigbase.ui \
-#>- 	encodingconfig.h encodingconfig.cpp openconfirmbase.ui openconfirm.cpp 	openconfirm.h \
-#>- 	passworddialog.cpp passworddialog.h passworddialogbase.ui 	attachedfiledialog.cpp \
-#>- 	attachedfiledialog.h attachedfiledialogbase.ui 	downloaderrordialog.cpp \
-#>- 	downloaderrordialog.h downloaderrordialogbase.ui 	kipmsglogger.cpp kipmsglogger.h \
-#>- 	downloadcompletedialog.cpp downloadcompletedialog.h downloadcompletedialogbase.ui 	kipmsgevent.cpp \
-#>- 	kipmsgevent.h newabsencenamebase.ui newabsencename.h newabsencename.cpp
-#>+ 15
+#>- 		recievedialogbase.ui recievedialog.h recievedialog.cpp senddialogbase.ui senddialog.cpp \
+#>- 		senddialog.h kipmsgconfigbase.ui kipmsgconfig.cpp kipmsgconfig.h \
+#>- 		detailandlogconfigbase.ui detailandlogconfig.cpp detailandlogconfig.h 	clickableurlconfigbase.ui \
+#>- 		clickableurlconfig.cpp clickableurlconfig.h 	unlockpasswordconfigbase.ui \
+#>- 		unlockpasswordconfig.cpp unlockpasswordconfig.h showconfigbase.ui 	showconfig.cpp showconfig.h \
+#>- 		searchboxbase.ui searchbox.cpp searchbox.h aboutbase.ui 	about.cpp about.h \
+#>- 		downloadmonitorbase.ui downloadmonitor.cpp downloadmonitor.h 	absenceconfigbase.ui \
+#>- 		absenceconfig.cpp absenceconfig.h kipmsgsettings.kcfgc 	encodingconfigbase.ui \
+#>- 		encodingconfig.h encodingconfig.cpp openconfirmbase.ui openconfirm.cpp 	openconfirm.h \
+#>- 		passworddialog.cpp passworddialog.h passworddialogbase.ui 	attachedfiledialog.cpp \
+#>- 		attachedfiledialog.h attachedfiledialogbase.ui 	downloaderrordialog.cpp \
+#>- 		downloaderrordialog.h downloaderrordialogbase.ui 	kipmsglogger.cpp kipmsglogger.h \
+#>- 		downloadcompletedialog.cpp downloadcompletedialog.h downloadcompletedialogbase.ui 	kipmsgevent.cpp \
+#>- 		kipmsgevent.h newabsencenamebase.ui newabsencename.h newabsencename.cpp \
+#>- 	kipmsgutils.cpp
+#>+ 16
 kipmsg_SOURCES=main.cpp kipmsgwidget.cpp  \
-	 recievedialog.h recievedialog.cpp  senddialog.cpp \
-	senddialog.h  kipmsgconfig.cpp kipmsgconfig.h \
-	 detailandlogconfig.cpp detailandlogconfig.h 	 \
-	clickableurlconfig.cpp clickableurlconfig.h 	 \
-	unlockpasswordconfig.cpp unlockpasswordconfig.h  	showconfig.cpp showconfig.h \
-	 searchbox.cpp searchbox.h  	about.cpp about.h \
-	 downloadmonitor.cpp downloadmonitor.h 	 \
-	absenceconfig.cpp absenceconfig.h  	 \
-	encodingconfig.h encodingconfig.cpp  openconfirm.cpp 	openconfirm.h \
-	passworddialog.cpp passworddialog.h  	attachedfiledialog.cpp \
-	attachedfiledialog.h  	downloaderrordialog.cpp \
-	downloaderrordialog.h  	kipmsglogger.cpp kipmsglogger.h \
-	downloadcompletedialog.cpp downloadcompletedialog.h  	kipmsgevent.cpp \
-	kipmsgevent.h  newabsencename.h newabsencename.cpp kipmsgwidgetbase.cpp recievedialogbase.cpp senddialogbase.cpp kipmsgconfigbase.cpp detailandlogconfigbase.cpp clickableurlconfigbase.cpp unlockpasswordconfigbase.cpp showconfigbase.cpp searchboxbase.cpp aboutbase.cpp downloadmonitorbase.cpp absenceconfigbase.cpp encodingconfigbase.cpp openconfirmbase.cpp passworddialogbase.cpp attachedfiledialogbase.cpp downloaderrordialogbase.cpp downloadcompletedialogbase.cpp newabsencenamebase.cpp kipmsgsettings.cpp
+		 recievedialog.h recievedialog.cpp  senddialog.cpp \
+		senddialog.h  kipmsgconfig.cpp kipmsgconfig.h \
+		 detailandlogconfig.cpp detailandlogconfig.h 	 \
+		clickableurlconfig.cpp clickableurlconfig.h 	 \
+		unlockpasswordconfig.cpp unlockpasswordconfig.h  	showconfig.cpp showconfig.h \
+		 searchbox.cpp searchbox.h  	about.cpp about.h \
+		 downloadmonitor.cpp downloadmonitor.h 	 \
+		absenceconfig.cpp absenceconfig.h  	 \
+		encodingconfig.h encodingconfig.cpp  openconfirm.cpp 	openconfirm.h \
+		passworddialog.cpp passworddialog.h  	attachedfiledialog.cpp \
+		attachedfiledialog.h  	downloaderrordialog.cpp \
+		downloaderrordialog.h  	kipmsglogger.cpp kipmsglogger.h \
+		downloadcompletedialog.cpp downloadcompletedialog.h  	kipmsgevent.cpp \
+		kipmsgevent.h  newabsencename.h newabsencename.cpp \
+	kipmsgutils.cpp kipmsgwidgetbase.cpp recievedialogbase.cpp senddialogbase.cpp kipmsgconfigbase.cpp detailandlogconfigbase.cpp clickableurlconfigbase.cpp unlockpasswordconfigbase.cpp showconfigbase.cpp searchboxbase.cpp aboutbase.cpp downloadmonitorbase.cpp absenceconfigbase.cpp encodingconfigbase.cpp openconfirmbase.cpp passworddialogbase.cpp attachedfiledialogbase.cpp downloaderrordialogbase.cpp downloadcompletedialogbase.cpp newabsencenamebase.cpp kipmsgsettings.cpp
 
 
 kipmsg_LDFLAGS = $(KDE_RPATH) $(all_libraries)
@@ -337,7 +339,7 @@ am_kipmsg_OBJECTS = main.$(OBJEXT) kipmsgwidget.$(OBJEXT) \
 	passworddialog.$(OBJEXT) attachedfiledialog.$(OBJEXT) \
 	downloaderrordialog.$(OBJEXT) kipmsglogger.$(OBJEXT) \
 	downloadcompletedialog.$(OBJEXT) kipmsgevent.$(OBJEXT) \
-	newabsencename.$(OBJEXT)
+	newabsencename.$(OBJEXT) kipmsgutils.$(OBJEXT)
 #>- kipmsg_OBJECTS = $(am_kipmsg_OBJECTS)
 #>+ 14
 kipmsg_final_OBJECTS = kipmsg.all_cpp.o 
@@ -351,7 +353,7 @@ kipmsg_nofinal_OBJECTS = main.$(OBJEXT) kipmsgwidget.$(OBJEXT) \
 	passworddialog.$(OBJEXT) attachedfiledialog.$(OBJEXT) \
 	downloaderrordialog.$(OBJEXT) kipmsglogger.$(OBJEXT) \
 	downloadcompletedialog.$(OBJEXT) kipmsgevent.$(OBJEXT) \
-	newabsencename.$(OBJEXT) kipmsgwidgetbase.$(OBJEXT) recievedialogbase.$(OBJEXT) senddialogbase.$(OBJEXT) kipmsgconfigbase.$(OBJEXT) detailandlogconfigbase.$(OBJEXT) clickableurlconfigbase.$(OBJEXT) unlockpasswordconfigbase.$(OBJEXT) showconfigbase.$(OBJEXT) searchboxbase.$(OBJEXT) aboutbase.$(OBJEXT) downloadmonitorbase.$(OBJEXT) absenceconfigbase.$(OBJEXT) encodingconfigbase.$(OBJEXT) openconfirmbase.$(OBJEXT) passworddialogbase.$(OBJEXT) attachedfiledialogbase.$(OBJEXT) downloaderrordialogbase.$(OBJEXT) downloadcompletedialogbase.$(OBJEXT) newabsencenamebase.$(OBJEXT) kipmsgsettings.$(OBJEXT)
+	newabsencename.$(OBJEXT) kipmsgutils.$(OBJEXT) kipmsgwidgetbase.$(OBJEXT) recievedialogbase.$(OBJEXT) senddialogbase.$(OBJEXT) kipmsgconfigbase.$(OBJEXT) detailandlogconfigbase.$(OBJEXT) clickableurlconfigbase.$(OBJEXT) unlockpasswordconfigbase.$(OBJEXT) showconfigbase.$(OBJEXT) searchboxbase.$(OBJEXT) aboutbase.$(OBJEXT) downloadmonitorbase.$(OBJEXT) absenceconfigbase.$(OBJEXT) encodingconfigbase.$(OBJEXT) openconfirmbase.$(OBJEXT) passworddialogbase.$(OBJEXT) attachedfiledialogbase.$(OBJEXT) downloaderrordialogbase.$(OBJEXT) downloadcompletedialogbase.$(OBJEXT) newabsencenamebase.$(OBJEXT) kipmsgsettings.$(OBJEXT)
 @KDE_USE_FINAL_FALSE@kipmsg_OBJECTS = $(kipmsg_nofinal_OBJECTS)
 @KDE_USE_FINAL_TRUE@kipmsg_OBJECTS = $(kipmsg_final_OBJECTS)
 kipmsg_DEPENDENCIES =
@@ -375,6 +377,7 @@ am__depfiles_maybe = depfiles
 #>- @AMDEP_TRUE@	./$(DEPDIR)/kipmsgconfig.Po \
 #>- @AMDEP_TRUE@	./$(DEPDIR)/kipmsgevent.Po \
 #>- @AMDEP_TRUE@	./$(DEPDIR)/kipmsglogger.Po \
+#>- @AMDEP_TRUE@	./$(DEPDIR)/kipmsgutils.Po \
 #>- @AMDEP_TRUE@	./$(DEPDIR)/kipmsgwidget.Po ./$(DEPDIR)/main.Po \
 #>- @AMDEP_TRUE@	./$(DEPDIR)/newabsencename.Po \
 #>- @AMDEP_TRUE@	./$(DEPDIR)/openconfirm.Po \
@@ -383,7 +386,7 @@ am__depfiles_maybe = depfiles
 #>- @AMDEP_TRUE@	./$(DEPDIR)/searchbox.Po ./$(DEPDIR)/senddialog.Po \
 #>- @AMDEP_TRUE@	./$(DEPDIR)/showconfig.Po \
 #>- @AMDEP_TRUE@	./$(DEPDIR)/unlockpasswordconfig.Po
-#>+ 40
+#>+ 42
 @AMDEP_TRUE@@KDE_USE_FINAL_TRUE@DEP_FILES =  $(DEPDIR)/kipmsgwidgetbase.P $(DEPDIR)/recievedialogbase.P $(DEPDIR)/senddialogbase.P $(DEPDIR)/kipmsgconfigbase.P $(DEPDIR)/detailandlogconfigbase.P $(DEPDIR)/clickableurlconfigbase.P $(DEPDIR)/unlockpasswordconfigbase.P $(DEPDIR)/showconfigbase.P $(DEPDIR)/searchboxbase.P $(DEPDIR)/aboutbase.P $(DEPDIR)/downloadmonitorbase.P $(DEPDIR)/absenceconfigbase.P $(DEPDIR)/encodingconfigbase.P $(DEPDIR)/openconfirmbase.P $(DEPDIR)/passworddialogbase.P $(DEPDIR)/attachedfiledialogbase.P $(DEPDIR)/downloaderrordialogbase.P $(DEPDIR)/downloadcompletedialogbase.P $(DEPDIR)/newabsencenamebase.P $(DEPDIR)/kipmsgsettings.P  $(DEPDIR)/kipmsg.all_cpp.P ./$(DEPDIR)/about.Po \
 @AMDEP_TRUE@@KDE_USE_FINAL_TRUE@	@AMDEP_TRUE@	./$(DEPDIR)/absenceconfig.Po \
 @AMDEP_TRUE@@KDE_USE_FINAL_TRUE@	@AMDEP_TRUE@	./$(DEPDIR)/attachedfiledialog.Po \
@@ -396,6 +399,7 @@ am__depfiles_maybe = depfiles
 @AMDEP_TRUE@@KDE_USE_FINAL_TRUE@	@AMDEP_TRUE@	./$(DEPDIR)/kipmsgconfig.Po \
 @AMDEP_TRUE@@KDE_USE_FINAL_TRUE@	@AMDEP_TRUE@	./$(DEPDIR)/kipmsgevent.Po \
 @AMDEP_TRUE@@KDE_USE_FINAL_TRUE@	@AMDEP_TRUE@	./$(DEPDIR)/kipmsglogger.Po \
+@AMDEP_TRUE@@KDE_USE_FINAL_TRUE@	@AMDEP_TRUE@	./$(DEPDIR)/kipmsgutils.Po \
 @AMDEP_TRUE@@KDE_USE_FINAL_TRUE@	@AMDEP_TRUE@	./$(DEPDIR)/kipmsgwidget.Po ./$(DEPDIR)/main.Po \
 @AMDEP_TRUE@@KDE_USE_FINAL_TRUE@	@AMDEP_TRUE@	./$(DEPDIR)/newabsencename.Po \
 @AMDEP_TRUE@@KDE_USE_FINAL_TRUE@	@AMDEP_TRUE@	./$(DEPDIR)/openconfirm.Po \
@@ -416,6 +420,7 @@ am__depfiles_maybe = depfiles
 @AMDEP_TRUE@@KDE_USE_FINAL_FALSE@	@AMDEP_TRUE@	./$(DEPDIR)/kipmsgconfig.Po \
 @AMDEP_TRUE@@KDE_USE_FINAL_FALSE@	@AMDEP_TRUE@	./$(DEPDIR)/kipmsgevent.Po \
 @AMDEP_TRUE@@KDE_USE_FINAL_FALSE@	@AMDEP_TRUE@	./$(DEPDIR)/kipmsglogger.Po \
+@AMDEP_TRUE@@KDE_USE_FINAL_FALSE@	@AMDEP_TRUE@	./$(DEPDIR)/kipmsgutils.Po \
 @AMDEP_TRUE@@KDE_USE_FINAL_FALSE@	@AMDEP_TRUE@	./$(DEPDIR)/kipmsgwidget.Po ./$(DEPDIR)/main.Po \
 @AMDEP_TRUE@@KDE_USE_FINAL_FALSE@	@AMDEP_TRUE@	./$(DEPDIR)/newabsencename.Po \
 @AMDEP_TRUE@@KDE_USE_FINAL_FALSE@	@AMDEP_TRUE@	./$(DEPDIR)/openconfirm.Po \
@@ -525,6 +530,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/kipmsgconfig.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/kipmsgevent.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/kipmsglogger.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/kipmsgutils.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/kipmsgwidget.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/main.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/newabsencename.Po@am__quote@
@@ -984,11 +990,11 @@ bcheck-am:
 
 
 #>+ 11
-kipmsg.all_cpp.cpp: $(srcdir)/Makefile.in $(srcdir)/main.cpp $(srcdir)/kipmsgwidget.cpp $(srcdir)/recievedialog.cpp $(srcdir)/senddialog.cpp $(srcdir)/kipmsgconfig.cpp $(srcdir)/detailandlogconfig.cpp $(srcdir)/clickableurlconfig.cpp $(srcdir)/unlockpasswordconfig.cpp $(srcdir)/showconfig.cpp $(srcdir)/searchbox.cpp $(srcdir)/about.cpp $(srcdir)/downloadmonitor.cpp $(srcdir)/absenceconfig.cpp $(srcdir)/encodingconfig.cpp $(srcdir)/openconfirm.cpp $(srcdir)/passworddialog.cpp $(srcdir)/attachedfiledialog.cpp $(srcdir)/downloaderrordialog.cpp $(srcdir)/kipmsglogger.cpp $(srcdir)/downloadcompletedialog.cpp $(srcdir)/kipmsgevent.cpp $(srcdir)/newabsencename.cpp $(srcdir)/kipmsgwidgetbase.cpp $(srcdir)/recievedialogbase.cpp $(srcdir)/senddialogbase.cpp $(srcdir)/kipmsgconfigbase.cpp $(srcdir)/detailandlogconfigbase.cpp $(srcdir)/clickableurlconfigbase.cpp $(srcdir)/unlockpasswordconfigbase.cpp $(srcdir)/showconfigbase.cpp $(srcdir)/searchboxbase.cpp $(srcdir)/aboutbase.cpp $(srcdir)/downloadmonitorbase.cpp $(srcdir)/absenceconfigbase.cpp $(srcdir)/encodingconfigbase.cpp $(srcdir)/openconfirmbase.cpp $(srcdir)/passworddialogbase.cpp $(srcdir)/attachedfiledialogbase.cpp $(srcdir)/downloaderrordialogbase.cpp $(srcdir)/downloadcompletedialogbase.cpp $(srcdir)/newabsencenamebase.cpp $(srcdir)/kipmsgsettings.cpp  unlockpasswordconfig.moc senddialog.moc downloadcompletedialog.moc downloaderrordialogbase.moc unlockpasswordconfigbase.moc recievedialogbase.moc clickableurlconfig.moc about.moc passworddialog.moc openconfirm.moc attachedfiledialog.moc newabsencename.moc encodingconfigbase.moc kipmsgconfig.moc kipmsgwidgetbase.moc detailandlogconfig.moc showconfig.moc aboutbase.moc kipmsgconfigbase.moc recievedialog.moc detailandlogconfigbase.moc downloadmonitorbase.moc downloadcompletedialogbase.moc downloadmonitor.moc kipmsgwidget.moc passworddialogbase.moc showconfigbase.moc searchboxbase.moc newabsencenamebase.moc absenceconfigbase.moc attachedfiledialogbase.moc absenceconfig.moc openconfirmbase.moc clickableurlconfigbase.moc downloaderrordialog.moc encodingconfig.moc searchbox.moc senddialogbase.moc
+kipmsg.all_cpp.cpp: $(srcdir)/Makefile.in $(srcdir)/main.cpp $(srcdir)/kipmsgwidget.cpp $(srcdir)/recievedialog.cpp $(srcdir)/senddialog.cpp $(srcdir)/kipmsgconfig.cpp $(srcdir)/detailandlogconfig.cpp $(srcdir)/clickableurlconfig.cpp $(srcdir)/unlockpasswordconfig.cpp $(srcdir)/showconfig.cpp $(srcdir)/searchbox.cpp $(srcdir)/about.cpp $(srcdir)/downloadmonitor.cpp $(srcdir)/absenceconfig.cpp $(srcdir)/encodingconfig.cpp $(srcdir)/openconfirm.cpp $(srcdir)/passworddialog.cpp $(srcdir)/attachedfiledialog.cpp $(srcdir)/downloaderrordialog.cpp $(srcdir)/kipmsglogger.cpp $(srcdir)/downloadcompletedialog.cpp $(srcdir)/kipmsgevent.cpp $(srcdir)/newabsencename.cpp $(srcdir)/kipmsgutils.cpp $(srcdir)/kipmsgwidgetbase.cpp $(srcdir)/recievedialogbase.cpp $(srcdir)/senddialogbase.cpp $(srcdir)/kipmsgconfigbase.cpp $(srcdir)/detailandlogconfigbase.cpp $(srcdir)/clickableurlconfigbase.cpp $(srcdir)/unlockpasswordconfigbase.cpp $(srcdir)/showconfigbase.cpp $(srcdir)/searchboxbase.cpp $(srcdir)/aboutbase.cpp $(srcdir)/downloadmonitorbase.cpp $(srcdir)/absenceconfigbase.cpp $(srcdir)/encodingconfigbase.cpp $(srcdir)/openconfirmbase.cpp $(srcdir)/passworddialogbase.cpp $(srcdir)/attachedfiledialogbase.cpp $(srcdir)/downloaderrordialogbase.cpp $(srcdir)/downloadcompletedialogbase.cpp $(srcdir)/newabsencenamebase.cpp $(srcdir)/kipmsgsettings.cpp  unlockpasswordconfig.moc senddialog.moc downloadcompletedialog.moc downloaderrordialogbase.moc unlockpasswordconfigbase.moc recievedialogbase.moc clickableurlconfig.moc about.moc passworddialog.moc openconfirm.moc attachedfiledialog.moc newabsencename.moc encodingconfigbase.moc kipmsgconfig.moc kipmsgwidgetbase.moc detailandlogconfig.moc showconfig.moc aboutbase.moc kipmsgconfigbase.moc recievedialog.moc detailandlogconfigbase.moc downloadmonitorbase.moc downloadcompletedialogbase.moc downloadmonitor.moc kipmsgwidget.moc passworddialogbase.moc showconfigbase.moc searchboxbase.moc newabsencenamebase.moc absenceconfigbase.moc attachedfiledialogbase.moc absenceconfig.moc openconfirmbase.moc clickableurlconfigbase.moc downloaderrordialog.moc encodingconfig.moc searchbox.moc senddialogbase.moc
 	@echo 'creating kipmsg.all_cpp.cpp ...'; \
 	rm -f kipmsg.all_cpp.files kipmsg.all_cpp.final; \
 	echo "#define KDE_USE_FINAL 1" >> kipmsg.all_cpp.final; \
-	for file in main.cpp kipmsgwidget.cpp recievedialog.cpp senddialog.cpp kipmsgconfig.cpp detailandlogconfig.cpp clickableurlconfig.cpp unlockpasswordconfig.cpp showconfig.cpp searchbox.cpp about.cpp downloadmonitor.cpp absenceconfig.cpp encodingconfig.cpp openconfirm.cpp passworddialog.cpp attachedfiledialog.cpp downloaderrordialog.cpp kipmsglogger.cpp downloadcompletedialog.cpp kipmsgevent.cpp newabsencename.cpp kipmsgwidgetbase.cpp recievedialogbase.cpp senddialogbase.cpp kipmsgconfigbase.cpp detailandlogconfigbase.cpp clickableurlconfigbase.cpp unlockpasswordconfigbase.cpp showconfigbase.cpp searchboxbase.cpp aboutbase.cpp downloadmonitorbase.cpp absenceconfigbase.cpp encodingconfigbase.cpp openconfirmbase.cpp passworddialogbase.cpp attachedfiledialogbase.cpp downloaderrordialogbase.cpp downloadcompletedialogbase.cpp newabsencenamebase.cpp kipmsgsettings.cpp ; do \
+	for file in main.cpp kipmsgwidget.cpp recievedialog.cpp senddialog.cpp kipmsgconfig.cpp detailandlogconfig.cpp clickableurlconfig.cpp unlockpasswordconfig.cpp showconfig.cpp searchbox.cpp about.cpp downloadmonitor.cpp absenceconfig.cpp encodingconfig.cpp openconfirm.cpp passworddialog.cpp attachedfiledialog.cpp downloaderrordialog.cpp kipmsglogger.cpp downloadcompletedialog.cpp kipmsgevent.cpp newabsencename.cpp kipmsgutils.cpp kipmsgwidgetbase.cpp recievedialogbase.cpp senddialogbase.cpp kipmsgconfigbase.cpp detailandlogconfigbase.cpp clickableurlconfigbase.cpp unlockpasswordconfigbase.cpp showconfigbase.cpp searchboxbase.cpp aboutbase.cpp downloadmonitorbase.cpp absenceconfigbase.cpp encodingconfigbase.cpp openconfirmbase.cpp passworddialogbase.cpp attachedfiledialogbase.cpp downloaderrordialogbase.cpp downloadcompletedialogbase.cpp newabsencenamebase.cpp kipmsgsettings.cpp ; do \
 	  echo "#include \"$$file\"" >> kipmsg.all_cpp.files; \
 	  test ! -f $(srcdir)/$$file || egrep '^#pragma +implementation' $(srcdir)/$$file >> kipmsg.all_cpp.final; \
 	done; \
@@ -1023,7 +1029,7 @@ cvs-clean:
 kde-rpo-clean:
 	-rm -f *.rpo
 
-#>+ 83
+#>+ 84
 $(srcdir)/downloadmonitor.h: kipmsgwidgetbase.h recievedialogbase.h senddialogbase.h kipmsgconfigbase.h detailandlogconfigbase.h clickableurlconfigbase.h unlockpasswordconfigbase.h showconfigbase.h searchboxbase.h aboutbase.h downloadmonitorbase.h absenceconfigbase.h encodingconfigbase.h openconfirmbase.h passworddialogbase.h attachedfiledialogbase.h downloaderrordialogbase.h downloadcompletedialogbase.h newabsencenamebase.h kipmsgsettings.h 
 attachedfiledialog.lo: attachedfiledialog.moc 
 about.lo: about.moc 
@@ -1102,6 +1108,7 @@ $(srcdir)/downloadcompletedialog.h: kipmsgwidgetbase.h recievedialogbase.h sendd
 $(srcdir)/downloadmonitor.cpp: kipmsgwidgetbase.h recievedialogbase.h senddialogbase.h kipmsgconfigbase.h detailandlogconfigbase.h clickableurlconfigbase.h unlockpasswordconfigbase.h showconfigbase.h searchboxbase.h aboutbase.h downloadmonitorbase.h absenceconfigbase.h encodingconfigbase.h openconfirmbase.h passworddialogbase.h attachedfiledialogbase.h downloaderrordialogbase.h downloadcompletedialogbase.h newabsencenamebase.h kipmsgsettings.h 
 unlockpasswordconfig.o: unlockpasswordconfig.moc 
 openconfirm.o: openconfirm.moc 
+$(srcdir)/kipmsgutils.cpp: kipmsgwidgetbase.h recievedialogbase.h senddialogbase.h kipmsgconfigbase.h detailandlogconfigbase.h clickableurlconfigbase.h unlockpasswordconfigbase.h showconfigbase.h searchboxbase.h aboutbase.h downloadmonitorbase.h absenceconfigbase.h encodingconfigbase.h openconfirmbase.h passworddialogbase.h attachedfiledialogbase.h downloaderrordialogbase.h downloadcompletedialogbase.h newabsencenamebase.h kipmsgsettings.h 
 downloaderrordialog.lo: downloaderrordialog.moc 
 $(srcdir)/kipmsglogger.h: kipmsgwidgetbase.h recievedialogbase.h senddialogbase.h kipmsgconfigbase.h detailandlogconfigbase.h clickableurlconfigbase.h unlockpasswordconfigbase.h showconfigbase.h searchboxbase.h aboutbase.h downloadmonitorbase.h absenceconfigbase.h encodingconfigbase.h openconfirmbase.h passworddialogbase.h attachedfiledialogbase.h downloaderrordialogbase.h downloadcompletedialogbase.h newabsencenamebase.h kipmsgsettings.h 
 detailandlogconfig.o: detailandlogconfig.moc 
