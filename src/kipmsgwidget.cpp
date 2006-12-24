@@ -230,6 +230,8 @@ void kipmsgWidget::rebuildMenu()
 	MainPopup->insertItem( SmallIcon("window_suppressed"),tr2i18n("Hide all open confirm windows"), this, SLOT( slotHideAllOpenConfirmClicked( void ) ) );
 	MainPopup->insertItem( SmallIcon("top"),tr2i18n("All windows stay on top"), this, SLOT( slotStayOnTopAllWindowsClick( void ) ) );
 	MainPopup->insertSeparator();
+	MainPopup->insertItem( SmallIcon("filenew"), tr2i18n("New message..."), this, SLOT( slotNewMessageClicked( void ) ) );
+	MainPopup->insertSeparator();
 	MainPopup->insertItem( SmallIcon("configure"), tr2i18n("Configuration..."), this, SLOT( slotConfigureClicked( void ) ) );
 	MainPopup->insertItem( SmallIcon("kipmsg_about"), tr2i18n("About KIpMessenger"), this, SLOT( slotAboutClicked( void ) ) );
 	MainPopup->insertItem( SmallIcon("view_text"),tr2i18n("View logs"), this, SLOT( slotViewLogClicked( void ) ) );
@@ -403,6 +405,18 @@ void kipmsgWidget::mouseDoubleClickEvent (QMouseEvent * /*e*/)
 		if ( evt != NULL ) {
 			evt->ShowSendDlg();
 		}
+	}
+}
+
+/**
+ * 新しいメッセージメニュークリックイベント
+ * ・送信ダイアログを開く。
+ */
+void kipmsgWidget::slotNewMessageClicked()
+{
+	KIpMsgEvent *evt = dynamic_cast<KIpMsgEvent *>(IpMsgAgent->GetEventObject());
+	if ( evt != NULL ) {
+		evt->ShowSendDlg();
 	}
 }
 

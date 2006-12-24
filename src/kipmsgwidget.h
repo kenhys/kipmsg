@@ -57,6 +57,7 @@ public slots:
     virtual void slotAbsenceModeConfigClicked();
     virtual void slotPollingTimeout();
     virtual void slotResetAbsenceModeClicked();
+    virtual void slotNewMessageClicked();
     virtual void slotAbsenceModeSelect( int );
 
 protected:
