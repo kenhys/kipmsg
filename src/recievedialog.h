@@ -47,11 +47,10 @@ class RecieveDialog : public RecieveDialogBase
     Q_OBJECT
 
 public:
-    RecieveDialog(QWidget* parent = 0, const char* name = 0, WFlags fl = 0 );
+    RecieveDialog(RecievedMessage _msg, QWidget* parent = 0, const char* name = 0, WFlags fl = 0 );
     ~RecieveDialog();
     /*$PUBLIC_FUNCTIONS$*/
 	void setDownloadFiles();
-	void setMessage( RecievedMessage _msg ){ msg = _msg; };
 	void setFixsizePotisionMenu();
 	void setSaveSizeMenu();
 	void synchronizeMenu();
@@ -72,6 +71,8 @@ public slots:
     virtual void slotAttachFilesMouseButtonClicked(int,QListViewItem *,const QPoint &, int);
     virtual void slotDownloadClicked();
     virtual void slotDownloadAllClicked();
+    virtual void slotFontSelectClicked();
+    virtual void slotFontRestoreToDefaultClicked();
 
 protected:
     /*$PROTECTED_FUNCTIONS$*/
@@ -88,6 +89,7 @@ private:
 	KPopupMenu *RecvPopup;
 	KPopupMenu *SizePopup;
 	KPopupMenu *DownloadPopup;
+	KPopupMenu *FontPopup;
 	int fixize_pos_menu_item;
 	int save_size_menu_item;
 

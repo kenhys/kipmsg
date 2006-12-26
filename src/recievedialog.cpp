@@ -27,6 +27,7 @@
 #include <qstringlist.h>
 #include <qgroupbox.h>
 #include <qfileinfo.h>
+#include <kfontdialog.h>
 #include <klistview.h>
 #include <klocale.h>
 #include <kmessagebox.h>
@@ -134,9 +135,10 @@ QString KIpMsgAttachedFileListViewItem::TimeStamp( time_t t )
  * @param name 名前
  * @param fl フラグ
  */
-RecieveDialog::RecieveDialog(QWidget* parent, const char* name, WFlags fl)
+RecieveDialog::RecieveDialog(RecievedMessage _msg, QWidget* parent, const char* name, WFlags fl)
         : RecieveDialogBase(parent,name,fl)
 {
+	msg=_msg;
 	m_AttachmentFiles->addColumn( tr2i18n("File Name") );
 	m_AttachmentFiles->addColumn( tr2i18n("Download") );
 	m_AttachmentFiles->addColumn( tr2i18n("Size") );
@@ -165,12 +167,17 @@ RecieveDialog::RecieveDialog(QWidget* parent, const char* name, WFlags fl)
 	DownloadPopup->insertItem(SmallIcon("filesave"),tr2i18n("Download"), this, SLOT( slotDownloadClicked( void ) ) );
 	DownloadPopup->insertItem(SmallIcon("save_all"),tr2i18n("Download all"), this, SLOT( slotDownloadAllClicked( void ) )  );
 
+	FontPopup = new KPopupMenu(this);
+	FontPopup->insertItem(SmallIcon("configure"),tr2i18n("configure..."), this, SLOT( slotFontSelectClicked( void ) ) );
+	FontPopup->insertItem(SmallIcon("undo"),tr2i18n("Restore default"), this, SLOT( slotFontRestoreToDefaultClicked( void ) ) );
+	RecvPopup->insertItem(SmallIcon("fonts"),tr2i18n("Font Select"), FontPopup );
 
     m_RecievedMessageHTMLPart = new KHTMLPart( m_RecvAreaFrame, "m_RecievedHTMLPart" );
     m_RecievedMessageHTMLPart->view()->setGeometry( QRect( 10, 54, 216, 100 ) );
     m_RecievedMessageHTMLPart->view()->setMinimumSize( QSize( 0, 100 ) );
     m_RecievedMessageHTMLPart->view()->setMarginWidth( 0 );
     m_RecievedMessageHTMLPart->view()->setMarginHeight( 0 );
+	m_RecievedMessageHTMLPart->view()->setFont( KIpMsgSettings::viewFont() );
     connect( m_RecievedMessageHTMLPart->browserExtension(),
 			 SIGNAL( openURLRequest( const KURL &, const KParts::URLArgs & ) ), this,
 			 SLOT( slotOpenURL( const KURL & ) ) );
@@ -184,6 +191,10 @@ RecieveDialog::RecieveDialog(QWidget* parent, const char* name, WFlags fl)
 	}
 	m_QuoteCheckbox->setChecked( KIpMsgSettings::quoteDefault() );
 
+	m_MessageFromLabel->setFont(KIpMsgSettings::viewFont());
+	QString fontFace = m_MessageFromLabel->font().family();
+	m_RecievedMessageHTMLPart->setStandardFont(fontFace);
+	m_RecievedMessageHTMLPart->setFixedFont(fontFace);
 
 	if ( KIpMsgSettings::recieveDialogFixizePosition() ) {
 		move( QPoint( KIpMsgSettings::recieveDialogLeft(), KIpMsgSettings::recieveDialogTop() ) );
@@ -196,6 +207,14 @@ RecieveDialog::RecieveDialog(QWidget* parent, const char* name, WFlags fl)
 	}else{
 		resize( defaultWidth, defaultHeight );
 	}
+
+	HostListItem host = msg.Host();
+	KIpMsgEvent::GetHostEncodingFromConfig(host);
+	QString enc = host.EncodingName().c_str();
+	if ( enc == "" ){
+		enc = KIpMsgSettings::messageEncoding();
+	}
+	m_EncodingCombobox->setCurrentText( enc );
 }
 
 /**
@@ -367,6 +386,7 @@ void RecieveDialog::slotEncodingChange( int index )
 	}
 	encodings << IpAddr + ":" + UserName + ":" + m_EncodingCombobox->text( index );
 	KIpMessengerLogger::GetInstance()->PutRecivedMessage( msg, TRUE );
+	doResize( NULL );
 }
 
 /**
@@ -421,7 +441,43 @@ void RecieveDialog::slotReplyClicked()
 }
 
 /**
- * 添付ファイルリストからダウンロードファイル名をダウンロードボタンに設定
+ * 本文のフォントを選択。
+ */
+void RecieveDialog::slotFontSelectClicked()
+{
+	//現在のフォントを取得
+	QFont font = m_RecievedMessageHTMLPart->view()->font();
+	//現在のフォントでフォントダイアログを表示
+	int result = KFontDialog::getFont(font);
+	//フォントが変更された
+	if ( result == KFontDialog::Accepted ) {
+		//フォントをメッセージのビューに反映
+		m_MessageFromLabel->setFont(font);
+		QString fontFace = font.family();
+		m_RecievedMessageHTMLPart->setStandardFont(fontFace);
+		m_RecievedMessageHTMLPart->setFixedFont(fontFace);
+		//フォント設定を保存
+		KIpMsgSettings::setViewFont( m_MessageFromLabel->font() );
+		KIpMsgSettings::writeConfig();
+	}
+}
+
+/**
+ * フォントをデフォルトに設定。
+ */
+void RecieveDialog::slotFontRestoreToDefaultClicked()
+{
+	//フォント未設定状態にする。
+	m_MessageFromLabel->unsetFont();
+	m_RecievedMessageHTMLPart->setStandardFont("");
+	m_RecievedMessageHTMLPart->setFixedFont("");
+	//フォント設定を保存
+	KIpMsgSettings::setViewFont( m_MessageFromLabel->font() );
+	KIpMsgSettings::writeConfig();
+}
+
+/**
+ * 添付ファイルリストからダウンロードファイル名をリストビューに設定
  */
 void RecieveDialog::setDownloadFiles()
 {

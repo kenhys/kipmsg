@@ -256,6 +256,7 @@ SendDialog::SendDialog(QWidget* parent, const char* name, WFlags fl)
 	}else{
 		resize( defaultWidth, defaultHeight );
 	}
+	m_EncodingCombobox->setCurrentText( KIpMsgSettings::messageEncoding() );
 
 	slotSecretClicked();
 
@@ -805,12 +806,17 @@ void SendDialog::slotEncodingSelect( int menu_item )
 		return;
 	}
 	QListViewItemIterator it( m_HostListView );
+	int count=0;
 	while ( it.current() != NULL ) {
 		QListViewItem *item = it.current();
 		if ( *encodingMenuIdList[menu_item] == item->text( ColumnEncoding ) ) {
 			m_HostListView->setSelected( item, TRUE );
 		}
 		it++;
+		count++;
+	}
+	if ( count > 0 ) {
+		m_EncodingCombobox->setCurrentText( *encodingMenuIdList[menu_item] );
 	}
 	prev_menu = menu_item;
 }

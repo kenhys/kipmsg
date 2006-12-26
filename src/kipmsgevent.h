@@ -56,8 +56,9 @@ class KIpMsgEvent: public IpMessengerEvent {
 		void StayOnTopAllWindows();
 		QPtrList<RecieveDialog>& GetRecieveDialogs();
 		QPtrList<SendDialog>& GetSendDialogs();
+		static string CreateHostInfoString(HostListItem host);
+		static void GetHostEncodingFromConfig( HostListItem &host );
 	private:
-		void GetHostEncodingFromConfig( HostListItem &host );
 		void RefreshHostListInAllSendDlg();
 		void ShowRecieveMsg( RecievedMessage& msg );
 		QPtrList<SendDialog> sendDialogs;

@@ -92,12 +92,7 @@ KIpMsgEvent::SendAfter( SentMessage& /*msg*/ ){
  */
 bool
 KIpMsgEvent::SendRetryError( SentMessage& msg ){
-	QString toName = "";
-	if ( msg.Host().GroupName() != "" ) {
-		toName = string( msg.Host().Nickname() + "(" + msg.Host().GroupName() + "/" + msg.Host().HostName() + ")" ).c_str();
-	} else {
-		toName = string( msg.Host().Nickname() + "(" + msg.Host().HostName() + ")" ).c_str();
-	}
+	QString toName = CreateHostInfoString(msg.Host()).c_str();
 	if ( msg.Host().EncodingName() != "" ){
 		QTextCodec *codec = QTextCodec::codecForName( msg.Host().EncodingName().c_str() );
 		if ( codec != NULL ){
@@ -289,7 +284,7 @@ KIpMsgEvent::AbsenceModeChangeAfter( HostList& /*hostList*/ )
 void KIpMsgEvent::VersionInfoRecieveAfter( HostListItem &host, string version )
 {
 	GetHostEncodingFromConfig( host );
-	string hostInfo = host.Nickname() + "(" + host.HostName() + ( host.GroupName() == "" ? ")" : "/" + host.GroupName() + ")" );
+	string hostInfo = CreateHostInfoString(host);
 	QString msg = ( hostInfo + "\n" + version ).c_str();
 	if ( host.EncodingName() != "" ){
 		QTextCodec *codec = QTextCodec::codecForName( host.EncodingName().c_str() );
@@ -306,7 +301,7 @@ void KIpMsgEvent::VersionInfoRecieveAfter( HostListItem &host, string version )
 void KIpMsgEvent::AbsenceDetailRecieveAfter( HostListItem &host, string absenceDetail )
 {
 	GetHostEncodingFromConfig( host );
-	string hostInfo = host.Nickname() + "(" + host.HostName() + ( host.GroupName() == "" ? ")" : "/" + host.GroupName() + ")" );
+	string hostInfo = CreateHostInfoString(host);
 	QString msg = ( hostInfo + "\n" + absenceDetail ).c_str();
 	if ( host.EncodingName() != "" ){
 		QTextCodec *codec = QTextCodec::codecForName( host.EncodingName().c_str() );
@@ -320,6 +315,7 @@ void KIpMsgEvent::AbsenceDetailRecieveAfter( HostListItem &host, string absenceD
 void 
 KIpMsgEvent::GetHostEncodingFromConfig( HostListItem &host )
 {
+	host.setEncodingName( "" );
 	QStringList encodings = KIpMsgSettings::encodingSettings();
 	for( QStringList::iterator ite = encodings.begin(); ite != encodings.end(); ite++ ){
 		QStringList fields = QStringList::split( ":", *ite );
@@ -487,8 +483,7 @@ KIpMsgEvent::TimerEvent(){
  */
 void
 KIpMsgEvent::ShowRecieveMsg( RecievedMessage& msg ){
-	RecieveDialog *recv = new RecieveDialog();
-	recv->setMessage( msg );
+	RecieveDialog *recv = new RecieveDialog(msg,0,0,0);
 	recv->setDownloadFiles();
 	recv->show();
 	if ( !KIpMsgSettings::recordAfterUnlock() ){
@@ -510,4 +505,19 @@ KIpMsgEvent::ShowHiddenRecieveMsg(){
 		ShowRecieveMsg( *ix );
 	}
 	hiddenMessages.clear();
+}
+
+/**
+ * ホスト情報を生成する。
+ * @retval Nickname(GroupName/Hostname)形式の文字列
+ */
+string
+KIpMsgEvent::CreateHostInfoString(HostListItem host){
+	string hostInfoName = "";
+	if ( host.GroupName() != "" ) {
+		hostInfoName = host.Nickname() + "(" + host.GroupName() + "/" + host.HostName() + ")";
+	} else {
+		hostInfoName = host.Nickname() + "(" + host.HostName() + ")";
+	}
+	return hostInfoName;
 }

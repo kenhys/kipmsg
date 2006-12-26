@@ -301,6 +301,9 @@
     <entry name="RecieveDialogWidth" type="Int">
       <label>Defines send dialog width.</label>
     </entry>
+    <entry name="ViewFont" type="Font">
+      <label>Defines message view box font.</label>
+    </entry>
   </group>
   <group name="encoding">
     <entry name="EncodingSettings" type="StringList">

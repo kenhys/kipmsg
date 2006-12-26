@@ -3,6 +3,7 @@
 - Update:Add download progress to attachment file dowloading.
 - Update:Add download progress to download monitor.
 - Fix:strange action at spliter moving.
+- Fix:default encoding.
 
 2006-12-24 Niki, Kuninobu <nikikuni@yahoo.co.jp>
 - Update:Implementation Get Version Info.
