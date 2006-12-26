@@ -23,6 +23,7 @@
 #include <klistbox.h>
 #include <kcombobox.h>
 #include <qcheckbox.h>
+#include <qtextcodec.h>
 #include <qcheckbox.h>
 #include <qstringlist.h>
 
@@ -46,9 +47,13 @@ KIPMsgConfigDialog::KIPMsgConfigDialog(QWidget* parent, const char* name, WFlags
 	m_UserNameEditbox->setText(KIpMsgSettings::userName() );
 
 	IpMessengerAgent *agent = IpMessengerAgent::GetInstance();
-	vector<string> groups = agent->GetGroupList();
-	for( vector<string>::iterator ixgr = groups.begin(); ixgr != groups.end();ixgr++ ){
-		m_GroupNameCombobox->insertItem( ixgr->c_str() );
+	vector<GroupItem> groups = agent->GetGroupList();
+	for( vector<GroupItem>::iterator ixgr = groups.begin(); ixgr != groups.end();ixgr++ ){
+		QTextCodec *codec = QTextCodec::codecForName( ixgr->EncodingName().c_str() );
+		if ( codec == NULL ){
+			codec = QTextCodec::codecForName( KIpMsgSettings::messageEncoding() );
+		}
+		m_GroupNameCombobox->insertItem( codec->toUnicode( ixgr->GroupName().c_str() ) );
 	}
 	m_GroupNameCombobox->setCurrentText( KIpMsgSettings::groupName() );
 	m_ConfirmOpenCheckbox->setChecked(KIpMsgSettings::confirmOpen() );
@@ -168,6 +173,9 @@ void KIPMsgConfigDialog::slotApplyClicked()
 		QString broadcastAddress = *it;
 		agent->AddBroadcastAddress( broadcastAddress.data() );
 	}
+	QTextCodec *codec = QTextCodec::codecForName( KIpMsgSettings::messageEncoding() );
+	IpMessengerAgent *IpMsgAgent = IpMessengerAgent::GetInstance();
+	IpMsgAgent->Login( codec->fromUnicode( KIpMsgSettings::userName() ).data(), codec->fromUnicode( KIpMsgSettings::groupName() ).data() );
 }
 
 #include "kipmsgconfig.moc"
