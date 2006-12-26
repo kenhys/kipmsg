@@ -720,14 +720,16 @@ void SendDialog::refreshHostList( bool isUpdate )
 	groupPopup->clear();
 	groupMenuIdList.clear();
 	groupMenuIdList.setAutoDelete( TRUE );
-	vector<string> groups = agent->GetGroupList();
-	for( vector<string>::iterator ixgr = groups.begin(); ixgr != groups.end();ixgr++ ){
-		if ( *ixgr != "" ) {
-			QTextCodec *codec;
-			codec = QTextCodec::codecForName( KIpMsgSettings::messageEncoding() );
-			int menu_item = groupPopup->insertItem( codec->toUnicode( QString( ixgr->c_str() ) ) );
+	vector<GroupItem> groups = agent->GetGroupList();
+	for( vector<GroupItem>::iterator ixgr = groups.begin(); ixgr != groups.end();ixgr++ ){
+		if ( ixgr->GroupName() != "" ) {
+			QTextCodec *codec = QTextCodec::codecForName( ixgr->EncodingName().c_str() );
+			if ( codec == NULL ) {
+				codec = QTextCodec::codecForName( KIpMsgSettings::messageEncoding() );
+			}
+			int menu_item = groupPopup->insertItem( codec->toUnicode( QString( ixgr->GroupName().c_str() ) ) );
 			connect( groupPopup, SIGNAL( activated(int) ), this, SLOT( slotGroupSelect( int ) ) );
-			groupMenuIdList.insert( menu_item, new QString( codec->toUnicode( QString( ixgr->c_str() ) ) ) );
+			groupMenuIdList.insert( menu_item, new QString( codec->toUnicode( QString( ixgr->GroupName().c_str() ) ) ) );
 		}
 	}
 	//エンコーディング選択メニュー再構築
