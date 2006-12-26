@@ -12,7 +12,7 @@ License: 	GPL
 Group:		User Interface/Desktops
 BuildRoot: 	%{_tmppath}/%{name}-buildroot
 Requires: 	kdelibs, kdebase, qt, libipmsg
-BuildRequires: 	kdelibs-devel, kdebase-devel, qt-devel, libipmsg-devel
+BuildRequires: 	kdelibs-devel, kdebase-devel, qt-devel, libipmsg-devel = 0.1.1
 
 %description
 Ip Messenger for KDE is the IpMessenger(famous windows application)'s KDE implementation.
