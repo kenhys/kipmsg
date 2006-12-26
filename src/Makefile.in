@@ -476,7 +476,7 @@ $(srcdir)/Makefile.in:  Makefile.am  $(top_srcdir)/configure.in $(ACLOCAL_M4)
 #>+ 3
 	cd $(top_srcdir) && \
 	  $(AUTOMAKE) --gnu  src/Makefile
-	cd $(top_srcdir) && perl admin/am_edit src/Makefile.in
+	cd $(top_srcdir) && perl admin/am_edit -padmin src/Makefile.in
 Makefile:  $(srcdir)/Makefile.in  $(top_builddir)/config.status
 	cd $(top_builddir) && $(SHELL) ./config.status $(subdir)/$@ $(am__depfiles_maybe)
 binPROGRAMS_INSTALL = $(INSTALL_PROGRAM)
@@ -789,6 +789,7 @@ messages: rc.cpp
 # Otherwise a system limit (for SysV at least) may be exceeded.
 .NOEXPORT:
 
+
 #>+ 3
 downloadcompletedialog.moc: $(srcdir)/downloadcompletedialog.h
 	$(MOC) $(srcdir)/downloadcompletedialog.h -o downloadcompletedialog.moc
@@ -927,7 +928,7 @@ clean-metasources:
 	-rm -f  downloadcompletedialog.moc senddialog.moc unlockpasswordconfig.moc downloadmonitor.moc kipmsgwidget.moc clickableurlconfig.moc passworddialog.moc about.moc openconfirm.moc absenceconfig.moc newabsencename.moc attachedfiledialog.moc kipmsgconfig.moc detailandlogconfig.moc downloaderrordialog.moc encodingconfig.moc showconfig.moc searchbox.moc recievedialog.moc
 
 #>+ 2
-KDE_DIST=unlockpasswordconfigbase.h aboutbase.h kipmsg downloaderrordialogbase.ui downloadcompletedialogbase.ui passworddialogbase.h kipmsgwidgetbase.ui absenceconfigbase.ui unlockpasswordconfigbase.ui detailandlogconfigbase.h absenceconfigbase.h kipmsg.lsm kipmsgsettings.kcfgc aboutbase.ui encodingconfigbase.ui detailandlogconfigbase.ui encodingconfigbase.h senddialogbase.h kipmsgconfigbase.h recievedialogbase.h kipmsgsettings.kcfg clickableurlconfigbase.ui newabsencenamebase.h recievedialogbase.ui downloaderrordialogbase.h clickableurlconfigbase.h kipmsg.desktop downloadcompletedialogbase.h showconfigbase.h openconfirmbase.ui kipmsgui.rc showconfigbase.ui openconfirmbase.h senddialogbase.ui searchboxbase.h attachedfiledialogbase.h newabsencenamebase.ui kipmsgwidget.h kipmsgwidgetbase.h passworddialogbase.ui downloadmonitorbase.h attachedfiledialogbase.ui kipmsgsettings.h kipmsgconfigbase.ui downloadmonitorbase.ui searchboxbase.ui 
+KDE_DIST=unlockpasswordconfigbase.h aboutbase.h kipmsg downloaderrordialogbase.ui downloadcompletedialogbase.ui passworddialogbase.h kipmsgwidgetbase.ui absenceconfigbase.ui unlockpasswordconfigbase.ui detailandlogconfigbase.h absenceconfigbase.h kipmsg.lsm kipmsgsettings.kcfgc aboutbase.ui encodingconfigbase.ui detailandlogconfigbase.ui encodingconfigbase.h senddialogbase.h kipmsgconfigbase.h recievedialogbase.h kipmsgsettings.kcfg clickableurlconfigbase.ui newabsencenamebase.h recievedialogbase.ui downloaderrordialogbase.h clickableurlconfigbase.h downloadcompletedialogbase.h kipmsg.desktop showconfigbase.h openconfirmbase.ui kipmsgui.rc showconfigbase.ui openconfirmbase.h attachedfiledialogbase.h searchboxbase.h senddialogbase.ui newabsencenamebase.ui kipmsgwidget.h log kipmsgwidgetbase.h passworddialogbase.ui downloadmonitorbase.h attachedfiledialogbase.ui kipmsgsettings.h kipmsgconfigbase.ui downloadmonitorbase.ui searchboxbase.ui 
 
 #>+ 22
 clean-ui:
@@ -964,7 +965,7 @@ docs-am:
 force-reedit:
 		cd $(top_srcdir) && \
 	  $(AUTOMAKE) --gnu  src/Makefile
-	cd $(top_srcdir) && perl admin/am_edit src/Makefile.in
+	cd $(top_srcdir) && perl admin/am_edit -padmin src/Makefile.in
 
 
 #>+ 21
