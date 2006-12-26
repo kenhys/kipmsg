@@ -22,15 +22,19 @@
 #include <kmessagebox.h>
 #include <klocale.h>
 #include <kwin.h>
+#include <klistview.h>
 #include <qtextcodec.h>
 #include <qlabel.h>
 #include <kmessagebox.h>
+#include <kiconloader.h>
+#include <kuniqueapplication.h>
 #include "downloadcompletedialog.h"
 #include "downloaderrordialog.h"
 #include "kipmsgevent.h"
 #include "kipmsgwidget.h"
 #include "kipmsgsettings.h"
 #include "kipmsglogger.h"
+#include "kipmsgutils.h"
 
 /**
  * ホストリスト更新後イベント
@@ -173,8 +177,36 @@ KIpMsgEvent::DownloadStart( RecievedMessage& /*msg*/, AttachFile& /*file*/, Down
  * @param data 付加データ
  */
 void
-KIpMsgEvent::DownloadProcessing( RecievedMessage& /*msg*/, AttachFile& /*file*/, DownloadInfo& /*info*/, void * /*data*/ ){
-	printf("DownloadProcessing KIPMSG\n");
+KIpMsgEvent::DownloadProcessing( RecievedMessage& /*msg*/, AttachFile& file, DownloadInfo& info, void * data ){
+	if ( kapp != NULL ){
+		kapp->processEvents();
+	}
+	RecieveDialog *recvDlg = static_cast<RecieveDialog *>(data);
+	QListViewItemIterator it( recvDlg->m_AttachmentFiles );
+	while ( it.current() != NULL ) {
+		KIpMsgAttachedFileListViewItem *item = dynamic_cast<KIpMsgAttachedFileListViewItem *>(it.current());
+		if ( item != NULL && item->isSelected() ) {
+			int percentage = 0;
+			if ( file.FileId() == item->file().FileId() ) {
+				if ( file.IsRegularFile() ){
+					if ( info.File().FileSize() != 0 ) {
+						percentage = (int)( (long double)100 * ( (long double)info.Size() / (long double)info.File().FileSize() ) );
+					}
+				}
+				if ( file.IsDirectory() && !info.Processing() ){
+					percentage = 100;
+				}
+				QString percentageStr = QString("%1%").arg(percentage);
+				item->setText( 1, percentageStr );
+				QString iconName = GetPercentageIconName( percentage );
+				item->setPixmap( 0, SmallIcon( iconName ) );
+				recvDlg->update();
+				return;
+			}
+		}
+		++it;
+	}
+	recvDlg->update();
 }
 
 /**
@@ -189,10 +221,12 @@ KIpMsgEvent::DownloadProcessing( RecievedMessage& /*msg*/, AttachFile& /*file*/,
 void
 KIpMsgEvent::DownloadEnd( RecievedMessage& msg, AttachFile& file, DownloadInfo& info, void *data ){
 	RecieveDialog *recvDlg = static_cast<RecieveDialog *>(data);
-	DownloadCompleteDialog *dlg = new DownloadCompleteDialog(recvDlg, 0, TRUE);
-	dlg->setDownloadInfo( info );
-	dlg->exec();
-	delete dlg;
+	if ( recvDlg->isOpenSaveDialog() ){
+		DownloadCompleteDialog *dlg = new DownloadCompleteDialog(recvDlg, 0, TRUE);
+		dlg->setDownloadInfo( info );
+		dlg->exec();
+		delete dlg;
+	}
 	msg.Files().erase( file );
 }
 

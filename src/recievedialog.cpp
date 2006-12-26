@@ -35,6 +35,9 @@
 #include <ktextedit.h>
 #include <krun.h>
 #include <kiconloader.h>
+#include <kmimetype.h>
+#include <kuserprofile.h>
+#include <kservice.h>
 
 #include "senddialog.h"
 #include "passworddialog.h"
@@ -42,6 +45,85 @@
 #include "kipmsgsettings.h"
 #include "kipmsglogger.h"
 #include "kipmsgevent.h"
+#include "kipmsgutils.h"
+
+/**
+ * コンストラクタ
+ * ・リストビューアイテムの初期設定。
+ * ・アイコンの初期設定。
+ * ・添付ファイルオブジェクトの初期設定。
+ * @param parent 親ウィジェット
+ * @param codec メッセージのコーデック
+ * @param file 添付ファイルオブジェクト
+ */
+KIpMsgAttachedFileListViewItem::KIpMsgAttachedFileListViewItem( QListView *parent, QTextCodec *codec, AttachFile &file ) :
+	QListViewItem( parent,
+		codec->toUnicode( file.FileName().c_str() ),
+		"",
+		codec->toUnicode( DownloadInfo::getUnitSizeString( file.FileSize() ).c_str() ),
+		file.IsDirectory() ? "(DIR)" : file.IsRegularFile() ? KIpMsgAttachedFileListViewItem::FileType( codec->toUnicode( file.FileName().c_str() ) ) : "Other" ,
+		KIpMsgAttachedFileListViewItem::TimeStamp( file.MTime() ) )
+{
+	QString iconName = GetPercentageIconName( 0 );
+	setPixmap( 0, SmallIcon( iconName ) );
+	m_file = file;
+}
+
+/**
+ * 添付ファイルオブジェクトのゲッター。
+ * @retval 添付ファイルオブジェクト
+ */
+AttachFile KIpMsgAttachedFileListViewItem::file()
+{
+	return m_file;
+}
+
+/**
+ * ファイル名から拡張子を取得します。
+ * @param FileName ファイル名
+ * @retval 拡張子
+ */
+QString KIpMsgAttachedFileListViewItem::ExtName( QString FileName )
+{
+	int pos = FileName.findRev( "." );
+	QString ExtName = "";
+	if ( pos >= 0 ) {
+		ExtName = FileName.mid( pos + 1 );
+	}
+	return ExtName;
+}
+
+/**
+ * ファイル名からファイルの種類を取得します。
+ * @param FileName ファイル名
+ * @retval ファイルの種類
+ */
+QString KIpMsgAttachedFileListViewItem::FileType( QString FileName )
+{
+	KMimeType::Ptr mimetype = KMimeType::findByURL( FileName );
+	if ( mimetype == NULL ) {
+		return QString( tr2i18n("File of %1" ) ).arg( ExtName( FileName ) );
+	}
+	KService::Ptr offer = KServiceTypeProfile::preferredService( mimetype->name(), "Application" );
+	if ( offer == NULL ) {
+		return QString( tr2i18n( "File of %1" ) ).arg( ExtName( FileName ) );
+	}
+	return offer->name();
+}
+
+/**
+ * タイムスタンプを文字列にします。
+ * @param t タイムスタンプ
+ * @retval 文字列
+ */
+QString KIpMsgAttachedFileListViewItem::TimeStamp( time_t t )
+{
+	char buf[100];
+	memset( buf, 0, sizeof( buf ) );
+	ctime_r( &t, buf );
+	buf[strlen( buf ) - 1] = 0;
+	return QString(buf);
+}
 
 /**
  * コンストラクタ
@@ -55,10 +137,17 @@
 RecieveDialog::RecieveDialog(QWidget* parent, const char* name, WFlags fl)
         : RecieveDialogBase(parent,name,fl)
 {
+	m_AttachmentFiles->addColumn( tr2i18n("File Name") );
+	m_AttachmentFiles->addColumn( tr2i18n("Download") );
+	m_AttachmentFiles->addColumn( tr2i18n("Size") );
+	m_AttachmentFiles->addColumn( tr2i18n("Type") );
+	m_AttachmentFiles->addColumn( tr2i18n("Modified") );
+
 	defaultX = x();
 	defaultY = y();
 	defaultWidth = width();
 	defaultHeight = height();
+	isDownloading = false;
 
     RecvPopup = new KPopupMenu(this);
 	SizePopup = new KPopupMenu(this);
@@ -72,6 +161,11 @@ RecieveDialog::RecieveDialog(QWidget* parent, const char* name, WFlags fl)
 
 	RecvPopup->setItemChecked( fixize_pos_menu_item, KIpMsgSettings::recieveDialogFixizePosition() );
 
+	DownloadPopup = new KPopupMenu(this);
+	DownloadPopup->insertItem(SmallIcon("filesave"),tr2i18n("Download"), this, SLOT( slotDownloadClicked( void ) ) );
+	DownloadPopup->insertItem(SmallIcon("save_all"),tr2i18n("Download all"), this, SLOT( slotDownloadAllClicked( void ) )  );
+
+
     m_RecievedMessageHTMLPart = new KHTMLPart( m_RecvAreaFrame, "m_RecievedHTMLPart" );
     m_RecievedMessageHTMLPart->view()->setGeometry( QRect( 10, 54, 216, 100 ) );
     m_RecievedMessageHTMLPart->view()->setMinimumSize( QSize( 0, 100 ) );
@@ -82,7 +176,7 @@ RecieveDialog::RecieveDialog(QWidget* parent, const char* name, WFlags fl)
 			 SLOT( slotOpenURL( const KURL & ) ) );
 
 
-	m_DownloadButton->setHidden( TRUE );
+	m_AttachmentFiles->setHidden( TRUE );
     m_RecievedMessageHTMLPart->view()->setHidden( TRUE );
 
 	if ( KIpMsgSettings::fireIntercept()  ) {
@@ -240,11 +334,11 @@ void RecieveDialog::slotMessageOpenClicked()
 		}
 	}
 	if ( msg.HasAttachFile() ) {
-		m_DownloadButton->setHidden( FALSE );
+		m_AttachmentFiles->setHidden( FALSE );
 		//ファイル名設定
 		setDownloadFiles();
 	} else {
-		m_DownloadButton->setHidden( TRUE );
+		m_AttachmentFiles->setHidden( TRUE );
 	}
 	m_OpenButton->setHidden( TRUE );
     m_RecievedMessageHTMLPart->view()->setHidden( FALSE );
@@ -331,46 +425,100 @@ void RecieveDialog::slotReplyClicked()
  */
 void RecieveDialog::setDownloadFiles()
 {
-	string fileNames;
-	for( vector<AttachFile>::iterator ix = msg.Files().begin(); ix != msg.Files().end(); ix++ ) {
-		fileNames += ix->FileName() + " ";
-	}
 	QTextCodec *codec = QTextCodec::codecForName( m_EncodingCombobox->currentText() );
-	m_DownloadButton->setText( codec->toUnicode( fileNames.c_str() ) );
+	m_AttachmentFiles->clear();
+	for( vector<AttachFile>::iterator ix = msg.Files().begin(); ix != msg.Files().end(); ix++ ) {
+		new KIpMsgAttachedFileListViewItem( m_AttachmentFiles, codec, *ix );
+	}
 }
 
 /**
- * ダウンロードボタンクリック
+ * 全てダウンロードメニュークリック
+ */
+void RecieveDialog::slotDownloadAllClicked()
+{
+	QString dirName = KFileDialog::getExistingDirectory();
+	m_AttachmentFiles->selectAll( TRUE );
+	if ( dirName != "" ) {
+		doDownload( FALSE, dirName );
+		if ( KMessageBox::questionYesNo(0,tr2i18n("Do you open downloaded directory?")) == KMessageBox::Yes ) {
+			KURL url = KURL::fromPathOrURL( dirName );
+			( new KRun( url ) )->setAutoDelete( true );
+		}
+	}
+}
+
+/**
+ * ダウンロードメニュークリック
  */
 void RecieveDialog::slotDownloadClicked()
 {
-	vector<AttachFile>::iterator ix = msg.Files().begin();
-	KIpMsgFileNameConverter *codec = new KIpMsgFileNameConverter();
-	QTextCodec *fsCodec = QTextCodec::codecForName( KIpMsgSettings::localFilesystemEncoding() );
-	QString networkFileName = fsCodec->toUnicode( codec->ConvertNetworkToLocal( ix->FileName().c_str() ).c_str() );
-	DownloadInfo info;
-	//保存対象がディレクトリ
-	if ( ix->IsDirectory() ){
-		QString saveFileName = getSaveFileName( networkFileName, static_cast<KFile::Mode>( KFile::Directory | KFile::LocalOnly ) );
-		if ( saveFileName != "" ) {
-			int pos = saveFileName.findRev( "/" );
-			if ( pos >= 0 ) {
-				QString saveDirName = fsCodec->fromUnicode( saveFileName.left( pos + 1 ) );
-				QString saveBaseFileName = fsCodec->fromUnicode( saveFileName.mid( pos + 1 ) );
-				msg.DownloadDir( *ix, saveBaseFileName.data(), saveDirName.data(), info, codec, this );
-			}
-		}
-	//保存対象が一般ファイル
-	} else if ( ix->IsRegularFile() ){
-		QString saveFileName = getSaveFileName( networkFileName, static_cast<KFile::Mode>( KFile::File | KFile::LocalOnly ) );
-		saveFileName = fsCodec->fromUnicode( saveFileName );
-		if ( saveFileName != "" ) {
-			int pos = saveFileName.findRev( "/" );
-			if ( pos >= 0 ) {
-				msg.DownloadFile( *ix, saveFileName.data(), info, codec, this );
-			}
-		}
+	doDownload( TRUE );
+}
+
+/**
+ * 保存ファイル名を取得（コモンダイアログを開く）
+ * @param isOpenSaveDialog 保存のためのコモンダイアログを開くかどうかを指示するフラグ true:開く、false:開かない
+ * @param downloadPath コモンダイアログを開かない場合のダウンロード先のディレクトリ
+ */
+void RecieveDialog::doDownload( bool isOpenSaveDialog, QString downloadPath )
+{
+	this->_isOpenSaveDialog = isOpenSaveDialog;
+	if ( msg.Host().IsLocalHost() ){
+		KMessageBox::sorry(0,tr2i18n("This message from localhost.Download disabled."));
+		msg.Files().clear();
+		setDownloadFiles();
+		doResize();
+		return;
 	}
+	isDownloading = true;
+	KIpMsgFileNameConverter *codec = new KIpMsgFileNameConverter();
+	QListViewItemIterator it( m_AttachmentFiles );
+	while ( it.current() != NULL ) {
+		KIpMsgAttachedFileListViewItem *item = dynamic_cast<KIpMsgAttachedFileListViewItem *>(it.current());
+		if ( item != NULL && item->isSelected() ) {
+			vector<AttachFile>::iterator ix = msg.Files().FindByFileId( item->file().FileId() );
+			if ( ix == msg.Files().end() ) {
+				isDownloading = false;
+				return;
+			}
+			KIpMsgFileNameConverter *codec = new KIpMsgFileNameConverter();
+			QTextCodec *fsCodec = QTextCodec::codecForName( KIpMsgSettings::localFilesystemEncoding() );
+			QString networkFileName = fsCodec->toUnicode( codec->ConvertNetworkToLocal( ix->FileName().c_str() ).c_str() );
+			DownloadInfo info;
+			//保存対象がディレクトリ
+			if ( ix->IsDirectory() ){
+				QString saveFileName = downloadPath;
+				if ( isOpenSaveDialog ) {
+					saveFileName = getSaveFileName( networkFileName, static_cast<KFile::Mode>( KFile::Directory | KFile::LocalOnly ) );
+				}
+				if ( saveFileName != "" ) {
+					 saveFileName = saveFileName + "/" + networkFileName;
+					int pos = saveFileName.findRev( "/" );
+					if ( pos >= 0 ) {
+						QString saveDirName = fsCodec->fromUnicode( saveFileName.left( pos + 1 ) );
+						QString saveBaseFileName = fsCodec->fromUnicode( saveFileName.mid( pos + 1 ) );
+						msg.DownloadDir( *ix, saveBaseFileName.data(), saveDirName.data(), info, codec, this );
+					}
+				}
+			//保存対象が一般ファイル
+			} else if ( ix->IsRegularFile() ){
+				QString saveFileName = downloadPath + "/" + networkFileName;
+				if ( isOpenSaveDialog ) {
+					saveFileName = getSaveFileName( networkFileName, static_cast<KFile::Mode>( KFile::File | KFile::LocalOnly ) );
+				}
+				saveFileName = fsCodec->fromUnicode( saveFileName );
+				if ( saveFileName != "" ) {
+					int pos = saveFileName.findRev( "/" );
+					if ( pos >= 0 ) {
+						msg.DownloadFile( *ix, saveFileName.data(), info, codec, this );
+					}
+				}
+			}
+		}
+		++it;
+	}
+	isDownloading = false;
 	delete codec;
 	setDownloadFiles();
 	doResize();
@@ -442,7 +590,7 @@ void RecieveDialog::doResize( QResizeEvent * /*e*/ )
 		//ダウンロードボタン位置設定
 		QRect rectDownloadButton = rectOpenButton;
 		rectDownloadButton.setBottom( rectSplitter.top() - 2 );
-		m_DownloadButton->setGeometry( rectDownloadButton );
+		m_AttachmentFiles->setGeometry( rectDownloadButton );
 
 		rectSplitter.setLeft(rectDownloadButton.left());
 		rectSplitter.setRight(rectDownloadButton.right());
@@ -636,6 +784,13 @@ void RecieveDialog::mousePressEvent (QMouseEvent *e)
 	}
 }
 
+void RecieveDialog::slotAttachFilesMouseButtonClicked (int button,QListViewItem */*item*/,const QPoint &/*pos*/, int /*c*/)
+{
+	if( button == RightButton && !isDownloading ){
+		DownloadPopup->popup( QCursor::pos() );
+	}
+}
+
 /**
  *	マウス解放（スプリッターの処理）
  * @param e マウスイベント
@@ -658,9 +813,10 @@ void RecieveDialog::mouseMoveEvent (QMouseEvent *e)
 
 		QRect rectSplitter = m_DownloadSplitterLabel->geometry();
 		QSize sizeSplitter = m_DownloadSplitterLabel->size();
-		QSize sizeDownloadButton = m_DownloadButton->size();
+		QSize sizeDownloadButton = m_AttachmentFiles->size();
 
-		QSize minsizeDownloadButton = m_DownloadButton->minimumSize();
+		QSize minsizeDownloadButton = m_AttachmentFiles->minimumSize();
+
 		QSize minsizeRecievedMessage = m_RecievedMessageHTMLPart->view()->minimumSize();
 
 		QSize sizeRecvAreaFrame = m_RecvAreaFrame->size();

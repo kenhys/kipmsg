@@ -22,6 +22,7 @@
 #ifndef _RECIEVEDIALOG_H_
 #define _RECIEVEDIALOG_H_
 
+#include <qlistview.h>
 #include <kfiledialog.h>
 #include <khtml_part.h>
 #include <khtmlview.h>
@@ -29,6 +30,17 @@
 #include <kpopupmenu.h>
 #include "IpMessenger.h"
 #include "recievedialogbase.h"
+
+class KIpMsgAttachedFileListViewItem : public QListViewItem {
+  private:
+    AttachFile m_file;
+	static QString ExtName( QString FileName );
+	static QString FileType( QString FileName );
+	static QString TimeStamp( time_t t );
+  public:
+    KIpMsgAttachedFileListViewItem( QListView *parent, QTextCodec *codec, AttachFile &file );
+    AttachFile file();
+};
 
 class RecieveDialog : public RecieveDialogBase
 {
@@ -43,6 +55,7 @@ public:
 	void setFixsizePotisionMenu();
 	void setSaveSizeMenu();
 	void synchronizeMenu();
+	bool isOpenSaveDialog(){ return _isOpenSaveDialog;}
 
     KHTMLPart* m_RecievedMessageHTMLPart;
 
@@ -52,11 +65,13 @@ public slots:
     virtual void slotDialogCloseClicked();
     virtual void slotReplyClicked();
     virtual void slotEncodingChange(int);
-    virtual void slotDownloadClicked();
     virtual void slotOpenURL(const KURL &);
     virtual void slotSaveSizeClicked();
     virtual void slotRestoreSizeTempClicked();
     virtual void slotFixizePositionClicked();
+    virtual void slotAttachFilesMouseButtonClicked(int,QListViewItem *,const QPoint &, int);
+    virtual void slotDownloadClicked();
+    virtual void slotDownloadAllClicked();
 
 protected:
     /*$PROTECTED_FUNCTIONS$*/
@@ -72,6 +87,7 @@ protected slots:
 private:
 	KPopupMenu *RecvPopup;
 	KPopupMenu *SizePopup;
+	KPopupMenu *DownloadPopup;
 	int fixize_pos_menu_item;
 	int save_size_menu_item;
 
@@ -80,6 +96,8 @@ private:
 	int defaultWidth;
 	int defaultHeight;
 
+	bool _isOpenSaveDialog;
+	bool isDownloading;
 	bool isDownloadSplitterDragging;
 	RecievedMessage msg;
 	void doResize( QResizeEvent *e = NULL );
@@ -87,6 +105,7 @@ private:
 	QString convertMessageToHTML( QString msg );
 	void renderMessage( QString msg );
 	bool isUrlCharWithoutAmp( QChar c );
+	void doDownload( bool isOpenSaveDialog, QString downloadPath="" );
 };
 
 #endif
