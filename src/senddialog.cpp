@@ -1098,7 +1098,7 @@ void SendDialog::slotFontSelectEditClicked()
 		//フォントをメッセージのビューに反映
 		m_MessageEditbox->setFont(font);
 		//フォント設定を保存
-		KIpMsgSettings::setListFont( m_MessageEditbox->font() );
+		KIpMsgSettings::setEditFont( m_MessageEditbox->font() );
 		KIpMsgSettings::writeConfig();
 	}
 }

@@ -77,7 +77,7 @@ AS = @AS@
 AUTODIRS = 
 AWK = gawk
 CC = gcc
-CONF_FILES =  $(top_srcdir)/./admin/configure.in.min $(top_srcdir)/configure.in.in
+CONF_FILES =  $(top_srcdir)/./admin/configure.in.min $(top_srcdir)/configure.in.in $(top_srcdir)/./kipmsg-0.1.1/configure.in.in
 CPP = gcc -E
 CXX = g++
 CXXCPP = g++ -E
@@ -201,7 +201,7 @@ SETUIDFLAGS = @SETUIDFLAGS@
 SSL_INCLUDES = @SSL_INCLUDES@
 SSL_LDFLAGS = @SSL_LDFLAGS@
 STRIP = strip
-TOPSUBDIRS =  doc icons po src
+TOPSUBDIRS =  doc icons kipmsg-0.1.1 po src
 UIC = /usr/lib/qt3/bin/uic -L $(kde_widgetdir) -nounload
 UIC_TR = tr2i18n
 USER_INCLUDES = 
@@ -299,7 +299,7 @@ $(srcdir)/Makefile.in:  Makefile.am  $(top_srcdir)/configure.in $(ACLOCAL_M4)
 #>+ 3
 	cd $(top_srcdir) && \
 	  $(AUTOMAKE) --gnu  Makefile
-	cd $(top_srcdir) && perl admin/am_edit -padmin Makefile.in
+	cd $(top_srcdir) && perl admin/am_edit Makefile.in
 Makefile:  $(srcdir)/Makefile.in  $(top_builddir)/config.status
 	cd $(top_builddir) && $(SHELL) ./config.status $@ $(am__depfiles_maybe)
 
@@ -655,9 +655,8 @@ dist-hook:
 # Otherwise a system limit (for SysV at least) may be exceeded.
 .NOEXPORT:
 
-
 #>+ 2
-KDE_DIST=stamp-h.in subdirs kipmsg.kdevelop.pcs configure.files kipmsg-0.1.0.tar.gz kipmsg.kdevses Makefile.cvs Doxyfile kipmsg.kdevelop 
+KDE_DIST=stamp-h.in subdirs kipmsg-vl.spec kipmsg.kdevelop.pcs configure.files kipmsg.kdevses Makefile.cvs Doxyfile kipmsg.kdevelop 
 
 #>+ 2
 docs-am:
@@ -666,7 +665,7 @@ docs-am:
 force-reedit:
 		cd $(top_srcdir) && \
 	  $(AUTOMAKE) --gnu  Makefile
-	cd $(top_srcdir) && perl admin/am_edit -padmin Makefile.in
+	cd $(top_srcdir) && perl admin/am_edit Makefile.in
 
 
 #>+ 21

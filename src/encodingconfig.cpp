@@ -206,44 +206,20 @@ void KIPMsgEncodingConfigDialog::slotApplyClicked()
 	while ( it.current() != NULL ) {
 		QListViewItem *item = it.current();
 		if ( item != NULL && item->text( COL_ENCODING ).data() != NULL ) {
-#ifdef DEBUG
-			printf("item != NULL\n");
-			fflush(stdout);
-#endif
 			HostListItem host;
-#ifdef DEBUG
-			printf("item != NULL\n");
-			fflush(stdout);
-#endif
 			host.setEncodingName( item->text( COL_ENCODING ).data() );
 			if ( host.EncodingName() != "" ){
-#ifdef DEBUG
-				printf("ENCNAME != NULL B\n");
-				fflush(stdout);
-#endif
 				QTextCodec *codec = QTextCodec::codecForName( host.EncodingName().c_str() );
 				host.setIpAddress( codec->fromUnicode( item->text( COL_IPADDR ) ).data() );
 				host.setUserName( codec->fromUnicode( item->text( COL_LOGIN ) ).data() );
 				targets.push_back( host );
-#ifdef DEBUG
-				printf("ENCNAME != NULL A\n");
-				fflush(stdout);
-#endif
 			}
 		}
 		++it;
 	}
-#ifdef DEBUG
-	printf("LOOP END\n");
-	fflush(stdout);
-#endif
 	QStringList encodings = KIpMsgSettings::encodingSettings();
 	for( vector<HostListItem>::iterator host = targets.begin(); host != targets.end(); host++ ) {
 		if ( host->EncodingName() != "" ){
-#ifdef DEBUG
-			printf("ENC ADD B\n");
-			fflush(stdout);
-#endif
 			QTextCodec *codec = QTextCodec::codecForName( host->EncodingName().c_str() );
 			QString ip = codec->toUnicode( host->IpAddress().c_str() );
 			QString login = codec->toUnicode( host->UserName().c_str() );
@@ -256,16 +232,8 @@ void KIPMsgEncodingConfigDialog::slotApplyClicked()
 					break;
 				}
 			}
-#ifdef DEBUG
-			printf("ENC ADD A\n");
-			fflush(stdout);
-#endif
 			encodings << ip + ":" + login + ":" + enc;
 		}
-#ifdef DEBUG
-		printf("LOOP INNER END\n");
-		fflush(stdout);
-#endif
 	}
 	KIpMsgSettings::setEncodingSettings( encodings );
 	KIpMsgSettings::writeConfig();
