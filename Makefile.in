@@ -658,8 +658,9 @@ dist-hook:
 
 
 
+
 #>+ 2
-KDE_DIST=stamp-h.in subdirs kipmsg-vl.spec kipmsg.kdevelop.pcs configure.files kipmsg.kdevses Makefile.cvs Doxyfile kipmsg.kdevelop 
+KDE_DIST=stamp-h.in kipmsg-0.1.1.tar.gz subdirs kipmsg-vl.spec kipmsg.kdevelop.pcs configure.files kipmsg.kdevses Makefile.cvs Doxyfile kipmsg.kdevelop 
 
 #>+ 2
 docs-am:
