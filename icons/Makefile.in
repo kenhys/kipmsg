@@ -408,6 +408,8 @@ uninstall-am: uninstall-kde-icons  uninstall-info-am
 .NOEXPORT:
 
 
+
+
 #>+ 2
 KDE_DIST=hi16-app-kipmsg_progress_057.png hi16-app-kipmsg_progress_042.png hi32-app-kipmsg.png hi16-app-kipmsg_down_enabled.png hi16-app-kipmsg_up_enabled.png hi48-app-kipmsg.png hi16-app-kipmsg_progress_021.png hi16-app-kipmsg_up_disabled.png hi16-app-kipmsg_progress_050.png hi22-app-kipmsg.png hi16-app-kipmsg.png hi16-app-kipmsg_down_disabled.png hi22-app-kipmsg_absence.png hi16-app-kipmsg_progress_000.png hi16-app-kipmsg_progress_078.png hi16-app-kipmsg_progress_014.png hi16-app-kipmsg_progress_007.png hi22-action-kipmsg_about.png hi22-app-kipmsg_v1abs.png hi16-app-kipmsg_progress_093.png hi16-app-kipmsg_progress_100.png hi22-action-kipmsg_download.png hi16-app-kipmsg_progress_071.png hi16-app-kipmsg_progress_028.png hi64-app-kipmsg.png hi22-app-kipmsg_rev.png hi16-app-kipmsg_progress_064.png hi16-app-kipmsg_progress_035.png hi16-app-kipmsg_progress_085.png hi22-app-kipmsg_fileabs.png hi22-app-kipmsg_file.png hi22-app-kipmsg_normal.png hi22-app-kipmsg_v1.png 
 

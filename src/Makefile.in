@@ -790,6 +790,8 @@ messages: rc.cpp
 .NOEXPORT:
 
 
+
+
 #>+ 3
 downloadcompletedialog.moc: $(srcdir)/downloadcompletedialog.h
 	$(MOC) $(srcdir)/downloadcompletedialog.h -o downloadcompletedialog.moc

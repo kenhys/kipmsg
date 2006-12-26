@@ -168,7 +168,7 @@ RecieveDialog::RecieveDialog(RecievedMessage _msg, QWidget* parent, const char* 
 	DownloadPopup->insertItem(SmallIcon("save_all"),tr2i18n("Download all"), this, SLOT( slotDownloadAllClicked( void ) )  );
 
 	FontPopup = new KPopupMenu(this);
-	FontPopup->insertItem(SmallIcon("configure"),tr2i18n("configure..."), this, SLOT( slotFontSelectClicked( void ) ) );
+	FontPopup->insertItem(SmallIcon("configure"),tr2i18n("Configuration..."), this, SLOT( slotFontSelectClicked( void ) ) );
 	FontPopup->insertItem(SmallIcon("undo"),tr2i18n("Restore default"), this, SLOT( slotFontRestoreToDefaultClicked( void ) ) );
 	RecvPopup->insertItem(SmallIcon("fonts"),tr2i18n("Font Select"), FontPopup );
 
