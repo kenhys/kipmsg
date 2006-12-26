@@ -336,8 +336,9 @@ void SendDialog::mouseReleaseEvent(QMouseEvent *e){
  * マウス移動時の処理。
  * ・スプリッターを動かす。
  */
-void SendDialog::mouseMoveEvent(QMouseEvent *e){
+void SendDialog::mouseMoveEvent(QMouseEvent */*e*/){
 	if ( isMainSplitterDragging ){
+		QRect rectDlg = geometry();
 		QRect rectSplitter = m_MainSplitter->geometry();
 		QSize sizeSplitter = m_MainSplitter->size();
 		QSize sizeFrameOperation = m_OperationFrame->size();
@@ -348,14 +349,16 @@ void SendDialog::mouseMoveEvent(QMouseEvent *e){
 
 		QSize sizeDlg = size();
 		int msgHeight = sizeDlg.height() - sizeHostFrame.height() - sizeSplitter.height() - sizeFrameOperation.height();
-		int msgAfterHeight = sizeDlg.height() - e->y() - sizeSplitter.height() - sizeFrameOperation.height();
+		QPoint pos = QCursor::pos();
+		int localY = pos.y() - rectDlg.top();
+		int msgAfterHeight = sizeDlg.height() - localY - sizeSplitter.height() - sizeFrameOperation.height();
 		int prevTop = rectSplitter.top();
-		if ( prevTop < minsizeHostFrame.height() || e->y() < minsizeHostFrame.height() ) {
+		if ( prevTop < minsizeHostFrame.height() || localY < minsizeHostFrame.height() ) {
 			;
 		} else if ( msgAfterHeight < minsizeMessageFrame.height() || msgHeight < minsizeMessageFrame.height() ) {
 			;
 		} else {
-			rectSplitter.setTop( e->y() );
+			rectSplitter.setTop( localY );
 		}
 		m_MainSplitter->setGeometry( rectSplitter );
 	}

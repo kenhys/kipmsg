@@ -805,11 +805,13 @@ void RecieveDialog::mouseReleaseEvent (QMouseEvent *e)
  *	マウス移動（スプリッターの処理）
  * @param e マウスイベント
  */
-void RecieveDialog::mouseMoveEvent (QMouseEvent *e)
+void RecieveDialog::mouseMoveEvent (QMouseEvent */*e*/)
 {
 	if ( isDownloadSplitterDragging ){
+		QPoint pos = QCursor::pos();
+		QRect dlgSize = geometry();
 		QSize sizeMessageGroup = m_MessageGroup->size();
-		int localY = e->y() - sizeMessageGroup.height();
+		int localY = pos.y() - dlgSize.top() - sizeMessageGroup.height();
 
 		QRect rectSplitter = m_DownloadSplitterLabel->geometry();
 		QSize sizeSplitter = m_DownloadSplitterLabel->size();
@@ -833,6 +835,7 @@ void RecieveDialog::mouseMoveEvent (QMouseEvent *e)
 		m_DownloadSplitterLabel->setGeometry( rectSplitter );
 	}
 	doResize();
+fflush(stdout);
 }
 
 #include "recievedialog.moc"
