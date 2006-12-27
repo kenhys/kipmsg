@@ -115,9 +115,10 @@ void
 KIpMsgEvent::OpenAfter( SentMessage& msg ){
 	IpMessengerAgent *IpMsgAgent = IpMessengerAgent::GetInstance();
 	time_t t = time( NULL );
-	char timebuf[30];
+	char timebuf[100];
+	memset( timebuf, 0, sizeof( timebuf ) );
 	ctime_r( &t, timebuf );
-	timebuf[strlen(timebuf) - 1] = 0;
+	timebuf[strlen(timebuf) - 1] = 0;//改行をつぶす。
 	if ( msg.IsSecret() && msg.IsConfirmed() && !msg.IsConfirmAnswered() ) {
 		QString encode = "";
 		if ( msg.Host().EncodingName() == "" ) {
