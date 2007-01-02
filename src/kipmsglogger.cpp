@@ -49,6 +49,9 @@ void KIpMessengerLogger::PutRecivedMessage( RecievedMessage msg, bool encodingCh
 	if ( !KIpMsgSettings::log() ){
 		return;
 	}
+	if ( msg.IsNoLogging() ){
+		return;
+	}
 	/* ローカルファイルシステムのエンコーディング */
 	QTextCodec *fsCodec = QTextCodec::codecForName( KIpMsgSettings::localFilesystemEncoding() );
 	/* メッセージのエンコーディング */
@@ -148,6 +151,9 @@ void KIpMessengerLogger::PutRecivedMessage( RecievedMessage msg, bool encodingCh
 void KIpMessengerLogger::PutSentMessage( SentMessage msg )
 {
 	if ( !KIpMsgSettings::log() ){
+		return;
+	}
+	if ( msg.IsNoLogging() ){
 		return;
 	}
 	/* ローカルファイルシステムのエンコーディング */
