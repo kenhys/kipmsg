@@ -45,6 +45,8 @@ public slots:
     virtual void slotPlaySoundClicked();
     virtual void slotIconNameChanged(const QString&);
     virtual void slotAbsenceIconNameChanged(const QString&);
+    virtual void slotUseExternalLogViewerClicked();
+    virtual void slotLogViewerClicked();
 
 protected:
     /*$PROTECTED_FUNCTIONS$*/

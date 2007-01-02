@@ -105,7 +105,16 @@
     </entry>
     <entry name="LogFileName" type="Path">
       <label>Defines log file name.</label>
+    </entry>
+    <entry name="UseExternalLogViewer" type="Bool">
+      <label>Defines use external log viewer.</label>
       <default>false</default>
+    </entry>
+    <entry name="LogViewerPath" type="Path">
+      <label>Defines log file viewer path.</label>
+    </entry>
+    <entry name="LogViewerOption" type="String">
+      <label>Defines log file viewer options.</label>
     </entry>
   </group>
   <group name="clickablurl">

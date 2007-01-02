@@ -1,3 +1,6 @@
+2007-01-02 Niki, Kuninobu <nikikuni@yahoo.co.jp>
+- Update:"Use external log viewer" was available.
+
 2006-12-28 Niki, Kuninobu <nikikuni@yahoo.co.jp>
 - Fix:ctime_r returned buffer extended, 30 bytes to 100 bytes.
 

@@ -495,7 +495,11 @@ void kipmsgWidget::slotAboutClicked()
  */
 void kipmsgWidget::slotViewLogClicked()
 {
-	KRun::run( "kwrite --encoding utf8", QStringList( KIpMsgSettings::logFileName() ) );
+	if ( KIpMsgSettings::useExternalLogViewer() ) {
+		KRun::run( KIpMsgSettings::logViewerPath() + " " + KIpMsgSettings::logViewerOption(), QStringList( KIpMsgSettings::logFileName() ) );
+	} else {
+		KRun::run( "kwrite --encoding utf8", QStringList( KIpMsgSettings::logFileName() ) );
+	}
 }
 
 /**

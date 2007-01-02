@@ -23,6 +23,7 @@
 #include <qcheckbox.h>
 #include <klineedit.h>
 #include <knotifyclient.h>
+#include <kpushbutton.h>
 #include <kprocess.h>
 #include <klocale.h>
 #include <kfiledialog.h>
@@ -58,6 +59,11 @@ KIPMsgDetailConfigDialog::KIPMsgDetailConfigDialog(QWidget* parent, const char* 
 	m_RecordLoginCheckbox->setChecked( KIpMsgSettings::recordLogin() );
 	m_RecordIPAddressCheckbox->setChecked( KIpMsgSettings::recordIPAddress() );
 	m_LogFileNameEditbox->setText( KIpMsgSettings::logFileName() );
+
+	m_UseExternalLogViewerCheckbox->setChecked( KIpMsgSettings::useExternalLogViewer() );
+	m_LogViewerPathEditbox->setText( KIpMsgSettings::logViewerPath() );
+	m_LogViewerOptionEditbox->setText( KIpMsgSettings::logViewerOption() );
+	slotUseExternalLogViewerClicked();
 }
 
 /**
@@ -184,6 +190,25 @@ void KIPMsgDetailConfigDialog::slotLogFileClicked()
 	}
 }
 
+void KIPMsgDetailConfigDialog::slotUseExternalLogViewerClicked()
+{
+	if ( m_UseExternalLogViewerCheckbox->isChecked() ) {
+		m_LogViewerButton->setEnabled( TRUE );
+		m_LogViewerPathEditbox->setEnabled( TRUE );
+	} else {
+		m_LogViewerButton->setEnabled( FALSE );
+		m_LogViewerPathEditbox->setEnabled( FALSE );
+	}
+}
+
+void KIPMsgDetailConfigDialog::slotLogViewerClicked()
+{
+	QString logViewerPath = KFileDialog::getOpenFileName();
+	if ( logViewerPath != "" ) {
+		m_LogViewerPathEditbox->setText( logViewerPath );
+	}
+}
+
 /**
  * OKクリックイベント
  * ・設定を保存してダイアログを閉じる。
@@ -227,6 +252,10 @@ void KIPMsgDetailConfigDialog::slotApplyClicked()
 	KIpMsgSettings::setRecordLogin( m_RecordLoginCheckbox->isChecked() );
 	KIpMsgSettings::setRecordIPAddress( m_RecordIPAddressCheckbox->isChecked() );
 	KIpMsgSettings::setLogFileName( m_LogFileNameEditbox->text() );
+
+	KIpMsgSettings::setUseExternalLogViewer( m_UseExternalLogViewerCheckbox->isChecked() );
+	KIpMsgSettings::setLogViewerPath( m_LogViewerPathEditbox->text() );
+	KIpMsgSettings::setLogViewerOption( m_LogViewerOptionEditbox->text() );
 
 	KIpMsgSettings::writeConfig();
 }
