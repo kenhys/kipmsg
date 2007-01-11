@@ -39,7 +39,7 @@ kipmsg_SOURCES = main.cpp kipmsgwidget.cpp kipmsgwidgetbase.ui \
 	kipmsgutils.cpp
 
 kipmsg_LDFLAGS = $(KDE_RPATH) $(all_libraries)
-kipmsg_LDADD = $(LIB_KDEUI) $(LIB_KIO) $(LIB_KHTML) -lipmsg -lcrypto -lssl
+kipmsg_LDADD = $(LIB_KDEUI) $(LIB_KIO) $(LIB_KHTML) $(KDE_MT_LIBS) -lipmsg -lcrypto -lssl -lpthread
 kde_kcfg_DATA = kipmsgsettings.kcfg
 
 # this is where the desktop file will go 
