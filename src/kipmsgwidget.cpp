@@ -192,6 +192,8 @@ kipmsgWidget::kipmsgWidget(QWidget* parent, const char* name, WFlags fl)
 		IpMsgAgent->AddBroadcastAddress( broadcastAddress.data() );
 	}
 
+	IpMsgAgent->StartNetwork();
+
     MainPopup = new KPopupMenu(this);
 	AbsencePopup = new KPopupMenu(this);
 	rebuildMenu();
