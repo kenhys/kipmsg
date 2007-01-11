@@ -602,8 +602,11 @@ void SendDialog::refreshHostList( bool isUpdate )
 		m_HostListView->addColumn(tr2i18n("Encoding"), 0 );
 	}
 	m_HostListView->addColumn(tr2i18n("Encryption Flags"), 0 );
+	m_HostListView->hideColumn( ColumnEncryptionCapacity );
 	m_HostListView->addColumn(tr2i18n("RSA Method"), 0 );
+	m_HostListView->hideColumn( ColumnRsaMethod );
 	m_HostListView->addColumn(tr2i18n("RSA Public Key"), 0 );
+	m_HostListView->hideColumn( ColumnRsaPublicKey );
 
 	//ヘッダー順序を設定
 	m_HostListView->setSortColumn( ColumnMax );
