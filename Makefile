@@ -39,10 +39,10 @@ pkglibdir = $(libdir)/kipmsg
 pkgincludedir = $(includedir)/kipmsg
 top_builddir = .
 
-ACLOCAL = ${SHELL} /root/src/ipmsg/kipmsg/admin/missing --run aclocal-1.6
+ACLOCAL = ${SHELL} /pub/src/ipmsg/kipmsg/admin/missing --run aclocal-1.6
 AUTOCONF = $(SHELL) $(top_srcdir)/admin/cvs.sh configure || touch configure
-AUTOMAKE = ${SHELL} /root/src/ipmsg/kipmsg/admin/missing --run automake-1.6
-AUTOHEADER = ${SHELL} /root/src/ipmsg/kipmsg/admin/missing --run autoheader
+AUTOMAKE = ${SHELL} /pub/src/ipmsg/kipmsg/admin/missing --run automake-1.6
+AUTOHEADER = ${SHELL} /pub/src/ipmsg/kipmsg/admin/missing --run autoheader
 
 am__cd = CDPATH="$${ZSH_VERSION+.}$(PATH_SEPARATOR)" && cd
 INSTALL = /usr/bin/install -c -p
@@ -70,7 +70,7 @@ target_triplet = i686-pc-linux-gnu
 EXEEXT = 
 OBJEXT = o
 PATH_SEPARATOR = :
-AMTAR = ${SHELL} /root/src/ipmsg/kipmsg/admin/missing --run tar
+AMTAR = ${SHELL} /pub/src/ipmsg/kipmsg/admin/missing --run tar
 AR = ar
 ARTSCCONFIG = /usr/bin/artsc-config
 AS = @AS@
@@ -209,7 +209,7 @@ USER_LDFLAGS =
 USE_EXCEPTIONS = -fexceptions
 USE_RTTI = 
 USE_THREADS = 
-VERSION = 0.1.1
+VERSION = 0.1.2
 WOVERLOADED_VIRTUAL = 
 XGETTEXT = /usr/bin/xgettext
 XMLLINT = /usr/bin/xmllint
@@ -224,7 +224,7 @@ all_includes = -I/usr/include/kde -I/usr/lib/qt3/include -I/usr/X11R6/include
 all_libraries = -L/usr/X11R6/lib -L/usr/lib/qt3/lib -L/usr/lib 
 am__include = include
 am__quote = 
-install_sh = /root/src/ipmsg/kipmsg/admin/install-sh
+install_sh = /pub/src/ipmsg/kipmsg/admin/install-sh
 jni_includes = @jni_includes@
 kde_appsdir = ${datadir}/applnk
 kde_bindir = ${exec_prefix}/bin
@@ -299,7 +299,7 @@ $(srcdir)/Makefile.in:  Makefile.am  $(top_srcdir)/configure.in $(ACLOCAL_M4)
 #>+ 3
 	cd $(top_srcdir) && \
 	  $(AUTOMAKE) --gnu  Makefile
-	cd $(top_srcdir) && perl admin/am_edit Makefile.in
+	cd $(top_srcdir) && perl admin/am_edit -padmin Makefile.in
 Makefile:  $(srcdir)/Makefile.in  $(top_builddir)/config.status
 	cd $(top_builddir) && $(SHELL) ./config.status $@ $(am__depfiles_maybe)
 
@@ -655,8 +655,9 @@ dist-hook:
 # Otherwise a system limit (for SysV at least) may be exceeded.
 .NOEXPORT:
 
+
 #>+ 2
-KDE_DIST=stamp-h.in subdirs kipmsg-vl.spec kipmsg.kdevelop.pcs configure.files kipmsg.kdevses Makefile.cvs Doxyfile kipmsg.kdevelop 
+KDE_DIST=stamp-h.in subdirs kipmsg-vl.spec kipmsg.kdevelop.pcs configure.files kipmsg.kdevses Makefile.cvs Doxyfile libtool_freebsd61.patch kipmsg.kdevelop 
 
 #>+ 2
 docs-am:
@@ -665,7 +666,7 @@ docs-am:
 force-reedit:
 		cd $(top_srcdir) && \
 	  $(AUTOMAKE) --gnu  Makefile
-	cd $(top_srcdir) && perl admin/am_edit Makefile.in
+	cd $(top_srcdir) && perl admin/am_edit -padmin Makefile.in
 
 
 #>+ 21
