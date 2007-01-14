@@ -1,3 +1,8 @@
+2007-01-11 Niki, Kuninobu <nikikuni@yahoo.co.jp>
+- Update:Hide some host list columns.
+- Update:Add network start code.
+- Fix:libtool patch for FreeBSD6.1R
+
 2007-01-02 Niki, Kuninobu <nikikuni@yahoo.co.jp>
 - Update:"Use external log viewer" was available.
 - Update:"No Logging support" was available.

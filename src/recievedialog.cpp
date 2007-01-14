@@ -428,7 +428,7 @@ void RecieveDialog::slotReplyClicked()
 	while ( its.current() != NULL ) {
 		QListViewItem *item = its.current();
 		item->setSelected( FALSE );
-		if ( item->text( SendDialog::ColumnIpAddress ).find( IpAddr ) >= 0 ) {
+		if ( item->text( SendDialog::ColumnIpAddress ) == IpAddr ) {
 			send->m_HostListView->setSelected( item, TRUE );
 			break;
 		}
