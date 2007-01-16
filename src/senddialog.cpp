@@ -153,6 +153,26 @@ void KTextEditNoDnD::slotAddAsFile( void ){
 }
 
 /**
+ * キー押下時の処理。
+ * ・CTRL+ENTER時は無視して上位ウィジットに通知する。
+ */
+void KTextEditNoDnD::keyPressEvent( QKeyEvent * e )
+{
+	bool isCtrl = e->state() & ControlButton;
+	bool isShift = e->state() & ShiftButton;
+	bool isMeta = e->state() & MetaButton;
+	bool isAlt = e->state() & AltButton;
+
+	if ( isCtrl && !isShift && !isAlt && !isMeta ) {
+		if ( e->key() == Key_Return ) {
+			e->ignore();
+			return;
+		}
+	}
+	KTextEdit::keyPressEvent( e );
+}
+
+/**
  * コンストラクタ。
  * ・表示初期設定
  * ・ポップアップメニューの生成
@@ -364,6 +384,26 @@ void SendDialog::mouseMoveEvent(QMouseEvent */*e*/){
 		m_MainSplitter->setGeometry( rectSplitter );
 	}
 	doResize( size() );
+}
+
+/**
+ * キー押下時の処理。
+ * ・CTRL+ENTER時は送信する。
+ */
+void SendDialog::keyPressEvent( QKeyEvent * e )
+{
+	bool isCtrl = e->state() & ControlButton;
+	bool isShift = e->state() & ShiftButton;
+	bool isMeta = e->state() & MetaButton;
+	bool isAlt = e->state() & AltButton;
+
+	if ( isCtrl && !isShift && !isAlt && !isMeta ) {
+		if ( e->key() == Key_Return ) {
+			slotMessageSendClicked();
+			return;
+		}
+	}
+	SendDialogBase::keyPressEvent( e );
 }
 
 /**

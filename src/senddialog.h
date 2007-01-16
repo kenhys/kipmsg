@@ -50,6 +50,8 @@ public slots:
 
 protected:
 	virtual void contentsDropEvent(QDropEvent *e);
+	virtual void keyPressEvent ( QKeyEvent * e );
+
 private:
 	KPopupMenu *DnDPopup;
 	QString dropText;
@@ -123,6 +125,7 @@ protected:
 	virtual void mousePressEvent (QMouseEvent *e);
 	virtual void mouseReleaseEvent (QMouseEvent *e);
 	virtual void mouseMoveEvent (QMouseEvent *e);
+	virtual void keyPressEvent ( QKeyEvent * e );
 	virtual void dropEvent (QDropEvent *e);
 	virtual void dragEnterEvent (QDragEnterEvent *e);
 	virtual void resizeEvent( QResizeEvent *e );
