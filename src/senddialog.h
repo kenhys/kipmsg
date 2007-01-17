@@ -32,8 +32,13 @@
 
 class KIpMsgFileNameConverter : public FileNameConverter {
 public:
+	KIpMsgFileNameConverter();
+	KIpMsgFileNameConverter( QString _encoding );
+	virtual ~KIpMsgFileNameConverter(){};
 	virtual string ConvertNetworkToLocal( string original_file_name );
 	virtual string ConvertLocalToNetwork( string original_file_name );
+private:
+	QString encoding;
 };
 
 class KTextEditNoDnD : public KTextEdit
@@ -169,6 +174,7 @@ private:
 	void deleteFromPriorityList( QStringList &base, QStringList items );
 	void setMenuStatus();
 	void doResize( QSize size );
+	bool isGarbledMessage( QString beforeText, string afterText );
 };
 
 #endif

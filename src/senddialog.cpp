@@ -72,6 +72,13 @@ class KIpMsgHostListViewItem : public QListViewItem {
     HostListItem host(){ return m_host; }
 };
 
+KIpMsgFileNameConverter::KIpMsgFileNameConverter(){
+	encoding = KIpMsgSettings::messageEncoding();
+}
+
+KIpMsgFileNameConverter::KIpMsgFileNameConverter( QString _encoding ){
+	encoding = _encoding;
+}
 
 /**
  * ファイル名コンバータのネットワークエンコーディングからファイルシステムエンコーディングへの変換メソッド。
@@ -81,7 +88,7 @@ class KIpMsgHostListViewItem : public QListViewItem {
 string
 KIpMsgFileNameConverter::ConvertNetworkToLocal( string original_file_name ){
 	QTextCodec *fsCodec = QTextCodec::codecForName( KIpMsgSettings::localFilesystemEncoding() );
-	QTextCodec *msgCodec = QTextCodec::codecForName( KIpMsgSettings::messageEncoding() );
+	QTextCodec *msgCodec = QTextCodec::codecForName( encoding );
 	return fsCodec->fromUnicode( msgCodec->toUnicode( original_file_name.c_str() ) ).data();
 }
 /**
@@ -91,7 +98,7 @@ KIpMsgFileNameConverter::ConvertNetworkToLocal( string original_file_name ){
  */
 string
 KIpMsgFileNameConverter::ConvertLocalToNetwork( string original_file_name ){
-	QTextCodec *msgCodec = QTextCodec::codecForName( KIpMsgSettings::messageEncoding() );
+	QTextCodec *msgCodec = QTextCodec::codecForName( encoding );
 	QTextCodec *fsCodec = QTextCodec::codecForName( KIpMsgSettings::localFilesystemEncoding() );
 	return msgCodec->fromUnicode( fsCodec->toUnicode( original_file_name.c_str() ) ).data();
 }
@@ -519,11 +526,30 @@ void SendDialog::slotMessageSendClicked()
 		++it;
 	}
 
+	//メッセージの文字化けチェック
+	QTextCodec *codec = QTextCodec::codecForName( m_EncodingCombobox->currentText() );
+	string msg = codec->fromUnicode( m_MessageEditbox->text() ).data();
+	if ( isGarbledMessage( m_EncodingCombobox->currentText(), msg ) ) {
+		if ( KMessageBox::warningContinueCancel( 0, QString( tr2i18n("This message is garbled to read.\nAre you sure?") ) ) != KMessageBox::Continue ){
+			return;
+		}
+	}
+
+	//ファイル名の文字化けチェック
+	KIpMsgFileNameConverter *fconv = new KIpMsgFileNameConverter( m_EncodingCombobox->currentText() );
+	for( vector<AttachFile>::iterator file = attachFileList.begin(); file != attachFileList.end(); file++ ) {
+		string networkFileName = fconv->ConvertLocalToNetwork( file->FileName() );
+		if ( isGarbledMessage( file->FileName(), networkFileName ) ) {
+			QString fname = QString::fromLocal8Bit( file->FileName().c_str() );
+			if ( KMessageBox::warningContinueCancel( 0, tr2i18n("This file name is garbled to read.\n(%1)\nAre you sure?").arg( fname ) ) != KMessageBox::Continue ){
+				return;
+			}
+		}
+	}
+
 	//送信対象ホストリストを基にメッセージを送信する。
-	agent->SetFileNameConverter( new KIpMsgFileNameConverter() );
+	agent->SetFileNameConverter( fconv );
 	for( vector<HostListItem>::iterator host = targets.begin(); host != targets.end(); host++ ) {
-		QTextCodec *codec = QTextCodec::codecForName( host->EncodingName().c_str() );
-		string msg = codec->fromUnicode( m_MessageEditbox->text() ).data();
 		KIpMessengerLogger::GetInstance()->PutSentMessage( 
 			agent->SendMsg( *host, msg, m_SecretCheckbox->isChecked(), attachFileList, m_LockCheckbox->isChecked(), targets.size() ) );
 		QString ip = codec->toUnicode( host->IpAddress().c_str() );
@@ -550,6 +576,29 @@ void SendDialog::slotMessageSendClicked()
 	}
 }
 
+/**
+ * メッセージ文字化けするかどうかを判定する。
+ * @retval true:文字化けしている。false:文字化けしていない。
+ */
+bool SendDialog::isGarbledMessage( QString beforeText, string afterText )
+{
+	int bqpos = beforeText.find( '?' );
+	int bqcnt = 0;
+	while( bqpos >= 0 ){
+		bqcnt++;
+		bqpos = beforeText.find( '?', bqpos + 1 );
+	}
+	int aqpos = afterText.find( '?' );
+	int aqcnt = 0;
+	while( aqpos >= 0 ){
+		aqcnt++;
+		aqpos = afterText.find( '?', aqpos + 1 );
+	}
+	if ( bqcnt != aqcnt ) {
+		return true;
+	}
+	return false;
+}
 /**
  * 封書チェックが押された。
  * ・オフにされたときは錠をクリアして無効にする。
@@ -1056,7 +1105,8 @@ void SendDialog::slotAttachFileClicked()
 	QString attachFileName = KFileDialog::getOpenFileName();
 	if ( attachFileName != "" ) {
 		AttachFile file;
-		file.setFullPath( attachFileName.data() );
+		QTextCodec *fsCodec = QTextCodec::codecForName( KIpMsgSettings::localFilesystemEncoding() );
+		file.setFullPath( fsCodec->fromUnicode( attachFileName ).data() );
 		file.GetLocalFileInfo();
 		attachFileList.AddFile( file );
 	}
@@ -1071,7 +1121,8 @@ void SendDialog::slotAttachDirectoryClicked()
 	QString attachDirName = KFileDialog::getExistingDirectory();
 	if ( attachDirName != "" ) {
 		AttachFile file;
-		file.setFullPath( attachDirName.data() );
+		QTextCodec *fsCodec = QTextCodec::codecForName( KIpMsgSettings::localFilesystemEncoding() );
+		file.setFullPath( fsCodec->fromUnicode( attachDirName ).data() );
 		file.GetLocalFileInfo();
 		attachFileList.AddFile( file );
 	}
