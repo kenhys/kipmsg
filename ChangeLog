@@ -1,3 +1,10 @@
+2007-01-17 Niki, Kuninobu <nikikuni@yahoo.co.jp>
+- Update:Send message on press Ctrl+Enter.
+- Update:Change version.
+- Update:Add check garbled.
+- Fix:Garbled file name.
+- Fix:Garbled directory name.
+
 2007-01-11 Niki, Kuninobu <nikikuni@yahoo.co.jp>
 - Update:Hide some host list columns.
 - Update:Add network start code.
