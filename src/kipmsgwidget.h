@@ -23,6 +23,10 @@
 #define _KIPMSGWIDGET_H_
 
 #include "IpMessenger.h"
+
+using namespace std;
+using namespace ipmsg;
+
 #include <vector>
 #include <qintdict.h>
 #include <qptrlist.h>

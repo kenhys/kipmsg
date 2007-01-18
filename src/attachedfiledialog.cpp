@@ -28,6 +28,10 @@
 #include "kipmsgsettings.h"
 #include "IpMessenger.h"
 
+
+using namespace std;
+using namespace ipmsg;
+
 /**
  * コンストラクタ
  * ・リストビューの初期設定。

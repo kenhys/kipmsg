@@ -25,6 +25,10 @@
 #include "attachedfiledialogbase.h"
 #include "IpMessenger.h"
 
+using namespace std;
+using namespace ipmsg;
+
+
 class KIpMessengerAttachedFileDialog : public KIpMessengerAttachedFileDialogBase
 {
     Q_OBJECT

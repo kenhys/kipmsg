@@ -24,6 +24,10 @@
 
 #include "IpMessenger.h"
 
+using namespace std;
+using namespace ipmsg;
+
+
 class KIpMessengerLogger
 {
 public:

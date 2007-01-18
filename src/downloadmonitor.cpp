@@ -25,7 +25,11 @@
 #include <klistview.h>
 #include <klocale.h>
 #include <kiconloader.h>
-#include <IpMessenger.h>
+#include "IpMessenger.h"
+
+using namespace std;
+using namespace ipmsg;
+
 #include "downloadmonitor.h"
 #include "kipmsgsettings.h"
 #include "kipmsgutils.h"

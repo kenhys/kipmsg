@@ -25,6 +25,10 @@
 #include <qptrlist.h>
 #include <vector>
 #include "IpMessenger.h"
+
+using namespace std;
+using namespace ipmsg;
+
 #include "kipmsgsettings.h"
 #include "recievedialog.h"
 #include "senddialog.h"

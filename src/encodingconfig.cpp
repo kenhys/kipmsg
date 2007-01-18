@@ -27,6 +27,10 @@
 #include <klistview.h>
 
 #include "IpMessenger.h"
+
+using namespace std;
+using namespace ipmsg;
+
 #include "kipmsgsettings.h"
 #include "encodingconfig.h"
 

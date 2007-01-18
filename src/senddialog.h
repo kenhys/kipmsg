@@ -30,6 +30,9 @@
 #include "senddialogbase.h"
 #include "IpMessenger.h"
 
+using namespace std;
+using namespace ipmsg;
+
 class KIpMsgFileNameConverter : public FileNameConverter {
 public:
 	KIpMsgFileNameConverter();

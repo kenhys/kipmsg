@@ -23,6 +23,10 @@
 #define _DOWNLOAD_COMPLETE_DIALOG_H_
 
 #include "IpMessenger.h"
+
+using namespace std;
+using namespace ipmsg;
+
 #include "downloadcompletedialogbase.h"
 
 class DownloadCompleteDialog : public DownloadCompleteDialogBase

@@ -23,6 +23,10 @@
 #include <klocale.h>
 #include <kpushbutton.h>
 #include "IpMessenger.h"
+
+using namespace std;
+using namespace ipmsg;
+
 #include "downloaderrordialog.h"
 
 /**

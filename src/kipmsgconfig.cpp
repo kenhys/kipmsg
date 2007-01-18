@@ -34,6 +34,9 @@
 #include "kipmsgsettings.h"
 #include "IpMessenger.h"
 
+using namespace std;
+using namespace ipmsg;
+
 /**
  * コンストラクタ
  * ・設定をロードし画面に表示する。
