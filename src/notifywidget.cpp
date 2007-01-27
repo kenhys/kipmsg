@@ -108,8 +108,9 @@ void KIpMsgNotifier::setLogoutMessage( HostListItem &host )
 	}
 	QString text = tr2i18n( "%1 was logged out at %2.").arg( nickname ).arg( CreateTimeString( time( NULL ) ) );
 	m_MessageLabel->setText(text);
+	m_ActionButton->hide();
+    KIpMsgNotifierBaseLayout->addItem( new QSpacerItem( 32, 32, QSizePolicy::Fixed, QSizePolicy::Minimum ) );
 	resize( sizeHint().expandedTo( minimumSizeHint() ) );
-	m_ActionButton->setEnabled(FALSE);
 	_host = host;
 	type = LOGOUT;
 }
@@ -127,10 +128,16 @@ void KIpMsgNotifier::setAbsenceModeChangeMessage( HostListItem &host )
 			nickname = codec->toUnicode( nickname );
 		}
 	}
-	QString text = tr2i18n( "%1 was absence mode in at %2.").arg( nickname ).arg( CreateTimeString( time( NULL ) ) );
+	QString text;
+	if ( host.IsAbsence() ){
+		text = tr2i18n( "%1 was absence mode in at %2.").arg( nickname ).arg( CreateTimeString( time( NULL ) ) );
+	} else {
+		text = tr2i18n( "%1 was reset absence mode in at %2.").arg( nickname ).arg( CreateTimeString( time( NULL ) ) );
+	}
 	m_MessageLabel->setText(text);
+	m_ActionButton->hide();
+    KIpMsgNotifierBaseLayout->addItem( new QSpacerItem( 32, 32, QSizePolicy::Fixed, QSizePolicy::Minimum ) );
 	resize( sizeHint().expandedTo( minimumSizeHint() ) );
-	m_ActionButton->setEnabled(FALSE);
 	_host = host;
 	type = ABSENCE_CHANGE;
 }
