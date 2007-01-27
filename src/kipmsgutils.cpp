@@ -52,3 +52,18 @@ QString GetPercentageIconName( int percent ){
 	}
 	return "kipmsg_progress_000";
 }
+
+QString CreateTimeStringAsCTimeStyle( time_t t )
+{
+	char buf[100];
+
+	ctime_r( &t, buf );
+	buf[strlen(buf)-1] = 0;
+	return QString(buf);
+}
+
+QString CreateTimeString( time_t t )
+{
+	return CreateTimeStringAsCTimeStyle( t );
+}
+

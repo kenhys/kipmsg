@@ -16,6 +16,14 @@
       <label>Defines no popup when message recieved.</label>
       <default>false</default>
     </entry>
+    <entry name="NotifyOnNoPopupMessageRecieve" type="Bool">
+      <label>Defines notify when no popup recieve.</label>
+      <default>false</default>
+    </entry>
+    <entry name="NotifyOnLoginLogoutAbsence" type="Bool">
+      <label>Defines notify when login/logout/change absence mode.</label>
+      <default>false</default>
+    </entry>
     <entry name="NoSound" type="Bool">
       <label>Defines no sound when message recieved.</label>
       <default>false</default>

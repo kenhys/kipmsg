@@ -43,6 +43,7 @@ public slots:
     virtual void slotOkClicked();
     virtual void slotCancelClicked();
     virtual void slotApplyClicked();
+    virtual void slotNoPopupClicked();
 
 protected:
     /*$PROTECTED_FUNCTIONS$*/

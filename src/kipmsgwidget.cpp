@@ -360,8 +360,9 @@ void kipmsgWidget::mousePressEvent( QMouseEvent *e )
 	if(e->button() == LeftButton ){
 		if ( kipmsgWidget::isRecievedOnNonePopup() ) {
 			KIpMsgEvent *evt = dynamic_cast<KIpMsgEvent *>(IpMsgAgent->GetEventObject());
-			if ( evt != NULL ) {
+			if ( evt != NULL && evt->GetRecievedMessageCount() > 0 ) {
 				evt->ShowHiddenRecieveMsg();
+				return;
 			}
 		}
 		if ( KIpMsgSettings::openBySingleClick() ) {

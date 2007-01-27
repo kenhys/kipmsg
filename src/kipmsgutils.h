@@ -22,4 +22,6 @@
 #define _KIPMSGUTILS_H_
 #include <kiconloader.h>
 extern QString GetPercentageIconName( int percent );
+extern QString CreateTimeStringAsCTimeStyle( time_t t );
+extern QString CreateTimeString( time_t t );
 #endif	// _KIPMSGUTILS_H_

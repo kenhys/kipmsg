@@ -68,6 +68,31 @@
         <property name="lineWidth">
             <number>0</number>
         </property>
+        <widget class="QLabel">
+            <property name="name">
+                <cstring>textLabel1</cstring>
+            </property>
+            <property name="geometry">
+                <rect>
+                    <x>0</x>
+                    <y>10</y>
+                    <width>240</width>
+                    <height>70</height>
+                </rect>
+            </property>
+            <property name="frameShape">
+                <enum>LineEditPanel</enum>
+            </property>
+            <property name="frameShadow">
+                <enum>Sunken</enum>
+            </property>
+            <property name="text">
+                <string>Send/Recieve window --&gt; Display &amp; Sort configuration on Right Click</string>
+            </property>
+            <property name="alignment">
+                <set>WordBreak|AlignVCenter</set>
+            </property>
+        </widget>
         <widget class="QFrame">
             <property name="name">
                 <cstring>frame6</cstring>
@@ -124,31 +149,6 @@
                     </property>
                 </widget>
             </vbox>
-        </widget>
-        <widget class="QLabel">
-            <property name="name">
-                <cstring>textLabel1</cstring>
-            </property>
-            <property name="geometry">
-                <rect>
-                    <x>0</x>
-                    <y>10</y>
-                    <width>240</width>
-                    <height>70</height>
-                </rect>
-            </property>
-            <property name="frameShape">
-                <enum>LineEditPanel</enum>
-            </property>
-            <property name="frameShadow">
-                <enum>Sunken</enum>
-            </property>
-            <property name="text">
-                <string>Send/Recieve window --&gt; Display &amp; Sort configuration on Right Click</string>
-            </property>
-            <property name="alignment">
-                <set>WordBreak|AlignVCenter</set>
-            </property>
         </widget>
     </widget>
     <widget class="QGroupBox">
@@ -313,10 +313,10 @@
                 </rect>
             </property>
             <property name="text">
-                <string>Canc&amp;el</string>
+                <string>C&amp;ancel</string>
             </property>
             <property name="accel">
-                <string>Alt+E</string>
+                <string>Alt+A</string>
             </property>
         </widget>
         <widget class="KPushButton">
@@ -415,82 +415,6 @@
                 </widget>
             </hbox>
         </widget>
-    </widget>
-    <widget class="QGroupBox">
-        <property name="name">
-            <cstring>groupBox3</cstring>
-        </property>
-        <property name="geometry">
-            <rect>
-                <x>10</x>
-                <y>80</y>
-                <width>306</width>
-                <height>230</height>
-            </rect>
-        </property>
-        <property name="title">
-            <string>Send/Recieve options</string>
-        </property>
-        <vbox>
-            <property name="name">
-                <cstring>unnamed</cstring>
-            </property>
-            <widget class="QCheckBox">
-                <property name="name">
-                    <cstring>m_ConfirmOpenCheckbox</cstring>
-                </property>
-                <property name="text">
-                    <string>Confirm to open &amp;message</string>
-                </property>
-                <property name="accel">
-                    <string>Alt+M</string>
-                </property>
-            </widget>
-            <widget class="QCheckBox">
-                <property name="name">
-                    <cstring>m_NoPopupCheckbox</cstring>
-                </property>
-                <property name="text">
-                    <string>No pop&amp;up on recieve</string>
-                </property>
-                <property name="accel">
-                    <string>Alt+U</string>
-                </property>
-            </widget>
-            <widget class="QCheckBox">
-                <property name="name">
-                    <cstring>m_NoSoundCheckbox</cstring>
-                </property>
-                <property name="text">
-                    <string>&amp;No sound on recieve</string>
-                </property>
-                <property name="accel">
-                    <string>Alt+N</string>
-                </property>
-            </widget>
-            <widget class="QCheckBox">
-                <property name="name">
-                    <cstring>m_SecretDefaultCheckbox</cstring>
-                </property>
-                <property name="text">
-                    <string>Secret checkbo&amp;x's default as true</string>
-                </property>
-                <property name="accel">
-                    <string>Alt+X</string>
-                </property>
-            </widget>
-            <widget class="QCheckBox">
-                <property name="name">
-                    <cstring>m_QuoteDefaultCheckbox</cstring>
-                </property>
-                <property name="text">
-                    <string>&amp;Quote checkbox's default as true</string>
-                </property>
-                <property name="accel">
-                    <string>Alt+Q</string>
-                </property>
-            </widget>
-        </vbox>
     </widget>
     <widget class="QGroupBox">
         <property name="name">
@@ -982,6 +906,149 @@
             </property>
         </widget>
     </widget>
+    <widget class="QGroupBox">
+        <property name="name">
+            <cstring>groupBox3</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>10</x>
+                <y>80</y>
+                <width>298</width>
+                <height>230</height>
+            </rect>
+        </property>
+        <property name="title">
+            <string>Send/Recieve options</string>
+        </property>
+        <vbox>
+            <property name="name">
+                <cstring>unnamed</cstring>
+            </property>
+            <property name="margin">
+                <number>8</number>
+            </property>
+            <property name="spacing">
+                <number>4</number>
+            </property>
+            <widget class="QCheckBox">
+                <property name="name">
+                    <cstring>m_ConfirmOpenCheckbox</cstring>
+                </property>
+                <property name="text">
+                    <string>Confirm to open &amp;message</string>
+                </property>
+                <property name="accel">
+                    <string>Alt+M</string>
+                </property>
+            </widget>
+            <widget class="QCheckBox">
+                <property name="name">
+                    <cstring>m_NoPopupCheckbox</cstring>
+                </property>
+                <property name="text">
+                    <string>No pop&amp;up on recieve</string>
+                </property>
+                <property name="accel">
+                    <string>Alt+U</string>
+                </property>
+            </widget>
+            <widget class="QFrame">
+                <property name="name">
+                    <cstring>frame7</cstring>
+                </property>
+                <property name="frameShape">
+                    <enum>NoFrame</enum>
+                </property>
+                <property name="frameShadow">
+                    <enum>Plain</enum>
+                </property>
+                <hbox>
+                    <property name="name">
+                        <cstring>unnamed</cstring>
+                    </property>
+                    <property name="margin">
+                        <number>0</number>
+                    </property>
+                    <property name="spacing">
+                        <number>0</number>
+                    </property>
+                    <spacer>
+                        <property name="name">
+                            <cstring>spacer1</cstring>
+                        </property>
+                        <property name="orientation">
+                            <enum>Horizontal</enum>
+                        </property>
+                        <property name="sizeType">
+                            <enum>Fixed</enum>
+                        </property>
+                        <property name="sizeHint">
+                            <size>
+                                <width>20</width>
+                                <height>20</height>
+                            </size>
+                        </property>
+                    </spacer>
+                    <widget class="QCheckBox">
+                        <property name="name">
+                            <cstring>m_NotifyNoPopupRecieveCheckbox</cstring>
+                        </property>
+                        <property name="text">
+                            <string>Notify</string>
+                        </property>
+                        <property name="accel">
+                            <string></string>
+                        </property>
+                    </widget>
+                </hbox>
+            </widget>
+            <widget class="QCheckBox">
+                <property name="name">
+                    <cstring>m_NoSoundCheckbox</cstring>
+                </property>
+                <property name="text">
+                    <string>&amp;No sound on recieve</string>
+                </property>
+                <property name="accel">
+                    <string>Alt+N</string>
+                </property>
+            </widget>
+            <widget class="QCheckBox">
+                <property name="name">
+                    <cstring>m_SecretDefaultCheckbox</cstring>
+                </property>
+                <property name="text">
+                    <string>Secret checkbo&amp;x's default as true</string>
+                </property>
+                <property name="accel">
+                    <string>Alt+X</string>
+                </property>
+            </widget>
+            <widget class="QCheckBox">
+                <property name="name">
+                    <cstring>m_QuoteDefaultCheckbox</cstring>
+                </property>
+                <property name="text">
+                    <string>&amp;Quote checkbox's default as true</string>
+                </property>
+                <property name="accel">
+                    <string>Alt+Q</string>
+                </property>
+            </widget>
+            <widget class="QCheckBox">
+                <property name="name">
+                    <cstring>m_NotifyLoginLogoutAbsenceCheckbox</cstring>
+                </property>
+                <property name="text">
+                    <string>Notify on Login/Logout/Absence</string>
+                </property>
+                <property name="accel">
+                    <string></string>
+                </property>
+            </widget>
+        </vbox>
+    </widget>
 </widget>
 <customwidgets>
 </customwidgets>
@@ -1039,6 +1106,12 @@
         <receiver>KIPMsgConfigDialogBase</receiver>
         <slot>slotUnlockPasswordSetup()</slot>
     </connection>
+    <connection>
+        <sender>m_NoPopupCheckbox</sender>
+        <signal>clicked()</signal>
+        <receiver>KIPMsgConfigDialogBase</receiver>
+        <slot>slotNoPopupClicked()</slot>
+    </connection>
 </connections>
 <tabstops>
     <tabstop>m_UserNameEditbox</tabstop>
@@ -1069,6 +1142,7 @@
     <slot>slotOkClicked()</slot>
     <slot>slotCancelClicked()</slot>
     <slot>slotApplyClicked()</slot>
+    <slot>slotNoPopupClicked()</slot>
 </slots>
 <layoutdefaults spacing="6" margin="11"/>
 <includehints>

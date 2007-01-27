@@ -26,6 +26,7 @@
 
 #include "attachedfiledialog.h"
 #include "kipmsgsettings.h"
+#include "kipmsgutils.h"
 #include "IpMessenger.h"
 
 
@@ -156,7 +157,6 @@ void KIpMessengerAttachedFileDialog::setFileNames()
 {
 	m_AttachFileListView->clear();
 	QTextCodec *codec = QTextCodec::codecForName( KIpMsgSettings::localFilesystemEncoding() );
-	char timebuf[200];
 	for( vector<AttachFile>::iterator it = files.begin(); it != files.end(); it++ ){
 		it->GetLocalFileInfo();
 		QString size;
@@ -165,12 +165,10 @@ void KIpMessengerAttachedFileDialog::setFileNames()
 		} else {
 			size = QString("%1").arg(it->FileSize());
 		}
-		time_t mtime = it->MTime();
-		ctime_r( &mtime, timebuf );
 		new QListViewItem( m_AttachFileListView,
 						   codec->toUnicode( it->FileName().c_str() ),
 						   size,
-						   timebuf,
+						   CreateTimeString( it->MTime() ),
 						   codec->toUnicode( it->FullPath().c_str() ) );
 	}
 }

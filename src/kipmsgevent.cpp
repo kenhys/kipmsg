@@ -36,6 +36,18 @@
 #include "kipmsglogger.h"
 #include "kipmsgutils.h"
 
+static KIpMsgNotify *notity = NULL;
+
+/**
+ * ホストリストリフレッシュ後イベント
+ * ・全ての送信ウインドウのホストリストを更新する
+ * @param hostList ホストリスト
+ */
+void
+KIpMsgEvent::RefreashHostListAfter( HostList& /*hostList*/ ){
+	RefreshHostListInAllSendDlg();
+}
+
 /**
  * ホストリスト更新後イベント
  * ・全ての送信ウインドウのホストリストを更新する
@@ -53,7 +65,7 @@ KIpMsgEvent::UpdateHostListAfter( HostList& /*hostList*/ ){
  */
 bool
 KIpMsgEvent::GetHostListRetryError(){
-	printf("GetHostListRetryError KIPMSG\n");
+//	printf("GetHostListRetryError KIPMSG\n");
 	//継続しないのでFalseをリターン
 	return false;
 }
@@ -69,6 +81,11 @@ KIpMsgEvent::RecieveAfter( RecievedMessage& msg ){
 	if ( !kipmsgWidget::isRecievedOnNonePopup() ) {
 		ShowRecieveMsg( msg );
 	} else {
+		if ( KIpMsgSettings::notifyOnNoPopupMessageRecieve() ) {
+			notity = createNotifyWindow();
+			notity->addRecievedMessage( msg );
+			notity->show();
+		}
 		hiddenMessages.push_back( msg );
 	}
 	return true;
@@ -81,7 +98,7 @@ KIpMsgEvent::RecieveAfter( RecievedMessage& msg ){
  */
 void
 KIpMsgEvent::SendAfter( SentMessage& /*msg*/ ){
-	printf("SendAfter KIPMSG\n");
+//	printf("SendAfter KIPMSG\n");
 }
 
 /**
@@ -114,11 +131,6 @@ KIpMsgEvent::SendRetryError( SentMessage& msg ){
 void
 KIpMsgEvent::OpenAfter( SentMessage& msg ){
 	IpMessengerAgent *IpMsgAgent = IpMessengerAgent::GetInstance();
-	time_t t = time( NULL );
-	char timebuf[100];
-	memset( timebuf, 0, sizeof( timebuf ) );
-	ctime_r( &t, timebuf );
-	timebuf[strlen(timebuf) - 1] = 0;//改行をつぶす。
 	if ( msg.IsSecret() && msg.IsConfirmed() && !msg.IsConfirmAnswered() ) {
 		QString encode = "";
 		if ( msg.Host().EncodingName() == "" ) {
@@ -140,7 +152,7 @@ KIpMsgEvent::OpenAfter( SentMessage& msg ){
 		OpenConfirmDialog *opendlg = new OpenConfirmDialog();
 		IpMsgAgent->AcceptConfirmNotify( msg );
 		opendlg->m_NicknameLabel->setText( codec->toUnicode( msg.Host().Nickname().c_str() ) );
-		opendlg->m_TimeLabel->setText( "(" + QString(timebuf) + ")" );
+		opendlg->m_TimeLabel->setText( "(" + CreateTimeString( time( NULL ) ) + ")" );
 		opendlg->show();
 		if ( KIpMsgSettings::confirmIcon() ) {
 			KWin::iconifyWindow( opendlg->winId() );
@@ -161,7 +173,7 @@ KIpMsgEvent::OpenAfter( SentMessage& msg ){
  */
 void
 KIpMsgEvent::DownloadStart( RecievedMessage& /*msg*/, AttachFile& /*file*/, DownloadInfo& /*info*/, void * /*data*/ ){
-	printf("DownloadStart KIPMSG\n");
+//	printf("DownloadStart KIPMSG\n");
 }
 
 /**
@@ -248,33 +260,64 @@ KIpMsgEvent::DownloadError( RecievedMessage& /*msg*/, AttachFile& /*file*/, Down
 
 /**
  * 参加通知後イベント
- * ・全ての送信ウインドウのホストリストを更新する
- * @param hostList ホストリスト
+ * ・通知ウインドウを表示する。
+ * @param host ホスト
  */
 void
-KIpMsgEvent::EntryAfter( HostList& /*hostList*/ ){
-	RefreshHostListInAllSendDlg();
+KIpMsgEvent::EntryAfter( HostListItem& host ){
+	if ( host.IsLocalHost() || !KIpMsgSettings::notifyOnLoginLogoutAbsence() ) {
+		return;
+	}
+	GetHostEncodingFromConfig( host );
+	notity = createNotifyWindow();
+	notity->addLoginMessage( host );
+	notity->show();
 }
 
 /**
  * 脱退通知後イベント
- * ・全ての送信ウインドウのホストリストを更新する
- * @param hostList ホストリスト
+ * ・通知ウインドウを表示する。
+ * @param host ホスト
  */
 void
-KIpMsgEvent::ExitAfter( HostList& /*hostList*/ ){
-	RefreshHostListInAllSendDlg();
+KIpMsgEvent::ExitAfter( HostListItem& host ){
+	if ( host.IsLocalHost() || !KIpMsgSettings::notifyOnLoginLogoutAbsence() ) {
+		return;
+	}
+	GetHostEncodingFromConfig( host );
+	notity = createNotifyWindow();
+	notity->addLogoutMessage( host );
+	notity->show();
 }
 
 /**
  * 不在モード変更後イベント
- * ・全ての送信ウインドウのホストリストを更新する
- * @param hostList ホストリスト
+ * ・通知ウインドウを表示する。
+ * @param host ホスト
  */
 void
-KIpMsgEvent::AbsenceModeChangeAfter( HostList& /*hostList*/ )
+KIpMsgEvent::AbsenceModeChangeAfter( HostListItem& host )
 {
-	RefreshHostListInAllSendDlg();
+	if ( host.IsLocalHost() || !KIpMsgSettings::notifyOnLoginLogoutAbsence() ) {
+		return;
+	}
+	GetHostEncodingFromConfig( host );
+	notity = createNotifyWindow();
+	notity->addAbsenceModeChangeMessage( host );
+	notity->show();
+}
+
+/**
+ * 通知ウインドウ生成
+ * @retval 通知ウインドウ
+ */
+KIpMsgNotify*
+KIpMsgEvent::createNotifyWindow()
+{
+	if ( notity == NULL ) {
+		notity = new KIpMsgNotify( 0,0, Qt::WStyle_StaysOnTop | Qt::WStyle_Customize | Qt::WStyle_NoBorder | Qt::WStyle_Tool | Qt::WX11BypassWM);
+	}
+	return notity;
 }
 
 /**
@@ -506,6 +549,22 @@ KIpMsgEvent::ShowHiddenRecieveMsg(){
 		ShowRecieveMsg( *ix );
 	}
 	hiddenMessages.clear();
+}
+
+/**
+ * 指定された受信済のメッセージを検索して表示する。
+ * ・受信済みの未表示メッセージリストから指定された受信済みの未表示メッセージを受信ダイアログに表示。
+ * ・受信済みの未表示メッセージリストから該当メッセージを削除。
+ */
+void
+KIpMsgEvent::FindAndShowHiddenRecieveMsg( RecievedMessage& msg ){
+	for( vector<RecievedMessage>::iterator ix = hiddenMessages.begin(); ix != hiddenMessages.end(); ix++ ){
+		if ( msg.MessagePacket().PacketNo() == ix->MessagePacket().PacketNo() ) {
+			ShowRecieveMsg( *ix );
+			hiddenMessages.erase( ix );
+			break;
+		}
+	}
 }
 
 /**

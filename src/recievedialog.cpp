@@ -119,11 +119,7 @@ QString KIpMsgAttachedFileListViewItem::FileType( QString FileName )
  */
 QString KIpMsgAttachedFileListViewItem::TimeStamp( time_t t )
 {
-	char buf[100];
-	memset( buf, 0, sizeof( buf ) );
-	ctime_r( &t, buf );
-	buf[strlen( buf ) - 1] = 0;
-	return QString(buf);
+	return CreateTimeString( t );
 }
 
 /**
@@ -613,8 +609,6 @@ void RecieveDialog::resizeEvent( QResizeEvent *e )
  */
 void RecieveDialog::doResize( QResizeEvent * /*e*/ )
 {
-	char buf[30];
-
 	if ( msg.IsMulticast() ) {
 		m_MessageGroup->setTitle("Multicast from ...");
 	}
@@ -624,10 +618,8 @@ void RecieveDialog::doResize( QResizeEvent * /*e*/ )
 	if ( msg.IsPasswordLock() ) {
 		m_OpenButton->setText(tr2i18n("Open(Password Locked)"));
 	}
-	time_t recv = msg.Recieved();
-	ctime_r( &recv, buf );
-	buf[strlen(buf) - 1] = 0;
-	m_MessageRecievedAtLabel->setText( "at " + QString( buf ) );
+
+	m_MessageRecievedAtLabel->setText( "at " + CreateTimeString( msg.Recieved() ) );
 	QRect rectGroup = m_MessageGroup->geometry();
 
 	QRect rectFrame = m_RecvAreaFrame->geometry();

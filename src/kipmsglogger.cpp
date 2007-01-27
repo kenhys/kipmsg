@@ -22,6 +22,7 @@
 #include <klocale.h>
 #include "kipmsglogger.h"
 #include "kipmsgsettings.h"
+#include "kipmsgutils.h"
 
 static KIpMessengerLogger *_instance = NULL;
 
@@ -105,12 +106,7 @@ void KIpMessengerLogger::PutRecivedMessage( RecievedMessage msg, bool encodingCh
 	title = title + optionalTitle;
 	fprintf( fp, "%s\n", title.data() );
 
-	char tmpbuf[100];
-	time_t recieved = msg.Recieved();
-	ctime_r( &recieved, tmpbuf );
-	tmpbuf[ strlen( tmpbuf ) - 1] = '\0';
-
-	fprintf( fp, "  at %s ", tmpbuf );
+	fprintf( fp, "  at %s ", CreateTimeStringAsCTimeStyle( msg.Recieved() ).data() );
 	if ( msg.IsCrypted() ){
 		fprintf( fp, "(RSA)" );
 	}
@@ -209,12 +205,7 @@ void KIpMessengerLogger::PutSentMessage( SentMessage msg )
 	title = title + optionalTitle;
 	fprintf( fp, "%s\n", title.data() );
 
-	char tmpbuf[100];
-	time_t sent = msg.Sent();
-	ctime_r( &sent, tmpbuf );
-	tmpbuf[ strlen( tmpbuf ) - 1] = '\0';
-
-	fprintf( fp, "  at %s ", tmpbuf );
+	fprintf( fp, "  at %s ", CreateTimeStringAsCTimeStyle( msg.Sent() ).data() );
 	if ( msg.IsCrypted() ){
 		fprintf( fp, "(RSA)" );
 	}

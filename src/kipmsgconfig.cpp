@@ -60,14 +60,23 @@ KIPMsgConfigDialog::KIPMsgConfigDialog(QWidget* parent, const char* name, WFlags
 	}
 	m_GroupNameCombobox->setCurrentText( KIpMsgSettings::groupName() );
 	m_ConfirmOpenCheckbox->setChecked(KIpMsgSettings::confirmOpen() );
-	m_NoPopupCheckbox->setChecked(KIpMsgSettings::noPopup() );
-	m_NoSoundCheckbox->setChecked(KIpMsgSettings::noSound() );
-	m_SecretDefaultCheckbox->setChecked(KIpMsgSettings::secretDefault() );
-	m_QuoteDefaultCheckbox->setChecked(KIpMsgSettings::quoteDefault() );
+	m_NoPopupCheckbox->setChecked( KIpMsgSettings::noPopup() );
+	m_NotifyNoPopupRecieveCheckbox->setChecked( KIpMsgSettings::notifyOnNoPopupMessageRecieve() );
+	m_NoSoundCheckbox->setChecked( KIpMsgSettings::noSound() );
+	m_SecretDefaultCheckbox->setChecked( KIpMsgSettings::secretDefault() );
+	m_QuoteDefaultCheckbox->setChecked( KIpMsgSettings::quoteDefault() );
+	m_NotifyLoginLogoutAbsenceCheckbox->setChecked( KIpMsgSettings::notifyOnLoginLogoutAbsence() );
+
 	m_MessageEncodingCombobox->setCurrentText( KIpMsgSettings::messageEncoding() );
 	m_LocalFilesystemEncodingCombobox->setCurrentText( KIpMsgSettings::localFilesystemEncoding() );
 	m_BroadcastListbox->insertStringList( KIpMsgSettings::broadcastNetworkAddress() );
 	m_DialupCheckbox->setChecked( KIpMsgSettings::connectDialup() );
+
+	if ( m_NoPopupCheckbox->isChecked() ){
+		m_NotifyNoPopupRecieveCheckbox->setEnabled( TRUE );
+	} else {
+		m_NotifyNoPopupRecieveCheckbox->setEnabled( FALSE );
+	}
 }
 
 /**
@@ -78,6 +87,15 @@ KIPMsgConfigDialog::~KIPMsgConfigDialog()
 {}
 
 /*$SPECIALIZATION$*/
+void KIPMsgConfigDialog::slotNoPopupClicked()
+{
+	if ( m_NoPopupCheckbox->isChecked() ){
+		m_NotifyNoPopupRecieveCheckbox->setEnabled( TRUE );
+	} else {
+		m_NotifyNoPopupRecieveCheckbox->setEnabled( FALSE );
+	}
+}
+
 /**
  * 詳細＋ログ設定クリックイベント
  * ・詳細＋ログ設定ダイアログを開く
@@ -153,9 +171,17 @@ void KIPMsgConfigDialog::slotApplyClicked()
 	KIpMsgSettings::setGroupName( m_GroupNameCombobox->currentText() );
 	KIpMsgSettings::setConfirmOpen( m_ConfirmOpenCheckbox->isChecked() );
 	KIpMsgSettings::setNoPopup( m_NoPopupCheckbox->isChecked() );
+	if ( m_NoPopupCheckbox->isChecked() ){
+		m_NotifyNoPopupRecieveCheckbox->setEnabled( TRUE );
+	} else {
+		m_NotifyNoPopupRecieveCheckbox->setEnabled( FALSE );
+	}
+	KIpMsgSettings::setNotifyOnNoPopupMessageRecieve( m_NotifyNoPopupRecieveCheckbox->isChecked() );
 	KIpMsgSettings::setNoSound( m_NoSoundCheckbox->isChecked() );
 	KIpMsgSettings::setSecretDefault( m_SecretDefaultCheckbox->isChecked() );
 	KIpMsgSettings::setQuoteDefault( m_QuoteDefaultCheckbox->isChecked() );
+	KIpMsgSettings::setNotifyOnLoginLogoutAbsence( m_NotifyLoginLogoutAbsenceCheckbox->isChecked() );
+
 	KIpMsgSettings::setMessageEncoding( m_MessageEncodingCombobox->currentText() );
 	KIpMsgSettings::setLocalFilesystemEncoding( m_LocalFilesystemEncodingCombobox->currentText() );
 	QStringList networks;

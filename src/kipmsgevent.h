@@ -33,9 +33,12 @@ using namespace ipmsg;
 #include "recievedialog.h"
 #include "senddialog.h"
 #include "openconfirm.h"
+#include "kipmsgnotify.h"
+#include "notifywidget.h"
 
 class KIpMsgEvent: public IpMessengerEvent {
 	public:
+		virtual void RefreashHostListAfter( HostList& hostList );
 		virtual void UpdateHostListAfter( HostList& hostList );
 		virtual bool GetHostListRetryError();
 		virtual bool RecieveAfter( RecievedMessage& msg );
@@ -46,14 +49,16 @@ class KIpMsgEvent: public IpMessengerEvent {
 		virtual void DownloadProcessing( RecievedMessage& msg, AttachFile& file, DownloadInfo& info, void *data );
 		virtual void DownloadEnd( RecievedMessage& msg, AttachFile& file, DownloadInfo& info, void *data );
 		virtual bool DownloadError( RecievedMessage& msg, AttachFile& file, DownloadInfo& info, void *data );
-		virtual void EntryAfter( HostList& hostList );
-		virtual void ExitAfter( HostList& hostList );
-		virtual void AbsenceModeChangeAfter( HostList& hostList );
+		virtual void EntryAfter( HostListItem& host );
+		virtual void ExitAfter( HostListItem& host );
+		virtual void AbsenceModeChangeAfter( HostListItem& host );
 		virtual void VersionInfoRecieveAfter( HostListItem &host, string version );
 		virtual void AbsenceDetailRecieveAfter( HostListItem &host, string absenceDetail );
 
 		void ShowSendDlg();
 		void ShowHiddenRecieveMsg();
+		void FindAndShowHiddenRecieveMsg( RecievedMessage& msg );
+
 		void HideAllOpenConfirm();
 		void TimerEvent();
 		int GetRecievedMessageCount();
@@ -69,6 +74,7 @@ class KIpMsgEvent: public IpMessengerEvent {
 		QPtrList<RecieveDialog> recieveDialogs;
 		QPtrList<OpenConfirmDialog> confirmDialogs;
 		vector<RecievedMessage> hiddenMessages;
+		KIpMsgNotify *createNotifyWindow();
 };
 
 #endif
