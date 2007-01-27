@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: zh_CN\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-01-27 20:39+0900\n"
-"PO-Revision-Date: 2007-01-27 23:15+0900\n"
+"POT-Creation-Date: 2007-01-28 02:28+0900\n"
+"PO-Revision-Date: 2007-01-28 03:20+0900\n"
 "Last-Translator: \n"
 "Language-Team:  <ja@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -530,11 +530,8 @@ msgid ""
 "because it is using KHTML.So that function was\n"
 "implemented in Single Click."
 msgstr ""
-"源来，IpMessenger for Windows 的"
-"\"能点击URL\"机能用双击。"
-"但是，KIpMessenger用KHTL，"
-"URL表示HTML的Ancher。"
-"所以，这个机能用点击。"
+"源来，IpMessenger for Windows 的\"能点击URL\"机能用双击。但是，KIpMessenger用"
+"KHTL，URL表示HTML的Ancher。所以，这个机能用单点击。"
 
 #: ../src/clickableurlconfigbase.cpp:199 ../src/detailandlogconfigbase.cpp:272
 #: ../src/kipmsgconfigbase.cpp:306 ../src/unlockpasswordconfigbase.cpp:170
@@ -585,7 +582,7 @@ msgstr "再生"
 
 #: ../src/detailandlogconfigbase.cpp:281
 msgid "Send/Recieve &HotKey(Alt+Ctrl+S,R)"
-msgstr "送受信ホットキー(Alt+Ctrl+S,R)"
+msgstr "发送/收接快捷键(Alt+Ctrl+S,R)"
 
 #: ../src/detailandlogconfigbase.cpp:282 ../src/showconfigbase.cpp:243
 msgid "Alt+H"
@@ -593,7 +590,7 @@ msgstr "Alt+H"
 
 #: ../src/detailandlogconfigbase.cpp:283
 msgid "No Hide Recieve &message form when repling"
-msgstr "返信時に受信画面非消去"
+msgstr "回信的时候不关闭收接窗口"
 
 #: ../src/detailandlogconfigbase.cpp:284 ../src/kipmsgconfigbase.cpp:405
 #: ../src/showconfigbase.cpp:235
@@ -602,7 +599,7 @@ msgstr "Alt+M"
 
 #: ../src/detailandlogconfigbase.cpp:285
 msgid "&No Display Send/OpenConfirm Icon"
-msgstr "送信／開封確認アイコンを表示"
+msgstr "图标表示发送/打开确认窗口"
 
 #: ../src/detailandlogconfigbase.cpp:287
 msgid "Show [&Fire/Intercept] as [Send/Recieve]"
@@ -614,7 +611,7 @@ msgstr "Alt+F"
 
 #: ../src/detailandlogconfigbase.cpp:289
 msgid "&Open Send form by Single Click"
-msgstr "シングルクリックで送信画面をオープン"
+msgstr "打开发送窗口用单点击"
 
 #: ../src/detailandlogconfigbase.cpp:291
 msgid "None &popup recieve on Absence mode"
@@ -703,7 +700,7 @@ msgstr "打开用 '%1'"
 
 #: ../src/downloadcompletedialog.cpp:127 ../src/downloaderrordialog.cpp:75
 msgid "Total %1 (%2)"
-msgstr "合計 %1 (%2)"
+msgstr "总计 %1 (%2)"
 
 #: ../src/downloadcompletedialog.cpp:128 ../src/downloaderrordialog.cpp:76
 msgid "%1 sec  %2 files"
@@ -761,7 +758,7 @@ msgstr "完了"
 
 #: ../src/downloadmonitor.cpp:56
 msgid "Trans"
-msgstr "転送中"
+msgstr "转送中"
 
 #: ../src/downloadmonitor.cpp:57
 msgid "Users"
@@ -777,7 +774,7 @@ msgstr "KIpMessenger - 下载监视器"
 
 #: ../src/downloadmonitorbase.cpp:129
 msgid "Download &not permitted, if file was changed."
-msgstr "ファイルに変更が有った場合、ダウンロード不許可"
+msgstr "改文件的话，不许可下载"
 
 #: ../src/downloadmonitorbase.cpp:133
 msgid "&Close"
@@ -800,7 +797,7 @@ msgstr "ホスト名"
 #: ../src/encodingconfig.cpp:56 ../src/senddialog.cpp:674
 #: ../src/senddialog.cpp:676
 msgid "IP address"
-msgstr "IPアドレス"
+msgstr "IP地址"
 
 #: ../src/encodingconfig.cpp:57 ../src/senddialog.cpp:679
 #: ../src/senddialog.cpp:681
@@ -813,11 +810,11 @@ msgstr "字符码设定"
 
 #: ../src/encodingconfigbase.cpp:166 ../src/showconfigbase.cpp:215
 msgid "&Apply"
-msgstr "適用"
+msgstr "适用"
 
 #: ../src/encodingconfigbase.cpp:172
 msgid "Entried host information"
-msgstr "登録済のホスト情報"
+msgstr "已经登录的计算机情报"
 
 #: ../src/encodingconfigbase.cpp:217 ../src/openconfirmbase.cpp:127
 msgid "Nickname"
@@ -829,7 +826,7 @@ msgstr "小组名设定"
 
 #: ../src/encodingconfigbase.cpp:220
 msgid "Entried host"
-msgstr "登録済のホスト"
+msgstr "已经登录的计算机"
 
 #: ../src/kipmsgconfigbase.cpp:292
 msgid "KIpMessenger Configuration"
@@ -837,7 +834,7 @@ msgstr "KIpMessenger 设定"
 
 #: ../src/kipmsgconfigbase.cpp:293
 msgid "Send/Recieve window --> Display & Sort configuration on Right Click"
-msgstr "送受信ウィンドウ→クリックで表示＆ソート設定"
+msgstr "发送/收接窗口->用点击表示和分类的设定"
 
 #: ../src/kipmsgconfigbase.cpp:294
 msgid "Detail && Lo&g setup"
@@ -849,7 +846,7 @@ msgstr "能点击URL"
 
 #: ../src/kipmsgconfigbase.cpp:298
 msgid "Unloc&k password setup"
-msgstr "錠開封パスワード"
+msgstr "锁打开的密吗"
 
 #: ../src/kipmsgconfigbase.cpp:300
 msgid "Broadcast configuration without Local Network"
@@ -894,7 +891,7 @@ msgstr "メッセージエンコーディング（デフォルト）"
 
 #: ../src/kipmsgconfigbase.cpp:403
 msgid "Send/Recieve options"
-msgstr "送受信オプション設定"
+msgstr "发送/收接选择设定"
 
 #: ../src/kipmsgconfigbase.cpp:404
 msgid "Confirm to open &message"
@@ -1020,9 +1017,13 @@ msgstr "%1登录了(%2)。"
 msgid "%1 was logged out at %2."
 msgstr "%1退出了(%2)。"
 
-#: ../src/notifywidget.cpp:130
+#: ../src/notifywidget.cpp:133
 msgid "%1 was absence mode in at %2."
 msgstr "%1不在了(%2)。"
+
+#: ../src/notifywidget.cpp:135
+msgid "%1 was reset absence mode in at %2."
+msgstr "%1复位了(%2)。"
 
 #: ../src/notifywidgetbase.cpp:69
 msgid "Message from AAA 12222,222,2,2,2,2."
@@ -1042,7 +1043,7 @@ msgstr "打开了"
 
 #: ../src/passworddialog.cpp:57
 msgid "This Password cannot confirmed."
-msgstr "認証確認できません。"
+msgstr "不能认证确认。"
 
 #: ../src/passworddialogbase.cpp:118
 msgid "Input Password"
@@ -1066,7 +1067,7 @@ msgstr "下载"
 
 #: ../src/recievedialog.cpp:141
 msgid "Type"
-msgstr "タイプ"
+msgstr "型式"
 
 #: ../src/recievedialog.cpp:142
 msgid "Modified"
@@ -1102,7 +1103,7 @@ msgstr "字体选择"
 
 #: ../src/recievedialog.cpp:186
 msgid "Intercept"
-msgstr "迎撃"
+msgstr "迎击"
 
 #: ../src/recievedialog.cpp:319
 msgid "Specified application was not found.\n"
@@ -1118,9 +1119,7 @@ msgstr "ダウンロード先のディレクトリを開きますか？"
 
 #: ../src/recievedialog.cpp:520
 msgid "This message from localhost.Download disabled."
-msgstr ""
-"このメッセージはローカルホストからのメッセージです。ダウンロードすることは出"
-"来ません。"
+msgstr "这是自己发送的信息。不能下载。"
 
 #: ../src/recievedialog.cpp:587
 msgid "Save As"
@@ -1216,7 +1215,7 @@ msgstr "返回既定"
 
 #: ../src/senddialog.cpp:231
 msgid "Sort Filter"
-msgstr "ソートフィルタ"
+msgstr "分类过滤器"
 
 #: ../src/senddialog.cpp:234
 msgid "Group Select"
@@ -1256,7 +1255,7 @@ msgstr "编辑器部..."
 
 #: ../src/senddialog.cpp:262
 msgid "View Detail Configuration"
-msgstr "詳細表示設定"
+msgstr "详细表示设定"
 
 #: ../src/senddialog.cpp:266
 msgid "Get version information"
@@ -1264,11 +1263,11 @@ msgstr "取得版本情报"
 
 #: ../src/senddialog.cpp:267
 msgid "Get absence information"
-msgstr "不在詳細情報を取得する。"
+msgstr "取得不在详细情报"
 
 #: ../src/senddialog.cpp:271
 msgid "Fire"
-msgstr "発射"
+msgstr "发射"
 
 #: ../src/senddialog.cpp:498
 msgid "Dropped object is not a file or directory."
@@ -1279,8 +1278,8 @@ msgid ""
 "This message is garbled to read.\n"
 "Are you sure?"
 msgstr ""
-"このメッセージは文字化けしています。\n"
-"よろしいですか？"
+"这信息乱码了。\n"
+"可以吗？"
 
 #: ../src/senddialog.cpp:544
 msgid ""
@@ -1288,9 +1287,9 @@ msgid ""
 "(%1)\n"
 "Are you sure?"
 msgstr ""
-"このファイル名は文字化けしています。\n"
+"这文件名乱码了。\n"
 "(%1)\n"
-"よろしいですか？"
+"可以吗？"
 
 #: ../src/senddialog.cpp:684 ../src/senddialog.cpp:686
 msgid "Priority"
@@ -1342,7 +1341,7 @@ msgstr "KIpMessenger 表示设定"
 
 #: ../src/showconfigbase.cpp:217
 msgid "Rough Level User Level Sorting Settings"
-msgstr "おおまかなレベルでのユーザソート設定"
+msgstr "粗略水平的用户分类设定"
 
 #: ../src/showconfigbase.cpp:218
 msgid "Grouping Level 2"
@@ -1362,7 +1361,7 @@ msgstr "计算机名顺序"
 
 #: ../src/showconfigbase.cpp:225
 msgid "Toggle order"
-msgstr "順番の反転"
+msgstr "掉头分类顺序"
 
 #: ../src/showconfigbase.cpp:227
 msgid "Ignore &case in singlebyte Character"
@@ -1386,7 +1385,7 @@ msgstr "尤先多字节文字"
 
 #: ../src/showconfigbase.cpp:236
 msgid "UserList Display Items and Options"
-msgstr "ユーザリストの表示項目＆オプション"
+msgstr "用户一览的表示项目和选择"
 
 #: ../src/showconfigbase.cpp:237
 msgid ""

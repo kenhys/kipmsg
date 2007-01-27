@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-01-27 20:39+0900\n"
+"POT-Creation-Date: 2007-01-28 02:28+0900\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1008,8 +1008,12 @@ msgstr ""
 msgid "%1 was logged out at %2."
 msgstr ""
 
-#: ../src/notifywidget.cpp:130
+#: ../src/notifywidget.cpp:133
 msgid "%1 was absence mode in at %2."
+msgstr ""
+
+#: ../src/notifywidget.cpp:135
+msgid "%1 was reset absence mode in at %2."
 msgstr ""
 
 #: ../src/notifywidgetbase.cpp:69

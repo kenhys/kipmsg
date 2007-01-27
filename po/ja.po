@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ja\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-01-27 20:39+0900\n"
-"PO-Revision-Date: 2007-01-27 20:43+0900\n"
+"POT-Creation-Date: 2007-01-28 02:28+0900\n"
+"PO-Revision-Date: 2007-01-28 02:42+0900\n"
 "Last-Translator: \n"
 "Language-Team:  <ja@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -601,7 +601,7 @@ msgstr "Alt+M"
 
 #: ../src/detailandlogconfigbase.cpp:285
 msgid "&No Display Send/OpenConfirm Icon"
-msgstr "送信／開封確認アイコンを表示"
+msgstr "送信／開封確認をアイコン表示"
 
 #: ../src/detailandlogconfigbase.cpp:287
 msgid "Show [&Fire/Intercept] as [Send/Recieve]"
@@ -1019,9 +1019,13 @@ msgstr "%1がログインしました。(%2)"
 msgid "%1 was logged out at %2."
 msgstr "%1がログアウトしました。(%2)"
 
-#: ../src/notifywidget.cpp:130
+#: ../src/notifywidget.cpp:133
 msgid "%1 was absence mode in at %2."
 msgstr "%1が不在になりました。(%2)"
+
+#: ../src/notifywidget.cpp:135
+msgid "%1 was reset absence mode in at %2."
+msgstr "%1の不在が解除になりました。(%2)"
 
 #: ../src/notifywidgetbase.cpp:69
 msgid "Message from AAA 12222,222,2,2,2,2."
