@@ -1,5 +1,6 @@
 2007-01-28 Niki, Kuninobu <nikikuni@yahoo.co.jp>
 - Update:Support for notify window.
+- Update:Add Spacer when AbsenceModeChange,Logout in NotifyWidget.
 
 2007-01-20 Niki, Kuninobu <nikikuni@yahoo.co.jp>
 - New upstream release.(0.1.2)
