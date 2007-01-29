@@ -82,6 +82,9 @@ KIpMsgEvent::RecieveAfter( RecievedMessage& msg ){
 		ShowRecieveMsg( msg );
 	} else {
 		if ( KIpMsgSettings::notifyOnNoPopupMessageRecieve() ) {
+			HostListItem host = msg.Host();
+			GetHostEncodingFromConfig( host );
+			msg.setHost( host );
 			notity = createNotifyWindow();
 			notity->addRecievedMessage( msg );
 			notity->show();
