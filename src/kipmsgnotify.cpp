@@ -163,7 +163,6 @@ void KIpMsgNotify::adjustPosition()
 	///////////////////////////////////////
 	//ウィジェットのサイズを決めて、
 	///////////////////////////////////////
-
 	static unsigned int prev_count = 0;
 
 	if ( showItems.size() != prev_count ) {
@@ -192,8 +191,8 @@ void KIpMsgNotify::adjustPosition()
 	kicker->setGroup("General");
 
 	int panelSize = kicker->readNumEntry("CustomSize");
-	int size = kicker->readNumEntry("Size");
-	int pos = kicker->readNumEntry("Position");
+	int size = kicker->readNumEntry("Size",KPanelExtension::SizeNormal);
+	int pos = kicker->readNumEntry("Position",KPanelExtension::Bottom);
 	delete kicker;
 
 	//パネルの高さを確定。
