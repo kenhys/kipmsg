@@ -33,6 +33,7 @@ enum TYPE{
 	LOGIN,
 	LOGOUT,
 	ABSENCE_CHANGE,
+	ABSENCE_RESET,
 	RECV_MSG
 };
 
@@ -137,15 +138,17 @@ void KIpMsgNotifier::setAbsenceModeChangeMessage( HostListItem &host )
 	QString text;
 	if ( host.IsAbsence() ){
 		text = tr2i18n( "%1 was absence mode in at %2.").arg( nickname ).arg( CreateTimeString( time( NULL ) ) );
+		m_ActionButton->hide();
+    	KIpMsgNotifierBaseLayout->addItem( new QSpacerItem( 32, 32, QSizePolicy::Fixed, QSizePolicy::Minimum ) );
+		type = ABSENCE_CHANGE;
 	} else {
 		text = tr2i18n( "%1 was reset absence mode in at %2.").arg( nickname ).arg( CreateTimeString( time( NULL ) ) );
+		m_ActionButton->setPixmap( SmallIcon("filenew") );
+		type = ABSENCE_RESET;
 	}
 	m_MessageLabel->setText( text );
-	m_ActionButton->hide();
-    KIpMsgNotifierBaseLayout->addItem( new QSpacerItem( 32, 32, QSizePolicy::Fixed, QSizePolicy::Minimum ) );
 	resize( sizeHint().expandedTo( minimumSizeHint() ) );
 	_host = host;
-	type = ABSENCE_CHANGE;
 }
 
 /**
@@ -153,7 +156,7 @@ void KIpMsgNotifier::setAbsenceModeChangeMessage( HostListItem &host )
  */
 void KIpMsgNotifier::slotCommandButtonClick()
 {
-	if ( type == LOGIN ) {
+	if ( type == LOGIN || type == ABSENCE_RESET ) {
 		SendDialog *send = new SendDialog();
 		//ホストリストを選択。
 		QString IpAddr = _host.IpAddress().c_str();
