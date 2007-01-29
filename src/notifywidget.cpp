@@ -62,9 +62,15 @@ KIpMsgNotifier::~KIpMsgNotifier()
  */
 void KIpMsgNotifier::setRecievedMessage( RecievedMessage &msg )
 {
-	printf( "KIpMsgNotifier::setRecievedMessage=[%s]\n", msg.Host().EncodingName().c_str() );
-	QString text = tr2i18n( "Message from %1 at %2.").arg( msg.Host().Nickname().c_str() ).arg( CreateTimeString( msg.Recieved() ) );
-	m_MessageLabel->setText(text);
+	QString nickname = msg.Host().Nickname().c_str();
+	if ( msg.Host().EncodingName() != "" ){
+		QTextCodec *codec = QTextCodec::codecForName( msg.Host().EncodingName().c_str() );
+		if ( codec != NULL ){
+			nickname = codec->toUnicode( nickname );
+		}
+	}
+	QString text = tr2i18n( "Message from %1 at %2.").arg( nickname ).arg( CreateTimeString( msg.Recieved() ) );
+	m_MessageLabel->setText( text );
 	m_ActionButton->setPixmap( SmallIcon("fileopen") );
 	resize( sizeHint().expandedTo( minimumSizeHint() ) );
 	_msg = msg;
@@ -86,7 +92,7 @@ void KIpMsgNotifier::setLoginMessage( HostListItem &host )
 	}
 
 	QString text = tr2i18n( "%1 was logged in at %2.").arg( nickname ).arg( CreateTimeString( time( NULL ) ) );
-	m_MessageLabel->setText(text);
+	m_MessageLabel->setText( text );
 	m_ActionButton->setPixmap( SmallIcon("filenew") );
 	resize( sizeHint().expandedTo( minimumSizeHint() ) );
 	_host = host;
@@ -107,7 +113,7 @@ void KIpMsgNotifier::setLogoutMessage( HostListItem &host )
 		}
 	}
 	QString text = tr2i18n( "%1 was logged out at %2.").arg( nickname ).arg( CreateTimeString( time( NULL ) ) );
-	m_MessageLabel->setText(text);
+	m_MessageLabel->setText( text );
 	m_ActionButton->hide();
     KIpMsgNotifierBaseLayout->addItem( new QSpacerItem( 32, 32, QSizePolicy::Fixed, QSizePolicy::Minimum ) );
 	resize( sizeHint().expandedTo( minimumSizeHint() ) );
@@ -134,7 +140,7 @@ void KIpMsgNotifier::setAbsenceModeChangeMessage( HostListItem &host )
 	} else {
 		text = tr2i18n( "%1 was reset absence mode in at %2.").arg( nickname ).arg( CreateTimeString( time( NULL ) ) );
 	}
-	m_MessageLabel->setText(text);
+	m_MessageLabel->setText( text );
 	m_ActionButton->hide();
     KIpMsgNotifierBaseLayout->addItem( new QSpacerItem( 32, 32, QSizePolicy::Fixed, QSizePolicy::Minimum ) );
 	resize( sizeHint().expandedTo( minimumSizeHint() ) );
@@ -161,6 +167,9 @@ void KIpMsgNotifier::slotCommandButtonClick()
 			}
 			++its;
 		}
+		send->show();
+		//次のタイムアウトで消させる。
+		createdTime -= NOTIFY_ERASE_SEC;
 	} else 	if ( type == RECV_MSG ) {
 		IpMessengerAgent *agent = IpMessengerAgent::GetInstance();
 		KIpMsgEvent *evt = dynamic_cast<KIpMsgEvent *>(agent->GetEventObject());
