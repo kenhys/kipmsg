@@ -61,7 +61,7 @@ KIpMsgDownloadMonitor::KIpMsgDownloadMonitor(QWidget* parent, const char* name, 
 	connect( PollingTimer, SIGNAL( timeout() ), this, SLOT( slotPollingTimeout() ) );
 	PollingTimer->start(1400, FALSE);
 	m_NotPermitedIfModifiedCheckbox->setChecked(
-							IpMessengerAgent::GetInstance()->GetAbortDownloadAtFileChanged() );
+							IpMessengerAgent::GetInstance()->AbortDownloadAtFileChanged() );
 }
 
 /**
@@ -114,7 +114,7 @@ void KIpMsgDownloadMonitor::slotPollingTimeout()
  */
 void KIpMsgDownloadMonitor::slotNotPermitedIfModifiedCheckboxClicked()
 {
-	IpMessengerAgent::GetInstance()->SetAbortDownloadAtFileChanged(
+	IpMessengerAgent::GetInstance()->setAbortDownloadAtFileChanged(
 											m_NotPermitedIfModifiedCheckbox->isChecked() );
 	KIpMsgSettings::setNotPermitedIfModified( m_NotPermitedIfModifiedCheckbox->isChecked() );
 	KIpMsgSettings::writeConfig();

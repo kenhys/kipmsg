@@ -182,7 +182,7 @@ kipmsgWidget::kipmsgWidget(QWidget* parent, const char* name, WFlags fl)
 	IpMsgAgent = IpMessengerAgent::GetInstance();
 	IpMsgAgent->SetEventObject( new KIpMsgEvent() );
 	IpMsgAgent->SetSortHostListComparator( new KIpMsgHostListComparator() );
-	IpMsgAgent->SetAbortDownloadAtFileChanged( KIpMsgSettings::notPermitedIfModified() );
+	IpMsgAgent->setAbortDownloadAtFileChanged( KIpMsgSettings::notPermitedIfModified() );
 	IpMsgAgent->setIsDialup( KIpMsgSettings::connectDialup() );
 	IpMsgAgent->setSaveRecievedMessage( false );
 
