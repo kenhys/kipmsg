@@ -135,7 +135,7 @@ void
 KIpMsgEvent::OpenAfter( SentMessage& msg ){
 	IpMessengerAgent *IpMsgAgent = IpMessengerAgent::GetInstance();
 	if ( msg.IsSecret() && msg.IsConfirmed() && !msg.IsConfirmAnswered() ) {
-		QString encode = "";
+		QString encode("");
 		if ( msg.Host().EncodingName() == "" ) {
 			encode = msg.Host().EncodingName().c_str();
 		}else {

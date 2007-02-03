@@ -83,7 +83,7 @@ void KIpMessengerLogger::PutRecivedMessage( RecievedMessage msg, bool encodingCh
 			title += QString( "[]" );
 		}
 	}
-	QString optionalTitle = "";
+	QString optionalTitle("");
 	if ( msg.Host().GroupName() == "" && msg.Host().HostName() == "" ){
 		optionalTitle = "";
 	} else if ( msg.Host().GroupName() != "" && msg.Host().HostName() == "" ){
@@ -182,7 +182,7 @@ void KIpMessengerLogger::PutSentMessage( SentMessage msg )
 			title += QString( "[]" );
 		}
 	}
-	QString optionalTitle = "";
+	QString optionalTitle("");
 	if ( msg.Host().GroupName() == "" && msg.Host().HostName() == "" ){
 		optionalTitle = "";
 	} else if ( msg.Host().GroupName() != "" && msg.Host().HostName() == "" ){

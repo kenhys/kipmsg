@@ -657,7 +657,7 @@ dist-hook:
 
 
 #>+ 2
-KDE_DIST=stamp-h.in subdirs kipmsg-vl.spec kipmsg.kdevelop.pcs configure.files kipmsg.kdevses Makefile.cvs Doxyfile libtool_freebsd61.patch kipmsg.kdevelop 
+KDE_DIST=stamp-h.in subdirs sol10_add_this_to_configure.sh kipmsg-vl.spec kipmsg.kdevelop.pcs configure.files kipmsg.kdevses Makefile.cvs Doxyfile libtool_freebsd61.patch kipmsg.kdevelop 
 
 #>+ 2
 docs-am:

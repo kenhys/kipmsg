@@ -465,7 +465,7 @@ const char *decodeUrl( string url )
  */
 void SendDialog::dropEvent(QDropEvent *e)
 {
-	QString dropText;
+	QString dropText("");
 
 	if ( QTextDrag::decode( e, dropText ) ){
 		addDnDFiles( dropText );
@@ -479,7 +479,7 @@ void SendDialog::dropEvent(QDropEvent *e)
  */
 void SendDialog::addDnDFiles(QString fileUrl){
 	QStringList dropFileList = QStringList::split("\r\n", fileUrl.data() );
-	QString dropFileNames;
+	QString dropFileNames("");
 	bool isDropObjectNotAFile = false;
 	for( QStringList::iterator it = dropFileList.begin(); it != dropFileList.end(); it++ ){
 		AttachFile file;
@@ -539,7 +539,7 @@ void SendDialog::slotMessageSendClicked()
 	KIpMsgFileNameConverter *fconv = new KIpMsgFileNameConverter( m_EncodingCombobox->currentText() );
 	for( vector<AttachFile>::iterator file = attachFileList.begin(); file != attachFileList.end(); file++ ) {
 		string networkFileName = fconv->ConvertLocalToNetwork( file->FileName() );
-		if ( isGarbledMessage( file->FileName(), networkFileName ) ) {
+		if ( isGarbledMessage( file->FileName().c_str(), networkFileName ) ) {
 			QString fname = QString::fromLocal8Bit( file->FileName().c_str() );
 			if ( KMessageBox::warningContinueCancel( 0, tr2i18n("This file name is garbled to read.\n(%1)\nAre you sure?").arg( fname ) ) != KMessageBox::Continue ){
 				return;
@@ -727,7 +727,7 @@ void SendDialog::refreshHostList( bool isUpdate )
 			codec = QTextCodec::codecForName( KIpMsgSettings::messageEncoding() );
 		}
 		QStringList pList = KIpMsgSettings::priorityLevel1();
-		QString pitem = ix->IpAddress() + ":" + ix->UserName();
+		QString pitem = string(ix->IpAddress() + ":" + ix->UserName()).c_str();
 		for( QStringList::Iterator it = pList.begin(); it != pList.end(); ++it ){
 			if ( pitem == *it ) {
 				ix->setPriority( "1" );
@@ -1412,7 +1412,7 @@ void SendDialog::refreshFiles()
 		rectMessageEditbox.setBottom( sizem_MessageFrame.height() - 8 );
 		m_MessageEditbox->setGeometry( rectMessageEditbox );
 		m_AttachFileButton->setHidden( FALSE );
-		QString AttachedFileListCaption = "";
+		QString AttachedFileListCaption( "" );
 		for( vector<AttachFile>::iterator it = attachFileList.begin(); it != attachFileList.end(); it++ ){
 			AttachedFileListCaption += codec->toUnicode( it->FileName().c_str() ) + " ";
 		}

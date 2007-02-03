@@ -159,7 +159,7 @@ void KIpMessengerAttachedFileDialog::setFileNames()
 	QTextCodec *codec = QTextCodec::codecForName( KIpMsgSettings::localFilesystemEncoding() );
 	for( vector<AttachFile>::iterator it = files.begin(); it != files.end(); it++ ){
 		it->GetLocalFileInfo();
-		QString size;
+		QString size("");
 		if ( it->IsDirectory() ) {
 			size = tr2i18n("(DIR)");
 		} else {

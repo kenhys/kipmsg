@@ -18,6 +18,8 @@
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
 
+#define _KIPMSGUTILS_H_
+#include <qstring.h>
 #include "kipmsgutils.h"
 
 QString GetPercentageIconName( int percent ){

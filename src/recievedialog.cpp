@@ -87,7 +87,7 @@ AttachFile KIpMsgAttachedFileListViewItem::file()
 QString KIpMsgAttachedFileListViewItem::ExtName( QString FileName )
 {
 	int pos = FileName.findRev( "." );
-	QString ExtName = "";
+	QString ExtName( "" );
 	if ( pos >= 0 ) {
 		ExtName = FileName.mid( pos + 1 );
 	}
@@ -399,7 +399,7 @@ void RecieveDialog::slotReplyClicked()
 		}
 		//引用文字を行頭に付加する。(改行文字で分割)
 		QStringList RecvMsg = QStringList::split("\n", m_RecievedMessageHTMLPart->selectedText() );
-		QString quoteStr;
+		QString quoteStr("");
 		QString quoteChar = KIpMsgSettings::quoteChar();
 		for( QStringList::iterator quote = RecvMsg.begin(); quote != RecvMsg.end(); quote++) {
 			quoteStr.append( quoteChar );
@@ -674,8 +674,8 @@ QString RecieveDialog::convertMessageToHTML( QString msg )
 						.replace('<', "&lt;")
 						.replace('>',"&gt;")
 						.replace(' ', "&nbsp;");
-	QString url = "";
-	QString returnHtmlBody = "";
+	QString url("");
+	QString returnHtmlBody("");
 	bool isInURLString = false;
 	//Process htmlBody
 	for( unsigned int i = 0; i < htmlBody.length(); i++){

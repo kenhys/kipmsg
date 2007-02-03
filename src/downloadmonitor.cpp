@@ -160,7 +160,7 @@ void KIpMsgDownloadMonitor::refreshDownloadFileList()
 
 	for( vector<SentMessage>::iterator m = msgs.begin(); m != msgs.end(); m++ ) {
 		if ( m->Files().size() > 0 ) {
-			QString fileNames = "";
+			QString fileNames("");
 			long long fileSizeTotal = 0LL;
 			long long transFileSizeTotal = 0LL;
 			int allFileCount = 0;

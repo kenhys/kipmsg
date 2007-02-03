@@ -804,7 +804,6 @@ messages: rc.cpp
 .NOEXPORT:
 
 
-
 #>+ 3
 downloadcompletedialog.moc: $(srcdir)/downloadcompletedialog.h
 	$(MOC) $(srcdir)/downloadcompletedialog.h -o downloadcompletedialog.moc
@@ -957,7 +956,7 @@ clean-metasources:
 	-rm -f  downloadcompletedialog.moc senddialog.moc unlockpasswordconfig.moc downloadmonitor.moc kipmsgwidget.moc clickableurlconfig.moc passworddialog.moc about.moc openconfirm.moc absenceconfig.moc newabsencename.moc attachedfiledialog.moc kipmsgconfig.moc detailandlogconfig.moc notifywidget.moc downloaderrordialog.moc encodingconfig.moc showconfig.moc searchbox.moc kipmsgnotify.moc recievedialog.moc
 
 #>+ 2
-KDE_DIST=unlockpasswordconfigbase.h aboutbase.h kipmsg downloaderrordialogbase.ui downloadcompletedialogbase.ui passworddialogbase.h kipmsgwidgetbase.ui absenceconfigbase.ui unlockpasswordconfigbase.ui detailandlogconfigbase.h absenceconfigbase.h kipmsgnotifybase.h kipmsg.lsm kipmsgsettings.kcfgc aboutbase.ui encodingconfigbase.ui detailandlogconfigbase.ui encodingconfigbase.h senddialogbase.h kipmsgconfigbase.h recievedialogbase.h kipmsgsettings.kcfg clickableurlconfigbase.ui newabsencenamebase.h kipmsgnotifybase.ui recievedialogbase.ui notifywidgetbase.h downloaderrordialogbase.h clickableurlconfigbase.h downloadcompletedialogbase.h kipmsg.desktop showconfigbase.h openconfirmbase.ui kipmsgui.rc showconfigbase.ui openconfirmbase.h attachedfiledialogbase.h searchboxbase.h senddialogbase.ui newabsencenamebase.ui kipmsgwidget.h kipmsgwidgetbase.h passworddialogbase.ui downloadmonitorbase.h attachedfiledialogbase.ui kipmsgsettings.h kipmsgconfigbase.ui notifywidgetbase.ui downloadmonitorbase.ui searchboxbase.ui 
+KDE_DIST=unlockpasswordconfigbase.h aboutbase.h downloaderrordialogbase.ui downloadcompletedialogbase.ui passworddialogbase.h kipmsgwidgetbase.ui absenceconfigbase.ui unlockpasswordconfigbase.ui detailandlogconfigbase.h absenceconfigbase.h kipmsgnotifybase.h kipmsg.lsm kipmsgsettings.kcfgc aboutbase.ui encodingconfigbase.ui detailandlogconfigbase.ui encodingconfigbase.h senddialogbase.h kipmsgconfigbase.h recievedialogbase.h kipmsgsettings.kcfg clickableurlconfigbase.ui newabsencenamebase.h kipmsgnotifybase.ui recievedialogbase.ui notifywidgetbase.h downloaderrordialogbase.h clickableurlconfigbase.h downloadcompletedialogbase.h kipmsg.desktop showconfigbase.h openconfirmbase.ui kipmsgui.rc showconfigbase.ui openconfirmbase.h attachedfiledialogbase.h searchboxbase.h senddialogbase.ui newabsencenamebase.ui kipmsgwidget.h kipmsgwidgetbase.h passworddialogbase.ui downloadmonitorbase.h attachedfiledialogbase.ui kipmsgsettings.h kipmsgconfigbase.ui notifywidgetbase.ui downloadmonitorbase.ui searchboxbase.ui 
 
 #>+ 24
 clean-ui:
