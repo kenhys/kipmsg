@@ -1,5 +1,5 @@
 %define name kipmsg
-%define version 0.1.2
+%define version 0.1.3
 %define release 0vl0
 
 Summary: 	Ip Messenger for KDE
@@ -42,6 +42,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_prefix}/share/*
 
 %changelog
+* Wed Feb 28 2007 Kuninobu Niki <nikikuni@yahoo.co.jp> 0.1.3-0vl0
+- New upstream release.
+
 * Sat Jan 20 2007 Kuninobu Niki <nikikuni@yahoo.co.jp> 0.1.2-0vl0
 - New upstream release.
 
