@@ -36,6 +36,14 @@
       <label>Defines quote default value as true.</label>
       <default>true</default>
     </entry>
+    <entry name="HideEncryptionNotSupportedHost" type="Bool">
+      <label>Defines hide encryption not supported host default value as true.</label>
+      <default>true</default>
+    </entry>
+    <entry name="NoSendOnEncryptionFaild" type="Bool">
+      <label>Defines no send on encryption faild default value as true.</label>
+      <default>true</default>
+    </entry>
     <entry name="MessageEncoding" type="String">
       <label>Defines Message Encoding.</label>
       <default>Shift-JIS</default>

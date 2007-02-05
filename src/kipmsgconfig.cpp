@@ -74,6 +74,8 @@ KIPMsgConfigDialog::KIPMsgConfigDialog(QWidget* parent, const char* name, WFlags
 	} else {
 		m_NotifyNoPopupRecieveCheckbox->setEnabled( FALSE );
 	}
+	m_HideEncryptionNotSupportedHostCheckbox->setChecked( KIpMsgSettings::hideEncryptionNotSupportedHost() );
+	m_NoSendOnEncryptionFaildCheckbox->setChecked( KIpMsgSettings::noSendOnEncryptionFaild() );
 }
 
 /**
@@ -84,6 +86,10 @@ KIPMsgConfigDialog::~KIPMsgConfigDialog()
 {}
 
 /*$SPECIALIZATION$*/
+/**
+ * ノンポップアップ受信クリックイベント
+ * ・通知するチェックボックスの有効／無効を設定する。
+ */
 void KIPMsgConfigDialog::slotNoPopupClicked()
 {
 	if ( m_NoPopupCheckbox->isChecked() ){
@@ -171,6 +177,8 @@ void KIPMsgConfigDialog::slotApplyClicked()
 
 	KIpMsgSettings::setMessageEncoding( m_MessageEncodingCombobox->currentText() );
 	KIpMsgSettings::setLocalFilesystemEncoding( m_LocalFilesystemEncodingCombobox->currentText() );
+	KIpMsgSettings::setHideEncryptionNotSupportedHost( m_HideEncryptionNotSupportedHostCheckbox->isChecked() );
+	KIpMsgSettings::setNoSendOnEncryptionFaild( m_NoSendOnEncryptionFaildCheckbox->isChecked() );
 	KIpMsgSettings::writeConfig();
 
 	QTextCodec *codec = QTextCodec::codecForName( KIpMsgSettings::messageEncoding() );
