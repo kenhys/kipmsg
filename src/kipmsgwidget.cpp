@@ -266,7 +266,7 @@ void kipmsgWidget::rebuildMenu()
 	} else {
 		iconImage.load( KIpMsgSettings::absenceIconFileName() );
 	}
-	MainPopup->insertItem( iconImage, tr2i18n("Absense mode"), AbsencePopup );
+	MainPopup->insertItem( iconImage, tr2i18n("Absence mode"), AbsencePopup );
 	if ( IpMsgAgent->IsAbsence() ){
 		MainPopup->insertSeparator();
 		MainPopup->insertItem( tr2i18n("Reset absence mode") + "(" + modeName + ")", this, SLOT( slotResetAbsenceModeClicked( void ) ) );
