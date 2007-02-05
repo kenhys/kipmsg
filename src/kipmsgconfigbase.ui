@@ -9,7 +9,7 @@
             <x>0</x>
             <y>0</y>
             <width>570</width>
-            <height>630</height>
+            <height>470</height>
         </rect>
     </property>
     <property name="sizePolicy">
@@ -23,18 +23,18 @@
     <property name="minimumSize">
         <size>
             <width>570</width>
-            <height>630</height>
+            <height>470</height>
         </size>
     </property>
     <property name="maximumSize">
         <size>
             <width>570</width>
-            <height>580</height>
+            <height>470</height>
         </size>
     </property>
     <property name="baseSize">
         <size>
-            <width>570</width>
+            <width>470</width>
             <height>580</height>
         </size>
     </property>
@@ -49,6 +49,83 @@
     </property>
     <widget class="QFrame">
         <property name="name">
+            <cstring>frame3</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>0</x>
+                <y>0</y>
+                <width>560</width>
+                <height>82</height>
+            </rect>
+        </property>
+        <property name="frameShape">
+            <enum>StyledPanel</enum>
+        </property>
+        <property name="frameShadow">
+            <enum>Raised</enum>
+        </property>
+        <property name="lineWidth">
+            <number>0</number>
+        </property>
+        <widget class="QGroupBox">
+            <property name="name">
+                <cstring>groupBox1</cstring>
+            </property>
+            <property name="geometry">
+                <rect>
+                    <x>10</x>
+                    <y>10</y>
+                    <width>306</width>
+                    <height>62</height>
+                </rect>
+            </property>
+            <property name="title">
+                <string>UserName</string>
+            </property>
+            <hbox>
+                <property name="name">
+                    <cstring>unnamed</cstring>
+                </property>
+                <widget class="KLineEdit">
+                    <property name="name">
+                        <cstring>m_UserNameEditbox</cstring>
+                    </property>
+                </widget>
+            </hbox>
+        </widget>
+        <widget class="QGroupBox">
+            <property name="name">
+                <cstring>groupBox2</cstring>
+            </property>
+            <property name="geometry">
+                <rect>
+                    <x>320</x>
+                    <y>10</y>
+                    <width>240</width>
+                    <height>62</height>
+                </rect>
+            </property>
+            <property name="title">
+                <string>GroupName</string>
+            </property>
+            <vbox>
+                <property name="name">
+                    <cstring>unnamed</cstring>
+                </property>
+                <widget class="KComboBox">
+                    <property name="name">
+                        <cstring>m_GroupNameCombobox</cstring>
+                    </property>
+                    <property name="editable">
+                        <bool>true</bool>
+                    </property>
+                </widget>
+            </vbox>
+        </widget>
+    </widget>
+    <widget class="QFrame">
+        <property name="name">
             <cstring>frame4</cstring>
         </property>
         <property name="geometry">
@@ -56,7 +133,7 @@
                 <x>320</x>
                 <y>80</y>
                 <width>240</width>
-                <height>230</height>
+                <height>240</height>
             </rect>
         </property>
         <property name="frameShape">
@@ -102,7 +179,7 @@
                     <x>0</x>
                     <y>90</y>
                     <width>240</width>
-                    <height>139</height>
+                    <height>150</height>
                 </rect>
             </property>
             <property name="frameShape">
@@ -115,6 +192,20 @@
                 <property name="name">
                     <cstring>unnamed</cstring>
                 </property>
+                <property name="margin">
+                    <number>0</number>
+                </property>
+                <property name="spacing">
+                    <number>0</number>
+                </property>
+                <widget class="KPushButton">
+                    <property name="name">
+                        <cstring>m_NetworkConfigButton</cstring>
+                    </property>
+                    <property name="text">
+                        <string>Networking setup</string>
+                    </property>
+                </widget>
                 <widget class="KPushButton">
                     <property name="name">
                         <cstring>m_DetailAndLogConfigButton</cstring>
@@ -153,277 +244,12 @@
     </widget>
     <widget class="QGroupBox">
         <property name="name">
-            <cstring>groupBox5</cstring>
-        </property>
-        <property name="geometry">
-            <rect>
-                <x>10</x>
-                <y>410</y>
-                <width>550</width>
-                <height>170</height>
-            </rect>
-        </property>
-        <property name="title">
-            <string>Broadcast configuration without Local Network</string>
-        </property>
-        <widget class="QLabel">
-            <property name="name">
-                <cstring>textLabel2</cstring>
-            </property>
-            <property name="geometry">
-                <rect>
-                    <x>10</x>
-                    <y>30</y>
-                    <width>240</width>
-                    <height>20</height>
-                </rect>
-            </property>
-            <property name="text">
-                <string>ex:192.168.1.255 ( or FQDN)</string>
-            </property>
-        </widget>
-        <widget class="KLineEdit">
-            <property name="name">
-                <cstring>m_IpAddressOrFQDNEditbox</cstring>
-            </property>
-            <property name="geometry">
-                <rect>
-                    <x>10</x>
-                    <y>80</y>
-                    <width>170</width>
-                    <height>25</height>
-                </rect>
-            </property>
-        </widget>
-        <widget class="QCheckBox">
-            <property name="name">
-                <cstring>m_DialupCheckbox</cstring>
-            </property>
-            <property name="geometry">
-                <rect>
-                    <x>10</x>
-                    <y>110</y>
-                    <width>170</width>
-                    <height>23</height>
-                </rect>
-            </property>
-            <property name="text">
-                <string>Connect &amp;to dialup</string>
-            </property>
-            <property name="accel">
-                <string>Alt+T</string>
-            </property>
-        </widget>
-        <widget class="KPushButton">
-            <property name="name">
-                <cstring>m_DeleteFromBroadcastButton</cstring>
-            </property>
-            <property name="geometry">
-                <rect>
-                    <x>190</x>
-                    <y>100</y>
-                    <width>60</width>
-                    <height>28</height>
-                </rect>
-            </property>
-            <property name="text">
-                <string>&lt;&lt;</string>
-            </property>
-        </widget>
-        <widget class="KPushButton">
-            <property name="name">
-                <cstring>m_AddToBroadcastButton</cstring>
-            </property>
-            <property name="geometry">
-                <rect>
-                    <x>190</x>
-                    <y>60</y>
-                    <width>60</width>
-                    <height>28</height>
-                </rect>
-            </property>
-            <property name="text">
-                <string>&gt;&gt;</string>
-            </property>
-        </widget>
-        <widget class="KListBox">
-            <property name="name">
-                <cstring>m_BroadcastListbox</cstring>
-            </property>
-            <property name="geometry">
-                <rect>
-                    <x>260</x>
-                    <y>30</y>
-                    <width>280</width>
-                    <height>130</height>
-                </rect>
-            </property>
-        </widget>
-    </widget>
-    <widget class="QFrame">
-        <property name="name">
-            <cstring>frame5</cstring>
-        </property>
-        <property name="geometry">
-            <rect>
-                <x>10</x>
-                <y>590</y>
-                <width>550</width>
-                <height>40</height>
-            </rect>
-        </property>
-        <property name="frameShape">
-            <enum>StyledPanel</enum>
-        </property>
-        <property name="frameShadow">
-            <enum>Raised</enum>
-        </property>
-        <property name="lineWidth">
-            <number>0</number>
-        </property>
-        <widget class="KPushButton">
-            <property name="name">
-                <cstring>m_ApplyButton</cstring>
-            </property>
-            <property name="geometry">
-                <rect>
-                    <x>440</x>
-                    <y>0</y>
-                    <width>100</width>
-                    <height>30</height>
-                </rect>
-            </property>
-            <property name="text">
-                <string>Appl&amp;y</string>
-            </property>
-            <property name="accel">
-                <string>Alt+Y</string>
-            </property>
-        </widget>
-        <widget class="KPushButton">
-            <property name="name">
-                <cstring>m_CancelButton</cstring>
-            </property>
-            <property name="geometry">
-                <rect>
-                    <x>280</x>
-                    <y>0</y>
-                    <width>100</width>
-                    <height>30</height>
-                </rect>
-            </property>
-            <property name="text">
-                <string>C&amp;ancel</string>
-            </property>
-            <property name="accel">
-                <string>Alt+A</string>
-            </property>
-        </widget>
-        <widget class="KPushButton">
-            <property name="name">
-                <cstring>m_OKButton</cstring>
-            </property>
-            <property name="geometry">
-                <rect>
-                    <x>170</x>
-                    <y>0</y>
-                    <width>100</width>
-                    <height>30</height>
-                </rect>
-            </property>
-            <property name="text">
-                <string>&amp;OK</string>
-            </property>
-            <property name="accel">
-                <string>Alt+O</string>
-            </property>
-        </widget>
-    </widget>
-    <widget class="QFrame">
-        <property name="name">
-            <cstring>frame3</cstring>
-        </property>
-        <property name="geometry">
-            <rect>
-                <x>0</x>
-                <y>0</y>
-                <width>560</width>
-                <height>82</height>
-            </rect>
-        </property>
-        <property name="frameShape">
-            <enum>StyledPanel</enum>
-        </property>
-        <property name="frameShadow">
-            <enum>Raised</enum>
-        </property>
-        <property name="lineWidth">
-            <number>0</number>
-        </property>
-        <widget class="QGroupBox">
-            <property name="name">
-                <cstring>groupBox2</cstring>
-            </property>
-            <property name="geometry">
-                <rect>
-                    <x>320</x>
-                    <y>10</y>
-                    <width>230</width>
-                    <height>60</height>
-                </rect>
-            </property>
-            <property name="title">
-                <string>GroupName</string>
-            </property>
-            <vbox>
-                <property name="name">
-                    <cstring>unnamed</cstring>
-                </property>
-                <widget class="KComboBox">
-                    <property name="name">
-                        <cstring>m_GroupNameCombobox</cstring>
-                    </property>
-                    <property name="editable">
-                        <bool>true</bool>
-                    </property>
-                </widget>
-            </vbox>
-        </widget>
-        <widget class="QGroupBox">
-            <property name="name">
-                <cstring>groupBox1</cstring>
-            </property>
-            <property name="geometry">
-                <rect>
-                    <x>10</x>
-                    <y>10</y>
-                    <width>306</width>
-                    <height>62</height>
-                </rect>
-            </property>
-            <property name="title">
-                <string>UserName</string>
-            </property>
-            <hbox>
-                <property name="name">
-                    <cstring>unnamed</cstring>
-                </property>
-                <widget class="KLineEdit">
-                    <property name="name">
-                        <cstring>m_UserNameEditbox</cstring>
-                    </property>
-                </widget>
-            </hbox>
-        </widget>
-    </widget>
-    <widget class="QGroupBox">
-        <property name="name">
             <cstring>groupBox12</cstring>
         </property>
         <property name="geometry">
             <rect>
                 <x>10</x>
-                <y>310</y>
+                <y>330</y>
                 <width>550</width>
                 <height>90</height>
             </rect>
@@ -915,7 +741,7 @@
                 <x>10</x>
                 <y>80</y>
                 <width>298</width>
-                <height>230</height>
+                <height>240</height>
             </rect>
         </property>
         <property name="title">
@@ -1049,6 +875,85 @@
             </widget>
         </vbox>
     </widget>
+    <widget class="QFrame">
+        <property name="name">
+            <cstring>frame5</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>10</x>
+                <y>430</y>
+                <width>550</width>
+                <height>40</height>
+            </rect>
+        </property>
+        <property name="frameShape">
+            <enum>StyledPanel</enum>
+        </property>
+        <property name="frameShadow">
+            <enum>Raised</enum>
+        </property>
+        <property name="lineWidth">
+            <number>0</number>
+        </property>
+        <widget class="KPushButton">
+            <property name="name">
+                <cstring>m_ApplyButton</cstring>
+            </property>
+            <property name="geometry">
+                <rect>
+                    <x>440</x>
+                    <y>0</y>
+                    <width>100</width>
+                    <height>30</height>
+                </rect>
+            </property>
+            <property name="text">
+                <string>Appl&amp;y</string>
+            </property>
+            <property name="accel">
+                <string>Alt+Y</string>
+            </property>
+        </widget>
+        <widget class="KPushButton">
+            <property name="name">
+                <cstring>m_CancelButton</cstring>
+            </property>
+            <property name="geometry">
+                <rect>
+                    <x>280</x>
+                    <y>0</y>
+                    <width>100</width>
+                    <height>30</height>
+                </rect>
+            </property>
+            <property name="text">
+                <string>C&amp;ancel</string>
+            </property>
+            <property name="accel">
+                <string>Alt+A</string>
+            </property>
+        </widget>
+        <widget class="KPushButton">
+            <property name="name">
+                <cstring>m_OKButton</cstring>
+            </property>
+            <property name="geometry">
+                <rect>
+                    <x>170</x>
+                    <y>0</y>
+                    <width>100</width>
+                    <height>30</height>
+                </rect>
+            </property>
+            <property name="text">
+                <string>&amp;OK</string>
+            </property>
+            <property name="accel">
+                <string>Alt+O</string>
+            </property>
+        </widget>
+    </widget>
 </widget>
 <customwidgets>
 </customwidgets>
@@ -1058,18 +963,6 @@
     </image>
 </images>
 <connections>
-    <connection>
-        <sender>m_AddToBroadcastButton</sender>
-        <signal>clicked()</signal>
-        <receiver>KIPMsgConfigDialogBase</receiver>
-        <slot>slotAddBroadcastAddressClicked()</slot>
-    </connection>
-    <connection>
-        <sender>m_DeleteFromBroadcastButton</sender>
-        <signal>clicked()</signal>
-        <receiver>KIPMsgConfigDialogBase</receiver>
-        <slot>slotDeleteBroadcastAddressClicked()</slot>
-    </connection>
     <connection>
         <sender>m_ApplyButton</sender>
         <signal>clicked()</signal>
@@ -1112,23 +1005,29 @@
         <receiver>KIPMsgConfigDialogBase</receiver>
         <slot>slotNoPopupClicked()</slot>
     </connection>
+    <connection>
+        <sender>m_NetworkConfigButton</sender>
+        <signal>clicked()</signal>
+        <receiver>KIPMsgConfigDialogBase</receiver>
+        <slot>slotNetworkSetupClicked()</slot>
+    </connection>
 </connections>
 <tabstops>
     <tabstop>m_UserNameEditbox</tabstop>
     <tabstop>m_GroupNameCombobox</tabstop>
     <tabstop>m_ConfirmOpenCheckbox</tabstop>
     <tabstop>m_NoPopupCheckbox</tabstop>
+    <tabstop>m_NotifyNoPopupRecieveCheckbox</tabstop>
     <tabstop>m_NoSoundCheckbox</tabstop>
     <tabstop>m_SecretDefaultCheckbox</tabstop>
     <tabstop>m_QuoteDefaultCheckbox</tabstop>
+    <tabstop>m_NotifyLoginLogoutAbsenceCheckbox</tabstop>
+    <tabstop>m_NetworkConfigButton</tabstop>
     <tabstop>m_DetailAndLogConfigButton</tabstop>
     <tabstop>m_ClickableURLConfigButton</tabstop>
     <tabstop>m_UnlockPasswordConfigButton</tabstop>
-    <tabstop>m_IpAddressOrFQDNEditbox</tabstop>
-    <tabstop>m_DialupCheckbox</tabstop>
-    <tabstop>m_AddToBroadcastButton</tabstop>
-    <tabstop>m_DeleteFromBroadcastButton</tabstop>
-    <tabstop>m_BroadcastListbox</tabstop>
+    <tabstop>m_MessageEncodingCombobox</tabstop>
+    <tabstop>m_LocalFilesystemEncodingCombobox</tabstop>
     <tabstop>m_OKButton</tabstop>
     <tabstop>m_CancelButton</tabstop>
     <tabstop>m_ApplyButton</tabstop>
@@ -1143,23 +1042,21 @@
     <slot>slotCancelClicked()</slot>
     <slot>slotApplyClicked()</slot>
     <slot>slotNoPopupClicked()</slot>
+    <slot>slotNetworkSetupClicked()</slot>
 </slots>
 <layoutdefaults spacing="6" margin="11"/>
 <includehints>
-    <includehint>kpushbutton.h</includehint>
-    <includehint>kpushbutton.h</includehint>
-    <includehint>kpushbutton.h</includehint>
+    <includehint>klineedit.h</includehint>
+    <includehint>kcombobox.h</includehint>
     <includehint>klineedit.h</includehint>
     <includehint>kpushbutton.h</includehint>
-    <includehint>kpushbutton.h</includehint>
-    <includehint>klistbox.h</includehint>
     <includehint>kpushbutton.h</includehint>
     <includehint>kpushbutton.h</includehint>
     <includehint>kpushbutton.h</includehint>
     <includehint>kcombobox.h</includehint>
-    <includehint>klineedit.h</includehint>
-    <includehint>klineedit.h</includehint>
     <includehint>kcombobox.h</includehint>
-    <includehint>kcombobox.h</includehint>
+    <includehint>kpushbutton.h</includehint>
+    <includehint>kpushbutton.h</includehint>
+    <includehint>kpushbutton.h</includehint>
 </includehints>
 </UI>

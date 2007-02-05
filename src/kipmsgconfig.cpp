@@ -24,10 +24,10 @@
 #include <kcombobox.h>
 #include <qcheckbox.h>
 #include <qtextcodec.h>
-#include <qcheckbox.h>
 #include <qstringlist.h>
 
 #include "kipmsgconfig.h"
+#include "networkconfig.h"
 #include "clickableurlconfig.h"
 #include "detailandlogconfig.h"
 #include "unlockpasswordconfig.h"
@@ -69,9 +69,6 @@ KIPMsgConfigDialog::KIPMsgConfigDialog(QWidget* parent, const char* name, WFlags
 
 	m_MessageEncodingCombobox->setCurrentText( KIpMsgSettings::messageEncoding() );
 	m_LocalFilesystemEncodingCombobox->setCurrentText( KIpMsgSettings::localFilesystemEncoding() );
-	m_BroadcastListbox->insertStringList( KIpMsgSettings::broadcastNetworkAddress() );
-	m_DialupCheckbox->setChecked( KIpMsgSettings::connectDialup() );
-
 	if ( m_NoPopupCheckbox->isChecked() ){
 		m_NotifyNoPopupRecieveCheckbox->setEnabled( TRUE );
 	} else {
@@ -94,6 +91,16 @@ void KIPMsgConfigDialog::slotNoPopupClicked()
 	} else {
 		m_NotifyNoPopupRecieveCheckbox->setEnabled( FALSE );
 	}
+}
+
+/**
+ * ネットワーク設定クリックイベント
+ * ・ネットワーク設定ダイアログを開く
+ */
+void KIPMsgConfigDialog::slotNetworkSetupClicked()
+{
+	NetworkConfig *netConfig = new NetworkConfig(this,0,TRUE);
+	netConfig->exec();
 }
 
 /**
@@ -122,26 +129,6 @@ void KIPMsgConfigDialog::slotUnlockPasswordSetup()
 {
 	KIPMsgUnlockPasswordConfigDialog *passwordConfig = new KIPMsgUnlockPasswordConfigDialog(this,0,TRUE);
 	passwordConfig->exec();
-}
-/**
- * 「>>」クリックイベント
- * ・左のネットワークアドレス入力ボックスから右のリストボックスに移動し、
- * ・左のネットワークアドレス入力ボックスをクリア
- */
-void KIPMsgConfigDialog::slotAddBroadcastAddressClicked()
-{
-	m_BroadcastListbox->insertItem( m_IpAddressOrFQDNEditbox->text() );
-	m_IpAddressOrFQDNEditbox->setText("");
-}
-/**
- * 「<<」クリックイベント
- * ・右のリストボックスの選択中のアドレスのデータを左のネットワークアドレス入力ボックスにコピーし、
- * ・右のリストボックスの選択中のアドレスを削除
- */
-void KIPMsgConfigDialog::slotDeleteBroadcastAddressClicked()
-{
-	m_IpAddressOrFQDNEditbox->setText( m_BroadcastListbox->currentText() );
-	m_BroadcastListbox->removeItem( m_BroadcastListbox->currentItem() );
 }
 /**
  * OKクリックイベント
@@ -184,24 +171,8 @@ void KIPMsgConfigDialog::slotApplyClicked()
 
 	KIpMsgSettings::setMessageEncoding( m_MessageEncodingCombobox->currentText() );
 	KIpMsgSettings::setLocalFilesystemEncoding( m_LocalFilesystemEncodingCombobox->currentText() );
-	QStringList networks;
-	
-	for( unsigned int i = 0; i < m_BroadcastListbox->count(); i++ ) {
-		networks << m_BroadcastListbox->text(i);
-	}
-	KIpMsgSettings::setBroadcastNetworkAddress( networks );
-	KIpMsgSettings::setConnectDialup( m_DialupCheckbox->isChecked() );
-
 	KIpMsgSettings::writeConfig();
 
-	IpMessengerAgent *agent = IpMessengerAgent::GetInstance();
-	agent->setIsDialup( KIpMsgSettings::connectDialup() );
-	agent->ClearBroadcastAddress();
-	QStringList broadcastNetworkAddress = KIpMsgSettings::broadcastNetworkAddress();
-	for( QStringList::iterator it = broadcastNetworkAddress.begin(); it != broadcastNetworkAddress.end(); it++){
-		QString broadcastAddress = *it;
-		agent->AddBroadcastAddress( broadcastAddress.data() );
-	}
 	QTextCodec *codec = QTextCodec::codecForName( KIpMsgSettings::messageEncoding() );
 	IpMessengerAgent *IpMsgAgent = IpMessengerAgent::GetInstance();
 	IpMsgAgent->Login( codec->fromUnicode( KIpMsgSettings::userName() ).data(), codec->fromUnicode( KIpMsgSettings::groupName() ).data() );

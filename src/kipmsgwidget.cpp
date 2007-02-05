@@ -53,6 +53,7 @@
 #include "kipmsglogger.h"
 #include "kipmsgevent.h"
 #include "openconfirm.h"
+#include "networkconfig.h"
 
 #define POLLING_INTERVAL_MSEC 500
 
@@ -192,7 +193,7 @@ kipmsgWidget::kipmsgWidget(QWidget* parent, const char* name, WFlags fl)
 		IpMsgAgent->AddBroadcastAddress( broadcastAddress.data() );
 	}
 
-	IpMsgAgent->StartNetwork();
+	IpMsgAgent->StartNetwork( NetworkConfig::getSpecifyNics() );
 
     MainPopup = new KPopupMenu(this);
 	AbsencePopup = new KPopupMenu(this);

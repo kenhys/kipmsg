@@ -44,6 +44,13 @@
       <label>Defines Local Filesystem Encoding.</label>
       <default>eucJP</default>
     </entry>
+    <entry name="SpecifyNetworkInterfaceCard" type="Bool">
+      <label>Defines Specify Network Interface Card.</label>
+      <default>false</default>
+    </entry>
+    <entry name="NetworkInterfacePortNumbers" type="StringList">
+      <label>Defines Network Interface Port Numbers.</label>
+    </entry>
     <entry name="BroadcastNetworkAddress" type="StringList">
       <label>Defines broadcast network ip address.</label>
     </entry>

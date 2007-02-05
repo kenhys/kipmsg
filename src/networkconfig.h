@@ -19,30 +19,35 @@
  ***************************************************************************/
 
 
-#ifndef _KIPMSGCONFIG_H_
-#define _KIPMSGCONFIG_H_
+#ifndef _NETWORK_CONFIG_H_
+#define _NETWORK_CONFIG_H_
 
-#include "kipmsgconfigbase.h"
+#include "IpMessenger.h"
+#include "networkconfigbase.h"
 
-class KIPMsgConfigDialog : public KIPMsgConfigDialogBase
+class NetworkConfig : public NetworkConfigBase
 {
     Q_OBJECT
 
 public:
-    KIPMsgConfigDialog(QWidget* parent = 0, const char* name = 0, WFlags fl = 0 );
-    ~KIPMsgConfigDialog();
+    NetworkConfig(QWidget* parent = 0, const char* name = 0, WFlags fl = 0 );
+    ~NetworkConfig();
     /*$PUBLIC_FUNCTIONS$*/
+	static std::vector<ipmsg::NetworkInterface> getSpecifyNics();
 
 public slots:
     /*$PUBLIC_SLOTS$*/
-    virtual void slotNetworkSetupClicked();
-    virtual void slotDetailAndLogSetupClicked();
-    virtual void slotClickableUrlClicked();
-    virtual void slotUnlockPasswordSetup();
+    virtual void slotAddBroadcastAddressClicked();
+    virtual void slotDeleteBroadcastAddressClicked();
     virtual void slotOkClicked();
     virtual void slotCancelClicked();
     virtual void slotApplyClicked();
-    virtual void slotNoPopupClicked();
+    virtual void slotAddInterfaceClicked();
+    virtual void slotDeleteInterfaceClicked();
+    virtual void slotSetPortNoClicked();
+    virtual void slotSpecifyNetworkInterfaceClicked();
+    virtual void slotUseInterfaceClicked(QListBoxItem*);
+    virtual void slotSetDefaultPortNoClicked();
 
 protected:
     /*$PROTECTED_FUNCTIONS$*/
@@ -50,6 +55,8 @@ protected:
 protected slots:
     /*$PROTECTED_SLOTS$*/
 
+private:
+	void setNetworkInterfaceStatus();
 };
 
 #endif
