@@ -186,6 +186,7 @@ kipmsgWidget::kipmsgWidget(QWidget* parent, const char* name, WFlags fl)
 	IpMsgAgent->setAbortDownloadAtFileChanged( KIpMsgSettings::notPermitedIfModified() );
 	IpMsgAgent->setIsDialup( KIpMsgSettings::connectDialup() );
 	IpMsgAgent->setSaveRecievedMessage( false );
+	IpMsgAgent->setNoSendMessageOnEncryptionFailed( KIpMsgSettings::noSendOnEncryptionFaild() );
 
 	QStringList broadcastNetworkAddress = KIpMsgSettings::broadcastNetworkAddress();
 	for( QStringList::iterator it = broadcastNetworkAddress.begin(); it != broadcastNetworkAddress.end(); it++){

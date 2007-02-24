@@ -183,6 +183,7 @@ void KIPMsgConfigDialog::slotApplyClicked()
 
 	QTextCodec *codec = QTextCodec::codecForName( KIpMsgSettings::messageEncoding() );
 	IpMessengerAgent *IpMsgAgent = IpMessengerAgent::GetInstance();
+	IpMsgAgent->setNoSendMessageOnEncryptionFailed( KIpMsgSettings::noSendOnEncryptionFaild() );
 	IpMsgAgent->Login( codec->fromUnicode( KIpMsgSettings::userName() ).data(), codec->fromUnicode( KIpMsgSettings::groupName() ).data() );
 }
 

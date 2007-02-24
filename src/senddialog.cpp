@@ -550,8 +550,7 @@ void SendDialog::slotMessageSendClicked()
 	//送信対象ホストリストを基にメッセージを送信する。
 	agent->SetFileNameConverter( fconv );
 	for( vector<HostListItem>::iterator host = targets.begin(); host != targets.end(); host++ ) {
-		KIpMessengerLogger::GetInstance()->PutSentMessage( 
-			agent->SendMsg( *host, msg, m_SecretCheckbox->isChecked(), attachFileList, m_LockCheckbox->isChecked(), targets.size() ) );
+		agent->SendMsg( *host, msg, m_SecretCheckbox->isChecked(), attachFileList, m_LockCheckbox->isChecked(), targets.size() );
 		QString ip = codec->toUnicode( host->IpAddress().c_str() );
 		QString login = codec->toUnicode( host->UserName().c_str() );
 		for( QStringList::iterator ite = encodings.begin(); ite != encodings.end(); ite++ ){
@@ -708,8 +707,13 @@ void SendDialog::refreshHostList( bool isUpdate )
 	header->moveSection( ColumnPriority, KIpMsgSettings::priorityColumnIndex() );
 	header->moveSection( ColumnEncoding, KIpMsgSettings::encodingColumnIndex() );
 
+	bool hideEncryptionUnsupported = KIpMsgSettings::hideEncryptionNotSupportedHost();
 	QStringList encodings = KIpMsgSettings::encodingSettings();
 	for( vector<HostListItem>::iterator ix = hosts.begin(); ix != hosts.end(); ix++ ){
+		if ( hideEncryptionUnsupported && !ix->IsEncryptSupport() ) {
+			continue;
+		}
+
 		//設定によって表示内容を変更する
 		QStringList values;
 		QTextCodec *codec;

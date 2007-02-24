@@ -100,8 +100,8 @@ KIpMsgEvent::RecieveAfter( RecievedMessage& msg ){
  * @param msg メッセージ
  */
 void
-KIpMsgEvent::SendAfter( SentMessage& /*msg*/ ){
-//	printf("SendAfter KIPMSG\n");
+KIpMsgEvent::SendAfter( SentMessage& msg ){
+	KIpMessengerLogger::GetInstance()->PutSentMessage( msg );
 }
 
 /**

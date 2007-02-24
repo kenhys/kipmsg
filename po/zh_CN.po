@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: zh_CN\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2007-02-06 00:58+0900\n"
-"PO-Revision-Date: 2007-02-06 02:02+0900\n"
+"PO-Revision-Date: 2007-02-06 03:18+0900\n"
 "Last-Translator: \n"
 "Language-Team:  <ja@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -19,7 +19,7 @@ msgstr ""
 
 #: ../src/aboutbase.cpp:179 ../src/kipmsgwidget.cpp:239
 msgid "About KIpMessenger"
-msgstr "关于KIpMessenger"
+msgstr "关于 KIpMessenger"
 
 #: ../src/aboutbase.cpp:180
 msgid "http://www.ipms&g.org"
@@ -35,7 +35,7 @@ msgstr "Alt+G"
 #: ../src/kipmsgconfigbase.cpp:402 ../src/networkconfigbase.cpp:190
 #: ../src/newabsencenamebase.cpp:121
 msgid "&OK"
-msgstr "OK"
+msgstr "确定"
 
 #: ../src/aboutbase.cpp:183 ../src/detailandlogconfigbase.cpp:287
 #: ../src/encodingconfigbase.cpp:169 ../src/kipmsgconfigbase.cpp:403
@@ -90,7 +90,7 @@ msgstr "自动离开模式设定"
 
 #: ../src/absenceconfigbase.cpp:217
 msgid "Auto a&bsence mode enabled."
-msgstr "有效自动离开。"
+msgstr "有效自动离开"
 
 #: ../src/absenceconfigbase.cpp:218 ../src/clickableurlconfigbase.cpp:191
 #: ../src/detailandlogconfigbase.cpp:293 ../src/kipmsgconfigbase.cpp:392
@@ -100,7 +100,7 @@ msgstr "Alt+B"
 
 #: ../src/absenceconfigbase.cpp:219
 msgid "Auto Absence,some minutes after if no input from mouse."
-msgstr "从鼠标数分种输入如果没有，要自动离开模式。"
+msgstr "从鼠标数分种输入如果没有，要自动离开模式"
 
 #: ../src/absenceconfigbase.cpp:220
 msgid "minutes"
@@ -108,7 +108,7 @@ msgstr "分种"
 
 #: ../src/absenceconfigbase.cpp:221
 msgid "Settings"
-msgstr "设定内容"
+msgstr "设置内容"
 
 #: ../src/absenceconfigbase.cpp:222
 msgid "&Set"
@@ -458,7 +458,7 @@ msgstr "Alt+N"
 #: ../src/searchboxbase.cpp:131 ../src/showconfigbase.cpp:213
 #: ../src/unlockpasswordconfigbase.cpp:168
 msgid "O&K"
-msgstr "OK"
+msgstr "确定"
 
 #: ../src/attachedfiledialogbase.cpp:217 ../src/clickableurlconfigbase.cpp:202
 #: ../src/detailandlogconfigbase.cpp:320
@@ -539,7 +539,7 @@ msgstr ""
 #: ../src/kipmsgconfigbase.cpp:398 ../src/networkconfigbase.cpp:186
 #: ../src/unlockpasswordconfigbase.cpp:170
 msgid "Appl&y"
-msgstr "适用"
+msgstr "应用"
 
 #: ../src/detailandlogconfig.cpp:139 ../src/detailandlogconfig.cpp:176
 #: ../src/detailandlogconfigbase.cpp:282 ../src/detailandlogconfigbase.cpp:297
@@ -552,7 +552,7 @@ msgstr ""
 
 #: ../src/detailandlogconfigbase.cpp:271
 msgid "KIpMessenger Detail & Configuration"
-msgstr "KIpMessenger 详细设置"
+msgstr "KIpMessenger 详细/记录设置"
 
 #: ../src/detailandlogconfigbase.cpp:272
 msgid "Detail configuration"
@@ -581,7 +581,7 @@ msgstr "引文标识"
 
 #: ../src/detailandlogconfigbase.cpp:278
 msgid "IM ON/OFF A&utomaticaly"
-msgstr "IMの自動ON/OFF"
+msgstr "IM自动ON/OFF"
 
 #: ../src/detailandlogconfigbase.cpp:280
 msgid "Send/Recieve &HotKey(Alt+Ctrl+S,R)"
@@ -629,7 +629,7 @@ msgstr "再生"
 
 #: ../src/detailandlogconfigbase.cpp:295
 msgid "None &popup recieve on Absence mode"
-msgstr "离开时不自动弹出接收的信息。"
+msgstr "离开时不自动弹出接收的信息"
 
 #: ../src/detailandlogconfigbase.cpp:296
 msgid "Alt+P"
@@ -662,7 +662,7 @@ msgstr "记录文件"
 
 #: ../src/detailandlogconfigbase.cpp:308
 msgid "Use e&xternal log viewer(kwrite as default)."
-msgstr "使用外部记录查看器（默认为kwrite）"
+msgstr "使用外部记录查看器（默认用kwrite）"
 
 #: ../src/detailandlogconfigbase.cpp:309 ../src/kipmsgconfigbase.cpp:379
 msgid "Alt+X"
@@ -724,12 +724,12 @@ msgstr "关闭"
 #: ../src/downloadcompletedialogbase.cpp:83
 #: ../src/downloaderrordialogbase.cpp:82
 msgid "95 sec  0 files"
-msgstr "95 sec  0 files"
+msgstr "没有意义"
 
 #: ../src/downloadcompletedialogbase.cpp:84
 #: ../src/downloaderrordialogbase.cpp:81
 msgid "Total 0KB (0KB/s)"
-msgstr "Total 0KB (0KB/s)"
+msgstr "没有意义"
 
 #: ../src/downloadcompletedialogbase.cpp:85
 msgid "Open Folder as &Konqueror"
@@ -757,19 +757,19 @@ msgstr "文件"
 
 #: ../src/downloadmonitor.cpp:54
 msgid "All"
-msgstr "全部"
+msgstr "总数"
 
 #: ../src/downloadmonitor.cpp:55
 msgid "Done"
-msgstr "完了"
+msgstr "完成"
 
 #: ../src/downloadmonitor.cpp:56
 msgid "Trans"
-msgstr "转送中"
+msgstr "传送"
 
 #: ../src/downloadmonitor.cpp:57
 msgid "Users"
-msgstr "用户数"
+msgstr "用户"
 
 #: ../src/downloadmonitor.cpp:58
 msgid "PacketNo"
@@ -777,11 +777,11 @@ msgstr "包号码"
 
 #: ../src/downloadmonitorbase.cpp:128
 msgid "KIpMessenger - Attached File Download Monitor"
-msgstr "KIpMessenger - 下载监视器"
+msgstr "KIpMessenger - 文件传送监视器"
 
 #: ../src/downloadmonitorbase.cpp:129
 msgid "Download &not permitted, if file was changed."
-msgstr "改文件的话，不许可下载"
+msgstr "若目标文件已经改变，则不允许传送"
 
 #: ../src/downloadmonitorbase.cpp:133
 msgid "&Close"
@@ -817,7 +817,7 @@ msgstr "字符码设置"
 
 #: ../src/encodingconfigbase.cpp:166 ../src/showconfigbase.cpp:215
 msgid "&Apply"
-msgstr "适用"
+msgstr "应用"
 
 #: ../src/encodingconfigbase.cpp:172
 msgid "Entried host information"
@@ -837,7 +837,7 @@ msgstr "已经登录的主机"
 
 #: ../src/kipmsgconfigbase.cpp:279
 msgid "KIpMessenger Configuration"
-msgstr "KIpMessenger 设置"
+msgstr "KIpMessenger 服务设置"
 
 #: ../src/kipmsgconfigbase.cpp:280
 msgid "Encodings"
@@ -845,11 +845,11 @@ msgstr "字符码"
 
 #: ../src/kipmsgconfigbase.cpp:324
 msgid "Message encoding(Default)"
-msgstr "信息的编码（规定）"
+msgstr "信息的字符码（默认）"
 
 #: ../src/kipmsgconfigbase.cpp:325
 msgid "Local Filesystem encoding"
-msgstr "本地文件系统的编码"
+msgstr "本地文件系统的字符码"
 
 #: ../src/kipmsgconfigbase.cpp:369
 msgid "Send/Recieve options"
@@ -909,7 +909,7 @@ msgstr "能点击URL"
 
 #: ../src/kipmsgconfigbase.cpp:393
 msgid "Unloc&k password setup"
-msgstr "锁打开的密吗"
+msgstr "密吗设置"
 
 #: ../src/kipmsgconfigbase.cpp:395
 msgid "Send/Recieve window --> Display & Sort configuration on Right Click"
@@ -954,7 +954,7 @@ msgstr "没有意义"
 
 #: ../src/kipmsgwidget.cpp:231
 msgid "Download Monitor"
-msgstr "下载监视器"
+msgstr "文件传送监视器"
 
 #: ../src/kipmsgwidget.cpp:233
 msgid "Hide all open confirm windows"
@@ -970,7 +970,7 @@ msgstr "新信息..."
 
 #: ../src/kipmsgwidget.cpp:238 ../src/recievedialog.cpp:167
 msgid "Configuration..."
-msgstr "设置..."
+msgstr "服务设置..."
 
 #: ../src/kipmsgwidget.cpp:240
 msgid "View logs"
@@ -990,11 +990,11 @@ msgstr "复位"
 
 #: ../src/kipmsgwidget.cpp:275
 msgid "Quit"
-msgstr "结束"
+msgstr "退出"
 
 #: ../src/kipmsgwidgetbase.cpp:457
 msgid "kipmsgwidgetbase"
-msgstr "kipmsgwidgetbase"
+msgstr "没有意义"
 
 #: ../src/networkconfigbase.cpp:179
 msgid "KIpMessenger - Nerwork Configuration"
@@ -1002,11 +1002,11 @@ msgstr "KIpMessenger - 网络设置"
 
 #: ../src/networkconfigbase.cpp:180
 msgid "Broadcast configuration without Local Network"
-msgstr "Local Network以外的Broadcast设置"
+msgstr "局域网外广播设置"
 
 #: ../src/networkconfigbase.cpp:181
 msgid "ex:192.168.1.255 ( or FQDN)"
-msgstr "例:192.168.1.255 ( or FQDN)"
+msgstr "添加要广播的IP地址(或FQDN)"
 
 #: ../src/networkconfigbase.cpp:182 ../src/networkconfigbase.cpp:199
 msgid "<<"
@@ -1018,7 +1018,7 @@ msgstr ">>"
 
 #: ../src/networkconfigbase.cpp:184
 msgid "Connect &to dialup"
-msgstr "Dialup连接"
+msgstr "拨号连接"
 
 #: ../src/networkconfigbase.cpp:192
 msgid "Network interface"
@@ -1030,11 +1030,11 @@ msgstr "端口号"
 
 #: ../src/networkconfigbase.cpp:194
 msgid "eth0"
-msgstr "eth0"
+msgstr "没有意义"
 
 #: ../src/networkconfigbase.cpp:195
 msgid "1000:2000:3000:4000:5000:6000:7000:8000"
-msgstr "1000:2000:3000:4000:5000:6000:7000:8000"
+msgstr "没有意义"
 
 #: ../src/networkconfigbase.cpp:196
 msgid "IP Address"
@@ -1046,7 +1046,7 @@ msgstr "界面"
 
 #: ../src/networkconfigbase.cpp:200
 msgid "Set"
-msgstr "设置"
+msgstr "设定"
 
 #: ../src/networkconfigbase.cpp:201
 msgid "Don't use"
@@ -1066,11 +1066,11 @@ msgstr ""
 
 #: ../src/networkconfigbase.cpp:206
 msgid "Default port"
-msgstr "规定的端口号"
+msgstr "默认的端口号"
 
 #: ../src/newabsencenamebase.cpp:117
 msgid "Naming for new absence mode unique identifier"
-msgstr "请命名离开模式。"
+msgstr "请命名离开模式"
 
 #: ../src/newabsencenamebase.cpp:118
 msgid "Identifier:"
@@ -1122,7 +1122,7 @@ msgstr "新密码"
 
 #: ../src/passworddialogbase.cpp:119
 msgid "&Unlock"
-msgstr "開錠"
+msgstr "下锁"
 
 #: ../src/recievedialog.cpp:106 ../src/recievedialog.cpp:110
 msgid "File of %1"
@@ -1238,7 +1238,7 @@ msgstr "检索"
 
 #: ../src/searchboxbase.cpp:129
 msgid "&Search"
-msgstr "检索"
+msgstr "搜索"
 
 #: ../src/searchboxbase.cpp:133
 msgid "Search &All Fields"
@@ -1274,7 +1274,7 @@ msgstr "移动默认"
 
 #: ../src/senddialog.cpp:226
 msgid "Move to hidden"
-msgstr "移动非表示"
+msgstr "移动非显示"
 
 #: ../src/senddialog.cpp:228
 msgid "Show Hidden(temporary)"
@@ -1368,15 +1368,15 @@ msgstr "设置显示优先级"
 
 #: ../src/senddialog.cpp:693
 msgid "Encryption Flags"
-msgstr "Encryption Flags"
+msgstr "没有意义"
 
 #: ../src/senddialog.cpp:695
 msgid "RSA Method"
-msgstr "RSA Method"
+msgstr "没有意义"
 
 #: ../src/senddialog.cpp:697
 msgid "RSA Public Key"
-msgstr "RSA Public Key"
+msgstr "没有意义"
 
 #: ../src/senddialog.cpp:1069
 msgid "Change to default.Are you sure?"
@@ -1400,7 +1400,7 @@ msgstr "发送"
 
 #: ../src/senddialogbase.cpp:269
 msgid "Secre&t"
-msgstr "秘密"
+msgstr "封装"
 
 #: ../src/senddialogbase.cpp:271
 msgid "Loc&k"
@@ -1448,7 +1448,7 @@ msgstr "工作组顺序"
 
 #: ../src/showconfigbase.cpp:232
 msgid "&Toggle order"
-msgstr "順番の反転"
+msgstr "反转顺序"
 
 #: ../src/showconfigbase.cpp:234
 msgid "Priority &MultiBytes"

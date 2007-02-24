@@ -1,3 +1,9 @@
+2007-02-06 Niki, Kuninobu <nikikuni@yahoo.co.jp>
+- Update:zh_CN locale.(Experimental)
+- Update:Hide encription unsupported host.
+- Update:No send when encryption failed.
+- Update:Move send log logic to inner event log object(send after event) from "send message dialog's send button".
+
 2007-02-05 Niki, Kuninobu <nikikuni@yahoo.co.jp>
 - Update:zh_CN locale.(Experimental)
 - Update:Hide encription unsupported host.(Configuration only)
