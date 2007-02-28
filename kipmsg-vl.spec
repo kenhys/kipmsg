@@ -1,5 +1,6 @@
 %define name kipmsg
 %define version 0.1.3
+%define libipmsg_ver 0.1.3
 %define release 0vl0
 
 Summary: 	Ip Messenger for KDE
@@ -12,7 +13,7 @@ License: 	GPL
 Group:		User Interface/Desktops
 BuildRoot: 	%{_tmppath}/%{name}-buildroot
 Requires: 	kdelibs, kdebase, qt, libipmsg
-BuildRequires: 	kdelibs-devel, kdebase-devel, qt-devel, libipmsg-devel = 0.1.2
+BuildRequires: 	kdelibs-devel, kdebase-devel, qt-devel, libipmsg-devel = %{libipmsg_ver}
 
 %description
 Ip Messenger for KDE is the IpMessenger(famous windows application)'s KDE implementation.
