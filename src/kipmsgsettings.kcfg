@@ -363,9 +363,5 @@
       <label>Defines enabled auto absence.</label>
       <default>false</default>
     </entry>
-    <entry name="AutoAbsenceMinutes" type="Int">
-      <label>Defines auto absence.</label>
-      <default>5</default>
-    </entry>
   </group>
 </kcfg>

@@ -39,6 +39,7 @@
 #include <klocale.h>
 #include <kiconloader.h>
 #include <knotifyclient.h>
+#include <kuniqueapplication.h>
 #include <time.h>
 #include <stdlib.h>
 #include <ctype.h>
@@ -549,8 +550,12 @@ bool kipmsgWidget::isRecievedOnNonePopup()
  */
 void kipmsgWidget::slotPollingTimeout()
 {
+#if 0
 	static long c = 0;
 	static long moved_c = 0;
+#else
+	static long c = 0;
+#endif
 
 	//送受信キューを処理します。
 	IpMsgAgent->Process();
@@ -581,27 +586,33 @@ void kipmsgWidget::slotPollingTimeout()
 		downMonitor->refreshDownloadFileList();
 	}
 
-	//設定された分数をこえたら自動的に不在モードに移行。
-	c++;
+	//スクリーンセーバと連動して自動不在
 	static bool automatic_absence = false;
-	static QPoint prevpos = QCursor::pos();
-	QPoint cpos = QCursor::pos();
-	if ( cpos.x() == prevpos.x() && cpos.y() == prevpos.y() ) {
-		//cの1は0.5秒なので2倍すると1秒。120で1分。
-		if ( c - moved_c > 120 * KIpMsgSettings::autoAbsenceMinutes() ) {
-			QIntDictIterator<QString> idt( absence_mode_menu );
-			if ( absence_mode_menu.count() > 0 && !automatic_absence ) {
-				slotAbsenceModeSelect( idt.currentKey() );
-				automatic_absence = true;
+	if ( KIpMsgSettings::autoAbsenceEnabled() ) {
+		//1秒に一度チェックする。
+		if ( c > 2 * 1 ) {
+			FILE *pp = popen( "ps -ef | grep kdesktop_lock | grep -v grep | wc -l", "r" );
+			char buf[100];
+			if ( fgets( buf, sizeof( buf ), pp ) != NULL ) {
+				if ( strcmp( "0\n", buf ) == 0 ) {
+					if ( IpMsgAgent->IsAbsence() && automatic_absence ) {
+						IpMsgAgent->ResetAbsence();
+						automatic_absence = false;
+printf( "reset absence mode\n");
+					}
+				}else{
+					if ( !IpMsgAgent->IsAbsence() && !automatic_absence ) {
+						QIntDictIterator<QString> idt( absence_mode_menu );
+						slotAbsenceModeSelect( idt.currentKey() );
+						automatic_absence = true;
+printf( "enter absence mode\n");
+					}
+				}
 			}
+			pclose( pp );
+			c = 0;
 		}
-	} else {
-		moved_c = c;
-		prevpos = cpos;
-		if ( automatic_absence ){
-			automatic_absence = false;
-			IpMsgAgent->ResetAbsence();
-		}
+		c++;
 	}
 	//表示されていない開封をリストから後始末。
 	if ( evt != NULL ) {

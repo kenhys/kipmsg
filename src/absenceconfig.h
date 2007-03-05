@@ -54,7 +54,6 @@ public slots:
     virtual void slotAddClicked();
     virtual void slotDeleteClicked();
     virtual void slotEncodingChanged(int);
-    virtual void slotAutoAbsenceClicked();
     virtual void slotUpClicked();
     virtual void slotDownClicked();
 

@@ -124,8 +124,6 @@ void KIpMsgAbsenceModeConfigDialog::load()
 
 	currentEncoding = KIpMsgSettings::messageEncoding();
 	m_AutoAbsenceModeCheckbox->setChecked( KIpMsgSettings::autoAbsenceEnabled() );
-	m_AutoAbsenceMinutesInputbox->setValue( KIpMsgSettings::autoAbsenceMinutes() );
-	slotAutoAbsenceClicked();
 	setSelectedItem();
 }
 /**
@@ -160,7 +158,6 @@ void KIpMsgAbsenceModeConfigDialog::save()
 	KIpMsgSettings::setAbsenceTitles( titles );
 	KIpMsgSettings::setAbsenceDetails( details );
 	KIpMsgSettings::setAutoAbsenceEnabled( m_AutoAbsenceModeCheckbox->isChecked() );
-	KIpMsgSettings::setAutoAbsenceMinutes( m_AutoAbsenceMinutesInputbox->value() );
 	KIpMsgSettings::writeConfig();
 }
 
@@ -171,17 +168,6 @@ void KIpMsgAbsenceModeConfigDialog::save()
 void KIpMsgAbsenceModeConfigDialog::slotCancelClicked()
 {
 	close();
-}
-
-/**
- * 自動不在モードクリックイベント
- * ・チェックオンなら設定項目を有効にする。
- */
-void KIpMsgAbsenceModeConfigDialog::slotAutoAbsenceClicked()
-{
-	m_AutoAbsenceMinutesLabel->setEnabled( m_AutoAbsenceModeCheckbox->isChecked() );
-	m_MinutesLabel->setEnabled( m_AutoAbsenceModeCheckbox->isChecked() );
-	m_AutoAbsenceMinutesInputbox->setEnabled( m_AutoAbsenceModeCheckbox->isChecked() );
 }
 
 /**
