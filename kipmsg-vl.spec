@@ -1,5 +1,5 @@
 %define name kipmsg
-%define version 0.1.3
+%define version 0.1.4
 %define libipmsg_ver 0.1.3
 %define release 0vl0
 
@@ -43,6 +43,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_prefix}/share/*
 
 %changelog
+* Fri Mar 29 2007 Kuninobu Niki <nikikuni@yahoo.co.jp> 0.1.4-0vl0
+- New upstream release.
+
 * Wed Feb 28 2007 Kuninobu Niki <nikikuni@yahoo.co.jp> 0.1.3-0vl0
 - New upstream release.
 
