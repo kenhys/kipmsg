@@ -101,6 +101,7 @@ void NetworkConfig::slotAddBroadcastAddressClicked()
 		return;
 	}
 	m_BroadcastListbox->insertItem( m_IpAddressOrFQDNEditbox->text() );
+	m_BroadcastListbox->setSelected( m_BroadcastListbox->count() - 1, TRUE );
 	m_IpAddressOrFQDNEditbox->setText("");
 }
 /**
@@ -111,7 +112,17 @@ void NetworkConfig::slotAddBroadcastAddressClicked()
 void NetworkConfig::slotDeleteBroadcastAddressClicked()
 {
 	m_IpAddressOrFQDNEditbox->setText( m_BroadcastListbox->currentText() );
-	m_BroadcastListbox->removeItem( m_BroadcastListbox->currentItem() );
+
+
+	unsigned int rmv = m_BroadcastListbox->currentItem();
+	m_BroadcastListbox->removeItem( rmv );
+
+	if ( m_BroadcastListbox->count() >= rmv + 1 ) {
+		m_BroadcastListbox->setSelected( rmv, TRUE );
+	} else {
+		m_BroadcastListbox->setSelected( m_BroadcastListbox->count() - 1, TRUE );
+	}
+//	m_BroadcastListbox->removeItem( m_BroadcastListbox->currentItem() );
 }
 /**
  * OKクリックイベント
