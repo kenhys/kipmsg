@@ -268,7 +268,6 @@ SendDialog::SendDialog(QWidget* parent, const char* name, WFlags fl)
 	KIpMsgSettings::setPriorityDefault( nullList );
 	KIpMsgSettings::setPriorityHidden( nullList );
 	KIpMsgSettings::writeConfig();
-	//移行ここまで
 
 	sendPopup->insertItem(SmallIcon("filter"),tr2i18n("Sort Filter"), sortPopup );
 
