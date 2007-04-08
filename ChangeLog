@@ -1,5 +1,8 @@
-2007-04-08 Niki, Kuninobu <nikikuni@yahoo.co.jp>
-- Update:customizing priorities function added(configuration & menu in senddialog).
+2007-04-09 Niki, Kuninobu <nikikuni@yahoo.co.jp>
+- Update:customizing priorities function added(configuration and menu in senddialog).
+- Update:ja,zh_CN resource.
+- Fix:typo version info.
+- Fix:typo comments.
 
 2007-04-07 Niki, Kuninobu <nikikuni@yahoo.co.jp>
 - Fix:auto select Listbox item when "<<" and ">>" button in Network config dialog.
