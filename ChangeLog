@@ -1,3 +1,9 @@
+2007-04-08 Niki, Kuninobu <nikikuni@yahoo.co.jp>
+- Update:customizing priorities function added(configuration & menu in senddialog).
+
+2007-04-07 Niki, Kuninobu <nikikuni@yahoo.co.jp>
+- Fix:auto select Listbox item when "<<" and ">>" button in Network config dialog.
+
 2007-03-06 Niki, Kuninobu <nikikuni@yahoo.co.jp>
 - Update:Enable automatic absence,It cooperates with a screen saver.
 

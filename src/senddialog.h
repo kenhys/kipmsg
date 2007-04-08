@@ -33,6 +33,8 @@
 using namespace std;
 using namespace ipmsg;
 
+class KipmsgPriorityHostItem;
+
 class KIpMsgFileNameConverter : public FileNameConverter {
 public:
 	KIpMsgFileNameConverter();
@@ -101,12 +103,14 @@ public slots:
     virtual void slotHostListUpdateClicked();
     virtual void slotMessageSendClicked();
     virtual void slotSecretClicked();
+#if 0
     virtual void slotMoveToPriority1Clicked();
     virtual void slotMoveToPriority2Clicked();
     virtual void slotMoveToPriority3Clicked();
     virtual void slotMoveToPriority4Clicked();
     virtual void slotMoveToDefaultClicked();
     virtual void slotMoveToHiddenClicked();
+#endif
     virtual void slotShowHiddenTempClicked();
     virtual void slotRestoreAllClicked();
     virtual void slotSearchUserClicked();
@@ -124,6 +128,8 @@ public slots:
     virtual void slotGroupSelect(int);
     virtual void slotEncodingSelect(int);
     virtual void slotEncodingConfigClicked();
+    virtual void slotPrioritySelect(int);
+    virtual void slotPriorityConfigClicked();
     virtual void slotAttacheFileListButtonClicked();
 	virtual void slotGetVersionInfoClicked();
 	virtual void slotGetAbsenceInfoClicked();
@@ -142,6 +148,7 @@ protected slots:
     /*$PROTECTED_SLOTS$*/
 
 private:
+	bool isShowHiddenTemp;
 	KTextEditNoDnD *m_MessageEditbox;
 	KPopupMenu *sendPopup;
 	KPopupMenu *sortPopup;
@@ -160,6 +167,7 @@ private:
 	int saveSizeMenuId;
 	int getVersionInfoMenuId;
 	int getAbsenceInfoMenuId;
+	QIntDict<QString> priorityMenuIdList;
 	QIntDict<QString> groupMenuIdList;
 	QIntDict<QString> encodingMenuIdList;
 	AttachFileList attachFileList;
@@ -173,11 +181,16 @@ private:
 	int defaultHeight;
 
 	HostList	hosts;
-	void setPriority( string pri, QStringList &priList );
+	void setPriority( QString pri, QStringList &priList );
+#if 0
 	void deleteFromPriorityList( QStringList &base, QStringList items );
+#endif
 	void setMenuStatus();
 	void doResize( QSize size );
 	bool isGarbledMessage( QString beforeText, string afterText );
+	void convertPriorityHostListToStringList( QPtrList<KipmsgPriorityHostItem> &list, QStringList &saveList );
+	void convertStringListToPriorityHostList( QStringList &loadList, QPtrList<KipmsgPriorityHostItem> &list );
+	void changePriorityHostList( QString pri, QPtrList<KipmsgPriorityHostItem> &list, QStringList &priList );
 };
 
 #endif

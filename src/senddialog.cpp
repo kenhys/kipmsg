@@ -31,6 +31,7 @@
 #include <qdragobject.h>
 #include <qpoint.h>
 #include <qurl.h>
+#include <kdebug.h>
 #include <kmessagebox.h>
 #include <kfontdialog.h>
 #include <ktextedit.h>
@@ -49,8 +50,25 @@
 #include "attachedfiledialog.h"
 #include "encodingconfig.h"
 #include "kipmsgevent.h"
+#include "priorityconfig.h"
 
 extern QPtrList<SendDialog> sendDialogs;
+
+static QTextCodec *utf8codec = QTextCodec::codecForName( "UTF-8" );
+
+class KipmsgPriorityHostItem {
+	public:
+		QString ipAddress(){ return m_IpAddress;};
+		QString loginName(){ return m_LoginName;};
+		QString priority() { return m_Priority; };
+		void setIpAddress(QString value){ m_IpAddress = value; };
+		void setLoginName(QString value){ m_LoginName = value; };
+		void setPriority(QString value) { m_Priority  = value; };
+	private:
+		QString m_IpAddress;
+		QString m_LoginName;
+		QString m_Priority;
+};
 
 class KIpMsgHostListViewItem : public QListViewItem {
   private:
@@ -63,7 +81,7 @@ class KIpMsgHostListViewItem : public QListViewItem {
 					codec->toUnicode( host.HostName().c_str() ),
 					codec->toUnicode( host.IpAddress().c_str() ),
 					codec->toUnicode( host.UserName().c_str() ),
-					codec->toUnicode( host.Priority().c_str() ),
+					utf8codec->toUnicode( host.Priority().c_str() ),
 					codec->toUnicode( host.EncodingName().c_str() ) )
 	{
 		m_host = host;
@@ -198,6 +216,7 @@ SendDialog::SendDialog(QWidget* parent, const char* name, WFlags fl)
 	defaultWidth = width();
 	defaultHeight = height();
 
+	isShowHiddenTemp = false;
 	recvDialog = NULL;
 	setAcceptDrops( TRUE );
 
@@ -218,17 +237,42 @@ SendDialog::SendDialog(QWidget* parent, const char* name, WFlags fl)
     sendPopup = new KPopupMenu(this);
 
 	sortPopup = new KPopupMenu(this);
-	moveToPriority1MenuId = sortPopup->insertItem(SmallIcon("move"),tr2i18n("Move to Priority 1"), this, SLOT( slotMoveToPriority1Clicked( void ) ) );
-	moveToPriority2MenuId = sortPopup->insertItem(SmallIcon("move"),tr2i18n("Move to Priority 2"), this, SLOT( slotMoveToPriority2Clicked( void ) ) );
-	moveToPriority3MenuId = sortPopup->insertItem(SmallIcon("move"),tr2i18n("Move to Priority 3"), this, SLOT( slotMoveToPriority3Clicked( void ) ) );
-	moveToPriority4MenuId = sortPopup->insertItem(SmallIcon("move"),tr2i18n("Move to Priority 4"), this, SLOT( slotMoveToPriority4Clicked( void ) ) );
-	moveToDefaultMenuId = sortPopup->insertItem(SmallIcon("move"),tr2i18n("Move to default"), this, SLOT( slotMoveToDefaultClicked( void ) ) );
-	moveToHiddenMenuId = sortPopup->insertItem(SmallIcon("move"),tr2i18n("Move to hidden"), this, SLOT( slotMoveToHiddenClicked( void ) ) );
-	sortPopup->insertSeparator();
-	showHiddenMenuId = sortPopup->insertItem(tr2i18n("Show Hidden(temporary)"), this, SLOT( slotShowHiddenTempClicked( void ) ) );
-	sortPopup->setItemChecked( showHiddenMenuId, FALSE );
-	sortPopup->insertItem(SmallIcon("undo"),tr2i18n("Restore All to default"), this, SLOT( slotRestoreAllClicked( void ) ) );
+
+	//設定を移行する。
+	QPtrList<KipmsgPriorityHostItem> list;
+	QStringList loadList = KIpMsgSettings::priorityHostList();
+	convertStringListToPriorityHostList( loadList, list );
+
+	QStringList tmpList = KIpMsgSettings::priorityLevel1();
+	changePriorityHostList( QString( "1" ), list, tmpList );
+	tmpList = KIpMsgSettings::priorityLevel2();
+	changePriorityHostList( QString( "2" ), list, tmpList );
+	tmpList = KIpMsgSettings::priorityLevel3();
+	changePriorityHostList( QString( "3" ), list, tmpList );
+	tmpList = KIpMsgSettings::priorityLevel4();
+	changePriorityHostList( QString( "4" ), list, tmpList );
+	tmpList = KIpMsgSettings::priorityDefault();
+	changePriorityHostList( QString( "-" ), list, tmpList );
+	tmpList = KIpMsgSettings::priorityHidden();
+	changePriorityHostList( QString( "X" ), list, tmpList );
+
+	QStringList saveList;
+	convertPriorityHostListToStringList( list, saveList );
+	KIpMsgSettings::setPriorityHostList( saveList );
+
+	QStringList nullList;
+	KIpMsgSettings::setPriorityLevel1( nullList );
+	KIpMsgSettings::setPriorityLevel2( nullList );
+	KIpMsgSettings::setPriorityLevel3( nullList );
+	KIpMsgSettings::setPriorityLevel4( nullList );
+	KIpMsgSettings::setPriorityDefault( nullList );
+	KIpMsgSettings::setPriorityHidden( nullList );
+	KIpMsgSettings::writeConfig();
+	//移行ここまで
+
 	sendPopup->insertItem(SmallIcon("filter"),tr2i18n("Sort Filter"), sortPopup );
+
+	sendPopup->insertItem(SmallIcon("configure"),tr2i18n("Priority Configuration"), this, SLOT( slotPriorityConfigClicked( void ) ) );
 
 	groupPopup = new KPopupMenu(this);
 	sendPopup->insertItem(tr2i18n("Group Select"), groupPopup );
@@ -279,7 +323,6 @@ SendDialog::SendDialog(QWidget* parent, const char* name, WFlags fl)
 	}
     if ( KIpMsgSettings::sendDialogSaveSize() ) {
 		resize( KIpMsgSettings::sendDialogWidth(), KIpMsgSettings::sendDialogHeight() );
-//		setMinimumSize( KIpMsgSettings::sendDialogWidth(), KIpMsgSettings::sendDialogHeight() );
 	}else{
 		resize( defaultWidth, defaultHeight );
 	}
@@ -320,12 +363,12 @@ void SendDialog::setMenuStatus()
 		}
 		it++;
 	}
-	sortPopup->setItemEnabled( moveToPriority1MenuId, sel_count != 0 );
-	sortPopup->setItemEnabled( moveToPriority2MenuId, sel_count != 0 );
-	sortPopup->setItemEnabled( moveToPriority3MenuId, sel_count != 0 );
-	sortPopup->setItemEnabled( moveToPriority4MenuId, sel_count != 0 );
-	sortPopup->setItemEnabled( moveToDefaultMenuId, sel_count != 0 );
-	sortPopup->setItemEnabled( moveToHiddenMenuId, sel_count != 0 );
+
+	QIntDictIterator<QString> itp( priorityMenuIdList );
+	while ( itp.current() != NULL ) {
+		sortPopup->setItemEnabled( itp.currentKey(), sel_count != 0 );
+		++itp;
+	}
 	sendPopup->setItemEnabled( getVersionInfoMenuId, sel_count != 0 );
 	sendPopup->setItemEnabled( getAbsenceInfoMenuId, sel_count != 0 );
 }
@@ -430,7 +473,7 @@ const char *decodeUrl( string url )
 {
 	string ret;
 	char hex[3];
-	for( unsigned int i = 0 ; i < url.size(); ){
+	for( uint i = 0 ; i < url.size(); ){
 		int c = url.at( i );
 		if ( c == '%' ) {
 			memset( hex, 0, sizeof( hex ) );
@@ -730,53 +773,30 @@ void SendDialog::refreshHostList( bool isUpdate )
 		} else {
 			codec = QTextCodec::codecForName( KIpMsgSettings::messageEncoding() );
 		}
-		QStringList pList = KIpMsgSettings::priorityLevel1();
 		QString pitem = string(ix->IpAddress() + ":" + ix->UserName()).c_str();
-		for( QStringList::Iterator it = pList.begin(); it != pList.end(); ++it ){
-			if ( pitem == *it ) {
-				ix->setPriority( "1" );
-				break;
-			}
+		//TODO
+		QPtrList<KipmsgPriorityHostItem> list;
+		QStringList loadList;
+		if ( KIpMsgSettings::customizePriority() ) {
+			loadList = KIpMsgSettings::customizedPriorityHostList();
+		} else {
+			loadList = KIpMsgSettings::priorityHostList();
 		}
-		pList = KIpMsgSettings::priorityLevel2();
-		for( QStringList::Iterator it = pList.begin(); it != pList.end(); ++it ){
-			if ( pitem == *it ) {
-				ix->setPriority( "2" );
+		convertStringListToPriorityHostList( loadList, list );
+		QPtrListIterator<KipmsgPriorityHostItem> it( list );
+		KipmsgPriorityHostItem *item;
+		while( ( item = it.current() ) != 0 ) {
+			if ( pitem == item->ipAddress() +":" + item->loginName() ) {
+				ix->setPriority( utf8codec->fromUnicode( item->priority() ).data() );
 				break;
 			}
-		}
-		pList = KIpMsgSettings::priorityLevel3();
-		for( QStringList::Iterator it = pList.begin(); it != pList.end(); ++it ){
-			if ( pitem == *it ) {
-				ix->setPriority( "3" );
-				break;
-			}
-		}
-		pList = KIpMsgSettings::priorityLevel4();
-		for( QStringList::Iterator it = pList.begin(); it != pList.end(); ++it ){
-			if ( pitem == *it ) {
-				ix->setPriority( "4" );
-				break;
-			}
-		}
-		pList = KIpMsgSettings::priorityDefault();
-		for( QStringList::Iterator it = pList.begin(); it != pList.end(); ++it ){
-			if ( pitem == *it ) {
-				ix->setPriority( "-" );
-				break;
-			}
-		}
-		pList = KIpMsgSettings::priorityHidden();
-		for( QStringList::Iterator it = pList.begin(); it != pList.end(); ++it ){
-			if ( pitem == *it ) {
-				ix->setPriority( "X" );
-				break;
-			}
+			++it;
 		}
 		if ( ix->Priority() == "" ) {
 			ix->setPriority( "-" );
 		}
-		if ( ix->Priority() != "X" || sortPopup->isItemChecked( showHiddenMenuId ) ) {
+		//アイコンの設定
+		if ( ix->Priority() != "X" || isShowHiddenTemp ) {
 			KIpMsgHostListViewItem *item = new KIpMsgHostListViewItem( m_HostListView, codec, *ix );
 			if ( ix->IsAbsence() ) {
 				if ( ix->IsFileAttachSupport() && !ix->IsEncryptSupport() ){
@@ -803,7 +823,7 @@ void SendDialog::refreshHostList( bool isUpdate )
 	QListViewItemIterator its( m_HostListView );
 	while ( its.current() != NULL ) {
 		QListViewItem *item = its.current();
-		for( unsigned int i = 0; i < saveSelectedValues.count(); i++ ) {
+		for( uint i = 0; i < saveSelectedValues.count(); i++ ) {
 			if ( item->text( ColumnIpAddress ) + ":" + item->text( ColumnLogin ) == saveSelectedValues[i] ) {
 				item->setSelected( TRUE );
 				break;
@@ -811,7 +831,38 @@ void SendDialog::refreshHostList( bool isUpdate )
 		}
 		++its;
 	}
-	
+	//優先度選択メニュー再構築
+	sortPopup->clear();
+	priorityMenuIdList.clear();
+	priorityMenuIdList.setAutoDelete( TRUE );
+	QStringList priList;
+	if ( KIpMsgSettings::customizePriority() ) {
+		priList = KIpMsgSettings::prioritySettings();
+	} else {
+		priList << "1";
+		priList << "2";
+		priList << "3";
+		priList << "4";
+	}
+
+	QStringList::Iterator itPri = priList.begin();
+	while ( itPri != priList.end() ) {
+		int menu_item = sortPopup->insertItem( tr2i18n("Move to Priority %1").arg( *itPri ) );
+		connect( sortPopup, SIGNAL( activated(int) ), this, SLOT( slotPrioritySelect( int ) ) );
+		priorityMenuIdList.insert( menu_item, new QString( *itPri ) );
+		itPri++;
+	}
+	moveToDefaultMenuId = sortPopup->insertItem( SmallIcon("move"),tr2i18n("Move to default") );
+	connect( sortPopup, SIGNAL( activated(int) ), this, SLOT( slotPrioritySelect( int ) ) );
+	priorityMenuIdList.insert( moveToDefaultMenuId, new QString( "-" ) );
+	moveToHiddenMenuId = sortPopup->insertItem( SmallIcon("move"),tr2i18n("Move to hidden") );
+	connect( sortPopup, SIGNAL( activated(int) ), this, SLOT( slotPrioritySelect( int ) ) );
+	priorityMenuIdList.insert( moveToHiddenMenuId, new QString( "X" ) );
+	sortPopup->insertSeparator();
+	showHiddenMenuId = sortPopup->insertItem(tr2i18n("Show Hidden(temporary)"), this, SLOT( slotShowHiddenTempClicked( void ) ) );
+	sortPopup->setItemChecked( showHiddenMenuId, FALSE );
+	sortPopup->insertItem(SmallIcon("undo"),tr2i18n("Restore All to default"), this, SLOT( slotRestoreAllClicked( void ) ) );
+
 	//グループ選択メニュー再構築
 	groupPopup->clear();
 	groupMenuIdList.clear();
@@ -877,6 +928,7 @@ void SendDialog::slotAttacheFileListButtonClicked()
 void SendDialog::slotGroupSelect( int menu_item )
 {
 	static int prev_menu = 0;
+	//再入禁止
 	if ( prev_menu == menu_item ) {
 		prev_menu = 0;
 		return;
@@ -899,6 +951,7 @@ void SendDialog::slotGroupSelect( int menu_item )
 void SendDialog::slotEncodingSelect( int menu_item )
 {
 	static int prev_menu = 0;
+	//再入禁止
 	if ( prev_menu == menu_item ) {
 		prev_menu = 0;
 		return;
@@ -920,16 +973,160 @@ void SendDialog::slotEncodingSelect( int menu_item )
 }
 
 /**
- * 優先度から削除する。
+ * 優先度移動メニューを選択した。
+ * ・選択中のホストを指定された優先度に移動する。
  */
-void SendDialog::deleteFromPriorityList( QStringList &base, QStringList items )
+void SendDialog::slotPrioritySelect(int menu_item )
 {
-	for( QStringList::iterator it = base.begin(); it != base.end(); it++ ) {
-		for( QStringList::iterator pit = items.begin(); pit != items.end(); pit++ ) {
-			if ( *it == *pit ) {
-				it = base.remove( it );
+	static int prev_menu = 0;
+	//再入禁止
+	if ( prev_menu == menu_item ) {
+		return;
+	}
+	if ( !priorityMenuIdList.find( menu_item ) ) {
+		return;
+	}
+	QStringList priList;
+	setPriority( *priorityMenuIdList[menu_item], priList );
+	KIpMsgSettings::writeConfig();
+	refreshHostList();
+	prev_menu = menu_item;
+}
+
+/**
+ * 優先度設定メニューを選択した。
+ * ・優先度設定画面を表示する。
+ */
+void SendDialog::slotPriorityConfigClicked()
+{
+	PriorityConfigForm *priconfig = new PriorityConfigForm(this,0,TRUE);
+	priconfig->exec();
+
+	if ( KIpMsgSettings::customizePriority() ) {
+		QPtrList<KipmsgPriorityHostItem> list;
+		QStringList loadList = KIpMsgSettings::customizedPriorityHostList();
+		convertStringListToPriorityHostList( loadList, list );
+		QPtrListIterator<KipmsgPriorityHostItem> it( list );
+		KipmsgPriorityHostItem *item;
+		QStringList priorities = KIpMsgSettings::prioritySettings();
+
+		while( ( item = it.current() ) != 0 ) {
+//kdDebug() << "item->priority()" << item->priority() << endl;
+			bool isFound = false;
+			for( uint i = 0; i < priorities.count(); i++ ){
+//kdDebug() << "priorities[" << i << "]=" << priorities[i] << endl;
+				if ( item->priority() == priorities[i] ) {
+//kdDebug() << "found" << endl;
+					isFound = true;
+					break;
+				}
+			}
+			if ( !isFound ) {
+//kdDebug() << "set before item->priority()" << item->priority() << endl;
+				item->setPriority( "-" );
+//kdDebug() << "set after  item->priority()" << item->priority() << endl;
+			}
+			++it;
+		}
+		QStringList saveList;
+		convertPriorityHostListToStringList( list, saveList );
+		KIpMsgSettings::setCustomizedPriorityHostList( saveList );
+	}
+
+	refreshHostList();
+}
+
+/**
+ * ホストリストをQStringList(設定ファイルの形式)に変換する。
+ * ・保存形式のQStringListに変換。
+ * @param list ホストリスト
+ * @param priList 変換後の文字列リスト
+ */
+void SendDialog::convertPriorityHostListToStringList( QPtrList<KipmsgPriorityHostItem> &list, QStringList &priList )
+{
+	QPtrListIterator<KipmsgPriorityHostItem> it( list );
+	KipmsgPriorityHostItem *item;
+	while( ( item = it.current() ) != 0 ) {
+		priList << item->priority() + ":" + item->ipAddress() + ":" + item->loginName();
+		++it;
+	}
+}
+
+/**
+ * 指定優先度にQStringListの内容をホストリストに設定する。
+ * ・存在しない場合追加存在する場合変更。
+ * @param pri 設定する優先度文字列
+ * @param list 変更されるホストリスト
+ * @param priList 画面から選択されたホストの情報（IPアドレス:ログイン名）の文字列リスト
+ */
+void SendDialog::changePriorityHostList( QString pri, QPtrList<KipmsgPriorityHostItem> &list, QStringList &priList )
+{
+	for( QStringList::iterator its = priList.begin(); its!= priList.end(); its++ ) {
+		QPtrListIterator<KipmsgPriorityHostItem> it( list );
+		KipmsgPriorityHostItem *item;
+		bool isFound = false;
+		while( ( item = it.current() ) != 0 ) {
+			if ( item->ipAddress() + ":" + item->loginName() == *its ) {
+				item->setPriority( pri );
+				isFound = true;
 				break;
 			}
+			++it;
+		}
+		if ( !isFound ) {
+			KipmsgPriorityHostItem tmpItem;
+			tmpItem.setPriority( pri );
+			QStringList hList = QStringList::split( ":", *its );
+			if ( hList.count() == 2 ){
+				if ( hList[0].isEmpty() ) {
+					continue;
+				}
+				if ( hList[1].isEmpty() ) {
+					continue;
+				}
+				tmpItem.setIpAddress( hList[0] );
+				tmpItem.setLoginName( hList[1] );
+				KipmsgPriorityHostItem *item = new KipmsgPriorityHostItem( tmpItem );
+				list.append( item );
+			}
+		}
+	}
+}
+
+/**
+ * QStringList(設定ファイルの形式)をホストリストに変換する。
+ * ・QPtrListに変換。
+ * @param loadList 設定ファイルから取得した文字列リスト
+ * @param list 変換後のホストリスト
+ */
+void SendDialog::convertStringListToPriorityHostList( QStringList &loadList, QPtrList<KipmsgPriorityHostItem> &list )
+{
+	for( QStringList::iterator it = loadList.begin(); it != loadList.end(); it++ ) {
+		KipmsgPriorityHostItem tmpItem;
+		QStringList pList = QStringList::split( ":", *it );
+		if ( pList.count() >= 3 ){
+			QString p = "";
+			for( uint i = 0; i < pList.count() - 2; i++ ){
+				if ( i != 0 ) {
+					p += ":";
+				}
+				p += pList[i];
+			}
+			if ( p.isEmpty() ) {
+				continue;
+			}
+			tmpItem.setPriority( p );
+
+			if ( pList[pList.count() - 2].isEmpty() ) {
+				continue;
+			}
+			tmpItem.setIpAddress( pList[pList.count() - 2] );
+			if ( pList[pList.count() - 1].isEmpty() ) {
+				continue;
+			}
+			tmpItem.setLoginName( pList[pList.count() - 1] );
+			KipmsgPriorityHostItem *item = new KipmsgPriorityHostItem( tmpItem );
+			list.append( item );
 		}
 	}
 }
@@ -937,124 +1134,37 @@ void SendDialog::deleteFromPriorityList( QStringList &base, QStringList items )
 /**
  * 優先度を設定する。
  */
-void SendDialog::setPriority( string pri, QStringList &priList )
+void SendDialog::setPriority( QString pri, QStringList &priList )
 {
 	QListViewItemIterator it( m_HostListView );
 	while ( it.current() != NULL ) {
 		QListViewItem *item = it.current();
 		if ( item->isSelected() ) {
-			item->setText( ColumnPriority, pri.c_str() );
+			item->setText( ColumnPriority, pri.data() );
 			priList << item->text( ColumnIpAddress ) + ":" + item->text( ColumnLogin );
 		}
 		++it;
 	}
-
-	QStringList tmpList = KIpMsgSettings::priorityLevel1();
-	deleteFromPriorityList( tmpList, priList );
-	KIpMsgSettings::setPriorityLevel1( tmpList );
-
-	tmpList = KIpMsgSettings::priorityLevel2();
-	deleteFromPriorityList( tmpList, priList );
-	KIpMsgSettings::setPriorityLevel2( tmpList );
-
-	tmpList = KIpMsgSettings::priorityLevel3();
-	deleteFromPriorityList( tmpList, priList );
-	KIpMsgSettings::setPriorityLevel3( tmpList );
-
-	tmpList = KIpMsgSettings::priorityLevel4();
-	deleteFromPriorityList( tmpList, priList );
-	KIpMsgSettings::setPriorityLevel4( tmpList );
-
-	tmpList = KIpMsgSettings::priorityLevel4();
-	deleteFromPriorityList( tmpList, priList );
-	KIpMsgSettings::setPriorityLevel4( tmpList );
-
-	tmpList = KIpMsgSettings::priorityDefault();
-	deleteFromPriorityList( tmpList, priList );
-	KIpMsgSettings::setPriorityDefault( tmpList );
-
-	tmpList = KIpMsgSettings::priorityHidden();
-	deleteFromPriorityList( tmpList, priList );
-	KIpMsgSettings::setPriorityHidden( tmpList );
+	QStringList tmpList;
+	QPtrList<KipmsgPriorityHostItem> list;
+	QStringList loadList;
+	
+	if ( KIpMsgSettings::customizePriority() ) {
+		loadList = KIpMsgSettings::customizedPriorityHostList();
+	} else {
+		loadList = KIpMsgSettings::priorityHostList();
+	}
+	convertStringListToPriorityHostList( loadList, list );
+	changePriorityHostList( pri, list, priList );
+	QStringList saveList;
+	convertPriorityHostListToStringList( list, saveList );
+	if ( KIpMsgSettings::customizePriority() ) {
+		KIpMsgSettings::setCustomizedPriorityHostList( saveList );
+	} else {
+		KIpMsgSettings::setPriorityHostList( saveList );
+	}
 }
 
-/**
- * 優先度1に移動する。
- */
-void SendDialog::slotMoveToPriority1Clicked()
-{
-	QStringList priList;
-	setPriority( "1", priList );
-	priList = KIpMsgSettings::priorityLevel1() + priList;
-	KIpMsgSettings::setPriorityLevel1( priList );
-	KIpMsgSettings::writeConfig();
-	refreshHostList();
-}
-
-/**
- * 優先度2に移動する。
- */
-void SendDialog::slotMoveToPriority2Clicked()
-{
-	QStringList priList;
-	setPriority( "2", priList );
-	priList = KIpMsgSettings::priorityLevel2() + priList;
-	KIpMsgSettings::setPriorityLevel2( priList );
-	KIpMsgSettings::writeConfig();
-	refreshHostList();
-}
-
-/**
- * 優先度3に移動する。
- */
-void SendDialog::slotMoveToPriority3Clicked()
-{
-	QStringList priList;
-	setPriority( "3", priList );
-	priList = KIpMsgSettings::priorityLevel3() + priList;
-	KIpMsgSettings::setPriorityLevel3( priList );
-	KIpMsgSettings::writeConfig();
-	refreshHostList();
-}
-
-/**
- * 優先度1に移動する。
- */
-void SendDialog::slotMoveToPriority4Clicked()
-{
-	QStringList priList;
-	setPriority( "4", priList );
-	priList = KIpMsgSettings::priorityLevel4() + priList;
-	KIpMsgSettings::setPriorityLevel4( priList );
-	KIpMsgSettings::writeConfig();
-	refreshHostList();
-}
-
-/**
- * デフォルトに移動する。
- */
-void SendDialog::slotMoveToDefaultClicked()
-{
-	QStringList priList;
-	setPriority( "-", priList );
-	priList = KIpMsgSettings::priorityDefault() + priList;
-	KIpMsgSettings::setPriorityDefault( priList );
-	KIpMsgSettings::writeConfig();
-	refreshHostList();
-}
-
-/**
- * 非表示に移動する。
- */
-void SendDialog::slotMoveToHiddenClicked()
-{
-	QStringList priList;
-	setPriority( "X", priList );
-	priList = KIpMsgSettings::priorityHidden() + priList;
-	KIpMsgSettings::setPriorityHidden( priList );
-	KIpMsgSettings::writeConfig();
-	refreshHostList();
-}
 
 /**
  * 非表示を一時解除。
@@ -1062,6 +1172,7 @@ void SendDialog::slotMoveToHiddenClicked()
 void SendDialog::slotShowHiddenTempClicked()
 {
 	sortPopup->setItemChecked( showHiddenMenuId, !sortPopup->isItemChecked( showHiddenMenuId ) );
+	isShowHiddenTemp = sortPopup->isItemChecked( showHiddenMenuId );
 	refreshHostList();
 }
 
@@ -1072,7 +1183,7 @@ void SendDialog::slotRestoreAllClicked()
 {
 	if ( KMessageBox::questionYesNo( 0, tr2i18n( "Change to default.Are you sure?" ), "KIpMessenger" ) != KMessageBox::Yes ){
 		return;
-	} 
+	}
 
 	QListViewItemIterator it( m_HostListView );
 	while ( it.current() != NULL ) {
@@ -1081,12 +1192,11 @@ void SendDialog::slotRestoreAllClicked()
 		++it;
 	}
 	QStringList emptyList;
-	KIpMsgSettings::setPriorityLevel1( emptyList );
-	KIpMsgSettings::setPriorityLevel2( emptyList );
-	KIpMsgSettings::setPriorityLevel3( emptyList );
-	KIpMsgSettings::setPriorityLevel4( emptyList );
-	KIpMsgSettings::setPriorityDefault( emptyList );
-	KIpMsgSettings::setPriorityHidden( emptyList );
+	if ( KIpMsgSettings::customizePriority() ) {
+		KIpMsgSettings::setCustomizedPriorityHostList( emptyList );
+	} else {
+		KIpMsgSettings::setPriorityHostList( emptyList );
+	}
 	KIpMsgSettings::writeConfig();
 	refreshHostList();
 }

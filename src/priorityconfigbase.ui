@@ -1,0 +1,209 @@
+<!DOCTYPE UI><UI version="3.3" stdsetdef="1">
+<class>PriorityConfigFormBase</class>
+<widget class="QDialog">
+    <property name="name">
+        <cstring>PriorityConfigFormBase</cstring>
+    </property>
+    <property name="geometry">
+        <rect>
+            <x>0</x>
+            <y>0</y>
+            <width>576</width>
+            <height>261</height>
+        </rect>
+    </property>
+    <property name="caption">
+        <string>KIpMessenger - Priority Settings</string>
+    </property>
+    <widget class="KPushButton">
+        <property name="name">
+            <cstring>m_OkButton</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>350</x>
+                <y>210</y>
+                <width>100</width>
+                <height>35</height>
+            </rect>
+        </property>
+        <property name="text">
+            <string>O&amp;K</string>
+        </property>
+        <property name="accel">
+            <string>Alt+K</string>
+        </property>
+    </widget>
+    <widget class="KPushButton">
+        <property name="name">
+            <cstring>m_CancelButton</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>460</x>
+                <y>210</y>
+                <width>100</width>
+                <height>35</height>
+            </rect>
+        </property>
+        <property name="text">
+            <string>C&amp;ancel</string>
+        </property>
+        <property name="accel">
+            <string>Alt+A</string>
+        </property>
+    </widget>
+    <widget class="QCheckBox">
+        <property name="name">
+            <cstring>m_CustomizeCheckBox</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>10</x>
+                <y>10</y>
+                <width>550</width>
+                <height>24</height>
+            </rect>
+        </property>
+        <property name="text">
+            <string>Custo&amp;mize Priority setting.</string>
+        </property>
+        <property name="accel">
+            <string>Alt+M</string>
+        </property>
+    </widget>
+    <widget class="QGroupBox">
+        <property name="name">
+            <cstring>m_PrioritySettingGroupBox</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>10</x>
+                <y>40</y>
+                <width>561</width>
+                <height>160</height>
+            </rect>
+        </property>
+        <property name="title">
+            <string>Priority Setting</string>
+        </property>
+        <widget class="KLineEdit">
+            <property name="name">
+                <cstring>m_PriorityEdit</cstring>
+            </property>
+            <property name="geometry">
+                <rect>
+                    <x>10</x>
+                    <y>70</y>
+                    <width>201</width>
+                    <height>31</height>
+                </rect>
+            </property>
+        </widget>
+        <widget class="KListBox">
+            <property name="name">
+                <cstring>m_PriorityListBox</cstring>
+            </property>
+            <property name="geometry">
+                <rect>
+                    <x>300</x>
+                    <y>20</y>
+                    <width>250</width>
+                    <height>130</height>
+                </rect>
+            </property>
+        </widget>
+        <widget class="KPushButton">
+            <property name="name">
+                <cstring>m_AddPriorityButton</cstring>
+            </property>
+            <property name="geometry">
+                <rect>
+                    <x>220</x>
+                    <y>50</y>
+                    <width>70</width>
+                    <height>31</height>
+                </rect>
+            </property>
+            <property name="text">
+                <string>&gt;&gt;</string>
+            </property>
+        </widget>
+        <widget class="KPushButton">
+            <property name="name">
+                <cstring>m_DeletePriorityButton</cstring>
+            </property>
+            <property name="geometry">
+                <rect>
+                    <x>220</x>
+                    <y>90</y>
+                    <width>70</width>
+                    <height>31</height>
+                </rect>
+            </property>
+            <property name="text">
+                <string>&lt;&lt;</string>
+            </property>
+        </widget>
+    </widget>
+</widget>
+<customwidgets>
+</customwidgets>
+<connections>
+    <connection>
+        <sender>m_CustomizeCheckBox</sender>
+        <signal>clicked()</signal>
+        <receiver>PriorityConfigFormBase</receiver>
+        <slot>slotCustomizePriorityClicked()</slot>
+    </connection>
+    <connection>
+        <sender>m_AddPriorityButton</sender>
+        <signal>clicked()</signal>
+        <receiver>PriorityConfigFormBase</receiver>
+        <slot>slotAddPriorityClicked()</slot>
+    </connection>
+    <connection>
+        <sender>m_CancelButton</sender>
+        <signal>clicked()</signal>
+        <receiver>PriorityConfigFormBase</receiver>
+        <slot>slotCancelClicked()</slot>
+    </connection>
+    <connection>
+        <sender>m_DeletePriorityButton</sender>
+        <signal>clicked()</signal>
+        <receiver>PriorityConfigFormBase</receiver>
+        <slot>slotDeletePriorityClicked()</slot>
+    </connection>
+    <connection>
+        <sender>m_OkButton</sender>
+        <signal>clicked()</signal>
+        <receiver>PriorityConfigFormBase</receiver>
+        <slot>slotOKClicked()</slot>
+    </connection>
+</connections>
+<tabstops>
+    <tabstop>m_CustomizeCheckBox</tabstop>
+    <tabstop>m_PriorityEdit</tabstop>
+    <tabstop>m_AddPriorityButton</tabstop>
+    <tabstop>m_DeletePriorityButton</tabstop>
+    <tabstop>m_PriorityListBox</tabstop>
+    <tabstop>m_OkButton</tabstop>
+    <tabstop>m_CancelButton</tabstop>
+</tabstops>
+<slots>
+    <slot>slotCustomizePriorityClicked()</slot>
+    <slot>slotAddPriorityClicked()</slot>
+    <slot>slotDeletePriorityClicked()</slot>
+    <slot>slotOKClicked()</slot>
+    <slot>slotCancelClicked()</slot>
+</slots>
+<layoutdefaults spacing="6" margin="11"/>
+<includehints>
+    <includehint>kpushbutton.h</includehint>
+    <includehint>kpushbutton.h</includehint>
+    <includehint>klineedit.h</includehint>
+    <includehint>klistbox.h</includehint>
+    <includehint>kpushbutton.h</includehint>
+    <includehint>kpushbutton.h</includehint>
+</includehints>
+</UI>

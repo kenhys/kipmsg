@@ -342,6 +342,21 @@
       <label>Defines encoding.</label>
     </entry>
   </group>
+  <group name="priority">
+    <entry name="CustomizePriority" type="Bool">
+      <label>Defines enable customize priority.</label>
+      <default>false</default>
+    </entry>
+    <entry name="PrioritySettings" type="StringList">
+      <label>Defines priority.</label>
+    </entry>
+    <entry name="CustomizedPriorityHostList" type="StringList">
+      <label>Defines customized priority host list.</label>
+    </entry>
+    <entry name="PriorityHostList" type="StringList">
+      <label>Defines priority host list.</label>
+    </entry>
+  </group>
   <group name="absence">
     <entry name="AbsenceLastKey" type="Int">
       <label>Defines absence last key.</label>

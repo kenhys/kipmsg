@@ -705,6 +705,8 @@
     <slot>slotEncodingChange(int)</slot>
     <slot>slotGetVersionInfoClicked()</slot>
     <slot>slotGetAbsenceInfoClicked()</slot>
+    <slot>slotPriorityConfigClicked()</slot>
+    <slot>slotPrioritySelect(int)</slot>
 </slots>
 <layoutdefaults spacing="6" margin="11"/>
 <includehints>
