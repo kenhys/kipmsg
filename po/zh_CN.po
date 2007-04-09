@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: zh_CN\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-04-09 02:10+0900\n"
-"PO-Revision-Date: 2007-04-09 02:19+0900\n"
+"POT-Creation-Date: 2007-04-10 00:04+0900\n"
+"PO-Revision-Date: 2007-04-10 00:06+0900\n"
 "Last-Translator: \n"
 "Language-Team:  <ja@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -82,7 +82,7 @@ msgstr "离线模式"
 
 #: ../src/absenceconfigbase.cpp:200 ../src/encodingconfig.cpp:58
 #: ../src/encodingconfigbase.cpp:219 ../src/recievedialogbase.cpp:217
-#: ../src/senddialog.cpp:730 ../src/senddialog.cpp:732
+#: ../src/senddialog.cpp:733 ../src/senddialog.cpp:735
 #: ../src/senddialogbase.cpp:223
 msgid "Encoding"
 msgstr "字符码"
@@ -780,27 +780,27 @@ msgstr "若目标文件已经改变，则不允许传送"
 msgid "&Close"
 msgstr "关闭"
 
-#: ../src/encodingconfig.cpp:53 ../src/senddialog.cpp:703
+#: ../src/encodingconfig.cpp:53 ../src/senddialog.cpp:706
 msgid "User"
 msgstr "用户名"
 
-#: ../src/encodingconfig.cpp:54 ../src/senddialog.cpp:705
-#: ../src/senddialog.cpp:707
+#: ../src/encodingconfig.cpp:54 ../src/senddialog.cpp:708
+#: ../src/senddialog.cpp:710
 msgid "Group"
 msgstr "工作组"
 
-#: ../src/encodingconfig.cpp:55 ../src/senddialog.cpp:710
-#: ../src/senddialog.cpp:712
+#: ../src/encodingconfig.cpp:55 ../src/senddialog.cpp:713
+#: ../src/senddialog.cpp:715
 msgid "Host"
 msgstr "主机"
 
-#: ../src/encodingconfig.cpp:56 ../src/senddialog.cpp:715
-#: ../src/senddialog.cpp:717
+#: ../src/encodingconfig.cpp:56 ../src/senddialog.cpp:718
+#: ../src/senddialog.cpp:720
 msgid "IP address"
 msgstr "IP地址"
 
-#: ../src/encodingconfig.cpp:57 ../src/senddialog.cpp:720
-#: ../src/senddialog.cpp:722
+#: ../src/encodingconfig.cpp:57 ../src/senddialog.cpp:723
+#: ../src/senddialog.cpp:725
 msgid "Login"
 msgstr "登录名"
 
@@ -1160,19 +1160,19 @@ msgstr "型式"
 msgid "Modified"
 msgstr "更新"
 
-#: ../src/recievedialog.cpp:152 ../src/senddialog.cpp:298
+#: ../src/recievedialog.cpp:152 ../src/senddialog.cpp:301
 msgid "Save Size"
 msgstr "保存大小"
 
-#: ../src/recievedialog.cpp:153 ../src/senddialog.cpp:299
+#: ../src/recievedialog.cpp:153 ../src/senddialog.cpp:302
 msgid "Restore default(temporary)"
 msgstr "返回默认设置(暂时)"
 
-#: ../src/recievedialog.cpp:154 ../src/senddialog.cpp:300
+#: ../src/recievedialog.cpp:154 ../src/senddialog.cpp:303
 msgid "Size Configuration"
 msgstr "窗口大小设置"
 
-#: ../src/recievedialog.cpp:158 ../src/senddialog.cpp:304
+#: ../src/recievedialog.cpp:158 ../src/senddialog.cpp:307
 msgid "Fixize Position"
 msgstr "固定窗口位置"
 
@@ -1180,11 +1180,11 @@ msgstr "固定窗口位置"
 msgid "Download all"
 msgstr "全部下载"
 
-#: ../src/recievedialog.cpp:168 ../src/senddialog.cpp:294
+#: ../src/recievedialog.cpp:168 ../src/senddialog.cpp:297
 msgid "Restore default"
 msgstr "返回默认设置"
 
-#: ../src/recievedialog.cpp:169 ../src/senddialog.cpp:295
+#: ../src/recievedialog.cpp:169 ../src/senddialog.cpp:298
 msgid "Font Select"
 msgstr "字体选择"
 
@@ -1272,67 +1272,71 @@ msgstr "追加附件"
 msgid "Sort Filter"
 msgstr "分类过滤器"
 
-#: ../src/senddialog.cpp:274
+#: ../src/senddialog.cpp:275
+msgid "Priority Select"
+msgstr "选择优先级"
+
+#: ../src/senddialog.cpp:277
 msgid "Priority Configuration"
 msgstr "优先级设置"
 
-#: ../src/senddialog.cpp:277
+#: ../src/senddialog.cpp:280
 msgid "Group Select"
 msgstr "选择工作组"
 
-#: ../src/senddialog.cpp:280
+#: ../src/senddialog.cpp:283
 msgid "Encoding Select"
 msgstr "选择字符码"
 
-#: ../src/senddialog.cpp:282
+#: ../src/senddialog.cpp:285
 msgid "Configure Encoding..."
 msgstr "字符码设置"
 
-#: ../src/senddialog.cpp:284
+#: ../src/senddialog.cpp:287
 msgid "Search User..."
 msgstr "搜索用户"
 
-#: ../src/senddialog.cpp:285
+#: ../src/senddialog.cpp:288
 msgid "Attach file..."
 msgstr "传送文件"
 
-#: ../src/senddialog.cpp:286
+#: ../src/senddialog.cpp:289
 msgid "Attach directory..."
 msgstr "传送文件夹"
 
-#: ../src/senddialog.cpp:289
+#: ../src/senddialog.cpp:292
 msgid "Save Header"
 msgstr "保存列表顺序"
 
-#: ../src/senddialog.cpp:292
+#: ../src/senddialog.cpp:295
 msgid "List..."
 msgstr "列表部..."
 
-#: ../src/senddialog.cpp:293
+#: ../src/senddialog.cpp:296
 msgid "Edit..."
 msgstr "编辑器部..."
 
-#: ../src/senddialog.cpp:305
+#: ../src/senddialog.cpp:308
 msgid "View Detail Configuration"
 msgstr "列表显示设置"
 
-#: ../src/senddialog.cpp:309
+#: ../src/senddialog.cpp:312
 msgid "Get version information"
 msgstr "取得版本情报"
 
-#: ../src/senddialog.cpp:310
+#: ../src/senddialog.cpp:313
 msgid "Get absence information"
 msgstr "取得离开详细情报"
 
-#: ../src/senddialog.cpp:314
+#: ../src/senddialog.cpp:317
 msgid "Fire"
 msgstr "开火"
 
-#: ../src/senddialog.cpp:540
+#: ../src/senddialog.cpp:543
 msgid "Dropped object is not a file or directory."
 msgstr "被拖放的对象，不是文件和文件夹。"
 
-#: ../src/senddialog.cpp:575
+#: ../src/senddialog.cpp:578
 msgid ""
 "This message is garbled to read.\n"
 "Are you sure?"
@@ -1340,7 +1344,7 @@ msgstr ""
 "这信息乱码了。\n"
 "可以吗？"
 
-#: ../src/senddialog.cpp:586
+#: ../src/senddialog.cpp:589
 msgid ""
 "This file name is garbled to read.\n"
 "(%1)\n"
@@ -1350,43 +1354,51 @@ msgstr ""
 "(%1)\n"
 "可以吗？"
 
-#: ../src/senddialog.cpp:725 ../src/senddialog.cpp:727
+#: ../src/senddialog.cpp:728 ../src/senddialog.cpp:730
 msgid "Priority"
 msgstr "设置显示优先级"
 
-#: ../src/senddialog.cpp:734
+#: ../src/senddialog.cpp:737
 msgid "Encryption Flags"
 msgstr "没有意义"
 
-#: ../src/senddialog.cpp:736
+#: ../src/senddialog.cpp:739
 msgid "RSA Method"
 msgstr "没有意义"
 
-#: ../src/senddialog.cpp:738
+#: ../src/senddialog.cpp:741
 msgid "RSA Public Key"
 msgstr "没有意义"
 
-#: ../src/senddialog.cpp:849
+#: ../src/senddialog.cpp:852
 msgid "Move to Priority %1"
 msgstr "移动显示优先级 %1"
 
-#: ../src/senddialog.cpp:854
+#: ../src/senddialog.cpp:857
 msgid "Move to default"
 msgstr "移动默认"
 
-#: ../src/senddialog.cpp:857
+#: ../src/senddialog.cpp:860
 msgid "Move to hidden"
 msgstr "移动非显示"
 
-#: ../src/senddialog.cpp:861
+#: ../src/senddialog.cpp:864
 msgid "Show Hidden(temporary)"
 msgstr "非表示暂时表示(只这画面)"
 
-#: ../src/senddialog.cpp:863
+#: ../src/senddialog.cpp:866
 msgid "Restore All to default"
 msgstr "返回默认"
 
-#: ../src/senddialog.cpp:1183
+#: ../src/senddialog.cpp:931
+msgid "Hidden"
+msgstr "非显示"
+
+#: ../src/senddialog.cpp:933
+msgid "Default"
+msgstr "默认"
+
+#: ../src/senddialog.cpp:1244
 msgid "Change to default.Are you sure?"
 msgstr "返回默认设置。可以吗？"
 

@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ja\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-04-09 02:10+0900\n"
-"PO-Revision-Date: 2007-04-09 02:11+0900\n"
+"POT-Creation-Date: 2007-04-10 00:04+0900\n"
+"PO-Revision-Date: 2007-04-10 00:05+0900\n"
 "Last-Translator: \n"
 "Language-Team:  <ja@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -81,7 +81,7 @@ msgstr "不在モード"
 
 #: ../src/absenceconfigbase.cpp:200 ../src/encodingconfig.cpp:58
 #: ../src/encodingconfigbase.cpp:219 ../src/recievedialogbase.cpp:217
-#: ../src/senddialog.cpp:730 ../src/senddialog.cpp:732
+#: ../src/senddialog.cpp:733 ../src/senddialog.cpp:735
 #: ../src/senddialogbase.cpp:223
 msgid "Encoding"
 msgstr "エンコーディング"
@@ -782,27 +782,27 @@ msgstr "ファイルに変更が有った場合、ダウンロード不許可"
 msgid "&Close"
 msgstr "閉じる"
 
-#: ../src/encodingconfig.cpp:53 ../src/senddialog.cpp:703
+#: ../src/encodingconfig.cpp:53 ../src/senddialog.cpp:706
 msgid "User"
 msgstr "ユーザ名"
 
-#: ../src/encodingconfig.cpp:54 ../src/senddialog.cpp:705
-#: ../src/senddialog.cpp:707
+#: ../src/encodingconfig.cpp:54 ../src/senddialog.cpp:708
+#: ../src/senddialog.cpp:710
 msgid "Group"
 msgstr "グループ名"
 
-#: ../src/encodingconfig.cpp:55 ../src/senddialog.cpp:710
-#: ../src/senddialog.cpp:712
+#: ../src/encodingconfig.cpp:55 ../src/senddialog.cpp:713
+#: ../src/senddialog.cpp:715
 msgid "Host"
 msgstr "ホスト名"
 
-#: ../src/encodingconfig.cpp:56 ../src/senddialog.cpp:715
-#: ../src/senddialog.cpp:717
+#: ../src/encodingconfig.cpp:56 ../src/senddialog.cpp:718
+#: ../src/senddialog.cpp:720
 msgid "IP address"
 msgstr "IPアドレス"
 
-#: ../src/encodingconfig.cpp:57 ../src/senddialog.cpp:720
-#: ../src/senddialog.cpp:722
+#: ../src/encodingconfig.cpp:57 ../src/senddialog.cpp:723
+#: ../src/senddialog.cpp:725
 msgid "Login"
 msgstr "ログイン名"
 
@@ -1162,19 +1162,19 @@ msgstr "タイプ"
 msgid "Modified"
 msgstr "更新"
 
-#: ../src/recievedialog.cpp:152 ../src/senddialog.cpp:298
+#: ../src/recievedialog.cpp:152 ../src/senddialog.cpp:301
 msgid "Save Size"
 msgstr "サイズ保存"
 
-#: ../src/recievedialog.cpp:153 ../src/senddialog.cpp:299
+#: ../src/recievedialog.cpp:153 ../src/senddialog.cpp:302
 msgid "Restore default(temporary)"
 msgstr "デフォルトに戻す（一時）"
 
-#: ../src/recievedialog.cpp:154 ../src/senddialog.cpp:300
+#: ../src/recievedialog.cpp:154 ../src/senddialog.cpp:303
 msgid "Size Configuration"
 msgstr "サイズ設定"
 
-#: ../src/recievedialog.cpp:158 ../src/senddialog.cpp:304
+#: ../src/recievedialog.cpp:158 ../src/senddialog.cpp:307
 msgid "Fixize Position"
 msgstr "位置固定"
 
@@ -1182,11 +1182,11 @@ msgstr "位置固定"
 msgid "Download all"
 msgstr "全てダウンロード"
 
-#: ../src/recievedialog.cpp:168 ../src/senddialog.cpp:294
+#: ../src/recievedialog.cpp:168 ../src/senddialog.cpp:297
 msgid "Restore default"
 msgstr "デフォルトに戻す"
 
-#: ../src/recievedialog.cpp:169 ../src/senddialog.cpp:295
+#: ../src/recievedialog.cpp:169 ../src/senddialog.cpp:298
 msgid "Font Select"
 msgstr "フォント選択"
 
@@ -1276,67 +1276,71 @@ msgstr "添付ファイルとして追加"
 msgid "Sort Filter"
 msgstr "ソートフィルタ"
 
-#: ../src/senddialog.cpp:274
+#: ../src/senddialog.cpp:275
+msgid "Priority Select"
+msgstr "優先度選択"
+
+#: ../src/senddialog.cpp:277
 msgid "Priority Configuration"
 msgstr "優先度設定"
 
-#: ../src/senddialog.cpp:277
+#: ../src/senddialog.cpp:280
 msgid "Group Select"
 msgstr "グループ選択"
 
-#: ../src/senddialog.cpp:280
+#: ../src/senddialog.cpp:283
 msgid "Encoding Select"
 msgstr "エンコーディング選択"
 
-#: ../src/senddialog.cpp:282
+#: ../src/senddialog.cpp:285
 msgid "Configure Encoding..."
 msgstr "エンコーディングの設定"
 
-#: ../src/senddialog.cpp:284
+#: ../src/senddialog.cpp:287
 msgid "Search User..."
 msgstr "ユーザ検索"
 
-#: ../src/senddialog.cpp:285
+#: ../src/senddialog.cpp:288
 msgid "Attach file..."
 msgstr "ファイル添付"
 
-#: ../src/senddialog.cpp:286
+#: ../src/senddialog.cpp:289
 msgid "Attach directory..."
 msgstr "ディレクトリ添付"
 
-#: ../src/senddialog.cpp:289
+#: ../src/senddialog.cpp:292
 msgid "Save Header"
 msgstr "ヘッダ保存"
 
-#: ../src/senddialog.cpp:292
+#: ../src/senddialog.cpp:295
 msgid "List..."
 msgstr "リスト部..."
 
-#: ../src/senddialog.cpp:293
+#: ../src/senddialog.cpp:296
 msgid "Edit..."
 msgstr "エディット部..."
 
-#: ../src/senddialog.cpp:305
+#: ../src/senddialog.cpp:308
 msgid "View Detail Configuration"
 msgstr "詳細表示設定"
 
-#: ../src/senddialog.cpp:309
+#: ../src/senddialog.cpp:312
 msgid "Get version information"
 msgstr "バージョン情報を取得する。"
 
-#: ../src/senddialog.cpp:310
+#: ../src/senddialog.cpp:313
 msgid "Get absence information"
 msgstr "不在詳細情報を取得する。"
 
-#: ../src/senddialog.cpp:314
+#: ../src/senddialog.cpp:317
 msgid "Fire"
 msgstr "発射"
 
-#: ../src/senddialog.cpp:540
+#: ../src/senddialog.cpp:543
 msgid "Dropped object is not a file or directory."
 msgstr "ドロップされたオブジェクトはファイル／ディレクトリではありません。"
 
-#: ../src/senddialog.cpp:575
+#: ../src/senddialog.cpp:578
 msgid ""
 "This message is garbled to read.\n"
 "Are you sure?"
@@ -1344,7 +1348,7 @@ msgstr ""
 "このメッセージは文字化けしています。\n"
 "よろしいですか？"
 
-#: ../src/senddialog.cpp:586
+#: ../src/senddialog.cpp:589
 msgid ""
 "This file name is garbled to read.\n"
 "(%1)\n"
@@ -1354,43 +1358,51 @@ msgstr ""
 "(%1)\n"
 "よろしいですか？"
 
-#: ../src/senddialog.cpp:725 ../src/senddialog.cpp:727
+#: ../src/senddialog.cpp:728 ../src/senddialog.cpp:730
 msgid "Priority"
 msgstr "表示優先度"
 
-#: ../src/senddialog.cpp:734
+#: ../src/senddialog.cpp:737
 msgid "Encryption Flags"
 msgstr "Encryption Flags"
 
-#: ../src/senddialog.cpp:736
+#: ../src/senddialog.cpp:739
 msgid "RSA Method"
 msgstr "RSA Method"
 
-#: ../src/senddialog.cpp:738
+#: ../src/senddialog.cpp:741
 msgid "RSA Public Key"
 msgstr "RSA Public Key"
 
-#: ../src/senddialog.cpp:849
+#: ../src/senddialog.cpp:852
 msgid "Move to Priority %1"
 msgstr "表示優先度 %1 に移動"
 
-#: ../src/senddialog.cpp:854
+#: ../src/senddialog.cpp:857
 msgid "Move to default"
 msgstr "デフォルト に移動"
 
-#: ../src/senddialog.cpp:857
+#: ../src/senddialog.cpp:860
 msgid "Move to hidden"
 msgstr "非表示 に移動"
 
-#: ../src/senddialog.cpp:861
+#: ../src/senddialog.cpp:864
 msgid "Show Hidden(temporary)"
 msgstr "非表示を一時表示（この画面のみ）"
 
-#: ../src/senddialog.cpp:863
+#: ../src/senddialog.cpp:866
 msgid "Restore All to default"
 msgstr "デフォルトに戻す"
 
-#: ../src/senddialog.cpp:1183
+#: ../src/senddialog.cpp:931
+msgid "Hidden"
+msgstr "非表示"
+
+#: ../src/senddialog.cpp:933
+msgid "Default"
+msgstr "デフォルト"
+
+#: ../src/senddialog.cpp:1244
 msgid "Change to default.Are you sure?"
 msgstr "デフォルトに戻します。よろしいですか？"
 
