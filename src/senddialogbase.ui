@@ -707,6 +707,7 @@
     <slot>slotGetAbsenceInfoClicked()</slot>
     <slot>slotPriorityConfigClicked()</slot>
     <slot>slotPrioritySelect(int)</slot>
+    <slot>slotPriorityMove(int)</slot>
 </slots>
 <layoutdefaults spacing="6" margin="11"/>
 <includehints>

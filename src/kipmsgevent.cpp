@@ -391,6 +391,7 @@ KIpMsgEvent::RefreshHostListInAllSendDlg()
 		++sendIt;
 	}
 }
+
 /**
  * 受信ダイアログ一覧取得
  * ・受信ダイアログリストを返す。

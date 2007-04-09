@@ -67,8 +67,8 @@ class KIpMsgEvent: public IpMessengerEvent {
 		QPtrList<SendDialog>& GetSendDialogs();
 		static string CreateHostInfoString(HostListItem host);
 		static void GetHostEncodingFromConfig( HostListItem &host );
-	private:
 		void RefreshHostListInAllSendDlg();
+	private:
 		void ShowRecieveMsg( RecievedMessage& msg );
 		QPtrList<SendDialog> sendDialogs;
 		QPtrList<RecieveDialog> recieveDialogs;
