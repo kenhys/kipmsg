@@ -280,7 +280,7 @@ SendDialog::SendDialog(QWidget* parent, const char* name, WFlags fl)
 	encodingPopup = new KPopupMenu(this);
 	sendPopup->insertItem(SmallIcon("charset"), tr2i18n("Encoding Select"), encodingPopup );
 
-	sendPopup->insertItem(tr2i18n("Configure Encoding..."), this, SLOT( slotEncodingConfigClicked( void ) ) );
+	sendPopup->insertItem(SmallIcon("configure"), tr2i18n("Configure Encoding..."), this, SLOT( slotEncodingConfigClicked( void ) ) );
 
 	sendPopup->insertItem(SmallIcon("search_user"),tr2i18n("Search User..."), this, SLOT( slotSearchUserClicked( void ) ) );
 	sendPopup->insertItem(SmallIcon("attach"),tr2i18n("Attach file..."), this, SLOT( slotAttachFileClicked( void ) ) );
@@ -310,7 +310,6 @@ SendDialog::SendDialog(QWidget* parent, const char* name, WFlags fl)
 	getVersionInfoMenuId = sendPopup->insertItem(SmallIcon("kipmsg_about"),tr2i18n("Get version information"), this, SLOT( slotGetVersionInfoClicked( void ) ) );
 	getAbsenceInfoMenuId = sendPopup->insertItem(SmallIcon("kipmsg_rev"),tr2i18n("Get absence information"), this, SLOT( slotGetAbsenceInfoClicked( void ) ) );
 
-
 	if ( KIpMsgSettings::fireIntercept()  ) {
 		m_SendButton->setText(tr2i18n( "Fire") );
 	}
@@ -327,6 +326,14 @@ SendDialog::SendDialog(QWidget* parent, const char* name, WFlags fl)
 		resize( defaultWidth, defaultHeight );
 	}
 	m_EncodingCombobox->setCurrentText( KIpMsgSettings::messageEncoding() );
+
+    idiomPopup = new KPopupMenu(this);
+
+	idiomTextPopup = new KPopupMenu(this);
+	idiomPopup->insertItem(SmallIcon("text"),tr2i18n("Insert idiom to textbox."), idiomTextPopup );
+	idiomPopup->insertSeparator();
+	addIdiomMenuId = idiomPopup->insertItem(SmallIcon("text"),tr2i18n("Add idiom from selected text."), this, SLOT( slotAddIdiomFromSelectedText( void ) ) );
+	idiomPopup->insertItem(SmallIcon("configure"), tr2i18n("Configure Idiom..."), this, SLOT( slotIdiomConfigClicked( void ) ) );
 
 	slotSecretClicked();
 
@@ -660,6 +667,71 @@ void SendDialog::slotSecretClicked()
 void SendDialog::slotHostListUpdateClicked()
 {
 	refreshHostList( true );
+}
+
+void SendDialog::slotIdiomButtomClicked()
+{
+	QSize size = m_IdiomButton->size();
+	QPoint pos = m_IdiomButton->mapToGlobal( QPoint( 0, size.height() ) );
+
+	idiomTextPopup->clear();
+	idiomTextMenuIdList.clear();
+	idiomTextMenuIdList.setAutoDelete( TRUE );
+	QStringList idiomList = KIpMsgSettings::idiomSettings();
+	QStringList::Iterator itIdiom = idiomList.begin();
+	while ( itIdiom != idiomList.end() ) {
+		QStringList lines = QStringList::split( "\n", *itIdiom );
+		int menu_item;
+		if ( lines.size() == 1 ) {
+			menu_item = idiomTextPopup->insertItem( *itIdiom );
+		} else {
+			menu_item = idiomTextPopup->insertItem( lines[0] + "..." );
+		}
+		connect( idiomTextPopup, SIGNAL( activated(int) ), this, SLOT( slotInsertSelectedIdiom( int ) ) );
+		idiomTextMenuIdList.insert( menu_item, new QString( *itIdiom ) );
+		itIdiom++;
+	}
+	idiomPopup->setItemEnabled( addIdiomMenuId, m_MessageEditbox->hasSelectedText() );
+	idiomPopup->popup( pos );
+}
+
+void SendDialog::slotInsertSelectedIdiom( int menu_item )
+{
+	static int prev_menu = 0;
+	//再入禁止
+	if ( prev_menu == menu_item ) {
+		prev_menu = 0;
+		return;
+	}
+	if ( !idiomTextMenuIdList.find( menu_item ) ) {
+		return;
+	}
+
+	m_MessageEditbox->insert( *idiomTextMenuIdList[menu_item] );
+	prev_menu = menu_item;
+}
+
+void SendDialog::slotAddIdiomFromSelectedText()
+{
+	QString selStr = m_MessageEditbox->selectedText();
+	if ( selStr == "" ) {
+		return;
+	}
+	QStringList idiomList = KIpMsgSettings::idiomSettings();
+	QStringList::iterator itIdiom = idiomList.begin();
+	while ( itIdiom != idiomList.end() ) {
+		if ( *itIdiom == selStr ) {
+			return;
+		}
+		itIdiom++;
+	}
+	idiomList << selStr;
+	KIpMsgSettings::setIdiomSettings( idiomList );
+	KIpMsgSettings::writeConfig();
+}
+
+void SendDialog::slotIdiomConfigClicked()
+{
 }
 
 /**
@@ -1553,7 +1625,7 @@ void SendDialog::doResize( QSize size )
 	m_OperationFrame->setGeometry( 2, size.height() - sizeFrameOperation.height(), size.width() - 2, sizeFrameOperation.height() );
 	QRect rectOperationFrame = m_OperationFrame->geometry();
 	QSize sizeMainSplitter = m_MainSplitter->size();
-	
+
 	QSize sizeHostFrame = m_HostFrame->size();
 	m_MessageFrame->setGeometry( 2, rectMainSplitter.bottom() + 2, size.width() - 4, size.height() - sizeHostFrame.height() - sizeMainSplitter.height() - rectOperationFrame.height() );
 	QRect rectm_MessageFrame = m_MessageFrame->geometry();

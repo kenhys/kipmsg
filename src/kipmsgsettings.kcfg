@@ -357,6 +357,11 @@
       <label>Defines priority host list.</label>
     </entry>
   </group>
+  <group name="idiom">
+    <entry name="IdiomSettings" type="StringList">
+      <label>Defines Idiom.</label>
+    </entry>
+  </group>
   <group name="absence">
     <entry name="AbsenceLastKey" type="Int">
       <label>Defines absence last key.</label>

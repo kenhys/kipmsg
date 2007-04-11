@@ -132,8 +132,12 @@ public slots:
     virtual void slotPrioritySelect(int);
     virtual void slotPriorityConfigClicked();
     virtual void slotAttacheFileListButtonClicked();
-	virtual void slotGetVersionInfoClicked();
-	virtual void slotGetAbsenceInfoClicked();
+    virtual void slotGetVersionInfoClicked();
+    virtual void slotGetAbsenceInfoClicked();
+    virtual void slotIdiomButtomClicked();
+    virtual void slotInsertSelectedIdiom(int);
+    virtual void slotAddIdiomFromSelectedText();
+    virtual void slotIdiomConfigClicked();
 
 protected:
     /*$PROTECTED_FUNCTIONS$*/
@@ -151,6 +155,8 @@ protected slots:
 private:
 	bool isShowHiddenTemp;
 	KTextEditNoDnD *m_MessageEditbox;
+	KPopupMenu *idiomPopup;
+	KPopupMenu *idiomTextPopup;
 	KPopupMenu *sendPopup;
 	KPopupMenu *sortPopup;
 	KPopupMenu *priorityPopup;
@@ -158,21 +164,17 @@ private:
 	KPopupMenu *encodingPopup;
 	KPopupMenu *fontPopup;
 	KPopupMenu *sizePopup;
-//	int moveToPriority1MenuId;
-//	int moveToPriority2MenuId;
-//	int moveToPriority3MenuId;
-//	int moveToPriority4MenuId;
-//	int moveToDefaultMenuId;
-//	int moveToHiddenMenuId;
 	int showHiddenMenuId;
 	int fixizePositionMenuId;
 	int saveSizeMenuId;
 	int getVersionInfoMenuId;
 	int getAbsenceInfoMenuId;
+	int addIdiomMenuId;
 	QIntDict<QString> priorityHostMenuIdList;
 	QIntDict<QString> priorityMenuIdList;
 	QIntDict<QString> groupMenuIdList;
 	QIntDict<QString> encodingMenuIdList;
+	QIntDict<QString> idiomTextMenuIdList;
 	AttachFileList attachFileList;
 	bool isMainSplitterDragging;
 	bool isDownloadSplitterDragging;
@@ -185,9 +187,6 @@ private:
 
 	HostList	hosts;
 	void setPriority( QString pri, QStringList &priList );
-#if 0
-	void deleteFromPriorityList( QStringList &base, QStringList items );
-#endif
 	void setMenuStatus();
 	void doResize( QSize size );
 	bool isGarbledMessage( QString beforeText, string afterText );
