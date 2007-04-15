@@ -8,12 +8,33 @@
         <rect>
             <x>0</x>
             <y>0</y>
-            <width>576</width>
-            <height>261</height>
+            <width>580</width>
+            <height>260</height>
         </rect>
+    </property>
+    <property name="minimumSize">
+        <size>
+            <width>580</width>
+            <height>260</height>
+        </size>
+    </property>
+    <property name="maximumSize">
+        <size>
+            <width>580</width>
+            <height>260</height>
+        </size>
+    </property>
+    <property name="baseSize">
+        <size>
+            <width>580</width>
+            <height>260</height>
+        </size>
     </property>
     <property name="caption">
         <string>KIpMessenger - Priority Settings</string>
+    </property>
+    <property name="modal">
+        <bool>true</bool>
     </property>
     <widget class="KPushButton">
         <property name="name">
@@ -66,10 +87,10 @@
             </rect>
         </property>
         <property name="text">
-            <string>Custo&amp;mize Priority setting.</string>
+            <string>Customi&amp;ze Priority setting.</string>
         </property>
         <property name="accel">
-            <string>Alt+M</string>
+            <string>Alt+Z</string>
         </property>
     </widget>
     <widget class="QGroupBox">

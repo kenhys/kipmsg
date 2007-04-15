@@ -51,6 +51,7 @@
 #include "encodingconfig.h"
 #include "kipmsgevent.h"
 #include "priorityconfig.h"
+#include "idiomconfig.h"
 
 static QTextCodec *utf8codec = QTextCodec::codecForName( "UTF-8" );
 
@@ -695,6 +696,10 @@ void SendDialog::slotIdiomButtomClicked()
 	idiomPopup->popup( pos );
 }
 
+/**
+ * 定型文をメッセージのカーソル位置に挿入する。
+ * @param menu_item 選択されたメニューID
+ */
 void SendDialog::slotInsertSelectedIdiom( int menu_item )
 {
 	static int prev_menu = 0;
@@ -711,6 +716,9 @@ void SendDialog::slotInsertSelectedIdiom( int menu_item )
 	prev_menu = menu_item;
 }
 
+/**
+ * メッセージ選択範囲を定型文に追加する。
+ */
 void SendDialog::slotAddIdiomFromSelectedText()
 {
 	QString selStr = m_MessageEditbox->selectedText();
@@ -730,8 +738,14 @@ void SendDialog::slotAddIdiomFromSelectedText()
 	KIpMsgSettings::writeConfig();
 }
 
+/**
+ * 定型文を設定する。
+ * ・定型文設定ダイアログを表示する。
+ */
 void SendDialog::slotIdiomConfigClicked()
 {
+	IdiomConfigDialog *dlg = new IdiomConfigDialog(this,0,TRUE);
+	dlg->exec();
 }
 
 /**

@@ -201,7 +201,7 @@ SETUIDFLAGS = @SETUIDFLAGS@
 SSL_INCLUDES = @SSL_INCLUDES@
 SSL_LDFLAGS = @SSL_LDFLAGS@
 STRIP = strip
-TOPSUBDIRS =  doc icons po src
+TOPSUBDIRS =  1.6 doc icons po src
 UIC = /usr/lib/qt3/bin/uic -L $(kde_widgetdir) -nounload
 UIC_TR = tr2i18n
 USER_INCLUDES = 
@@ -656,7 +656,7 @@ dist-hook:
 .NOEXPORT:
 
 #>+ 2
-KDE_DIST=stamp-h.in subdirs kipmsg-vl.spec kipmsg.kdevelop.pcs configure.files kipmsg.kdevses Makefile.cvs sol10_blastwave_configure.sh Doxyfile libtool_freebsd61.patch kipmsg.kdevelop 
+KDE_DIST=subdirs kipmsg-vl.spec sol10_blastwave_configure.sh configure.files libtool_freebsd61.patch kipmsg.kdevelop.pcs Doxyfile kipmsg.kdevses Makefile.cvs kipmsg.kdevelop stamp-h.in 
 
 #>+ 2
 docs-am:

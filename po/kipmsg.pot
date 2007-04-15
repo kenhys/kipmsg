@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-04-12 00:50+0900\n"
+"POT-Creation-Date: 2007-04-16 00:52+0900\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -31,15 +31,16 @@ msgid "Alt+G"
 msgstr ""
 
 #: ../src/aboutbase.cpp:182 ../src/encodingconfigbase.cpp:168
-#: ../src/kipmsgconfigbase.cpp:402 ../src/networkconfigbase.cpp:190
-#: ../src/newabsencenamebase.cpp:121
+#: ../src/idiomconfigbase.cpp:145 ../src/kipmsgconfigbase.cpp:402
+#: ../src/networkconfigbase.cpp:190 ../src/newabsencenamebase.cpp:121
 msgid "&OK"
 msgstr ""
 
 #: ../src/aboutbase.cpp:183 ../src/detailandlogconfigbase.cpp:287
-#: ../src/encodingconfigbase.cpp:169 ../src/kipmsgconfigbase.cpp:403
-#: ../src/networkconfigbase.cpp:191 ../src/newabsencenamebase.cpp:122
-#: ../src/recievedialogbase.cpp:265 ../src/showconfigbase.cpp:224
+#: ../src/encodingconfigbase.cpp:169 ../src/idiomconfigbase.cpp:146
+#: ../src/kipmsgconfigbase.cpp:403 ../src/networkconfigbase.cpp:191
+#: ../src/newabsencenamebase.cpp:122 ../src/recievedialogbase.cpp:265
+#: ../src/showconfigbase.cpp:224
 msgid "Alt+O"
 msgstr ""
 
@@ -79,7 +80,7 @@ msgstr ""
 
 #: ../src/absenceconfigbase.cpp:200 ../src/encodingconfig.cpp:58
 #: ../src/encodingconfigbase.cpp:219 ../src/recievedialogbase.cpp:217
-#: ../src/senddialog.cpp:800 ../src/senddialog.cpp:802
+#: ../src/senddialog.cpp:817 ../src/senddialog.cpp:819
 #: ../src/senddialogbase.cpp:235
 msgid "Encoding"
 msgstr ""
@@ -91,7 +92,7 @@ msgstr ""
 #: ../src/absenceconfigbase.cpp:202 ../src/attachedfiledialogbase.cpp:211
 #: ../src/detailandlogconfigbase.cpp:303 ../src/encodingconfigbase.cpp:167
 #: ../src/kipmsgconfigbase.cpp:401 ../src/networkconfigbase.cpp:189
-#: ../src/newabsencenamebase.cpp:120 ../src/priorityconfigbase.cpp:101
+#: ../src/newabsencenamebase.cpp:120 ../src/priorityconfigbase.cpp:105
 #: ../src/searchboxbase.cpp:134 ../src/showconfigbase.cpp:216
 #: ../src/unlockpasswordconfigbase.cpp:167
 msgid "Alt+A"
@@ -445,7 +446,7 @@ msgstr ""
 
 #: ../src/attachedfiledialogbase.cpp:216 ../src/clickableurlconfigbase.cpp:201
 #: ../src/detailandlogconfigbase.cpp:319 ../src/openconfirmbase.cpp:128
-#: ../src/priorityconfigbase.cpp:98 ../src/searchboxbase.cpp:131
+#: ../src/priorityconfigbase.cpp:102 ../src/searchboxbase.cpp:131
 #: ../src/showconfigbase.cpp:213 ../src/unlockpasswordconfigbase.cpp:168
 msgid "O&K"
 msgstr ""
@@ -453,7 +454,7 @@ msgstr ""
 #: ../src/attachedfiledialogbase.cpp:217 ../src/clickableurlconfigbase.cpp:202
 #: ../src/detailandlogconfigbase.cpp:320
 #: ../src/downloadcompletedialogbase.cpp:86 ../src/kipmsgconfigbase.cpp:394
-#: ../src/openconfirmbase.cpp:129 ../src/priorityconfigbase.cpp:99
+#: ../src/openconfirmbase.cpp:129 ../src/priorityconfigbase.cpp:103
 #: ../src/searchboxbase.cpp:132 ../src/senddialogbase.cpp:284
 #: ../src/showconfigbase.cpp:214 ../src/unlockpasswordconfigbase.cpp:169
 msgid "Alt+K"
@@ -548,7 +549,7 @@ msgstr ""
 msgid "Show minimi&ze Send/Open Confirm window"
 msgstr ""
 
-#: ../src/detailandlogconfigbase.cpp:274
+#: ../src/detailandlogconfigbase.cpp:274 ../src/priorityconfigbase.cpp:107
 msgid "Alt+Z"
 msgstr ""
 
@@ -557,7 +558,7 @@ msgid "No Hide Recieve &message form when repling"
 msgstr ""
 
 #: ../src/detailandlogconfigbase.cpp:276 ../src/kipmsgconfigbase.cpp:371
-#: ../src/priorityconfigbase.cpp:103 ../src/showconfigbase.cpp:235
+#: ../src/showconfigbase.cpp:235
 msgid "Alt+M"
 msgstr ""
 
@@ -729,7 +730,7 @@ msgstr ""
 msgid "Retr&y"
 msgstr ""
 
-#: ../src/downloaderrordialogbase.cpp:85
+#: ../src/downloaderrordialogbase.cpp:85 ../src/idiomconfigbase.cpp:142
 msgid "Cancel"
 msgstr ""
 
@@ -773,27 +774,27 @@ msgstr ""
 msgid "&Close"
 msgstr ""
 
-#: ../src/encodingconfig.cpp:53 ../src/senddialog.cpp:773
+#: ../src/encodingconfig.cpp:53 ../src/senddialog.cpp:790
 msgid "User"
 msgstr ""
 
-#: ../src/encodingconfig.cpp:54 ../src/senddialog.cpp:775
-#: ../src/senddialog.cpp:777
+#: ../src/encodingconfig.cpp:54 ../src/senddialog.cpp:792
+#: ../src/senddialog.cpp:794
 msgid "Group"
 msgstr ""
 
-#: ../src/encodingconfig.cpp:55 ../src/senddialog.cpp:780
-#: ../src/senddialog.cpp:782
+#: ../src/encodingconfig.cpp:55 ../src/senddialog.cpp:797
+#: ../src/senddialog.cpp:799
 msgid "Host"
 msgstr ""
 
-#: ../src/encodingconfig.cpp:56 ../src/senddialog.cpp:785
-#: ../src/senddialog.cpp:787
+#: ../src/encodingconfig.cpp:56 ../src/senddialog.cpp:802
+#: ../src/senddialog.cpp:804
 msgid "IP address"
 msgstr ""
 
-#: ../src/encodingconfig.cpp:57 ../src/senddialog.cpp:790
-#: ../src/senddialog.cpp:792
+#: ../src/encodingconfig.cpp:57 ../src/senddialog.cpp:807
+#: ../src/senddialog.cpp:809
 msgid "Login"
 msgstr ""
 
@@ -819,6 +820,28 @@ msgstr ""
 
 #: ../src/encodingconfigbase.cpp:220
 msgid "Entried host"
+msgstr ""
+
+#: ../src/idiomconfigbase.cpp:141
+msgid "KIpMessenger - Idiom Setting"
+msgstr ""
+
+#: ../src/idiomconfigbase.cpp:144 ../src/networkconfigbase.cpp:183
+#: ../src/networkconfigbase.cpp:197 ../src/priorityconfigbase.cpp:109
+msgid ">>"
+msgstr ""
+
+#: ../src/idiomconfigbase.cpp:147 ../src/networkconfigbase.cpp:182
+#: ../src/networkconfigbase.cpp:199 ../src/priorityconfigbase.cpp:110
+msgid "<<"
+msgstr ""
+
+#: ../src/idiomconfigbase.cpp:148
+msgid "Additional Idiom text"
+msgstr ""
+
+#: ../src/idiomconfigbase.cpp:149
+msgid "Active Idiom List"
 msgstr ""
 
 #: ../src/kipmsgconfigbase.cpp:279
@@ -906,7 +929,7 @@ msgid "UserName"
 msgstr ""
 
 #: ../src/kipmsgconfigbase.cpp:400 ../src/networkconfigbase.cpp:188
-#: ../src/newabsencenamebase.cpp:119 ../src/priorityconfigbase.cpp:100
+#: ../src/newabsencenamebase.cpp:119 ../src/priorityconfigbase.cpp:104
 #: ../src/unlockpasswordconfigbase.cpp:166
 msgid "C&ancel"
 msgstr ""
@@ -991,16 +1014,6 @@ msgstr ""
 
 #: ../src/networkconfigbase.cpp:181
 msgid "ex:192.168.1.255 ( or FQDN)"
-msgstr ""
-
-#: ../src/networkconfigbase.cpp:182 ../src/networkconfigbase.cpp:199
-#: ../src/priorityconfigbase.cpp:106
-msgid "<<"
-msgstr ""
-
-#: ../src/networkconfigbase.cpp:183 ../src/networkconfigbase.cpp:197
-#: ../src/priorityconfigbase.cpp:105
-msgid ">>"
 msgstr ""
 
 #: ../src/networkconfigbase.cpp:184
@@ -1117,15 +1130,15 @@ msgstr ""
 msgid "This character \"X\" was reserved."
 msgstr ""
 
-#: ../src/priorityconfigbase.cpp:97
+#: ../src/priorityconfigbase.cpp:101
 msgid "KIpMessenger - Priority Settings"
 msgstr ""
 
-#: ../src/priorityconfigbase.cpp:102
-msgid "Custo&mize Priority setting."
+#: ../src/priorityconfigbase.cpp:106
+msgid "Customi&ze Priority setting."
 msgstr ""
 
-#: ../src/priorityconfigbase.cpp:104
+#: ../src/priorityconfigbase.cpp:108
 msgid "Priority Setting"
 msgstr ""
 
@@ -1149,19 +1162,19 @@ msgstr ""
 msgid "Modified"
 msgstr ""
 
-#: ../src/recievedialog.cpp:152 ../src/senddialog.cpp:299
+#: ../src/recievedialog.cpp:152 ../src/senddialog.cpp:300
 msgid "Save Size"
 msgstr ""
 
-#: ../src/recievedialog.cpp:153 ../src/senddialog.cpp:300
+#: ../src/recievedialog.cpp:153 ../src/senddialog.cpp:301
 msgid "Restore default(temporary)"
 msgstr ""
 
-#: ../src/recievedialog.cpp:154 ../src/senddialog.cpp:301
+#: ../src/recievedialog.cpp:154 ../src/senddialog.cpp:302
 msgid "Size Configuration"
 msgstr ""
 
-#: ../src/recievedialog.cpp:158 ../src/senddialog.cpp:305
+#: ../src/recievedialog.cpp:158 ../src/senddialog.cpp:306
 msgid "Fixize Position"
 msgstr ""
 
@@ -1169,11 +1182,11 @@ msgstr ""
 msgid "Download all"
 msgstr ""
 
-#: ../src/recievedialog.cpp:168 ../src/senddialog.cpp:295
+#: ../src/recievedialog.cpp:168 ../src/senddialog.cpp:296
 msgid "Restore default"
 msgstr ""
 
-#: ../src/recievedialog.cpp:169 ../src/senddialog.cpp:296
+#: ../src/recievedialog.cpp:169 ../src/senddialog.cpp:297
 msgid "Font Select"
 msgstr ""
 
@@ -1249,152 +1262,152 @@ msgstr ""
 msgid "Search &All Fields"
 msgstr ""
 
-#: ../src/senddialog.cpp:131
+#: ../src/senddialog.cpp:132
 msgid "Add as Text"
 msgstr ""
 
-#: ../src/senddialog.cpp:132
+#: ../src/senddialog.cpp:133
 msgid "Add as Attachment"
 msgstr ""
 
-#: ../src/senddialog.cpp:270
+#: ../src/senddialog.cpp:271
 msgid "Sort Filter"
 msgstr ""
 
-#: ../src/senddialog.cpp:272
+#: ../src/senddialog.cpp:273
 msgid "Priority Configuration"
 msgstr ""
 
-#: ../src/senddialog.cpp:275
+#: ../src/senddialog.cpp:276
 msgid "Priority Select"
 msgstr ""
 
-#: ../src/senddialog.cpp:278
+#: ../src/senddialog.cpp:279
 msgid "Group Select"
 msgstr ""
 
-#: ../src/senddialog.cpp:281
+#: ../src/senddialog.cpp:282
 msgid "Encoding Select"
 msgstr ""
 
-#: ../src/senddialog.cpp:283
+#: ../src/senddialog.cpp:284
 msgid "Configure Encoding..."
 msgstr ""
 
-#: ../src/senddialog.cpp:285
+#: ../src/senddialog.cpp:286
 msgid "Search User..."
 msgstr ""
 
-#: ../src/senddialog.cpp:286
+#: ../src/senddialog.cpp:287
 msgid "Attach file..."
 msgstr ""
 
-#: ../src/senddialog.cpp:287
+#: ../src/senddialog.cpp:288
 msgid "Attach directory..."
 msgstr ""
 
-#: ../src/senddialog.cpp:290
+#: ../src/senddialog.cpp:291
 msgid "Save Header"
 msgstr ""
 
-#: ../src/senddialog.cpp:293
+#: ../src/senddialog.cpp:294
 msgid "List..."
 msgstr ""
 
-#: ../src/senddialog.cpp:294
+#: ../src/senddialog.cpp:295
 msgid "Edit..."
 msgstr ""
 
-#: ../src/senddialog.cpp:306
+#: ../src/senddialog.cpp:307
 msgid "View Detail Configuration"
 msgstr ""
 
-#: ../src/senddialog.cpp:310
+#: ../src/senddialog.cpp:311
 msgid "Get version information"
 msgstr ""
 
-#: ../src/senddialog.cpp:311
+#: ../src/senddialog.cpp:312
 msgid "Get absence information"
 msgstr ""
 
-#: ../src/senddialog.cpp:314
+#: ../src/senddialog.cpp:315
 msgid "Fire"
 msgstr ""
 
-#: ../src/senddialog.cpp:333
+#: ../src/senddialog.cpp:334
 msgid "Insert idiom to textbox."
 msgstr ""
 
-#: ../src/senddialog.cpp:335
+#: ../src/senddialog.cpp:336
 msgid "Add idiom from selected text."
 msgstr ""
 
-#: ../src/senddialog.cpp:336
+#: ../src/senddialog.cpp:337
 msgid "Configure Idiom..."
 msgstr ""
 
-#: ../src/senddialog.cpp:548
+#: ../src/senddialog.cpp:549
 msgid "Dropped object is not a file or directory."
 msgstr ""
 
-#: ../src/senddialog.cpp:583
+#: ../src/senddialog.cpp:584
 msgid ""
 "This message is garbled to read.\n"
 "Are you sure?"
 msgstr ""
 
-#: ../src/senddialog.cpp:594
+#: ../src/senddialog.cpp:595
 msgid ""
 "This file name is garbled to read.\n"
 "(%1)\n"
 "Are you sure?"
 msgstr ""
 
-#: ../src/senddialog.cpp:795 ../src/senddialog.cpp:797
+#: ../src/senddialog.cpp:812 ../src/senddialog.cpp:814
 msgid "Priority"
 msgstr ""
 
-#: ../src/senddialog.cpp:804
+#: ../src/senddialog.cpp:821
 msgid "Encryption Flags"
 msgstr ""
 
-#: ../src/senddialog.cpp:806
+#: ../src/senddialog.cpp:823
 msgid "RSA Method"
 msgstr ""
 
-#: ../src/senddialog.cpp:808
+#: ../src/senddialog.cpp:825
 msgid "RSA Public Key"
 msgstr ""
 
-#: ../src/senddialog.cpp:919
+#: ../src/senddialog.cpp:936
 msgid "Move to Priority %1"
 msgstr ""
 
-#: ../src/senddialog.cpp:924
+#: ../src/senddialog.cpp:941
 msgid "Move to default"
 msgstr ""
 
-#: ../src/senddialog.cpp:927
+#: ../src/senddialog.cpp:944
 msgid "Move to hidden"
 msgstr ""
 
-#: ../src/senddialog.cpp:931
+#: ../src/senddialog.cpp:948
 msgid "Show Hidden(temporary)"
 msgstr ""
 
-#: ../src/senddialog.cpp:933
+#: ../src/senddialog.cpp:950
 msgid "Restore All to default"
 msgstr ""
 
-#: ../src/senddialog.cpp:998
+#: ../src/senddialog.cpp:1015
 msgid "Hidden"
 msgstr ""
 
-#: ../src/senddialog.cpp:1000
+#: ../src/senddialog.cpp:1017
 msgid "Default"
 msgstr ""
 
-#: ../src/senddialog.cpp:1314
+#: ../src/senddialog.cpp:1331
 msgid "Change to default.Are you sure?"
 msgstr ""
 

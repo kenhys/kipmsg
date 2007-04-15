@@ -103,14 +103,6 @@ public slots:
     virtual void slotHostListUpdateClicked();
     virtual void slotMessageSendClicked();
     virtual void slotSecretClicked();
-#if 0
-    virtual void slotMoveToPriority1Clicked();
-    virtual void slotMoveToPriority2Clicked();
-    virtual void slotMoveToPriority3Clicked();
-    virtual void slotMoveToPriority4Clicked();
-    virtual void slotMoveToDefaultClicked();
-    virtual void slotMoveToHiddenClicked();
-#endif
     virtual void slotShowHiddenTempClicked();
     virtual void slotRestoreAllClicked();
     virtual void slotSearchUserClicked();
