@@ -126,25 +126,29 @@ public slots:
     virtual void slotAttacheFileListButtonClicked();
     virtual void slotGetVersionInfoClicked();
     virtual void slotGetAbsenceInfoClicked();
-    virtual void slotIdiomButtomClicked();
+    virtual void slotIdiomButtonClicked();
     virtual void slotInsertSelectedIdiom(int);
     virtual void slotAddIdiomFromSelectedText();
     virtual void slotIdiomConfigClicked();
 
 protected:
     /*$PROTECTED_FUNCTIONS$*/
-	virtual void mousePressEvent (QMouseEvent *e);
-	virtual void mouseReleaseEvent (QMouseEvent *e);
-	virtual void mouseMoveEvent (QMouseEvent *e);
-	virtual void keyPressEvent ( QKeyEvent * e );
-	virtual void dropEvent (QDropEvent *e);
-	virtual void dragEnterEvent (QDragEnterEvent *e);
+	virtual void mousePressEvent( QMouseEvent *e );
+	virtual void mouseReleaseEvent( QMouseEvent *e );
+	virtual void mouseMoveEvent( QMouseEvent *e );
+	virtual void keyPressEvent( QKeyEvent * e );
+	virtual void dropEvent( QDropEvent *e );
+	virtual void dragEnterEvent( QDragEnterEvent *e );
 	virtual void resizeEvent( QResizeEvent *e );
+	virtual void closeEvent( QCloseEvent * e );
 
 protected slots:
     /*$PROTECTED_SLOTS$*/
+	virtual void accept();
+	virtual void reject();
 
 private:
+	bool isAccept;
 	bool isShowHiddenTemp;
 	KTextEditNoDnD *m_MessageEditbox;
 	KPopupMenu *idiomPopup;

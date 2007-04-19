@@ -414,11 +414,12 @@ KIpMsgEvent::GetSendDialogs(){
  * 送信ダイアログ表示
  * ・送信ウインドウを表示し、送信ダイアログリストに登録する。
  */
-void
+SendDialog *
 KIpMsgEvent::ShowSendDlg(){
 	SendDialog *sendWin = new SendDialog();
 	sendWin->show();
 	sendDialogs.append( sendWin );
+	return sendWin;
 }
 
 /**

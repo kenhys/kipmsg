@@ -198,6 +198,7 @@ kipmsgWidget::kipmsgWidget(QWidget* parent, const char* name, WFlags fl)
 	IpMsgAgent->StartNetwork( NetworkConfig::getSpecifyNics() );
 
     MainPopup = new KPopupMenu(this);
+	DraftsPopup = new KPopupMenu(this);
 	AbsencePopup = new KPopupMenu(this);
 	rebuildMenu();
 	PollingTimer = new QTimer( this );
@@ -237,6 +238,25 @@ void kipmsgWidget::rebuildMenu()
 	MainPopup->insertSeparator();
 	MainPopup->insertItem( SmallIcon("filenew"), tr2i18n("New message..."), this, SLOT( slotNewMessageClicked( void ) ) );
 	MainPopup->insertSeparator();
+
+	QStringList draftList = KIpMsgSettings::drafts();
+	DraftsPopup->clear();
+	int draftMenuItem = MainPopup->insertItem( SmallIcon("edit"), tr2i18n("Drafts"), DraftsPopup );
+	if ( draftList.count() == 0 ) {
+		MainPopup->setItemEnabled( draftMenuItem, FALSE );
+	} else {
+		for( uint i = 0; i < draftList.count(); i++ ){
+			QStringList words = QStringList::split( "\n", draftList[i] );
+			int menu_item;
+			if ( words.count() <= 1 ) {
+				menu_item = DraftsPopup->insertItem( draftList[i], this, SLOT( slotDraftSelect( int ) ) );
+			} else {
+				menu_item = DraftsPopup->insertItem( words[0], this, SLOT( slotDraftSelect( int ) ) );
+			}
+			draft_menu.insert( menu_item, new QString( draftList[i] ) );
+		}
+	}
+	MainPopup->insertSeparator();
 	MainPopup->insertItem( SmallIcon("configure"), tr2i18n("Configuration..."), this, SLOT( slotConfigureClicked( void ) ) );
 	MainPopup->insertItem( SmallIcon("kipmsg_about"), tr2i18n("About KIpMessenger"), this, SLOT( slotAboutClicked( void ) ) );
 	MainPopup->insertItem( SmallIcon("view_text"),tr2i18n("View logs"), this, SLOT( slotViewLogClicked( void ) ) );
@@ -248,6 +268,7 @@ void kipmsgWidget::rebuildMenu()
 	QString curEnc = KIpMsgSettings::messageEncoding();
 	absence_mode_menu.clear();
 	QString modeName="";
+
 	for( int i = (int)titles.count() - 1; i >= 0 ; i-- ){
 		QStringList item = QStringList::split( "\a", titles[i] );
 		if ( item[1] == curEnc ) {
@@ -277,6 +298,30 @@ void kipmsgWidget::rebuildMenu()
 	MainPopup->insertItem( SmallIcon( "exit"), tr2i18n("Quit"), this, SLOT( slotExitClicked( void ) ) );
 }
 
+/**
+ * 下書き選択
+ * ・キーから下書きを取得し送信画面に復元。
+ * @param menu_item メニュー項目
+ */
+void kipmsgWidget::slotDraftSelect( int menu_item )
+{
+	KIpMsgEvent *evt = dynamic_cast<KIpMsgEvent *>(IpMsgAgent->GetEventObject());
+	if ( evt != NULL ) {
+		SendDialog *send = evt->ShowSendDlg();
+		send->setMessageText( *draft_menu[menu_item] );
+		QStringList draftList = KIpMsgSettings::drafts();
+		QStringList::iterator it = draftList.begin();
+		while ( it != draftList.end() ) {
+			if ( *it == *draft_menu[menu_item] ) {
+				draftList.remove( it );
+				break;
+			}
+			it++;
+		}
+		KIpMsgSettings::setDrafts( draftList );
+		KIpMsgSettings::writeConfig();
+	}
+}
 /**
  * 不在モード選択
  * ・キーから不在モードを取得し、不在モードに遷移。

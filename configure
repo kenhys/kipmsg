@@ -31141,8 +31141,6 @@ done
 
           ac_config_files="$ac_config_files Makefile"
 
-          ac_config_files="$ac_config_files 1.6/Makefile"
-
           ac_config_files="$ac_config_files doc/Makefile"
 
           ac_config_files="$ac_config_files doc/en/Makefile"
@@ -31703,7 +31701,6 @@ do
   case "$ac_config_target" in
   # Handling of arguments.
   "Makefile" ) CONFIG_FILES="$CONFIG_FILES Makefile" ;;
-  "1.6/Makefile" ) CONFIG_FILES="$CONFIG_FILES 1.6/Makefile" ;;
   "doc/Makefile" ) CONFIG_FILES="$CONFIG_FILES doc/Makefile" ;;
   "doc/en/Makefile" ) CONFIG_FILES="$CONFIG_FILES doc/en/Makefile" ;;
   "icons/Makefile" ) CONFIG_FILES="$CONFIG_FILES icons/Makefile" ;;

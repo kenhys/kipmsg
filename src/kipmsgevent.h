@@ -55,7 +55,7 @@ class KIpMsgEvent: public IpMessengerEvent {
 		virtual void VersionInfoRecieveAfter( HostListItem &host, string version );
 		virtual void AbsenceDetailRecieveAfter( HostListItem &host, string absenceDetail );
 
-		void ShowSendDlg();
+		SendDialog * ShowSendDlg();
 		void ShowHiddenRecieveMsg();
 		void FindAndShowHiddenRecieveMsg( RecievedMessage& msg );
 

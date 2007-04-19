@@ -63,6 +63,7 @@ public slots:
     virtual void slotResetAbsenceModeClicked();
     virtual void slotNewMessageClicked();
     virtual void slotAbsenceModeSelect( int );
+    virtual void slotDraftSelect( int );
 
 protected:
     /*$PROTECTED_FUNCTIONS$*/
@@ -74,12 +75,14 @@ protected slots:
 
 private:
 	KPopupMenu *MainPopup;
+	KPopupMenu *DraftsPopup;
 	KPopupMenu *AbsencePopup;
 	QTimer *PollingTimer;
 	QPixmap _OrigEnableIconImage;
 	QPixmap _OrigDisableIconImage;
 	IpMessengerAgent *IpMsgAgent;
 	KIpMsgDownloadMonitor *downMonitor;
+	QIntDict<QString> draft_menu;
 	QIntDict<QString> absence_mode_menu;
 	QString currentAbsenceMode;
 	int absence_mode_config_menu_item;

@@ -233,6 +233,9 @@ SendDialog::SendDialog(QWidget* parent, const char* name, WFlags fl)
 	m_HostListView->setFont( KIpMsgSettings::listFont() );
 	m_MessageEditbox->setFont( KIpMsgSettings::editFont() );
 
+//	connect( this, SIGNAL( reject() ), this, SLOT( slotReject() ) );
+//	connect( this, SIGNAL( accept() ), this, SLOT( slotAccept() ) );
+
     sendPopup = new KPopupMenu(this);
 
 	sortPopup = new KPopupMenu(this);
@@ -551,6 +554,42 @@ void SendDialog::addDnDFiles(QString fileUrl){
 	}
 }
 
+/**
+ * クローズ時の処理。
+ * ・下書き保存。
+ */
+void SendDialog::closeEvent( QCloseEvent * e )
+{
+	if ( m_MessageEditbox->text() != "" && !isAccept ) {
+		int answer = KMessageBox::warningYesNoCancel( 0, tr2i18n( "Do you want to save the message for later or discard it?" ),
+														 "",
+														 KGuiItem( tr2i18n( "&Save as drafts" ), "filesave" ),
+														 tr2i18n( "&Discard message" ) );
+		if ( answer == KMessageBox::Yes ){
+//kdDebug() << "closeEvent()3 保存" << endl;
+			QStringList draftList = KIpMsgSettings::drafts();
+			draftList << m_MessageEditbox->text();
+			KIpMsgSettings::setDrafts( draftList );
+			KIpMsgSettings::writeConfig();
+		} else if ( answer == KMessageBox::Cancel ){
+			return;
+		}
+	}
+	e->accept();
+}
+
+void SendDialog::accept()
+{
+	isAccept = TRUE;
+	close();
+}
+
+void SendDialog::reject()
+{
+	isAccept = FALSE;
+	close();
+}
+
 /*$SPECIALIZATION$*/
 
 /**
@@ -622,7 +661,7 @@ void SendDialog::slotMessageSendClicked()
 		if ( recvDialog != NULL && recvDialog->isShown() && !KIpMsgSettings::noHide() ) {
 			recvDialog->close();
 		}
-		close();
+		accept();
 	}
 }
 
@@ -670,7 +709,11 @@ void SendDialog::slotHostListUpdateClicked()
 	refreshHostList( true );
 }
 
-void SendDialog::slotIdiomButtomClicked()
+/**
+ * 定型文ボタンが押された。
+ * ・定型文メニューを表示
+ */
+void SendDialog::slotIdiomButtonClicked()
 {
 	QSize size = m_IdiomButton->size();
 	QPoint pos = m_IdiomButton->mapToGlobal( QPoint( 0, size.height() ) );

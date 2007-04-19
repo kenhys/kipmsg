@@ -92,6 +92,7 @@
     <slot>slotPollingTimeout()</slot>
     <slot>slotResetAbsenceModeClicked()</slot>
     <slot>slotAbsenceModeSelect( int )</slot>
+    <slot>slotDraftSelect(int)</slot>
 </slots>
 <layoutdefaults spacing="6" margin="11"/>
 </UI>
