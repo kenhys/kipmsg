@@ -251,7 +251,7 @@ void kipmsgWidget::rebuildMenu()
 			if ( words.count() <= 1 ) {
 				menu_item = DraftsPopup->insertItem( draftList[i], this, SLOT( slotDraftSelect( int ) ) );
 			} else {
-				menu_item = DraftsPopup->insertItem( words[0], this, SLOT( slotDraftSelect( int ) ) );
+				menu_item = DraftsPopup->insertItem( words[0] + " ...", this, SLOT( slotDraftSelect( int ) ) );
 			}
 			draft_menu.insert( menu_item, new QString( draftList[i] ) );
 		}

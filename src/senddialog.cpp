@@ -729,7 +729,7 @@ void SendDialog::slotIdiomButtonClicked()
 		if ( lines.size() == 1 ) {
 			menu_item = idiomTextPopup->insertItem( *itIdiom );
 		} else {
-			menu_item = idiomTextPopup->insertItem( lines[0] + "..." );
+			menu_item = idiomTextPopup->insertItem( lines[0] + " ..." );
 		}
 		connect( idiomTextPopup, SIGNAL( activated(int) ), this, SLOT( slotInsertSelectedIdiom( int ) ) );
 		idiomTextMenuIdList.insert( menu_item, new QString( *itIdiom ) );
