@@ -1,5 +1,5 @@
 %define name kipmsg
-%define version 0.1.4
+%define version 0.1.5
 %define libipmsg_ver 0.1.3
 %define release 0vl0
 
