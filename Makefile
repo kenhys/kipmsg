@@ -656,7 +656,7 @@ dist-hook:
 .NOEXPORT:
 
 #>+ 2
-KDE_DIST=stamp-h.in subdirs kipmsg-vl.spec kipmsg.kdevelop.pcs configure.files kipmsg.kdevses Makefile.cvs sol10_blastwave_configure.sh Doxyfile libtool_freebsd61.patch kipmsg.kdevelop 
+KDE_DIST=kipmsg.kdevelop.pcs configure.files Doxyfile kipmsg.kdevelop kipmsg-fc.spec stamp-h.in subdirs kipmsg-vl.spec Makefile.cvs kipmsg.kdevses sol10_blastwave_configure.sh libtool_freebsd61.patch 
 
 #>+ 2
 docs-am:
