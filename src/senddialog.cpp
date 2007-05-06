@@ -748,7 +748,7 @@ void SendDialog::slotInsertSelectedIdiom( int menu_item )
 	static int prev_menu = 0;
 	//再入禁止
 	if ( prev_menu == menu_item ) {
-		prev_menu = 0;
+//		prev_menu = 0;
 		return;
 	}
 	if ( !idiomTextMenuIdList.find( menu_item ) ) {
