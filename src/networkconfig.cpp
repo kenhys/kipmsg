@@ -52,9 +52,29 @@ NetworkConfig::NetworkConfig(QWidget* parent, const char* name, WFlags fl)
 	//使うリスト
 	QStringList portSettings = KIpMsgSettings::networkInterfacePortNumbers();
 	QStringList nicNames;
+	QStringList nicAddrs;
+
+	//移行前のチェック
+	bool isShift5to6After=false;
 	for( unsigned int i = 0; i < portSettings.count(); i++ ){
-		QStringList items = QStringList::split( ":", portSettings[i] );
-		nicNames << items[0];
+		if ( portSettings[i].find( "|" ) >= 0 ){
+			isShift5to6After = true;
+			break;
+		}
+	}
+	if ( isShift5to6After ) {
+		for( unsigned int i = 0; i < portSettings.count(); i++ ){
+			QStringList items = QStringList::split( "|", portSettings[i] );
+			nicNames << items[0];
+			nicAddrs << items[1];
+		}
+	} else {
+		for( unsigned int i = 0; i < portSettings.count(); i++ ){
+			QStringList items = QStringList::split( ":", portSettings[i] );
+			nicNames << items[0];
+			nicAddrs << items[1];
+			portSettings[i] = QString( "%1|%2|%3" ).arg( items[0] ).arg( items[1] ).arg( items[2] );
+		}
 	}
 	m_UseInterfaceListbox->insertStringList( portSettings );
 
@@ -65,13 +85,13 @@ NetworkConfig::NetworkConfig(QWidget* parent, const char* name, WFlags fl)
 	for( vector<NetworkInterface>::iterator n = nics.begin(); n != nics.end(); ++n ) {
 		bool isFound = false;
 		for( unsigned int i = 0; i < nicNames.count(); i++ ){
-			if ( nicNames[i] == QString( n->DeviceName().c_str() ) ) {
+			if ( nicNames[i] == QString( n->DeviceName().c_str() ) && nicAddrs[i] == QString( n->IpAddress().c_str() ) ) {
 				isFound = true;
 				break;
 			}
 		}
 		if ( !isFound ) {
-			list << QString( "%1:%2:%3" ).arg( n->DeviceName().c_str() ).arg( n->IpAddress().c_str() ).arg( n->PortNo() );
+			list << QString( "%1|%2|%3" ).arg( n->DeviceName().c_str() ).arg( n->IpAddress().c_str() ).arg( n->PortNo() );
 		}
 	}
 	m_InterfaceListbox->insertStringList( list );
@@ -240,7 +260,7 @@ void NetworkConfig::slotUseInterfaceClicked(QListBoxItem* item)
 		setNetworkInterfaceStatus();
 		return;
 	}
-	QStringList items = QStringList::split(":", item->text() );
+	QStringList items = QStringList::split("|", item->text() );
 	m_InterfaceNameLabel->setText( items[0] );
 	m_IpAddressLabel->setText( items[1] );
 	m_PortNoNumInput->setValue( items[2].toInt() );
@@ -258,7 +278,7 @@ void NetworkConfig::slotSetPortNoClicked()
 	if ( index < 0 ) {
 		return;
 	}
-	QString set = QString( "%1:%2:%3" ).arg( m_InterfaceNameLabel->text() ).arg( m_IpAddressLabel->text() ).arg( m_PortNoNumInput->value() );
+	QString set = QString( "%1|%2|%3" ).arg( m_InterfaceNameLabel->text() ).arg( m_IpAddressLabel->text() ).arg( m_PortNoNumInput->value() );
 	m_UseInterfaceListbox->removeItem( index );
 	m_UseInterfaceListbox->insertItem( set, index );
 	m_UseInterfaceListbox->setSelected( index, TRUE );
@@ -325,18 +345,43 @@ std::vector<ipmsg::NetworkInterface> NetworkConfig::getSpecifyNics()
 	}
 
 	IpMessengerAgent::GetNetworkInterfaceInfo( nics );
-	for(vector<NetworkInterface>::iterator n = nics.begin(); n != nics.end(); n++ ){
-		bool isFound = false;
-		for(unsigned int i = 0; i < portNumbers.size(); i++ ){
-			QStringList items = QStringList::split( ":", portNumbers[i] );
-			if ( QString( n->DeviceName().c_str() ) == items[0] ){
-				n->setPortNo( items[2].toInt() );
-				isFound = true;
-				break;
+	//移行前のチェック
+	bool isShift5to6After=false;
+	for( unsigned int i = 0; i < portNumbers.count(); i++ ){
+		if ( portNumbers[i].find( "|" ) >= 0 ){
+			isShift5to6After = true;
+			break;
+		}
+	}
+	if ( isShift5to6After ) {
+		for(vector<NetworkInterface>::iterator n = nics.begin(); n != nics.end(); n++ ){
+			bool isFound = false;
+			for(unsigned int i = 0; i < portNumbers.size(); i++ ){
+				QStringList items = QStringList::split( "|", portNumbers[i] );
+				if ( QString( n->DeviceName().c_str() ) == items[0] && QString( n->IpAddress().c_str() ) == items[1] ){
+					n->setPortNo( items[2].toInt() );
+					isFound = true;
+					break;
+				}
+			}
+			if ( !isFound ) {
+				n = nics.erase( n ) - 1;
 			}
 		}
-		if ( !isFound ) {
-			n = nics.erase( n ) - 1;
+	} else {
+		for(vector<NetworkInterface>::iterator n = nics.begin(); n != nics.end(); n++ ){
+			bool isFound = false;
+			for(unsigned int i = 0; i < portNumbers.size(); i++ ){
+				QStringList items = QStringList::split( ":", portNumbers[i] );
+				if ( QString( n->DeviceName().c_str() ) == items[0] && QString( n->IpAddress().c_str() ) == items[1] ){
+					n->setPortNo( items[2].toInt() );
+					isFound = true;
+					break;
+				}
+			}
+			if ( !isFound ) {
+				n = nics.erase( n ) - 1;
+			}
 		}
 	}
 	return nics;
