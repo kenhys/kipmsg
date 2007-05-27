@@ -106,26 +106,6 @@
     </widget>
     <widget class="QLabel">
         <property name="name">
-            <cstring>textLabel8</cstring>
-        </property>
-        <property name="geometry">
-            <rect>
-                <x>0</x>
-                <y>100</y>
-                <width>500</width>
-                <height>40</height>
-            </rect>
-        </property>
-        <property name="text">
-            <string>Orignal Windows version's Copyright(c) 1996-2004, H.Shirouzu
- KDE version's Copyright(c) 2006-2007, K.Niki</string>
-        </property>
-        <property name="alignment">
-            <set>AlignCenter</set>
-        </property>
-    </widget>
-    <widget class="QLabel">
-        <property name="name">
             <cstring>textLabel7</cstring>
         </property>
         <property name="geometry">
@@ -143,7 +123,27 @@
             <enum>Sunken</enum>
         </property>
         <property name="text">
-            <string>IP Messenger for KDE version 0.1.5</string>
+            <string>IP Messenger for KDE version 0.1.6</string>
+        </property>
+        <property name="alignment">
+            <set>AlignCenter</set>
+        </property>
+    </widget>
+    <widget class="QLabel">
+        <property name="name">
+            <cstring>textLabel8</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>0</x>
+                <y>100</y>
+                <width>500</width>
+                <height>40</height>
+            </rect>
+        </property>
+        <property name="text">
+            <string>Orignal Windows version's Copyright(c) 1996-2004, H.Shirouzu
+ KDE version's Copyright(c) 2006-2007, K.Niki</string>
         </property>
         <property name="alignment">
             <set>AlignCenter</set>
