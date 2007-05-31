@@ -195,6 +195,8 @@ kipmsgWidget::kipmsgWidget(QWidget* parent, const char* name, WFlags fl)
 		IpMsgAgent->AddBroadcastAddress( broadcastAddress.data() );
 	}
 
+//TODO IPv6
+	IpMsgAgent->setUseIPv6( true );
 	IpMsgAgent->StartNetwork( NetworkConfig::getSpecifyNics() );
 
     MainPopup = new KPopupMenu(this);

@@ -190,6 +190,8 @@ void NetworkConfig::slotApplyClicked()
 	KIpMsgSettings::writeConfig();
 
 	IpMessengerAgent *agent = IpMessengerAgent::GetInstance();
+//TODO IPv6
+	agent->setUseIPv6( true );
 	agent->RestartNetwork( getSpecifyNics() );
 	agent->setIsDialup( KIpMsgSettings::connectDialup() );
 	agent->ClearBroadcastAddress();
