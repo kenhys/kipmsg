@@ -77,7 +77,7 @@ AS = @AS@
 AUTODIRS = 
 AWK = gawk
 CC = gcc
-CONF_FILES =  $(top_srcdir)/./admin/configure.in.min $(top_srcdir)/configure.in.in
+CONF_FILES =  $(top_srcdir)/./admin/configure.in.min $(top_srcdir)/configure.in.in $(top_srcdir)/./kipmsg-0.1.6/configure.in.in
 CPP = gcc -E
 CXX = g++
 CXXCPP = g++ -E
@@ -260,7 +260,7 @@ SUBDIRS = $(TOPSUBDIRS)
 
 MAINTAINERCLEANFILES = subdirs configure.in acinclude.m4 configure.files 
 
-EXTRA_DIST = admin COPYING configure.in.in
+EXTRA_DIST = admin COPYING configure.in.in spec
 subdir = .
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 mkinstalldirs = $(SHELL) $(top_srcdir)/admin/mkinstalldirs
@@ -656,7 +656,7 @@ dist-hook:
 .NOEXPORT:
 
 #>+ 2
-KDE_DIST=kipmsg.kdevelop.pcs configure.files Project.kdevses Doxyfile kipmsg.kdevelop Project.kdevelop kipmsg-fc.spec stamp-h.in subdirs kipmsg-vl.spec Makefile.cvs kipmsg.kdevses sol10_blastwave_configure.sh libtool_freebsd61.patch Project.kdevelop.filelist 
+KDE_DIST=kipmsg.kdevelop.pcs configure.files Project.kdevses Doxyfile kipmsg.kdevelop Project.kdevelop.pcs Project.kdevelop stamp-h.in subdirs conf24126.sh Makefile.cvs kipmsg.kdevses sol10_blastwave_configure.sh libtool_freebsd61.patch Project.kdevelop.filelist 
 
 #>+ 2
 docs-am:
