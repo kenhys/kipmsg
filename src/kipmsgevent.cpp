@@ -91,6 +91,7 @@ KIpMsgEvent::RecieveAfter( RecievedMessage& msg ){
 		}
 		hiddenMessages.push_back( msg );
 	}
+	kipmsgWidget::playSound();
 	return true;
 }
 
@@ -540,7 +541,7 @@ KIpMsgEvent::ShowRecieveMsg( RecievedMessage& msg ){
 	}
 	KWin::activateWindow( recv->winId() );
 	recieveDialogs.append( recv );
-	kipmsgWidget::playSound();
+//	kipmsgWidget::playSound();
 }
 
 /**
