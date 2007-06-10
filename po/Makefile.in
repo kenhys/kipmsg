@@ -415,6 +415,7 @@ uninstall-am: uninstall-info-am
 .NOEXPORT:
 
 
+
 #>+ 2
 KDE_DIST=zh_CN.po kipmsg.gmo kipmsg.pot makepo.sh ja.gmo zh_CN.gmo ja.po 
 
