@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: zh_CN\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-04-20 00:05+0900\n"
-"PO-Revision-Date: 2007-04-20 00:06+0900\n"
+"POT-Creation-Date: 2007-06-10 17:56+0900\n"
+"PO-Revision-Date: 2007-06-10 17:59+0900\n"
 "Last-Translator: \n"
 "Language-Team:  <ja@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: KBabel 1.11.4\n"
 
-#: ../src/aboutbase.cpp:179 ../src/kipmsgwidget.cpp:261
+#: ../src/aboutbase.cpp:179 ../src/kipmsgwidget.cpp:263
 msgid "About KIpMessenger"
 msgstr "关于 KIpMessenger"
 
@@ -46,16 +46,16 @@ msgid "Alt+O"
 msgstr "Alt+O"
 
 #: ../src/aboutbase.cpp:184
+msgid "IP Messenger for KDE version 0.1.6"
+msgstr "IP Messenger for KDE version 0.1.6"
+
+#: ../src/aboutbase.cpp:185
 msgid ""
 "Orignal Windows version's Copyright(c) 1996-2004, H.Shirouzu\n"
 " KDE version's Copyright(c) 2006-2007, K.Niki"
 msgstr ""
 "Orignal Windows version's Copyright(c) 1996-2004, H.Shirouzu\n"
 " KDE version's Copyright(c) 2006-2007, K.Niki"
-
-#: ../src/aboutbase.cpp:186
-msgid "IP Messenger for KDE version 0.1.5"
-msgstr "IP Messenger for KDE version 0.1.5"
 
 #: ../src/absenceconfigbase.cpp:194
 msgid "KIpMessenger - Absence Mode Configuration"
@@ -941,7 +941,23 @@ msgstr "要设置显示优先级请在发送窗口上点右键"
 msgid "UserName"
 msgstr "用户名順序设置"
 
-#: ../src/kipmsgevent.cpp:123
+#: ../src/kipmsgevent.cpp:115
+msgid ""
+"Can't encryption message.\n"
+"Message was not sent."
+msgstr ""
+"失败了密码化。\n"
+"没发送信息。"
+
+#: ../src/kipmsgevent.cpp:125
+msgid ""
+"Can't encryption message.\n"
+"Is it send as plain text message?"
+msgstr ""
+"失败了密码化。\n"
+"发送信息以纯文本吗？"
+
+#: ../src/kipmsgevent.cpp:147
 msgid ""
 "Can't send to %1.\n"
 "Does it Retry?"
@@ -969,47 +985,47 @@ msgstr "(附件)"
 msgid "Form1"
 msgstr "没有意义"
 
-#: ../src/kipmsgwidget.cpp:234
+#: ../src/kipmsgwidget.cpp:236
 msgid "Download Monitor"
 msgstr "文件传送监视器"
 
-#: ../src/kipmsgwidget.cpp:236
+#: ../src/kipmsgwidget.cpp:238
 msgid "Hide all open confirm windows"
 msgstr "删除所有回执提示"
 
-#: ../src/kipmsgwidget.cpp:237
+#: ../src/kipmsgwidget.cpp:239
 msgid "All windows stay on top"
 msgstr "将窗口置于最前端"
 
-#: ../src/kipmsgwidget.cpp:239
+#: ../src/kipmsgwidget.cpp:241
 msgid "New message..."
 msgstr "新信息..."
 
-#: ../src/kipmsgwidget.cpp:244
+#: ../src/kipmsgwidget.cpp:246
 msgid "Drafts"
 msgstr "草稿"
 
-#: ../src/kipmsgwidget.cpp:260 ../src/recievedialog.cpp:167
+#: ../src/kipmsgwidget.cpp:262 ../src/recievedialog.cpp:167
 msgid "Configuration..."
 msgstr "服务设置..."
 
-#: ../src/kipmsgwidget.cpp:262
+#: ../src/kipmsgwidget.cpp:264
 msgid "View logs"
 msgstr "查看通信记录"
 
-#: ../src/kipmsgwidget.cpp:284
+#: ../src/kipmsgwidget.cpp:286
 msgid "Detail Configuration..."
 msgstr "详细设置"
 
-#: ../src/kipmsgwidget.cpp:292
+#: ../src/kipmsgwidget.cpp:294
 msgid "Absence mode"
 msgstr "离线模式"
 
-#: ../src/kipmsgwidget.cpp:295
+#: ../src/kipmsgwidget.cpp:297
 msgid "Reset absence mode"
 msgstr "复位"
 
-#: ../src/kipmsgwidget.cpp:298
+#: ../src/kipmsgwidget.cpp:300
 msgid "Quit"
 msgstr "退出"
 

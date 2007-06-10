@@ -106,6 +106,29 @@ KIpMsgEvent::SendAfter( SentMessage& msg ){
 }
 
 /**
+ * メッセージ暗号化失敗イベント。
+ * @retval true:暗号化せずに送信する
+ * @retval false:失敗させる
+ */
+void
+KIpMsgEvent::NotifySendEncryptionFail( HostListItem& host ){
+	KMessageBox::sorry( 0, QString( tr2i18n("Can't encryption message.\nMessage was not sent.") ) );
+}
+
+/**
+ * メッセージ暗号化失敗イベント。
+ * @retval true:暗号化せずに送信する
+ * @retval false:失敗させる
+ */
+bool
+KIpMsgEvent::IsSendContinueOnEncryptionFail( HostListItem& host ){
+	if ( KMessageBox::warningContinueCancel( 0, QString( tr2i18n("Can't encryption message.\nIs it send as plain text message?") ) ) == KMessageBox::Continue ){
+		return true;
+	}
+	return false;
+}
+
+/**
  * 送信リトライエラーイベント
  * ・特にすること無し。
  * @param msg メッセージ

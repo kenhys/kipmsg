@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-04-20 00:05+0900\n"
+"POT-Creation-Date: 2007-06-10 17:56+0900\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../src/aboutbase.cpp:179 ../src/kipmsgwidget.cpp:261
+#: ../src/aboutbase.cpp:179 ../src/kipmsgwidget.cpp:263
 msgid "About KIpMessenger"
 msgstr ""
 
@@ -45,13 +45,13 @@ msgid "Alt+O"
 msgstr ""
 
 #: ../src/aboutbase.cpp:184
+msgid "IP Messenger for KDE version 0.1.6"
+msgstr ""
+
+#: ../src/aboutbase.cpp:185
 msgid ""
 "Orignal Windows version's Copyright(c) 1996-2004, H.Shirouzu\n"
 " KDE version's Copyright(c) 2006-2007, K.Niki"
-msgstr ""
-
-#: ../src/aboutbase.cpp:186
-msgid "IP Messenger for KDE version 0.1.5"
 msgstr ""
 
 #: ../src/absenceconfigbase.cpp:194
@@ -934,7 +934,19 @@ msgstr ""
 msgid "UserName"
 msgstr ""
 
-#: ../src/kipmsgevent.cpp:123
+#: ../src/kipmsgevent.cpp:115
+msgid ""
+"Can't encryption message.\n"
+"Message was not sent."
+msgstr ""
+
+#: ../src/kipmsgevent.cpp:125
+msgid ""
+"Can't encryption message.\n"
+"Is it send as plain text message?"
+msgstr ""
+
+#: ../src/kipmsgevent.cpp:147
 msgid ""
 "Can't send to %1.\n"
 "Does it Retry?"
@@ -960,47 +972,47 @@ msgstr ""
 msgid "Form1"
 msgstr ""
 
-#: ../src/kipmsgwidget.cpp:234
+#: ../src/kipmsgwidget.cpp:236
 msgid "Download Monitor"
 msgstr ""
 
-#: ../src/kipmsgwidget.cpp:236
+#: ../src/kipmsgwidget.cpp:238
 msgid "Hide all open confirm windows"
 msgstr ""
 
-#: ../src/kipmsgwidget.cpp:237
+#: ../src/kipmsgwidget.cpp:239
 msgid "All windows stay on top"
 msgstr ""
 
-#: ../src/kipmsgwidget.cpp:239
+#: ../src/kipmsgwidget.cpp:241
 msgid "New message..."
 msgstr ""
 
-#: ../src/kipmsgwidget.cpp:244
+#: ../src/kipmsgwidget.cpp:246
 msgid "Drafts"
 msgstr ""
 
-#: ../src/kipmsgwidget.cpp:260 ../src/recievedialog.cpp:167
+#: ../src/kipmsgwidget.cpp:262 ../src/recievedialog.cpp:167
 msgid "Configuration..."
 msgstr ""
 
-#: ../src/kipmsgwidget.cpp:262
+#: ../src/kipmsgwidget.cpp:264
 msgid "View logs"
 msgstr ""
 
-#: ../src/kipmsgwidget.cpp:284
+#: ../src/kipmsgwidget.cpp:286
 msgid "Detail Configuration..."
 msgstr ""
 
-#: ../src/kipmsgwidget.cpp:292
+#: ../src/kipmsgwidget.cpp:294
 msgid "Absence mode"
 msgstr ""
 
-#: ../src/kipmsgwidget.cpp:295
+#: ../src/kipmsgwidget.cpp:297
 msgid "Reset absence mode"
 msgstr ""
 
-#: ../src/kipmsgwidget.cpp:298
+#: ../src/kipmsgwidget.cpp:300
 msgid "Quit"
 msgstr ""
 

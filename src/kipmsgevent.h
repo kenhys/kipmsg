@@ -43,6 +43,8 @@ class KIpMsgEvent: public IpMessengerEvent {
 		virtual bool GetHostListRetryError();
 		virtual bool RecieveAfter( RecievedMessage& msg );
 		virtual void SendAfter( SentMessage& msg );
+		virtual void NotifySendEncryptionFail( HostListItem& host );
+		virtual bool IsSendContinueOnEncryptionFail( HostListItem& host );
 		virtual bool SendRetryError( SentMessage& msg );
 		virtual void OpenAfter( SentMessage& msg );
 		virtual void DownloadStart( RecievedMessage& msg, AttachFile& file, DownloadInfo& info, void *data );

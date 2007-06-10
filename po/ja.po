@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ja\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-04-20 00:05+0900\n"
-"PO-Revision-Date: 2007-04-20 00:06+0900\n"
+"POT-Creation-Date: 2007-06-10 17:56+0900\n"
+"PO-Revision-Date: 2007-06-10 18:01+0900\n"
 "Last-Translator: \n"
 "Language-Team:  <ja@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: KBabel 1.11.4\n"
 
-#: ../src/aboutbase.cpp:179 ../src/kipmsgwidget.cpp:261
+#: ../src/aboutbase.cpp:179 ../src/kipmsgwidget.cpp:263
 msgid "About KIpMessenger"
 msgstr "KIpMessengerについて"
 
@@ -45,16 +45,16 @@ msgid "Alt+O"
 msgstr "Alt+O"
 
 #: ../src/aboutbase.cpp:184
+msgid "IP Messenger for KDE version 0.1.6"
+msgstr "IP Messenger for KDE version 0.1.6"
+
+#: ../src/aboutbase.cpp:185
 msgid ""
 "Orignal Windows version's Copyright(c) 1996-2004, H.Shirouzu\n"
 " KDE version's Copyright(c) 2006-2007, K.Niki"
 msgstr ""
 "Orignal Windows version's Copyright(c) 1996-2004, H.Shirouzu\n"
 " KDE version's Copyright(c) 2006-2007, K.Niki"
-
-#: ../src/aboutbase.cpp:186
-msgid "IP Messenger for KDE version 0.1.5"
-msgstr "IP Messenger for KDE version 0.1.5"
 
 #: ../src/absenceconfigbase.cpp:194
 msgid "KIpMessenger - Absence Mode Configuration"
@@ -943,7 +943,23 @@ msgstr "送受信ウィンドウ→クリックで表示＆ソート設定"
 msgid "UserName"
 msgstr "ユーザ名設定"
 
-#: ../src/kipmsgevent.cpp:123
+#: ../src/kipmsgevent.cpp:115
+msgid ""
+"Can't encryption message.\n"
+"Message was not sent."
+msgstr ""
+"メッセージを暗号化出来ませんでした。\n"
+"メッセージは送信されませんでした。"
+
+#: ../src/kipmsgevent.cpp:125
+msgid ""
+"Can't encryption message.\n"
+"Is it send as plain text message?"
+msgstr ""
+"メッセージを暗号化出来ませんでした。\n"
+"メッセージをプレーンテキストとして送信しますか？"
+
+#: ../src/kipmsgevent.cpp:147
 msgid ""
 "Can't send to %1.\n"
 "Does it Retry?"
@@ -971,47 +987,47 @@ msgstr "(添付)"
 msgid "Form1"
 msgstr "翻訳しないメッセージ。"
 
-#: ../src/kipmsgwidget.cpp:234
+#: ../src/kipmsgwidget.cpp:236
 msgid "Download Monitor"
 msgstr "ダウンロードモニタ"
 
-#: ../src/kipmsgwidget.cpp:236
+#: ../src/kipmsgwidget.cpp:238
 msgid "Hide all open confirm windows"
 msgstr "開封を全消去"
 
-#: ../src/kipmsgwidget.cpp:237
+#: ../src/kipmsgwidget.cpp:239
 msgid "All windows stay on top"
 msgstr "全Windowを前に"
 
-#: ../src/kipmsgwidget.cpp:239
+#: ../src/kipmsgwidget.cpp:241
 msgid "New message..."
 msgstr "新しいメッセージ..."
 
-#: ../src/kipmsgwidget.cpp:244
+#: ../src/kipmsgwidget.cpp:246
 msgid "Drafts"
 msgstr "下書き"
 
-#: ../src/kipmsgwidget.cpp:260 ../src/recievedialog.cpp:167
+#: ../src/kipmsgwidget.cpp:262 ../src/recievedialog.cpp:167
 msgid "Configuration..."
 msgstr "設定..."
 
-#: ../src/kipmsgwidget.cpp:262
+#: ../src/kipmsgwidget.cpp:264
 msgid "View logs"
 msgstr "ログ参照"
 
-#: ../src/kipmsgwidget.cpp:284
+#: ../src/kipmsgwidget.cpp:286
 msgid "Detail Configuration..."
 msgstr "詳細設定"
 
-#: ../src/kipmsgwidget.cpp:292
+#: ../src/kipmsgwidget.cpp:294
 msgid "Absence mode"
 msgstr "不在モード"
 
-#: ../src/kipmsgwidget.cpp:295
+#: ../src/kipmsgwidget.cpp:297
 msgid "Reset absence mode"
 msgstr "解除"
 
-#: ../src/kipmsgwidget.cpp:298
+#: ../src/kipmsgwidget.cpp:300
 msgid "Quit"
 msgstr "終了"
 
