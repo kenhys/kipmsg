@@ -1,6 +1,6 @@
 %define name kipmsg
-%define version 0.1.5
-%define libipmsg_ver 0.1.3
+%define version 0.1.6
+%define libipmsg_ver 0.1.4
 %define release 0.fc6
 
 Summary: 	Ip Messenger for KDE
