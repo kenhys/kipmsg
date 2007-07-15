@@ -260,7 +260,7 @@ SUBDIRS = $(TOPSUBDIRS)
 
 MAINTAINERCLEANFILES = subdirs configure.in acinclude.m4 configure.files 
 
-EXTRA_DIST = admin COPYING configure.in.in spec
+EXTRA_DIST = admin COPYING configure.in.in spec/*.spec debian/changelog debian/compat debian/control debian/copyright debian/docs debian/rules
 subdir = .
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 mkinstalldirs = $(SHELL) $(top_srcdir)/admin/mkinstalldirs
@@ -454,7 +454,7 @@ distcleancheck_listfiles = find . -type f -print
 distdir: $(DISTFILES)
 	$(am__remove_distdir)
 	mkdir $(distdir)
-	$(mkinstalldirs) $(distdir)/admin
+	$(mkinstalldirs) $(distdir)/admin $(distdir)/debian $(distdir)/spec
 	@list='$(DISTFILES)'; for file in $$list; do \
 	  if test -f $$file || test -d $$file; then d=.; else d=$(srcdir); fi; \
 	  dir=`echo "$$file" | sed -e 's,/[^/]*$$,,'`; \
@@ -656,10 +656,8 @@ dist-hook:
 .NOEXPORT:
 
 
-
-
 #>+ 2
-KDE_DIST=kipmsg.kdevelop.pcs configure.files Project.kdevses Doxyfile kipmsg.kdevelop Project.kdevelop.pcs Project.kdevelop stamp-h.in subdirs kipmsg-0.1.6.tar.gz conf24126.sh Makefile.cvs kipmsg.kdevses sol10_blastwave_configure.sh libtool_freebsd61.patch Project.kdevelop.filelist 
+KDE_DIST=kipmsg.kdevelop.pcs configure.files Project.kdevses Doxyfile kipmsg.kdevelop Project.kdevelop.pcs Project.kdevelop stamp-h.in subdirs conf24126.sh Makefile.cvs kipmsg.kdevses sol10_blastwave_configure.sh libtool_freebsd61.patch Project.kdevelop.filelist 
 
 #>+ 2
 docs-am:

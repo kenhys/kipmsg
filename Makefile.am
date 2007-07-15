@@ -15,7 +15,7 @@ package-messages:
 	cd $(top_srcdir) && $(MAKE) -f admin/Makefile.common package-messages
 	$(MAKE) -C po merge
 
-EXTRA_DIST = admin COPYING configure.in.in spec
+EXTRA_DIST = admin COPYING configure.in.in spec/*.spec debian/changelog debian/compat debian/control debian/copyright debian/docs debian/rules
 
 dist-hook:
 	cd $(top_distdir) && perl admin/am_edit -padmin
