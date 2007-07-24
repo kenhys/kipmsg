@@ -43,6 +43,12 @@ rm -rf $RPM_BUILD_ROOT
 %{_prefix}/share/*
 
 %changelog
+* Tue Jul 25 2007 Kuninobu Niki <nikikuni@yahoo.co.jp> 0.1.6-0vl0
+- New upstream release.
+
+* Sat Apr 28 2007 Kuninobu Niki <nikikuni@yahoo.co.jp> 0.1.5-0vl0
+- New upstream release.
+
 * Fri Mar 29 2007 Kuninobu Niki <nikikuni@yahoo.co.jp> 0.1.4-0vl0
 - New upstream release.
 

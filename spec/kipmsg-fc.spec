@@ -43,5 +43,8 @@ rm -rf $RPM_BUILD_ROOT
 %{_prefix}/share/*
 
 %changelog
-* Fri Mar 29 2007 Kuninobu Niki <nikikuni@yahoo.co.jp> 0.1.5-0.fc6
+* Tue Jul 25 2007 Kuninobu Niki <nikikuni@yahoo.co.jp> 0.1.6-0.fc6
+- New upstream release.
+
+* Fri Apr 29 2007 Kuninobu Niki <nikikuni@yahoo.co.jp> 0.1.5-0.fc6
 - Initial version
