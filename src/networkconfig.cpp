@@ -80,10 +80,14 @@ NetworkConfig::NetworkConfig(QWidget* parent, const char* name, WFlags fl)
 
 	//使わないリスト
 	vector<NetworkInterface> nics;
-	IpMessengerAgent::GetNetworkInterfaceInfo( nics );
+	IpMessengerAgent *agent = IpMessengerAgent::GetInstance();
+	IpMessengerAgent::GetNetworkInterfaceInfo( nics, agent->UseIPv6() );
 	QStringList list;
+printf( "NICs size=%d\n", nics.size() );
 	for( vector<NetworkInterface>::iterator n = nics.begin(); n != nics.end(); ++n ) {
 		bool isFound = false;
+kdDebug() << "NIC[" << QString( n->DeviceName().c_str() ) << "][" << QString( n->IpAddress().c_str() ) << "]";
+printf( "NIC[%s][%s]\n", n->DeviceName().c_str(), n->IpAddress().c_str() );
 		for( unsigned int i = 0; i < nicNames.count(); i++ ){
 			if ( nicNames[i] == QString( n->DeviceName().c_str() ) && nicAddrs[i] == QString( n->IpAddress().c_str() ) ) {
 				isFound = true;
@@ -346,7 +350,8 @@ std::vector<ipmsg::NetworkInterface> NetworkConfig::getSpecifyNics()
 		return nics;
 	}
 
-	IpMessengerAgent::GetNetworkInterfaceInfo( nics );
+	IpMessengerAgent *agent = IpMessengerAgent::GetInstance();
+	IpMessengerAgent::GetNetworkInterfaceInfo( nics, agent->UseIPv6() );
 	//移行前のチェック
 	bool isShift5to6After=false;
 	for( unsigned int i = 0; i < portNumbers.count(); i++ ){
