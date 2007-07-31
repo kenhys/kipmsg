@@ -1,3 +1,6 @@
+2007-07-31 Niki, Kuninobu <nikikuni@yahoo.co.jp>
+- Update:Delete debug print.
+
 2007-07-29 Niki, Kuninobu <nikikuni@yahoo.co.jp>
 - Fix:Compile error for libipmsg-0.1.5.
 
