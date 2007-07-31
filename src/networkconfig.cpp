@@ -86,8 +86,6 @@ NetworkConfig::NetworkConfig(QWidget* parent, const char* name, WFlags fl)
 printf( "NICs size=%d\n", nics.size() );
 	for( vector<NetworkInterface>::iterator n = nics.begin(); n != nics.end(); ++n ) {
 		bool isFound = false;
-kdDebug() << "NIC[" << QString( n->DeviceName().c_str() ) << "][" << QString( n->IpAddress().c_str() ) << "]";
-printf( "NIC[%s][%s]\n", n->DeviceName().c_str(), n->IpAddress().c_str() );
 		for( unsigned int i = 0; i < nicNames.count(); i++ ){
 			if ( nicNames[i] == QString( n->DeviceName().c_str() ) && nicAddrs[i] == QString( n->IpAddress().c_str() ) ) {
 				isFound = true;
