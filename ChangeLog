@@ -1,3 +1,7 @@
+2007-08-15 Niki, Kuninobu <nikikuni@yahoo.co.jp>
+- Update:libipmsg-0.1.5 SendMsg API Changed.
+- Fix:Separater ":" change to "|" including ip address entry.
+
 2007-07-31 Niki, Kuninobu <nikikuni@yahoo.co.jp>
 - Update:Delete debug print.
 
