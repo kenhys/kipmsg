@@ -640,18 +640,22 @@ void SendDialog::slotMessageSendClicked()
 	//送信対象ホストリストを基にメッセージを送信する。
 	agent->SetFileNameConverter( fconv );
 	for( vector<HostListItem>::iterator host = targets.begin(); host != targets.end(); host++ ) {
-		agent->SendMsg( *host, msg, m_SecretCheckbox->isChecked(), attachFileList, m_LockCheckbox->isChecked(), targets.size() );
+		agent->SendMsg( *host, msg,
+						ipmsg::Secret( m_SecretCheckbox->isChecked() ),
+						attachFileList,
+						ipmsg::LockPassword( m_LockCheckbox->isChecked() ),
+						targets.size() );
 		QString ip = codec->toUnicode( host->IpAddress().c_str() );
 		QString login = codec->toUnicode( host->UserName().c_str() );
 		for( QStringList::iterator ite = encodings.begin(); ite != encodings.end(); ite++ ){
-			QStringList fields = QStringList::split( ":", *ite );
+			QStringList fields = QStringList::split( "|", *ite );
 			if ( ip == fields[0] && 
 				login == fields[1] ) {
 				encodings.remove( ite );
 				break;
 			}
 		}
-		encodings << ip + ":" + login + ":" + m_EncodingCombobox->currentText();
+		encodings << ip + "|" + login + "|" + m_EncodingCombobox->currentText();
 		send_count++;
 	}
 	//エンコーディングの設定を更新する。
@@ -804,7 +808,7 @@ void SendDialog::refreshHostList( bool isUpdate )
 	while ( it.current() != NULL ) {
 		QListViewItem *item = it.current();
 		if ( item->isSelected() ) {
-			saveSelectedValues << item->text( ColumnIpAddress ) + ":" + item->text( ColumnLogin );
+			saveSelectedValues << item->text( ColumnIpAddress ) + "|" + item->text( ColumnLogin );
 		}
 		++it;
 	}
@@ -890,7 +894,7 @@ void SendDialog::refreshHostList( bool isUpdate )
 		QStringList values;
 		QTextCodec *codec;
 		for( QStringList::iterator ite = encodings.begin(); ite != encodings.end(); ite++ ){
-			QStringList fields = QStringList::split( ":", *ite );
+			QStringList fields = QStringList::split( "|", *ite );
 			if ( QString( ix->IpAddress().c_str() ) == fields[0] && 
 				QString( ix->UserName().c_str() ) == fields[1] ) {
 				ix->setEncodingName( string( fields[2].data() ) );
@@ -902,7 +906,7 @@ void SendDialog::refreshHostList( bool isUpdate )
 		} else {
 			codec = QTextCodec::codecForName( KIpMsgSettings::messageEncoding() );
 		}
-		QString pitem = string(ix->IpAddress() + ":" + ix->UserName()).c_str();
+		QString pitem = string(ix->IpAddress() + "|" + ix->UserName()).c_str();
 		//TODO
 		QPtrList<KipmsgPriorityHostItem> list;
 		QStringList loadList;
@@ -915,7 +919,7 @@ void SendDialog::refreshHostList( bool isUpdate )
 		QPtrListIterator<KipmsgPriorityHostItem> it( list );
 		KipmsgPriorityHostItem *item;
 		while( ( item = it.current() ) != 0 ) {
-			if ( pitem == item->ipAddress() +":" + item->loginName() ) {
+			if ( pitem == item->ipAddress() +"|" + item->loginName() ) {
 				ix->setPriority( utf8codec->fromUnicode( item->priority() ).data() );
 				break;
 			}
@@ -953,7 +957,7 @@ void SendDialog::refreshHostList( bool isUpdate )
 	while ( its.current() != NULL ) {
 		QListViewItem *item = its.current();
 		for( uint i = 0; i < saveSelectedValues.count(); i++ ) {
-			if ( item->text( ColumnIpAddress ) + ":" + item->text( ColumnLogin ) == saveSelectedValues[i] ) {
+			if ( item->text( ColumnIpAddress ) + "|" + item->text( ColumnLogin ) == saveSelectedValues[i] ) {
 				item->setSelected( TRUE );
 				break;
 			}
@@ -1237,7 +1241,7 @@ void SendDialog::convertPriorityHostListToStringList( QPtrList<KipmsgPriorityHos
 	QPtrListIterator<KipmsgPriorityHostItem> it( list );
 	KipmsgPriorityHostItem *item;
 	while( ( item = it.current() ) != 0 ) {
-		priList << item->priority() + ":" + item->ipAddress() + ":" + item->loginName();
+		priList << item->priority() + "|" + item->ipAddress() + "|" + item->loginName();
 		++it;
 	}
 }
@@ -1256,7 +1260,7 @@ void SendDialog::changePriorityHostList( QString pri, QPtrList<KipmsgPriorityHos
 		KipmsgPriorityHostItem *item;
 		bool isFound = false;
 		while( ( item = it.current() ) != 0 ) {
-			if ( item->ipAddress() + ":" + item->loginName() == *its ) {
+			if ( item->ipAddress() + "|" + item->loginName() == *its ) {
 				item->setPriority( pri );
 				isFound = true;
 				break;
@@ -1266,7 +1270,7 @@ void SendDialog::changePriorityHostList( QString pri, QPtrList<KipmsgPriorityHos
 		if ( !isFound ) {
 			KipmsgPriorityHostItem tmpItem;
 			tmpItem.setPriority( pri );
-			QStringList hList = QStringList::split( ":", *its );
+			QStringList hList = QStringList::split( "|", *its );
 			if ( hList.count() == 2 ){
 				if ( hList[0].isEmpty() ) {
 					continue;
@@ -1293,12 +1297,12 @@ void SendDialog::convertStringListToPriorityHostList( QStringList &loadList, QPt
 {
 	for( QStringList::iterator it = loadList.begin(); it != loadList.end(); it++ ) {
 		KipmsgPriorityHostItem tmpItem;
-		QStringList pList = QStringList::split( ":", *it );
+		QStringList pList = QStringList::split( "|", *it );
 		if ( pList.count() >= 3 ){
 			QString p = "";
 			for( uint i = 0; i < pList.count() - 2; i++ ){
 				if ( i != 0 ) {
-					p += ":";
+					p += "|";
 				}
 				p += pList[i];
 			}
@@ -1331,7 +1335,7 @@ void SendDialog::setPriority( QString pri, QStringList &priList )
 		QListViewItem *item = it.current();
 		if ( item->isSelected() ) {
 			item->setText( ColumnPriority, pri.data() );
-			priList << item->text( ColumnIpAddress ) + ":" + item->text( ColumnLogin );
+			priList << item->text( ColumnIpAddress ) + "|" + item->text( ColumnLogin );
 		}
 		++it;
 	}
