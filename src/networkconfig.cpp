@@ -83,7 +83,6 @@ NetworkConfig::NetworkConfig(QWidget* parent, const char* name, WFlags fl)
 	IpMessengerAgent *agent = IpMessengerAgent::GetInstance();
 	IpMessengerAgent::GetNetworkInterfaceInfo( nics, agent->UseIPv6() );
 	QStringList list;
-printf( "NICs size=%d\n", nics.size() );
 	for( vector<NetworkInterface>::iterator n = nics.begin(); n != nics.end(); ++n ) {
 		bool isFound = false;
 		for( unsigned int i = 0; i < nicNames.count(); i++ ){

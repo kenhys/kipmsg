@@ -88,7 +88,7 @@ KIPMsgEncodingConfigDialog::refreshEncoding()
 	for( vector<HostListItem>::iterator ix = hosts.begin(); ix != hosts.end(); ix++ ){
 		QTextCodec *codec;
 		for( QStringList::iterator ite = encodings.begin(); ite != encodings.end(); ite++ ){
-			QStringList fields = QStringList::split( ":", *ite );
+			QStringList fields = QStringList::split( "|", *ite );
 			if ( QString( ix->IpAddress().c_str() ) == fields[0] && 
 				QString( ix->UserName().c_str() ) == fields[1] ) {
 				ix->setEncodingName( string( fields[2].data() ) );
@@ -229,14 +229,14 @@ void KIPMsgEncodingConfigDialog::slotApplyClicked()
 			QString login = codec->toUnicode( host->UserName().c_str() );
 			QString enc = codec->toUnicode( host->EncodingName().c_str() );
 			for( QStringList::iterator ite = encodings.begin(); ite != encodings.end(); ite++ ){
-				QStringList fields = QStringList::split( ":", *ite );
+				QStringList fields = QStringList::split( "|", *ite );
 				if ( ip == fields[0] &&
 					login == fields[1] ) {
 					encodings.remove( ite );
 					break;
 				}
 			}
-			encodings << ip + ":" + login + ":" + enc;
+			encodings << ip + "|" + login + "|" + enc;
 		}
 	}
 	KIpMsgSettings::setEncodingSettings( encodings );
