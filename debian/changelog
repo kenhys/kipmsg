@@ -1,6 +1,12 @@
+kipmsg (0.1.7-1) unstable; urgency=low
+
+  * New upstream release for libipmsg-0.1.5.
+
+ -- root <nikikuni@yahoo.co.jp>  Sun, 15 Jul 2007 17:00:01 +0900
+
 kipmsg (0.1.6-1) unstable; urgency=low
 
-  * Initial release (Closes: #nnnn)  <nnnn is the bug number of your ITP>
+  * Initial release.
 
  -- root <nikikuni@yahoo.co.jp>  Sun, 15 Jul 2007 17:00:01 +0900
 
