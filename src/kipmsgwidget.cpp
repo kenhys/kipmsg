@@ -605,7 +605,7 @@ void kipmsgWidget::slotPollingTimeout()
 #endif
 
 	//送受信キューを処理します。
-	IpMsgAgent->Process();
+//	IpMsgAgent->Process();
 
 	//メッセージが到着している
 	KIpMsgEvent *evt = dynamic_cast<KIpMsgEvent *>(IpMsgAgent->GetEventObject());
