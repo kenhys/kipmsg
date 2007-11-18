@@ -1,3 +1,7 @@
+2007-11-18 Niki, Kuninobu <nikikuni@yahoo.co.jp>
+- Fix:Change API Name RefreashHostListAfter to RefreshHostListAfter.
+- Update:Respond multithread.
+
 2007-08-30 Niki, Kuninobu <nikikuni@yahoo.co.jp>
 - Update:No meaning logic deleted.
 
