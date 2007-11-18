@@ -44,7 +44,7 @@ static KIpMsgNotify *notity = NULL;
  * @param hostList ホストリスト
  */
 void
-KIpMsgEvent::RefreashHostListAfter( HostList& /*hostList*/ ){
+KIpMsgEvent::RefreshHostListAfter( HostList& /*hostList*/ ){
 	RefreshHostListInAllSendDlg();
 }
 
@@ -78,6 +78,9 @@ KIpMsgEvent::GetHostListRetryError(){
  */
 bool
 KIpMsgEvent::RecieveAfter( RecievedMessage& msg ){
+	if ( kapp != NULL ){
+		kapp->lock();
+	}
 	if ( !kipmsgWidget::isRecievedOnNonePopup() ) {
 		ShowRecieveMsg( msg );
 	} else {
@@ -92,6 +95,9 @@ KIpMsgEvent::RecieveAfter( RecievedMessage& msg ){
 		hiddenMessages.push_back( msg );
 	}
 	kipmsgWidget::playSound();
+	if ( kapp != NULL ){
+		kapp->unlock();
+	}
 	return true;
 }
 
@@ -157,6 +163,9 @@ KIpMsgEvent::SendRetryError( SentMessage& msg ){
  */
 void
 KIpMsgEvent::OpenAfter( SentMessage& msg ){
+	if ( kapp != NULL ){
+		kapp->lock();
+	}
 	IpMessengerAgent *IpMsgAgent = IpMessengerAgent::GetInstance();
 	if ( msg.IsSecret() && msg.IsConfirmed() && !msg.IsConfirmAnswered() ) {
 		QString encode("");
@@ -187,6 +196,9 @@ KIpMsgEvent::OpenAfter( SentMessage& msg ){
 			KWin::activateWindow( opendlg->winId() );
 		}
 		confirmDialogs.append(opendlg);
+	}
+	if ( kapp != NULL ){
+		kapp->unlock();
 	}
 }
 
@@ -255,6 +267,9 @@ KIpMsgEvent::DownloadProcessing( RecievedMessage& /*msg*/, AttachFile& file, Dow
  */
 void
 KIpMsgEvent::DownloadEnd( RecievedMessage& msg, AttachFile& file, DownloadInfo& info, void *data ){
+	if ( kapp != NULL ){
+		kapp->lock();
+	}
 	RecieveDialog *recvDlg = static_cast<RecieveDialog *>(data);
 	if ( recvDlg->isOpenSaveDialog() ){
 		DownloadCompleteDialog *dlg = new DownloadCompleteDialog(recvDlg, 0, TRUE);
@@ -263,6 +278,9 @@ KIpMsgEvent::DownloadEnd( RecievedMessage& msg, AttachFile& file, DownloadInfo& 
 		delete dlg;
 	}
 	msg.Files().erase( file );
+	if ( kapp != NULL ){
+		kapp->unlock();
+	}
 }
 
 /**
@@ -295,10 +313,16 @@ KIpMsgEvent::EntryAfter( HostListItem& host ){
 	if ( host.IsLocalHost() || !KIpMsgSettings::notifyOnLoginLogoutAbsence() ) {
 		return;
 	}
+	if ( kapp != NULL ){
+		kapp->lock();
+	}
 	GetHostEncodingFromConfig( host );
 	notity = createNotifyWindow();
 	notity->addLoginMessage( host );
 	notity->show();
+	if ( kapp != NULL ){
+		kapp->unlock();
+	}
 }
 
 /**
@@ -311,10 +335,16 @@ KIpMsgEvent::ExitAfter( HostListItem& host ){
 	if ( host.IsLocalHost() || !KIpMsgSettings::notifyOnLoginLogoutAbsence() ) {
 		return;
 	}
+	if ( kapp != NULL ){
+		kapp->lock();
+	}
 	GetHostEncodingFromConfig( host );
 	notity = createNotifyWindow();
 	notity->addLogoutMessage( host );
 	notity->show();
+	if ( kapp != NULL ){
+		kapp->unlock();
+	}
 }
 
 /**
@@ -328,10 +358,16 @@ KIpMsgEvent::AbsenceModeChangeAfter( HostListItem& host )
 	if ( host.IsLocalHost() || !KIpMsgSettings::notifyOnLoginLogoutAbsence() ) {
 		return;
 	}
+	if ( kapp != NULL ){
+		kapp->lock();
+	}
 	GetHostEncodingFromConfig( host );
 	notity = createNotifyWindow();
 	notity->addAbsenceModeChangeMessage( host );
 	notity->show();
+	if ( kapp != NULL ){
+		kapp->unlock();
+	}
 }
 
 /**
@@ -556,6 +592,9 @@ KIpMsgEvent::TimerEvent(){
  */
 void
 KIpMsgEvent::ShowRecieveMsg( RecievedMessage& msg ){
+	if ( kapp != NULL ){
+		kapp->lock();
+	}
 	RecieveDialog *recv = new RecieveDialog(msg,0,0,0);
 	recv->setDownloadFiles();
 	recv->show();
@@ -564,6 +603,9 @@ KIpMsgEvent::ShowRecieveMsg( RecievedMessage& msg ){
 	}
 	KWin::activateWindow( recv->winId() );
 	recieveDialogs.append( recv );
+	if ( kapp != NULL ){
+		kapp->unlock();
+	}
 //	kipmsgWidget::playSound();
 }
 
