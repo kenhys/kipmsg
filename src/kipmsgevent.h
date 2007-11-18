@@ -38,7 +38,7 @@ using namespace ipmsg;
 
 class KIpMsgEvent: public IpMessengerEvent {
 	public:
-		virtual void RefreashHostListAfter( HostList& hostList );
+		virtual void RefreshHostListAfter( HostList& hostList );
 		virtual void UpdateHostListAfter( HostList& hostList );
 		virtual bool GetHostListRetryError();
 		virtual bool RecieveAfter( RecievedMessage& msg );
