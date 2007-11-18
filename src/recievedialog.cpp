@@ -516,6 +516,7 @@ void RecieveDialog::slotDownloadClicked()
 void RecieveDialog::doDownload( bool isOpenSaveDialog, QString downloadPath )
 {
 	this->_isOpenSaveDialog = isOpenSaveDialog;
+/*
 	if ( msg.Host().IsLocalHost() ){
 		KMessageBox::sorry(0,tr2i18n("This message from localhost.Download disabled."));
 		msg.Files().clear();
@@ -523,6 +524,7 @@ void RecieveDialog::doDownload( bool isOpenSaveDialog, QString downloadPath )
 		doResize();
 		return;
 	}
+*/
 	isDownloading = true;
 	KIpMsgFileNameConverter *codec = new KIpMsgFileNameConverter();
 	QListViewItemIterator it( m_AttachmentFiles );
