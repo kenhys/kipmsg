@@ -118,7 +118,13 @@ KIpMsgEvent::SendAfter( SentMessage& msg ){
  */
 void
 KIpMsgEvent::NotifySendEncryptionFail( HostListItem& host ){
+	if ( kapp != NULL ){
+		kapp->lock();
+	}
 	KMessageBox::sorry( 0, QString( tr2i18n("Can't encryption message.\nMessage was not sent.") ) );
+	if ( kapp != NULL ){
+		kapp->unlock();
+	}
 }
 
 /**
@@ -128,8 +134,17 @@ KIpMsgEvent::NotifySendEncryptionFail( HostListItem& host ){
  */
 bool
 KIpMsgEvent::IsSendContinueOnEncryptionFail( HostListItem& host ){
+	if ( kapp != NULL ){
+		kapp->lock();
+	}
 	if ( KMessageBox::warningContinueCancel( 0, QString( tr2i18n("Can't encryption message.\nIs it send as plain text message?") ) ) == KMessageBox::Continue ){
+		if ( kapp != NULL ){
+			kapp->unlock();
+		}
 		return true;
+	}
+	if ( kapp != NULL ){
+		kapp->unlock();
 	}
 	return false;
 }
@@ -150,8 +165,17 @@ KIpMsgEvent::SendRetryError( SentMessage& msg ){
 		}
 	}
 
+	if ( kapp != NULL ){
+		kapp->lock();
+	}
 	if ( KMessageBox::warningContinueCancel( 0, QString( tr2i18n("Can't send to %1.\nDoes it Retry?") ).arg( toName ) ) == KMessageBox::Continue ){
+		if ( kapp != NULL ){
+			kapp->unlock();
+		}
 		return true;
+	}
+	if ( kapp != NULL ){
+		kapp->unlock();
 	}
 	return false;
 }
@@ -397,7 +421,13 @@ void KIpMsgEvent::VersionInfoRecieveAfter( HostListItem &host, string version )
 		QTextCodec *codec = QTextCodec::codecForName( host.EncodingName().c_str() );
 		msg = codec->toUnicode( hostInfo.c_str() ) + "\n" + codec->toUnicode( version.c_str() );
 	}
+	if ( kapp != NULL ){
+		kapp->lock();
+	}
 	KMessageBox::information( 0, msg );
+	if ( kapp != NULL ){
+		kapp->unlock();
+	}
 }
 
 /**
@@ -414,7 +444,13 @@ void KIpMsgEvent::AbsenceDetailRecieveAfter( HostListItem &host, string absenceD
 		QTextCodec *codec = QTextCodec::codecForName( host.EncodingName().c_str() );
 		msg = codec->toUnicode( hostInfo.c_str() ) + "\n" + codec->toUnicode( absenceDetail.c_str() );
 	}
+	if ( kapp != NULL ){
+		kapp->lock();
+	}
 	KMessageBox::information( 0, msg );
+	if ( kapp != NULL ){
+		kapp->unlock();
+	}
 }
 
 //Original Methods
