@@ -657,6 +657,8 @@ dist-hook:
 
 
 
+
+
 #>+ 2
 KDE_DIST=kipmsg.kdevelop.pcs configure.files Project.kdevses Doxyfile kipmsg.kdevelop Project.kdevelop.pcs Project.kdevelop stamp-h.in subdirs log conf24126.sh Makefile.cvs kipmsg.kdevses sol10_blastwave_configure.sh libtool_freebsd61.patch Project.kdevelop.filelist 
 

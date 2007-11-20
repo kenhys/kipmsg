@@ -2,11 +2,11 @@ Source: kipmsg
 Section: unknown
 Priority: extra
 Maintainer: root <nikikuni@yahoo.co.jp>
-Build-Depends: debhelper (>= 5), autotools-dev, libipmsg-dev (=0.1.4-1), kdelibs4-dev, kdebase
+Build-Depends: debhelper (>= 5), autotools-dev, libipmsg-dev (=0.1.6-1), kdelibs4-dev, kdebase
 Standards-Version: 3.7.2
 
 Package: kipmsg
 Architecture: any
-Depends: ${shlibs:Depends}, ${misc:Depends}, libipmsg (=0.1.4-1), kdelibs, kdebase
+Depends: ${shlibs:Depends}, ${misc:Depends}, libipmsg (=0.1.6-1), kdelibs, kdebase
 Description: ipmsg for kde
  <insert long description, indented with spaces>
