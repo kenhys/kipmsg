@@ -2492,7 +2492,7 @@ fi
 
 # Define the identity of the package.
  PACKAGE=kipmsg
- VERSION=0.1.7
+ VERSION=0.1.8
 
 
 cat >>confdefs.h <<_ACEOF
