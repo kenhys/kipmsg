@@ -38,6 +38,8 @@ using namespace ipmsg;
 
 class KIpMsgEvent: public IpMessengerEvent {
 	public:
+		virtual void EventBefore();
+		virtual void EventAfter();
 		virtual void RefreshHostListAfter( HostList& hostList );
 		virtual void UpdateHostListAfter( HostList& hostList );
 		virtual bool GetHostListRetryError();
