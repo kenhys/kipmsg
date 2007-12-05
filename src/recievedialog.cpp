@@ -374,13 +374,13 @@ void RecieveDialog::slotEncodingChange( int index )
 	QString IpAddr = msg.Host().IpAddress().c_str();
 	QString UserName = msg.Host().UserName().c_str();
 	for( QStringList::iterator ite = encodings.begin(); ite != encodings.end(); ite++ ){
-		QStringList fields = QStringList::split( ":", *ite );
+		QStringList fields = QStringList::split( "|", *ite );
 		if ( IpAddr == fields[0] && UserName == fields[1] ) {
 			encodings.remove( ite );
 			break;
 		}
 	}
-	encodings << IpAddr + ":" + UserName + ":" + m_EncodingCombobox->text( index );
+	encodings << IpAddr + "|" + UserName + "|" + m_EncodingCombobox->text( index );
 	KIpMessengerLogger::GetInstance()->PutRecivedMessage( msg, TRUE );
 	doResize( NULL );
 }
