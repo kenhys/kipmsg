@@ -22,6 +22,7 @@
 #include <kmessagebox.h>
 #include <klocale.h>
 #include <kwin.h>
+#include <kdebug.h>
 #include <klistview.h>
 #include <qtextcodec.h>
 #include <qlabel.h>
@@ -38,6 +39,26 @@
 
 static KIpMsgNotify *notity = NULL;
 
+/**
+ * 通知イベント開始前イベント
+ * ・GUIスレッドのロック
+ */
+void
+KIpMsgEvent::EventBefore(){
+	if ( kapp != NULL ){
+		kapp->lock();
+	}
+}
+/**
+ * 通知イベント終了後イベント
+ * ・GUIスレッドのアンロック
+ */
+void
+KIpMsgEvent::EventAfter(){
+	if ( kapp != NULL ){
+		kapp->unlock();
+	}
+}
 /**
  * ホストリストリフレッシュ後イベント
  * ・全ての送信ウインドウのホストリストを更新する
@@ -78,9 +99,6 @@ KIpMsgEvent::GetHostListRetryError(){
  */
 bool
 KIpMsgEvent::RecieveAfter( RecievedMessage& msg ){
-	if ( kapp != NULL ){
-		kapp->lock();
-	}
 	if ( !kipmsgWidget::isRecievedOnNonePopup() ) {
 		ShowRecieveMsg( msg );
 	} else {
@@ -95,9 +113,6 @@ KIpMsgEvent::RecieveAfter( RecievedMessage& msg ){
 		hiddenMessages.push_back( msg );
 	}
 	kipmsgWidget::playSound();
-	if ( kapp != NULL ){
-		kapp->unlock();
-	}
 	return true;
 }
 
@@ -118,13 +133,7 @@ KIpMsgEvent::SendAfter( SentMessage& msg ){
  */
 void
 KIpMsgEvent::NotifySendEncryptionFail( HostListItem& host ){
-	if ( kapp != NULL ){
-		kapp->lock();
-	}
 	KMessageBox::sorry( 0, QString( tr2i18n("Can't encryption message.\nMessage was not sent.") ) );
-	if ( kapp != NULL ){
-		kapp->unlock();
-	}
 }
 
 /**
@@ -134,17 +143,8 @@ KIpMsgEvent::NotifySendEncryptionFail( HostListItem& host ){
  */
 bool
 KIpMsgEvent::IsSendContinueOnEncryptionFail( HostListItem& host ){
-	if ( kapp != NULL ){
-		kapp->lock();
-	}
 	if ( KMessageBox::warningContinueCancel( 0, QString( tr2i18n("Can't encryption message.\nIs it send as plain text message?") ) ) == KMessageBox::Continue ){
-		if ( kapp != NULL ){
-			kapp->unlock();
-		}
 		return true;
-	}
-	if ( kapp != NULL ){
-		kapp->unlock();
 	}
 	return false;
 }
@@ -165,17 +165,8 @@ KIpMsgEvent::SendRetryError( SentMessage& msg ){
 		}
 	}
 
-	if ( kapp != NULL ){
-		kapp->lock();
-	}
 	if ( KMessageBox::warningContinueCancel( 0, QString( tr2i18n("Can't send to %1.\nDoes it Retry?") ).arg( toName ) ) == KMessageBox::Continue ){
-		if ( kapp != NULL ){
-			kapp->unlock();
-		}
 		return true;
-	}
-	if ( kapp != NULL ){
-		kapp->unlock();
 	}
 	return false;
 }
@@ -187,9 +178,6 @@ KIpMsgEvent::SendRetryError( SentMessage& msg ){
  */
 void
 KIpMsgEvent::OpenAfter( SentMessage& msg ){
-	if ( kapp != NULL ){
-		kapp->lock();
-	}
 	IpMessengerAgent *IpMsgAgent = IpMessengerAgent::GetInstance();
 	if ( msg.IsSecret() && msg.IsConfirmed() && !msg.IsConfirmAnswered() ) {
 		QString encode("");
@@ -202,7 +190,7 @@ KIpMsgEvent::OpenAfter( SentMessage& msg ){
 		QString IpAddr = msg.Host().IpAddress().c_str();
 		QString UserName = msg.Host().UserName().c_str();
 		for( QStringList::iterator ite = encodings.begin(); ite != encodings.end(); ite++ ){
-			QStringList fields = QStringList::split( ":", *ite );
+			QStringList fields = QStringList::split( "|", *ite );
 			if ( IpAddr == fields[0] && UserName == fields[1] ) {
 				encode = fields[2];
 				break;
@@ -220,9 +208,6 @@ KIpMsgEvent::OpenAfter( SentMessage& msg ){
 			KWin::activateWindow( opendlg->winId() );
 		}
 		confirmDialogs.append(opendlg);
-	}
-	if ( kapp != NULL ){
-		kapp->unlock();
 	}
 }
 
@@ -291,9 +276,6 @@ KIpMsgEvent::DownloadProcessing( RecievedMessage& /*msg*/, AttachFile& file, Dow
  */
 void
 KIpMsgEvent::DownloadEnd( RecievedMessage& msg, AttachFile& file, DownloadInfo& info, void *data ){
-	if ( kapp != NULL ){
-		kapp->lock();
-	}
 	RecieveDialog *recvDlg = static_cast<RecieveDialog *>(data);
 	if ( recvDlg->isOpenSaveDialog() ){
 		DownloadCompleteDialog *dlg = new DownloadCompleteDialog(recvDlg, 0, TRUE);
@@ -302,9 +284,6 @@ KIpMsgEvent::DownloadEnd( RecievedMessage& msg, AttachFile& file, DownloadInfo& 
 		delete dlg;
 	}
 	msg.Files().erase( file );
-	if ( kapp != NULL ){
-		kapp->unlock();
-	}
 }
 
 /**
@@ -337,16 +316,10 @@ KIpMsgEvent::EntryAfter( HostListItem& host ){
 	if ( host.IsLocalHost() || !KIpMsgSettings::notifyOnLoginLogoutAbsence() ) {
 		return;
 	}
-	if ( kapp != NULL ){
-		kapp->lock();
-	}
 	GetHostEncodingFromConfig( host );
 	notity = createNotifyWindow();
 	notity->addLoginMessage( host );
 	notity->show();
-	if ( kapp != NULL ){
-		kapp->unlock();
-	}
 }
 
 /**
@@ -359,16 +332,10 @@ KIpMsgEvent::ExitAfter( HostListItem& host ){
 	if ( host.IsLocalHost() || !KIpMsgSettings::notifyOnLoginLogoutAbsence() ) {
 		return;
 	}
-	if ( kapp != NULL ){
-		kapp->lock();
-	}
 	GetHostEncodingFromConfig( host );
 	notity = createNotifyWindow();
 	notity->addLogoutMessage( host );
 	notity->show();
-	if ( kapp != NULL ){
-		kapp->unlock();
-	}
 }
 
 /**
@@ -382,16 +349,10 @@ KIpMsgEvent::AbsenceModeChangeAfter( HostListItem& host )
 	if ( host.IsLocalHost() || !KIpMsgSettings::notifyOnLoginLogoutAbsence() ) {
 		return;
 	}
-	if ( kapp != NULL ){
-		kapp->lock();
-	}
 	GetHostEncodingFromConfig( host );
 	notity = createNotifyWindow();
 	notity->addAbsenceModeChangeMessage( host );
 	notity->show();
-	if ( kapp != NULL ){
-		kapp->unlock();
-	}
 }
 
 /**
@@ -421,13 +382,7 @@ void KIpMsgEvent::VersionInfoRecieveAfter( HostListItem &host, string version )
 		QTextCodec *codec = QTextCodec::codecForName( host.EncodingName().c_str() );
 		msg = codec->toUnicode( hostInfo.c_str() ) + "\n" + codec->toUnicode( version.c_str() );
 	}
-	if ( kapp != NULL ){
-		kapp->lock();
-	}
 	KMessageBox::information( 0, msg );
-	if ( kapp != NULL ){
-		kapp->unlock();
-	}
 }
 
 /**
@@ -444,13 +399,7 @@ void KIpMsgEvent::AbsenceDetailRecieveAfter( HostListItem &host, string absenceD
 		QTextCodec *codec = QTextCodec::codecForName( host.EncodingName().c_str() );
 		msg = codec->toUnicode( hostInfo.c_str() ) + "\n" + codec->toUnicode( absenceDetail.c_str() );
 	}
-	if ( kapp != NULL ){
-		kapp->lock();
-	}
 	KMessageBox::information( 0, msg );
-	if ( kapp != NULL ){
-		kapp->unlock();
-	}
 }
 
 //Original Methods
@@ -458,10 +407,10 @@ void KIpMsgEvent::AbsenceDetailRecieveAfter( HostListItem &host, string absenceD
 void 
 KIpMsgEvent::GetHostEncodingFromConfig( HostListItem &host )
 {
-	host.setEncodingName( "" );
+	host.setEncodingName( "Shift-JIS" );
 	QStringList encodings = KIpMsgSettings::encodingSettings();
 	for( QStringList::iterator ite = encodings.begin(); ite != encodings.end(); ite++ ){
-		QStringList fields = QStringList::split( ":", *ite );
+		QStringList fields = QStringList::split( "|", *ite );
 		if ( QString( host.IpAddress().c_str() ) == fields[0] && 
 			QString( host.UserName().c_str() ) == fields[1] ) {
 			host.setEncodingName( string( fields[2].data() ) );
@@ -628,9 +577,6 @@ KIpMsgEvent::TimerEvent(){
  */
 void
 KIpMsgEvent::ShowRecieveMsg( RecievedMessage& msg ){
-	if ( kapp != NULL ){
-		kapp->lock();
-	}
 	RecieveDialog *recv = new RecieveDialog(msg,0,0,0);
 	recv->setDownloadFiles();
 	recv->show();
@@ -639,9 +585,6 @@ KIpMsgEvent::ShowRecieveMsg( RecievedMessage& msg ){
 	}
 	KWin::activateWindow( recv->winId() );
 	recieveDialogs.append( recv );
-	if ( kapp != NULL ){
-		kapp->unlock();
-	}
 //	kipmsgWidget::playSound();
 }
 
