@@ -32,6 +32,7 @@
 #include "detailconfig.h"
 #include "logconfig.h"
 #include "unlockpasswordconfig.h"
+#include "hideconfigdialog.h"
 #include "kipmsgsettings.h"
 #include "IpMessenger.h"
 
@@ -111,8 +112,8 @@ void KIPMsgConfigDialog::slotNetworkSetupClicked()
 }
 
 /**
- * 詳細＋ログ設定クリックイベント
- * ・詳細＋ログ設定ダイアログを開く
+ * 詳細設定クリックイベント
+ * ・詳細設定ダイアログを開く
  */
 void KIPMsgConfigDialog::slotDetailSetupClicked()
 {
@@ -121,8 +122,8 @@ void KIPMsgConfigDialog::slotDetailSetupClicked()
 }
 
 /**
- * 詳細＋ログ設定クリックイベント
- * ・詳細＋ログ設定ダイアログを開く
+ * ログ設定クリックイベント
+ * ・ログ設定ダイアログを開く
  */
 void KIPMsgConfigDialog::slotLogSetupClicked()
 {
@@ -148,6 +149,17 @@ void KIPMsgConfigDialog::slotUnlockPasswordSetup()
 	KIPMsgUnlockPasswordConfigDialog *passwordConfig = new KIPMsgUnlockPasswordConfigDialog(this,0,TRUE);
 	passwordConfig->exec();
 }
+
+/**
+ * 隠れる設定クリックイベント
+ * ・隠れる設定ダイアログを開く
+ */
+void KIPMsgConfigDialog::slotHideSetupClicked()
+{
+	HideConfigDialog *hideConfig = new HideConfigDialog(this,0,TRUE);
+	hideConfig->exec();
+}
+
 /**
  * OKクリックイベント
  * ・設定を保存
