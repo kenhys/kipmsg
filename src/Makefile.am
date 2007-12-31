@@ -24,7 +24,9 @@ bin_PROGRAMS = kipmsg
 kipmsg_SOURCES = main.cpp kipmsgwidget.cpp kipmsgwidgetbase.ui \
 							recievedialogbase.ui recievedialog.h recievedialog.cpp senddialogbase.ui senddialog.cpp \
 							senddialog.h kipmsgconfigbase.ui kipmsgconfig.cpp kipmsgconfig.h \
-							detailandlogconfigbase.ui detailandlogconfig.cpp detailandlogconfig.h 	clickableurlconfigbase.ui \
+							detailconfigbase.ui detailconfig.cpp detailconfig.h \
+							logconfigbase.ui logconfig.cpp logconfig.h \
+							clickableurlconfigbase.ui \
 							clickableurlconfig.cpp clickableurlconfig.h 	unlockpasswordconfigbase.ui \
 							unlockpasswordconfig.cpp unlockpasswordconfig.h showconfigbase.ui 	showconfig.cpp showconfig.h \
 							searchboxbase.ui searchbox.cpp searchbox.h aboutbase.ui 	about.cpp about.h \

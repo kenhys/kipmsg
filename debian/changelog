@@ -1,3 +1,9 @@
+kipmsg (0.1.8-1) unstable; urgency=low
+
+  * New upstream release for libipmsg-0.1.7.
+
+ -- root <nikikuni@yahoo.co.jp>  Mon, 31 Dec 2007 01:13:33 +0900
+
 kipmsg (0.1.7-1) unstable; urgency=low
 
   * New upstream release for libipmsg-0.1.6.
