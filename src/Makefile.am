@@ -22,26 +22,33 @@ bin_PROGRAMS = kipmsg
 
 # the application source, library search path, and link libraries
 kipmsg_SOURCES = main.cpp kipmsgwidget.cpp kipmsgwidgetbase.ui \
-							recievedialogbase.ui recievedialog.h recievedialog.cpp senddialogbase.ui senddialog.cpp \
-							senddialog.h kipmsgconfigbase.ui kipmsgconfig.cpp kipmsgconfig.h \
+							recievedialogbase.ui recievedialog.h recievedialog.cpp \
+							senddialogbase.ui senddialog.cpp senddialog.h \
+							kipmsgconfigbase.ui kipmsgconfig.cpp kipmsgconfig.h \
 							detailconfigbase.ui detailconfig.cpp detailconfig.h \
 							logconfigbase.ui logconfig.cpp logconfig.h \
-							clickableurlconfigbase.ui \
-							clickableurlconfig.cpp clickableurlconfig.h 	unlockpasswordconfigbase.ui \
-							unlockpasswordconfig.cpp unlockpasswordconfig.h showconfigbase.ui 	showconfig.cpp showconfig.h \
-							searchboxbase.ui searchbox.cpp searchbox.h aboutbase.ui 	about.cpp about.h \
-							downloadmonitorbase.ui downloadmonitor.cpp downloadmonitor.h 	absenceconfigbase.ui \
-							absenceconfig.cpp absenceconfig.h kipmsgsettings.kcfgc 	encodingconfigbase.ui \
-							encodingconfig.h encodingconfig.cpp openconfirmbase.ui openconfirm.cpp 	openconfirm.h \
-							passworddialog.cpp passworddialog.h passworddialogbase.ui 	attachedfiledialog.cpp \
-							attachedfiledialog.h attachedfiledialogbase.ui 	downloaderrordialog.cpp \
-							downloaderrordialog.h downloaderrordialogbase.ui 	kipmsglogger.cpp kipmsglogger.h \
-							downloadcompletedialog.cpp downloadcompletedialog.h downloadcompletedialogbase.ui 	kipmsgevent.cpp \
-							kipmsgevent.h newabsencenamebase.ui newabsencename.h newabsencename.cpp \
-						kipmsgutils.cpp notifywidgetbase.ui kipmsgnotifybase.ui 		notifywidget.cpp \
-				notifywidget.h 		kipmsgnotify.cpp kipmsgnotify.h networkconfigbase.ui \
-				networkconfig.cpp networkconfig.h priorityconfigbase.ui priorityconfig.cpp \
-	idiomconfigbase.ui idiomconfig.cpp idiomconfig.h
+							clickableurlconfigbase.ui clickableurlconfig.cpp clickableurlconfig.h \
+						 	unlockpasswordconfigbase.ui unlockpasswordconfig.cpp unlockpasswordconfig.h \
+							showconfigbase.ui showconfig.cpp showconfig.h \
+							searchboxbase.ui searchbox.cpp searchbox.h \
+							aboutbase.ui about.cpp about.h \
+							downloadmonitorbase.ui downloadmonitor.cpp downloadmonitor.h \
+							absenceconfigbase.ui absenceconfig.cpp absenceconfig.h \
+							encodingconfigbase.ui encodingconfig.h encodingconfig.cpp \
+							openconfirmbase.ui openconfirm.cpp openconfirm.h \
+							passworddialog.cpp passworddialog.h passworddialogbase.ui \
+							attachedfiledialog.cpp attachedfiledialog.h attachedfiledialogbase.ui \
+							downloaderrordialog.cpp downloaderrordialog.h downloaderrordialogbase.ui \
+							downloadcompletedialog.cpp downloadcompletedialog.h downloadcompletedialogbase.ui \
+							newabsencenamebase.ui newabsencename.h newabsencename.cpp \
+							notifywidgetbase.ui notifywidget.cpp notifywidget.h \
+					 		kipmsgnotifybase.ui kipmsgnotify.cpp kipmsgnotify.h \
+							networkconfigbase.ui networkconfig.cpp networkconfig.h \
+							priorityconfigbase.ui priorityconfig.cpp priorityconfig.h \
+							idiomconfigbase.ui idiomconfig.cpp idiomconfig.h \
+							hideconfigdialogbase.ui hideconfigdialog.cpp hideconfigdialog.h \
+							kipmsgsettings.kcfgc \
+							kipmsglogger.cpp kipmsglogger.h kipmsgevent.cpp kipmsgevent.h kipmsgutils.cpp
 
 
 kipmsg_LDFLAGS = $(KDE_RPATH) $(all_libraries)
