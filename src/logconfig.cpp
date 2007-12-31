@@ -79,9 +79,13 @@ void KIPMsgLogConfigDialog::slotUseExternalLogViewerClicked()
 	if ( m_UseExternalLogViewerCheckbox->isChecked() ) {
 		m_LogViewerButton->setEnabled( TRUE );
 		m_LogViewerPathEditbox->setEnabled( TRUE );
+		m_LogViewerOptionEditbox->setEnabled( TRUE );
+		m_LogViewerOptionLabel->setEnabled( TRUE );
 	} else {
 		m_LogViewerButton->setEnabled( FALSE );
 		m_LogViewerPathEditbox->setEnabled( FALSE );
+		m_LogViewerOptionEditbox->setEnabled( FALSE );
+		m_LogViewerOptionLabel->setEnabled( FALSE );
 	}
 }
 

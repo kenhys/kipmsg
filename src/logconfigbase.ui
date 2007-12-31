@@ -189,25 +189,6 @@
                 <string>Alt+O</string>
             </property>
         </widget>
-        <widget class="QLabel">
-            <property name="name">
-                <cstring>textLabel1</cstring>
-            </property>
-            <property name="geometry">
-                <rect>
-                    <x>16</x>
-                    <y>200</y>
-                    <width>140</width>
-                    <height>20</height>
-                </rect>
-            </property>
-            <property name="text">
-                <string>Command options</string>
-            </property>
-            <property name="alignment">
-                <set>AlignVCenter</set>
-            </property>
-        </widget>
         <widget class="KLineEdit">
             <property name="name">
                 <cstring>m_LogViewerPathEditbox</cstring>
@@ -216,19 +197,6 @@
                 <rect>
                     <x>160</x>
                     <y>170</y>
-                    <width>310</width>
-                    <height>25</height>
-                </rect>
-            </property>
-        </widget>
-        <widget class="KLineEdit">
-            <property name="name">
-                <cstring>m_LogViewerOptionEditbox</cstring>
-            </property>
-            <property name="geometry">
-                <rect>
-                    <x>160</x>
-                    <y>200</y>
                     <width>310</width>
                     <height>25</height>
                 </rect>
@@ -251,6 +219,38 @@
             </property>
             <property name="accel">
                 <string>Alt+E</string>
+            </property>
+        </widget>
+        <widget class="KLineEdit">
+            <property name="name">
+                <cstring>m_LogViewerOptionEditbox</cstring>
+            </property>
+            <property name="geometry">
+                <rect>
+                    <x>160</x>
+                    <y>200</y>
+                    <width>310</width>
+                    <height>25</height>
+                </rect>
+            </property>
+        </widget>
+        <widget class="QLabel">
+            <property name="name">
+                <cstring>m_LogViewerOptionLabel</cstring>
+            </property>
+            <property name="geometry">
+                <rect>
+                    <x>16</x>
+                    <y>200</y>
+                    <width>140</width>
+                    <height>20</height>
+                </rect>
+            </property>
+            <property name="text">
+                <string>Command options</string>
+            </property>
+            <property name="alignment">
+                <set>AlignVCenter</set>
             </property>
         </widget>
     </widget>
