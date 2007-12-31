@@ -19,10 +19,10 @@
  ***************************************************************************/
 
 
-#ifndef _DETAILANDLOGCONFIG_H_
-#define _DETAILANDLOGCONFIG_H_
+#ifndef _DETAILCONFIG_H_
+#define _DETAILCONFIG_H_
 
-#include "detailandlogconfigbase.h"
+#include "detailconfigbase.h"
 
 class KIPMsgDetailConfigDialog : public KIPMsgDetailConfigDialogBase
 {
@@ -38,15 +38,12 @@ public slots:
     virtual void slotRecievedSoundClicked();
     virtual void slotIconClicked();
     virtual void slotAbsenceIconClicked();
-    virtual void slotLogFileClicked();
     virtual void slotOkClicked();
     virtual void slotCancelClicked();
     virtual void slotApplyClicked();
     virtual void slotPlaySoundClicked();
     virtual void slotIconNameChanged(const QString&);
     virtual void slotAbsenceIconNameChanged(const QString&);
-    virtual void slotUseExternalLogViewerClicked();
-    virtual void slotLogViewerClicked();
 
 protected:
     /*$PROTECTED_FUNCTIONS$*/

@@ -19,37 +19,38 @@
  ***************************************************************************/
 
 
-#ifndef _KIPMSGCONFIG_H_
-#define _KIPMSGCONFIG_H_
+#ifndef _LOGCONFIG_H_
+#define _LOGCONFIG_H_
 
-#include "kipmsgconfigbase.h"
+#include "logconfigbase.h"
 
-class KIPMsgConfigDialog : public KIPMsgConfigDialogBase
+class KIPMsgLogConfigDialog : public KIPMsgLogConfigDialogBase
 {
     Q_OBJECT
 
 public:
-    KIPMsgConfigDialog(QWidget* parent = 0, const char* name = 0, WFlags fl = 0 );
-    ~KIPMsgConfigDialog();
+    KIPMsgLogConfigDialog(QWidget* parent = 0, const char* name = 0, WFlags fl = 0 );
+    ~KIPMsgLogConfigDialog();
     /*$PUBLIC_FUNCTIONS$*/
 
 public slots:
     /*$PUBLIC_SLOTS$*/
-    virtual void slotNetworkSetupClicked();
-    virtual void slotDetailSetupClicked();
-    virtual void slotLogSetupClicked();
-    virtual void slotClickableUrlClicked();
-    virtual void slotUnlockPasswordSetup();
+    virtual void slotLogFileClicked();
     virtual void slotOkClicked();
     virtual void slotCancelClicked();
     virtual void slotApplyClicked();
-    virtual void slotNoPopupClicked();
+    virtual void slotUseExternalLogViewerClicked();
+    virtual void slotLogViewerClicked();
 
 protected:
     /*$PROTECTED_FUNCTIONS$*/
 
 protected slots:
     /*$PROTECTED_SLOTS$*/
+
+private:
+	void loadNormalIcon(QString iconFileName);
+	void loadAbsenceIcon(QString iconFileName);
 
 };
 

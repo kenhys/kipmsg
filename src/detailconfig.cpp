@@ -28,7 +28,7 @@
 #include <klocale.h>
 #include <kfiledialog.h>
 
-#include "detailandlogconfig.h"
+#include "detailconfig.h"
 #include "kipmsgsettings.h"
 
 /**
@@ -53,17 +53,6 @@ KIPMsgDetailConfigDialog::KIPMsgDetailConfigDialog(QWidget* parent, const char* 
 	m_RecieveSoundFileNameEditbox->setText( KIpMsgSettings::recieveSoundFileName() );
 	m_IconFileNameEditbox->setText( KIpMsgSettings::iconFileName() );
 	m_AbsenceIconFileNameEditbox->setText( KIpMsgSettings::absenceIconFileName() );
-	//ログ
-	m_LogCheckbox->setChecked( KIpMsgSettings::log() );
-	m_RecordAfterUnlockCheckbox->setChecked( KIpMsgSettings::recordAfterUnlock() );
-	m_RecordLoginCheckbox->setChecked( KIpMsgSettings::recordLogin() );
-	m_RecordIPAddressCheckbox->setChecked( KIpMsgSettings::recordIPAddress() );
-	m_LogFileNameEditbox->setText( KIpMsgSettings::logFileName() );
-
-	m_UseExternalLogViewerCheckbox->setChecked( KIpMsgSettings::useExternalLogViewer() );
-	m_LogViewerPathEditbox->setText( KIpMsgSettings::logViewerPath() );
-	m_LogViewerOptionEditbox->setText( KIpMsgSettings::logViewerOption() );
-	slotUseExternalLogViewerClicked();
 }
 
 /**
@@ -179,37 +168,6 @@ void KIPMsgDetailConfigDialog::loadAbsenceIcon(QString iconFileName){
 }
 
 /**
- * ログファイル選択クリックイベント
- * ・ログファイルをコモンダイアログ(SaveAs)を表示し選択させる。
- */
-void KIPMsgDetailConfigDialog::slotLogFileClicked()
-{
-	QString logFileName = KFileDialog::getSaveFileName();
-	if ( logFileName != "" ) {
-		m_LogFileNameEditbox->setText( logFileName );
-	}
-}
-
-void KIPMsgDetailConfigDialog::slotUseExternalLogViewerClicked()
-{
-	if ( m_UseExternalLogViewerCheckbox->isChecked() ) {
-		m_LogViewerButton->setEnabled( TRUE );
-		m_LogViewerPathEditbox->setEnabled( TRUE );
-	} else {
-		m_LogViewerButton->setEnabled( FALSE );
-		m_LogViewerPathEditbox->setEnabled( FALSE );
-	}
-}
-
-void KIPMsgDetailConfigDialog::slotLogViewerClicked()
-{
-	QString logViewerPath = KFileDialog::getOpenFileName();
-	if ( logViewerPath != "" ) {
-		m_LogViewerPathEditbox->setText( logViewerPath );
-	}
-}
-
-/**
  * OKクリックイベント
  * ・設定を保存してダイアログを閉じる。
  */
@@ -246,19 +204,9 @@ void KIPMsgDetailConfigDialog::slotApplyClicked()
 	KIpMsgSettings::setRecieveSoundFileName( m_RecieveSoundFileNameEditbox->text() );
 	KIpMsgSettings::setIconFileName( m_IconFileNameEditbox->text() );
 	KIpMsgSettings::setAbsenceIconFileName( m_AbsenceIconFileNameEditbox->text() );
-	//ログ
-	KIpMsgSettings::setLog( m_LogCheckbox->isChecked() );
-	KIpMsgSettings::setRecordAfterUnlock( m_RecordAfterUnlockCheckbox->isChecked() );
-	KIpMsgSettings::setRecordLogin( m_RecordLoginCheckbox->isChecked() );
-	KIpMsgSettings::setRecordIPAddress( m_RecordIPAddressCheckbox->isChecked() );
-	KIpMsgSettings::setLogFileName( m_LogFileNameEditbox->text() );
-
-	KIpMsgSettings::setUseExternalLogViewer( m_UseExternalLogViewerCheckbox->isChecked() );
-	KIpMsgSettings::setLogViewerPath( m_LogViewerPathEditbox->text() );
-	KIpMsgSettings::setLogViewerOption( m_LogViewerOptionEditbox->text() );
 
 	KIpMsgSettings::writeConfig();
 }
 
-#include "detailandlogconfig.moc"
+#include "detailconfig.moc"
 

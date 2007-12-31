@@ -29,7 +29,8 @@
 #include "kipmsgconfig.h"
 #include "networkconfig.h"
 #include "clickableurlconfig.h"
-#include "detailandlogconfig.h"
+#include "detailconfig.h"
+#include "logconfig.h"
 #include "unlockpasswordconfig.h"
 #include "kipmsgsettings.h"
 #include "IpMessenger.h"
@@ -113,11 +114,22 @@ void KIPMsgConfigDialog::slotNetworkSetupClicked()
  * 詳細＋ログ設定クリックイベント
  * ・詳細＋ログ設定ダイアログを開く
  */
-void KIPMsgConfigDialog::slotDetailAndLogSetupClicked()
+void KIPMsgConfigDialog::slotDetailSetupClicked()
 {
 	KIPMsgDetailConfigDialog *detailConfig = new KIPMsgDetailConfigDialog(this,0,TRUE);
 	detailConfig->exec();
 }
+
+/**
+ * 詳細＋ログ設定クリックイベント
+ * ・詳細＋ログ設定ダイアログを開く
+ */
+void KIPMsgConfigDialog::slotLogSetupClicked()
+{
+	KIPMsgLogConfigDialog *logConfig = new KIPMsgLogConfigDialog(this,0,TRUE);
+	logConfig->exec();
+}
+
 /**
  * クリッカブルURLクリックイベント
  * ・クリッカブルURL設定ダイアログを開く
