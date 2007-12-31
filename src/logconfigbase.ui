@@ -384,6 +384,10 @@
     <tabstop>m_RecordIPAddressCheckbox</tabstop>
     <tabstop>m_LogFileButton</tabstop>
     <tabstop>m_LogFileNameEditbox</tabstop>
+    <tabstop>m_UseExternalLogViewerCheckbox</tabstop>
+    <tabstop>m_LogViewerButton</tabstop>
+    <tabstop>m_LogViewerPathEditbox</tabstop>
+    <tabstop>m_LogViewerOptionEditbox</tabstop>
     <tabstop>m_OKButton</tabstop>
     <tabstop>m_CancelButton</tabstop>
     <tabstop>m_ApplyButton</tabstop>

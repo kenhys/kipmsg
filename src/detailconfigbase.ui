@@ -529,15 +529,16 @@ icon</string>
 </connections>
 <tabstops>
     <tabstop>m_IMEAutomaticalyCheckbox</tabstop>
+    <tabstop>m_HotKeyCheckbox</tabstop>
     <tabstop>m_ConfirmIconCheckbox</tabstop>
     <tabstop>m_NoHideCheckbox</tabstop>
-    <tabstop>m_HotKeyCheckbox</tabstop>
     <tabstop>m_FireInterceptCheckbox</tabstop>
     <tabstop>m_OpenBySingleClickCheckbox</tabstop>
     <tabstop>m_NonePopupOnAbsenceCheckbox</tabstop>
     <tabstop>m_QuoteCharEditbox</tabstop>
     <tabstop>m_RecieveSoundButton</tabstop>
     <tabstop>m_RecieveSoundFileNameEditbox</tabstop>
+    <tabstop>m_PlayButton</tabstop>
     <tabstop>m_IconButton</tabstop>
     <tabstop>m_IconFileNameEditbox</tabstop>
     <tabstop>m_AbsenceIconButton</tabstop>
