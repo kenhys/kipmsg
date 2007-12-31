@@ -40,6 +40,7 @@ public slots:
     virtual void slotLogSetupClicked();
     virtual void slotClickableUrlClicked();
     virtual void slotUnlockPasswordSetup();
+    virtual void slotHideSetupClicked();
     virtual void slotOkClicked();
     virtual void slotCancelClicked();
     virtual void slotApplyClicked();
