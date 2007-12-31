@@ -1,3 +1,10 @@
+2008-01-01 Niki, Kuninobu <nikikuni@yahoo.co.jp>
+Update:Add Hide hosts config dialog.
+
+2007-12-31 Niki, Kuninobu <nikikuni@yahoo.co.jp>
+Update:Separate Detail / Log config dialog.
+Fix:Enable/Disable option Textbox.
+
 2007-11-18 Niki, Kuninobu <nikikuni@yahoo.co.jp>
 - Fix:Change API Name RefreashHostListAfter to RefreshHostListAfter.
 - Update:Respond multithread.
