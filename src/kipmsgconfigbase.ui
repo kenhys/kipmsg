@@ -1062,6 +1062,12 @@
         <receiver>KIPMsgConfigDialogBase</receiver>
         <slot>slotDetailSetupClicked()</slot>
     </connection>
+    <connection>
+        <sender>m_HideConfigButton</sender>
+        <signal>clicked()</signal>
+        <receiver>KIPMsgConfigDialogBase</receiver>
+        <slot>slotHideSetupClicked()</slot>
+    </connection>
 </connections>
 <tabstops>
     <tabstop>m_UserNameEditbox</tabstop>
@@ -1076,9 +1082,11 @@
     <tabstop>m_HideEncryptionNotSupportedHostCheckbox</tabstop>
     <tabstop>m_NoSendOnEncryptionFaildCheckbox</tabstop>
     <tabstop>m_NetworkConfigButton</tabstop>
+    <tabstop>m_DetailConfigButton</tabstop>
     <tabstop>m_LogConfigButton</tabstop>
     <tabstop>m_ClickableURLConfigButton</tabstop>
     <tabstop>m_UnlockPasswordConfigButton</tabstop>
+    <tabstop>m_HideConfigButton</tabstop>
     <tabstop>m_MessageEncodingCombobox</tabstop>
     <tabstop>m_LocalFilesystemEncodingCombobox</tabstop>
     <tabstop>m_OKButton</tabstop>
@@ -1097,6 +1105,7 @@
     <slot>slotNoPopupClicked()</slot>
     <slot>slotNetworkSetupClicked()</slot>
     <slot>slotLogSetupClicked()</slot>
+    <slot>slotHideSetupClicked()</slot>
 </slots>
 <layoutdefaults spacing="6" margin="11"/>
 <includehints>
