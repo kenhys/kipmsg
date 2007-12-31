@@ -389,4 +389,21 @@
       <default>false</default>
     </entry>
   </group>
+  <group name="hide">
+    <entry name="HideFromHiddenHosts" type="Bool">
+      <label>Defines enabled hide from hidden hosts.</label>
+      <default>false</default>
+    </entry>
+    <entry name="HideFromEncryptionNotSupportedHosts" type="Bool">
+      <label>Defines enabled hide from encryption not supported hosts.</label>
+      <default>false</default>
+    </entry>
+    <entry name="HideFromSpecifiedHosts" type="Bool">
+      <label>Defines enabled hide from specified hosts.</label>
+      <default>false</default>
+    </entry>
+    <entry name="HideFromSpecifiedHostList" type="StringList">
+      <label>Defines enabled hide from specified host list.</label>
+    </entry>
+  </group>
 </kcfg>
