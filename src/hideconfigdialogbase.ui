@@ -8,26 +8,26 @@
         <rect>
             <x>0</x>
             <y>0</y>
-            <width>650</width>
-            <height>440</height>
+            <width>750</width>
+            <height>600</height>
         </rect>
     </property>
     <property name="minimumSize">
         <size>
-            <width>650</width>
-            <height>440</height>
+            <width>750</width>
+            <height>600</height>
         </size>
     </property>
     <property name="maximumSize">
         <size>
-            <width>650</width>
-            <height>440</height>
+            <width>750</width>
+            <height>600</height>
         </size>
     </property>
     <property name="baseSize">
         <size>
             <width>650</width>
-            <height>440</height>
+            <height>750</height>
         </size>
     </property>
     <property name="caption">
@@ -42,10 +42,10 @@
         </property>
         <property name="geometry">
             <rect>
-                <x>10</x>
-                <y>390</y>
-                <width>631</width>
-                <height>51</height>
+                <x>20</x>
+                <y>560</y>
+                <width>720</width>
+                <height>40</height>
             </rect>
         </property>
         <property name="frameShape">
@@ -56,21 +56,24 @@
         </property>
         <widget class="KPushButton">
             <property name="name">
-                <cstring>m_ApplyButton</cstring>
+                <cstring>m_OKButton</cstring>
             </property>
             <property name="geometry">
                 <rect>
-                    <x>510</x>
-                    <y>10</y>
+                    <x>250</x>
+                    <y>0</y>
                     <width>110</width>
                     <height>31</height>
                 </rect>
             </property>
             <property name="text">
-                <string>&amp;Apply</string>
+                <string>&amp;OK</string>
             </property>
             <property name="accel">
-                <string>Alt+A</string>
+                <string>Alt+O</string>
+            </property>
+            <property name="default">
+                <bool>true</bool>
             </property>
         </widget>
         <widget class="KPushButton">
@@ -79,8 +82,8 @@
             </property>
             <property name="geometry">
                 <rect>
-                    <x>330</x>
-                    <y>10</y>
+                    <x>380</x>
+                    <y>0</y>
                     <width>110</width>
                     <height>31</height>
                 </rect>
@@ -97,24 +100,21 @@
         </widget>
         <widget class="KPushButton">
             <property name="name">
-                <cstring>m_OKButton</cstring>
+                <cstring>m_ApplyButton</cstring>
             </property>
             <property name="geometry">
                 <rect>
-                    <x>200</x>
-                    <y>10</y>
+                    <x>610</x>
+                    <y>0</y>
                     <width>110</width>
                     <height>31</height>
                 </rect>
             </property>
             <property name="text">
-                <string>&amp;OK</string>
+                <string>&amp;Apply</string>
             </property>
             <property name="accel">
-                <string>Alt+O</string>
-            </property>
-            <property name="default">
-                <bool>true</bool>
+                <string>Alt+A</string>
             </property>
         </widget>
     </widget>
@@ -126,32 +126,13 @@
             <rect>
                 <x>10</x>
                 <y>10</y>
-                <width>630</width>
-                <height>380</height>
+                <width>730</width>
+                <height>540</height>
             </rect>
         </property>
         <property name="title">
             <string>Hide from ...</string>
         </property>
-        <widget class="QCheckBox">
-            <property name="name">
-                <cstring>m_HiddenHostsCheckBox</cstring>
-            </property>
-            <property name="geometry">
-                <rect>
-                    <x>20</x>
-                    <y>30</y>
-                    <width>600</width>
-                    <height>20</height>
-                </rect>
-            </property>
-            <property name="text">
-                <string>Hidde&amp;n hosts.</string>
-            </property>
-            <property name="accel">
-                <string>Alt+N</string>
-            </property>
-        </widget>
         <widget class="QCheckBox">
             <property name="name">
                 <cstring>m_EncriptionNotSupporedHostsCheckBox</cstring>
@@ -160,7 +141,7 @@
                 <rect>
                     <x>20</x>
                     <y>60</y>
-                    <width>600</width>
+                    <width>700</width>
                     <height>20</height>
                 </rect>
             </property>
@@ -171,6 +152,25 @@
                 <string>Alt+Y</string>
             </property>
         </widget>
+        <widget class="QCheckBox">
+            <property name="name">
+                <cstring>m_HiddenHostsCheckBox</cstring>
+            </property>
+            <property name="geometry">
+                <rect>
+                    <x>20</x>
+                    <y>30</y>
+                    <width>700</width>
+                    <height>20</height>
+                </rect>
+            </property>
+            <property name="text">
+                <string>Hidde&amp;n hosts.</string>
+            </property>
+            <property name="accel">
+                <string>Alt+N</string>
+            </property>
+        </widget>
         <widget class="QGroupBox">
             <property name="name">
                 <cstring>groupBox35</cstring>
@@ -178,60 +178,28 @@
             <property name="geometry">
                 <rect>
                     <x>10</x>
-                    <y>100</y>
-                    <width>610</width>
-                    <height>270</height>
+                    <y>90</y>
+                    <width>710</width>
+                    <height>440</height>
                 </rect>
             </property>
             <property name="title">
                 <string>Specified hosts</string>
             </property>
-            <widget class="QLabel">
+            <widget class="KPushButton">
                 <property name="name">
-                    <cstring>m_AddressLabel</cstring>
+                    <cstring>m_DeleteAddressButton</cstring>
                 </property>
                 <property name="geometry">
                     <rect>
-                        <x>20</x>
-                        <y>100</y>
-                        <width>210</width>
-                        <height>21</height>
+                        <x>360</x>
+                        <y>90</y>
+                        <width>40</width>
+                        <height>30</height>
                     </rect>
                 </property>
                 <property name="text">
-                    <string>IP Address</string>
-                </property>
-            </widget>
-            <widget class="KListBox">
-                <property name="name">
-                    <cstring>m_AddressListBox</cstring>
-                </property>
-                <property name="geometry">
-                    <rect>
-                        <x>300</x>
-                        <y>40</y>
-                        <width>300</width>
-                        <height>220</height>
-                    </rect>
-                </property>
-            </widget>
-            <widget class="QCheckBox">
-                <property name="name">
-                    <cstring>m_EnableSpecifiedHostsCheckBox</cstring>
-                </property>
-                <property name="geometry">
-                    <rect>
-                        <x>10</x>
-                        <y>30</y>
-                        <width>280</width>
-                        <height>20</height>
-                    </rect>
-                </property>
-                <property name="text">
-                    <string>Ena&amp;ble specified hosts.</string>
-                </property>
-                <property name="accel">
-                    <string>Alt+B</string>
+                    <string>&lt;&lt;</string>
                 </property>
             </widget>
             <widget class="KPushButton">
@@ -240,9 +208,9 @@
                 </property>
                 <property name="geometry">
                     <rect>
-                        <x>240</x>
-                        <y>110</y>
-                        <width>50</width>
+                        <x>360</x>
+                        <y>50</y>
+                        <width>40</width>
                         <height>31</height>
                     </rect>
                 </property>
@@ -250,20 +218,52 @@
                     <string>&gt;&gt;</string>
                 </property>
             </widget>
-            <widget class="KPushButton">
+            <widget class="KListBox">
                 <property name="name">
-                    <cstring>m_DeleteAddressButton</cstring>
+                    <cstring>m_AddressListBox</cstring>
                 </property>
                 <property name="geometry">
                     <rect>
-                        <x>240</x>
-                        <y>150</y>
-                        <width>50</width>
-                        <height>31</height>
+                        <x>410</x>
+                        <y>50</y>
+                        <width>290</width>
+                        <height>380</height>
+                    </rect>
+                </property>
+            </widget>
+            <widget class="QCheckBox">
+                <property name="name">
+                    <cstring>m_EnableHideFromSpecifiedHostsCheckBox</cstring>
+                </property>
+                <property name="geometry">
+                    <rect>
+                        <x>10</x>
+                        <y>30</y>
+                        <width>690</width>
+                        <height>20</height>
                     </rect>
                 </property>
                 <property name="text">
-                    <string>&lt;&lt;</string>
+                    <string>Enable hide fro&amp;m specified hosts.</string>
+                </property>
+                <property name="accel">
+                    <string>Alt+M</string>
+                </property>
+            </widget>
+            <widget class="QLabel">
+                <property name="name">
+                    <cstring>m_AddressLabel</cstring>
+                </property>
+                <property name="geometry">
+                    <rect>
+                        <x>20</x>
+                        <y>50</y>
+                        <width>320</width>
+                        <height>21</height>
+                    </rect>
+                </property>
+                <property name="text">
+                    <string>IP Address</string>
                 </property>
             </widget>
             <widget class="KLineEdit">
@@ -272,11 +272,65 @@
                 </property>
                 <property name="geometry">
                     <rect>
-                        <x>20</x>
-                        <y>130</y>
-                        <width>210</width>
+                        <x>10</x>
+                        <y>70</y>
+                        <width>340</width>
                         <height>25</height>
                     </rect>
+                </property>
+            </widget>
+            <widget class="KPushButton">
+                <property name="name">
+                    <cstring>m_CopyIPAddressButton</cstring>
+                </property>
+                <property name="geometry">
+                    <rect>
+                        <x>130</x>
+                        <y>400</y>
+                        <width>221</width>
+                        <height>31</height>
+                    </rect>
+                </property>
+                <property name="text">
+                    <string>Copy to IP Address</string>
+                </property>
+            </widget>
+            <widget class="KListView">
+                <property name="name">
+                    <cstring>m_HostsListView</cstring>
+                </property>
+                <property name="geometry">
+                    <rect>
+                        <x>10</x>
+                        <y>130</y>
+                        <width>340</width>
+                        <height>260</height>
+                    </rect>
+                </property>
+                <property name="allColumnsShowFocus">
+                    <bool>true</bool>
+                </property>
+                <property name="showSortIndicator">
+                    <bool>true</bool>
+                </property>
+                <property name="resizeMode">
+                    <enum>AllColumns</enum>
+                </property>
+            </widget>
+            <widget class="QLabel">
+                <property name="name">
+                    <cstring>m_LoginHostLabel</cstring>
+                </property>
+                <property name="geometry">
+                    <rect>
+                        <x>20</x>
+                        <y>100</y>
+                        <width>330</width>
+                        <height>21</height>
+                    </rect>
+                </property>
+                <property name="text">
+                    <string>Login host</string>
                 </property>
             </widget>
         </widget>
@@ -319,12 +373,38 @@
         <slot>slotOKClicked()</slot>
     </connection>
     <connection>
-        <sender>m_EnableSpecifiedHostsCheckBox</sender>
+        <sender>m_EnableHideFromSpecifiedHostsCheckBox</sender>
         <signal>clicked()</signal>
         <receiver>HideConfigDialogBase</receiver>
         <slot>slotEnableSpecifiedHostClicked()</slot>
     </connection>
+    <connection>
+        <sender>m_CopyIPAddressButton</sender>
+        <signal>clicked()</signal>
+        <receiver>HideConfigDialogBase</receiver>
+        <slot>slotCopyIPAddressClicked()</slot>
+    </connection>
+    <connection>
+        <sender>m_HostsListView</sender>
+        <signal>selectionChanged()</signal>
+        <receiver>HideConfigDialogBase</receiver>
+        <slot>slotIPAddressListViewSelectionChanged()</slot>
+    </connection>
 </connections>
+<tabstops>
+    <tabstop>m_HiddenHostsCheckBox</tabstop>
+    <tabstop>m_EncriptionNotSupporedHostsCheckBox</tabstop>
+    <tabstop>m_EnableHideFromSpecifiedHostsCheckBox</tabstop>
+    <tabstop>m_AddressEditbox</tabstop>
+    <tabstop>m_HostsListView</tabstop>
+    <tabstop>m_AddAddressButton</tabstop>
+    <tabstop>m_DeleteAddressButton</tabstop>
+    <tabstop>m_AddressListBox</tabstop>
+    <tabstop>m_CopyIPAddressButton</tabstop>
+    <tabstop>m_OKButton</tabstop>
+    <tabstop>m_CancelButton</tabstop>
+    <tabstop>m_ApplyButton</tabstop>
+</tabstops>
 <slots>
     <slot>slotAddHideAddressClicked()</slot>
     <slot>slotDeleteHideAddressClicked()</slot>
@@ -332,15 +412,19 @@
     <slot>slotCancelClicked()</slot>
     <slot>slotApplyClicked()</slot>
     <slot>slotEnableSpecifiedHostClicked()</slot>
+    <slot>slotCopyIPAddressClicked()</slot>
+    <slot>slotIPAddressListViewSelectionChanged()</slot>
 </slots>
 <layoutdefaults spacing="6" margin="11"/>
 <includehints>
     <includehint>kpushbutton.h</includehint>
     <includehint>kpushbutton.h</includehint>
     <includehint>kpushbutton.h</includehint>
+    <includehint>kpushbutton.h</includehint>
+    <includehint>kpushbutton.h</includehint>
     <includehint>klistbox.h</includehint>
-    <includehint>kpushbutton.h</includehint>
-    <includehint>kpushbutton.h</includehint>
     <includehint>klineedit.h</includehint>
+    <includehint>kpushbutton.h</includehint>
+    <includehint>klistview.h</includehint>
 </includehints>
 </UI>
