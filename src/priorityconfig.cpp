@@ -105,8 +105,19 @@ void PriorityConfigForm::slotAddPriorityClicked()
 		KMessageBox::sorry( 0, tr2i18n( "This character \"X\" was reserved." ), "KIpMessenger" );
 		return;
 	}
-	m_PriorityListBox->insertItem( m_PriorityEdit->text() );
-	m_PriorityListBox->setSelected( m_PriorityListBox->count() - 1, TRUE );
+	QString insertText = m_PriorityEdit->text();
+	bool isFound = false;
+	for( unsigned int i = 0; i < m_PriorityListBox->count(); i++ ){
+		if ( insertText == m_PriorityListBox->item( i )->text() ) {
+			m_PriorityListBox->setSelected( i, TRUE );
+			isFound = true;
+			break;
+		}
+	}
+	if ( !isFound ){
+		m_PriorityListBox->insertItem( m_PriorityEdit->text() );
+		m_PriorityListBox->setSelected( m_PriorityListBox->count() - 1, TRUE );
+	}
 	m_PriorityEdit->setText("");
 }
 

@@ -121,8 +121,19 @@ void NetworkConfig::slotAddBroadcastAddressClicked()
 	if ( m_IpAddressOrFQDNEditbox->text() == "" ) {
 		return;
 	}
-	m_BroadcastListbox->insertItem( m_IpAddressOrFQDNEditbox->text() );
-	m_BroadcastListbox->setSelected( m_BroadcastListbox->count() - 1, TRUE );
+	QString insertText = m_IpAddressOrFQDNEditbox->text();
+	bool isFound = false;
+	for( unsigned int i = 0; i < m_BroadcastListbox->count(); i++ ){
+		if ( insertText == m_BroadcastListbox->item( i )->text() ) {
+			m_BroadcastListbox->setSelected( i, TRUE );
+			isFound = true;
+			break;
+		}
+	}
+	if ( !isFound ){
+		m_BroadcastListbox->insertItem( m_IpAddressOrFQDNEditbox->text() );
+		m_BroadcastListbox->setSelected( m_BroadcastListbox->count() - 1, TRUE );
+	}
 	m_IpAddressOrFQDNEditbox->setText("");
 }
 /**
