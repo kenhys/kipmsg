@@ -32,6 +32,7 @@ public:
     HideConfigDialog(QWidget* parent = 0, const char* name = 0, WFlags fl = 0 );
     ~HideConfigDialog();
     /*$PUBLIC_FUNCTIONS$*/
+	static void SetupHideHosts();
 
 public slots:
     /*$PUBLIC_SLOTS$*/
@@ -44,6 +45,8 @@ protected:
     virtual void slotCancelClicked();
     virtual void slotApplyClicked();
     virtual void slotEnableSpecifiedHostClicked();
+    virtual void slotCopyIPAddressClicked();
+    virtual void slotIPAddressListViewSelectionChanged();
 
 protected slots:
     /*$PROTECTED_SLOTS$*/
