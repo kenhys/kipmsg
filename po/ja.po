@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ja\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2007-12-31 18:53+0900\n"
-"PO-Revision-Date: 2007-12-31 18:55+0900\n"
+"POT-Creation-Date: 2008-01-03 11:14+0900\n"
+"PO-Revision-Date: 2008-01-03 11:15+0900\n"
 "Last-Translator: \n"
 "Language-Team:  <ja@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -25,22 +25,24 @@ msgid "http://www.ipms&g.org"
 msgstr "http://www.ipmsg.org"
 
 #: ../src/aboutbase.cpp:181 ../src/absenceconfigbase.cpp:254
-#: ../src/kipmsgconfigbase.cpp:409 ../src/logconfigbase.cpp:192
+#: ../src/kipmsgconfigbase.cpp:412 ../src/logconfigbase.cpp:196
 #: ../src/showconfigbase.cpp:239
 msgid "Alt+G"
 msgstr "Alt+G"
 
 #: ../src/aboutbase.cpp:182 ../src/encodingconfigbase.cpp:168
-#: ../src/idiomconfigbase.cpp:148 ../src/kipmsgconfigbase.cpp:401
-#: ../src/networkconfigbase.cpp:207 ../src/newabsencenamebase.cpp:121
+#: ../src/hideconfigdialogbase.cpp:226 ../src/idiomconfigbase.cpp:148
+#: ../src/kipmsgconfigbase.cpp:404 ../src/networkconfigbase.cpp:207
+#: ../src/newabsencenamebase.cpp:121
 msgid "&OK"
 msgstr "OK"
 
-#: ../src/aboutbase.cpp:183 ../src/detailconfigbase.cpp:241
-#: ../src/encodingconfigbase.cpp:169 ../src/idiomconfigbase.cpp:149
-#: ../src/kipmsgconfigbase.cpp:402 ../src/logconfigbase.cpp:196
-#: ../src/networkconfigbase.cpp:208 ../src/newabsencenamebase.cpp:122
-#: ../src/recievedialogbase.cpp:265 ../src/showconfigbase.cpp:224
+#: ../src/aboutbase.cpp:183 ../src/detailconfigbase.cpp:242
+#: ../src/encodingconfigbase.cpp:169 ../src/hideconfigdialogbase.cpp:227
+#: ../src/idiomconfigbase.cpp:149 ../src/kipmsgconfigbase.cpp:405
+#: ../src/logconfigbase.cpp:200 ../src/networkconfigbase.cpp:208
+#: ../src/newabsencenamebase.cpp:122 ../src/recievedialogbase.cpp:265
+#: ../src/showconfigbase.cpp:224
 msgid "Alt+O"
 msgstr "Alt+O"
 
@@ -92,12 +94,12 @@ msgid "&Add"
 msgstr "追加"
 
 #: ../src/absenceconfigbase.cpp:202 ../src/attachedfiledialogbase.cpp:211
-#: ../src/detailconfigbase.cpp:235 ../src/encodingconfigbase.cpp:167
-#: ../src/idiomconfigbase.cpp:146 ../src/kipmsgconfigbase.cpp:400
-#: ../src/logconfigbase.cpp:188 ../src/networkconfigbase.cpp:206
-#: ../src/newabsencenamebase.cpp:120 ../src/priorityconfigbase.cpp:105
-#: ../src/searchboxbase.cpp:134 ../src/showconfigbase.cpp:216
-#: ../src/unlockpasswordconfigbase.cpp:167
+#: ../src/detailconfigbase.cpp:236 ../src/encodingconfigbase.cpp:167
+#: ../src/hideconfigdialogbase.cpp:231 ../src/idiomconfigbase.cpp:146
+#: ../src/kipmsgconfigbase.cpp:403 ../src/logconfigbase.cpp:192
+#: ../src/networkconfigbase.cpp:206 ../src/newabsencenamebase.cpp:120
+#: ../src/priorityconfigbase.cpp:105 ../src/searchboxbase.cpp:134
+#: ../src/showconfigbase.cpp:216 ../src/unlockpasswordconfigbase.cpp:167
 msgid "Alt+A"
 msgstr "Alt+A"
 
@@ -111,247 +113,247 @@ msgid "Alt+D"
 msgstr "Alt+D"
 
 #: ../src/absenceconfigbase.cpp:208 ../src/encodingconfigbase.cpp:174
-#: ../src/kipmsgconfigbase.cpp:289 ../src/kipmsgconfigbase.cpp:334
+#: ../src/kipmsgconfigbase.cpp:292 ../src/kipmsgconfigbase.cpp:337
 #: ../src/recievedialogbase.cpp:219 ../src/senddialogbase.cpp:233
 msgid "Big5"
 msgstr "Big5"
 
 #: ../src/absenceconfigbase.cpp:209 ../src/encodingconfigbase.cpp:175
-#: ../src/kipmsgconfigbase.cpp:290 ../src/kipmsgconfigbase.cpp:335
+#: ../src/kipmsgconfigbase.cpp:293 ../src/kipmsgconfigbase.cpp:338
 #: ../src/recievedialogbase.cpp:220 ../src/senddialogbase.cpp:234
 msgid "Big5-HKSCS"
 msgstr "Big5-HKSCS"
 
 #: ../src/absenceconfigbase.cpp:210 ../src/encodingconfigbase.cpp:176
-#: ../src/kipmsgconfigbase.cpp:291 ../src/kipmsgconfigbase.cpp:336
+#: ../src/kipmsgconfigbase.cpp:294 ../src/kipmsgconfigbase.cpp:339
 #: ../src/recievedialogbase.cpp:221 ../src/senddialogbase.cpp:235
 msgid "eucJP"
 msgstr "eucJP"
 
 #: ../src/absenceconfigbase.cpp:211 ../src/encodingconfigbase.cpp:177
-#: ../src/kipmsgconfigbase.cpp:292 ../src/kipmsgconfigbase.cpp:337
+#: ../src/kipmsgconfigbase.cpp:295 ../src/kipmsgconfigbase.cpp:340
 #: ../src/recievedialogbase.cpp:222 ../src/senddialogbase.cpp:236
 msgid "eucKR"
 msgstr "eucKR"
 
 #: ../src/absenceconfigbase.cpp:212 ../src/encodingconfigbase.cpp:178
-#: ../src/kipmsgconfigbase.cpp:293 ../src/kipmsgconfigbase.cpp:338
+#: ../src/kipmsgconfigbase.cpp:296 ../src/kipmsgconfigbase.cpp:341
 #: ../src/recievedialogbase.cpp:223 ../src/senddialogbase.cpp:237
 msgid "GB2312"
 msgstr "GB2312"
 
 #: ../src/absenceconfigbase.cpp:213 ../src/encodingconfigbase.cpp:179
-#: ../src/kipmsgconfigbase.cpp:294 ../src/kipmsgconfigbase.cpp:339
+#: ../src/kipmsgconfigbase.cpp:297 ../src/kipmsgconfigbase.cpp:342
 #: ../src/recievedialogbase.cpp:224 ../src/senddialogbase.cpp:238
 msgid "GBK"
 msgstr "GBK"
 
 #: ../src/absenceconfigbase.cpp:214 ../src/encodingconfigbase.cpp:180
-#: ../src/kipmsgconfigbase.cpp:295 ../src/kipmsgconfigbase.cpp:340
+#: ../src/kipmsgconfigbase.cpp:298 ../src/kipmsgconfigbase.cpp:343
 #: ../src/recievedialogbase.cpp:225 ../src/senddialogbase.cpp:239
 msgid "GB18030"
 msgstr "GB18030"
 
 #: ../src/absenceconfigbase.cpp:215 ../src/encodingconfigbase.cpp:181
-#: ../src/kipmsgconfigbase.cpp:296 ../src/kipmsgconfigbase.cpp:341
+#: ../src/kipmsgconfigbase.cpp:299 ../src/kipmsgconfigbase.cpp:344
 #: ../src/recievedialogbase.cpp:226 ../src/senddialogbase.cpp:240
 msgid "JIS7"
 msgstr "JIS7"
 
 #: ../src/absenceconfigbase.cpp:216 ../src/encodingconfigbase.cpp:182
-#: ../src/kipmsgconfigbase.cpp:297 ../src/kipmsgconfigbase.cpp:342
+#: ../src/kipmsgconfigbase.cpp:300 ../src/kipmsgconfigbase.cpp:345
 #: ../src/recievedialogbase.cpp:227 ../src/senddialogbase.cpp:241
 msgid "Shift-JIS"
 msgstr "Shift-JIS"
 
 #: ../src/absenceconfigbase.cpp:217 ../src/encodingconfigbase.cpp:183
-#: ../src/kipmsgconfigbase.cpp:298 ../src/kipmsgconfigbase.cpp:343
+#: ../src/kipmsgconfigbase.cpp:301 ../src/kipmsgconfigbase.cpp:346
 #: ../src/recievedialogbase.cpp:228 ../src/senddialogbase.cpp:242
 msgid "TSCII"
 msgstr "TSCII"
 
 #: ../src/absenceconfigbase.cpp:218 ../src/encodingconfigbase.cpp:184
-#: ../src/kipmsgconfigbase.cpp:299 ../src/kipmsgconfigbase.cpp:344
+#: ../src/kipmsgconfigbase.cpp:302 ../src/kipmsgconfigbase.cpp:347
 #: ../src/recievedialogbase.cpp:229 ../src/senddialogbase.cpp:243
 msgid "utf8"
 msgstr "utf8"
 
 #: ../src/absenceconfigbase.cpp:219 ../src/encodingconfigbase.cpp:185
-#: ../src/kipmsgconfigbase.cpp:300 ../src/kipmsgconfigbase.cpp:345
+#: ../src/kipmsgconfigbase.cpp:303 ../src/kipmsgconfigbase.cpp:348
 #: ../src/recievedialogbase.cpp:230 ../src/senddialogbase.cpp:244
 msgid "KOI8-R"
 msgstr "KOI8-R"
 
 #: ../src/absenceconfigbase.cpp:220 ../src/encodingconfigbase.cpp:186
-#: ../src/kipmsgconfigbase.cpp:301 ../src/kipmsgconfigbase.cpp:346
+#: ../src/kipmsgconfigbase.cpp:304 ../src/kipmsgconfigbase.cpp:349
 #: ../src/recievedialogbase.cpp:231 ../src/senddialogbase.cpp:245
 msgid "KOI8-U"
 msgstr "KOI8-U"
 
 #: ../src/absenceconfigbase.cpp:221 ../src/encodingconfigbase.cpp:187
-#: ../src/kipmsgconfigbase.cpp:302 ../src/kipmsgconfigbase.cpp:347
+#: ../src/kipmsgconfigbase.cpp:305 ../src/kipmsgconfigbase.cpp:350
 #: ../src/recievedialogbase.cpp:232 ../src/senddialogbase.cpp:246
 msgid "ISO8859-1"
 msgstr "ISO8859-1"
 
 #: ../src/absenceconfigbase.cpp:222 ../src/encodingconfigbase.cpp:188
-#: ../src/kipmsgconfigbase.cpp:303 ../src/kipmsgconfigbase.cpp:348
+#: ../src/kipmsgconfigbase.cpp:306 ../src/kipmsgconfigbase.cpp:351
 #: ../src/recievedialogbase.cpp:233 ../src/senddialogbase.cpp:247
 msgid "ISO8859-2"
 msgstr "ISO8859-2"
 
 #: ../src/absenceconfigbase.cpp:223 ../src/encodingconfigbase.cpp:189
-#: ../src/kipmsgconfigbase.cpp:304 ../src/kipmsgconfigbase.cpp:349
+#: ../src/kipmsgconfigbase.cpp:307 ../src/kipmsgconfigbase.cpp:352
 #: ../src/recievedialogbase.cpp:234 ../src/senddialogbase.cpp:248
 msgid "ISO8859-3"
 msgstr "ISO8859-3"
 
 #: ../src/absenceconfigbase.cpp:224 ../src/encodingconfigbase.cpp:190
-#: ../src/kipmsgconfigbase.cpp:305 ../src/kipmsgconfigbase.cpp:350
+#: ../src/kipmsgconfigbase.cpp:308 ../src/kipmsgconfigbase.cpp:353
 #: ../src/recievedialogbase.cpp:235 ../src/senddialogbase.cpp:249
 msgid "ISO8859-4"
 msgstr "ISO8859-4"
 
 #: ../src/absenceconfigbase.cpp:225 ../src/encodingconfigbase.cpp:191
-#: ../src/kipmsgconfigbase.cpp:306 ../src/kipmsgconfigbase.cpp:351
+#: ../src/kipmsgconfigbase.cpp:309 ../src/kipmsgconfigbase.cpp:354
 #: ../src/recievedialogbase.cpp:236 ../src/senddialogbase.cpp:250
 msgid "ISO8859-5"
 msgstr "ISO8859-5"
 
 #: ../src/absenceconfigbase.cpp:226 ../src/encodingconfigbase.cpp:192
-#: ../src/kipmsgconfigbase.cpp:307 ../src/kipmsgconfigbase.cpp:352
+#: ../src/kipmsgconfigbase.cpp:310 ../src/kipmsgconfigbase.cpp:355
 #: ../src/recievedialogbase.cpp:237 ../src/senddialogbase.cpp:251
 msgid "ISO8859-6"
 msgstr "ISO8859-6"
 
 #: ../src/absenceconfigbase.cpp:227 ../src/encodingconfigbase.cpp:193
-#: ../src/kipmsgconfigbase.cpp:308 ../src/kipmsgconfigbase.cpp:353
+#: ../src/kipmsgconfigbase.cpp:311 ../src/kipmsgconfigbase.cpp:356
 #: ../src/recievedialogbase.cpp:238 ../src/senddialogbase.cpp:252
 msgid "ISO8859-7"
 msgstr "ISO8859-7"
 
 #: ../src/absenceconfigbase.cpp:228 ../src/encodingconfigbase.cpp:194
-#: ../src/kipmsgconfigbase.cpp:309 ../src/kipmsgconfigbase.cpp:354
+#: ../src/kipmsgconfigbase.cpp:312 ../src/kipmsgconfigbase.cpp:357
 #: ../src/recievedialogbase.cpp:239 ../src/senddialogbase.cpp:253
 msgid "ISO8859-8"
 msgstr "ISO8859-8"
 
 #: ../src/absenceconfigbase.cpp:229 ../src/encodingconfigbase.cpp:195
-#: ../src/kipmsgconfigbase.cpp:310 ../src/kipmsgconfigbase.cpp:355
+#: ../src/kipmsgconfigbase.cpp:313 ../src/kipmsgconfigbase.cpp:358
 #: ../src/recievedialogbase.cpp:240 ../src/senddialogbase.cpp:254
 msgid "ISO8859-8-i"
 msgstr "ISO8859-8-i"
 
 #: ../src/absenceconfigbase.cpp:230 ../src/encodingconfigbase.cpp:196
-#: ../src/kipmsgconfigbase.cpp:311 ../src/kipmsgconfigbase.cpp:356
+#: ../src/kipmsgconfigbase.cpp:314 ../src/kipmsgconfigbase.cpp:359
 #: ../src/recievedialogbase.cpp:241 ../src/senddialogbase.cpp:255
 msgid "ISO8859-9"
 msgstr "ISO8859-9"
 
 #: ../src/absenceconfigbase.cpp:231 ../src/encodingconfigbase.cpp:197
-#: ../src/kipmsgconfigbase.cpp:312 ../src/kipmsgconfigbase.cpp:357
+#: ../src/kipmsgconfigbase.cpp:315 ../src/kipmsgconfigbase.cpp:360
 #: ../src/recievedialogbase.cpp:242 ../src/senddialogbase.cpp:256
 msgid "ISO8859-10"
 msgstr "ISO8859-10"
 
 #: ../src/absenceconfigbase.cpp:232 ../src/encodingconfigbase.cpp:198
-#: ../src/kipmsgconfigbase.cpp:313 ../src/kipmsgconfigbase.cpp:358
+#: ../src/kipmsgconfigbase.cpp:316 ../src/kipmsgconfigbase.cpp:361
 #: ../src/recievedialogbase.cpp:243 ../src/senddialogbase.cpp:257
 msgid "ISO8859-13"
 msgstr "ISO8859-13"
 
 #: ../src/absenceconfigbase.cpp:233 ../src/encodingconfigbase.cpp:199
-#: ../src/kipmsgconfigbase.cpp:314 ../src/kipmsgconfigbase.cpp:359
+#: ../src/kipmsgconfigbase.cpp:317 ../src/kipmsgconfigbase.cpp:362
 #: ../src/recievedialogbase.cpp:244 ../src/senddialogbase.cpp:258
 msgid "ISO8859-14"
 msgstr "ISO8859-14"
 
 #: ../src/absenceconfigbase.cpp:234 ../src/encodingconfigbase.cpp:200
-#: ../src/kipmsgconfigbase.cpp:315 ../src/kipmsgconfigbase.cpp:360
+#: ../src/kipmsgconfigbase.cpp:318 ../src/kipmsgconfigbase.cpp:363
 #: ../src/recievedialogbase.cpp:245 ../src/senddialogbase.cpp:259
 msgid "ISO8859-15"
 msgstr "ISO8859-15"
 
 #: ../src/absenceconfigbase.cpp:235 ../src/encodingconfigbase.cpp:201
-#: ../src/kipmsgconfigbase.cpp:316 ../src/kipmsgconfigbase.cpp:361
+#: ../src/kipmsgconfigbase.cpp:319 ../src/kipmsgconfigbase.cpp:364
 #: ../src/recievedialogbase.cpp:246 ../src/senddialogbase.cpp:260
 msgid "IBM 850"
 msgstr "IBM 850"
 
 #: ../src/absenceconfigbase.cpp:236 ../src/encodingconfigbase.cpp:202
-#: ../src/kipmsgconfigbase.cpp:317 ../src/kipmsgconfigbase.cpp:362
+#: ../src/kipmsgconfigbase.cpp:320 ../src/kipmsgconfigbase.cpp:365
 #: ../src/recievedialogbase.cpp:247 ../src/senddialogbase.cpp:261
 msgid "IBM 866"
 msgstr "IBM 866"
 
 #: ../src/absenceconfigbase.cpp:237 ../src/encodingconfigbase.cpp:203
-#: ../src/kipmsgconfigbase.cpp:318 ../src/kipmsgconfigbase.cpp:363
+#: ../src/kipmsgconfigbase.cpp:321 ../src/kipmsgconfigbase.cpp:366
 #: ../src/recievedialogbase.cpp:248 ../src/senddialogbase.cpp:262
 msgid "CP874"
 msgstr "CP874"
 
 #: ../src/absenceconfigbase.cpp:238 ../src/encodingconfigbase.cpp:204
-#: ../src/kipmsgconfigbase.cpp:319 ../src/kipmsgconfigbase.cpp:364
+#: ../src/kipmsgconfigbase.cpp:322 ../src/kipmsgconfigbase.cpp:367
 #: ../src/recievedialogbase.cpp:249 ../src/senddialogbase.cpp:263
 msgid "CP1250"
 msgstr "CP1250"
 
 #: ../src/absenceconfigbase.cpp:239 ../src/encodingconfigbase.cpp:205
-#: ../src/kipmsgconfigbase.cpp:320 ../src/kipmsgconfigbase.cpp:365
+#: ../src/kipmsgconfigbase.cpp:323 ../src/kipmsgconfigbase.cpp:368
 #: ../src/recievedialogbase.cpp:250 ../src/senddialogbase.cpp:264
 msgid "CP1251"
 msgstr "CP1251"
 
 #: ../src/absenceconfigbase.cpp:240 ../src/encodingconfigbase.cpp:206
-#: ../src/kipmsgconfigbase.cpp:321 ../src/kipmsgconfigbase.cpp:366
+#: ../src/kipmsgconfigbase.cpp:324 ../src/kipmsgconfigbase.cpp:369
 #: ../src/recievedialogbase.cpp:251 ../src/senddialogbase.cpp:265
 msgid "CP1252"
 msgstr "CP1252"
 
 #: ../src/absenceconfigbase.cpp:241 ../src/encodingconfigbase.cpp:207
-#: ../src/kipmsgconfigbase.cpp:322 ../src/kipmsgconfigbase.cpp:367
+#: ../src/kipmsgconfigbase.cpp:325 ../src/kipmsgconfigbase.cpp:370
 #: ../src/recievedialogbase.cpp:252 ../src/senddialogbase.cpp:266
 msgid "CP1253"
 msgstr "CP1253"
 
 #: ../src/absenceconfigbase.cpp:242 ../src/encodingconfigbase.cpp:208
-#: ../src/kipmsgconfigbase.cpp:323 ../src/kipmsgconfigbase.cpp:368
+#: ../src/kipmsgconfigbase.cpp:326 ../src/kipmsgconfigbase.cpp:371
 #: ../src/recievedialogbase.cpp:253 ../src/senddialogbase.cpp:267
 msgid "CP1254"
 msgstr "CP1254"
 
 #: ../src/absenceconfigbase.cpp:243 ../src/encodingconfigbase.cpp:209
-#: ../src/kipmsgconfigbase.cpp:324 ../src/kipmsgconfigbase.cpp:369
+#: ../src/kipmsgconfigbase.cpp:327 ../src/kipmsgconfigbase.cpp:372
 #: ../src/recievedialogbase.cpp:254 ../src/senddialogbase.cpp:268
 msgid "CP1255"
 msgstr "CP1255"
 
 #: ../src/absenceconfigbase.cpp:244 ../src/encodingconfigbase.cpp:210
-#: ../src/kipmsgconfigbase.cpp:325 ../src/kipmsgconfigbase.cpp:370
+#: ../src/kipmsgconfigbase.cpp:328 ../src/kipmsgconfigbase.cpp:373
 #: ../src/recievedialogbase.cpp:255 ../src/senddialogbase.cpp:269
 msgid "CP1256"
 msgstr "CP1256"
 
 #: ../src/absenceconfigbase.cpp:245 ../src/encodingconfigbase.cpp:211
-#: ../src/kipmsgconfigbase.cpp:326 ../src/kipmsgconfigbase.cpp:371
+#: ../src/kipmsgconfigbase.cpp:329 ../src/kipmsgconfigbase.cpp:374
 #: ../src/recievedialogbase.cpp:256 ../src/senddialogbase.cpp:270
 msgid "CP1257"
 msgstr "CP1257"
 
 #: ../src/absenceconfigbase.cpp:246 ../src/encodingconfigbase.cpp:212
-#: ../src/kipmsgconfigbase.cpp:327 ../src/kipmsgconfigbase.cpp:372
+#: ../src/kipmsgconfigbase.cpp:330 ../src/kipmsgconfigbase.cpp:375
 #: ../src/recievedialogbase.cpp:257 ../src/senddialogbase.cpp:271
 msgid "CP1258"
 msgstr "CP1258"
 
 #: ../src/absenceconfigbase.cpp:247 ../src/encodingconfigbase.cpp:213
-#: ../src/kipmsgconfigbase.cpp:328 ../src/kipmsgconfigbase.cpp:373
+#: ../src/kipmsgconfigbase.cpp:331 ../src/kipmsgconfigbase.cpp:376
 #: ../src/recievedialogbase.cpp:258 ../src/senddialogbase.cpp:272
 msgid "Apple Roman"
 msgstr "Apple Roman"
 
 #: ../src/absenceconfigbase.cpp:248 ../src/encodingconfigbase.cpp:214
-#: ../src/kipmsgconfigbase.cpp:329 ../src/kipmsgconfigbase.cpp:374
+#: ../src/kipmsgconfigbase.cpp:332 ../src/kipmsgconfigbase.cpp:377
 #: ../src/recievedialogbase.cpp:259 ../src/senddialogbase.cpp:273
 msgid "TIS-620"
 msgstr "TIS-620"
@@ -365,7 +367,7 @@ msgid "Ena&ble auto absence mode,It cooperates with a screen saver."
 msgstr "スクリーンセーバと連動して自動不在を有効にする。"
 
 #: ../src/absenceconfigbase.cpp:252 ../src/clickableurlconfigbase.cpp:191
-#: ../src/detailconfigbase.cpp:247 ../src/kipmsgconfigbase.cpp:411
+#: ../src/detailconfigbase.cpp:248 ../src/kipmsgconfigbase.cpp:414
 #: ../src/showconfigbase.cpp:231
 msgid "Alt+B"
 msgstr "Alt+B"
@@ -379,10 +381,11 @@ msgid "Configure onl&y"
 msgstr "設定のみ"
 
 #: ../src/absenceconfigbase.cpp:256 ../src/clickableurlconfigbase.cpp:200
-#: ../src/detailconfigbase.cpp:256 ../src/downloaderrordialogbase.cpp:84
-#: ../src/kipmsgconfigbase.cpp:398 ../src/logconfigbase.cpp:203
-#: ../src/networkconfigbase.cpp:204 ../src/recievedialogbase.cpp:267
-#: ../src/showconfigbase.cpp:245 ../src/unlockpasswordconfigbase.cpp:171
+#: ../src/detailconfigbase.cpp:257 ../src/downloaderrordialogbase.cpp:162
+#: ../src/hideconfigdialogbase.cpp:234 ../src/kipmsgconfigbase.cpp:401
+#: ../src/logconfigbase.cpp:207 ../src/networkconfigbase.cpp:204
+#: ../src/recievedialogbase.cpp:267 ../src/showconfigbase.cpp:245
+#: ../src/unlockpasswordconfigbase.cpp:171
 msgid "Alt+Y"
 msgstr "Alt+Y"
 
@@ -441,15 +444,16 @@ msgid "Ca&ncel"
 msgstr "キャンセル"
 
 #: ../src/attachedfiledialogbase.cpp:215 ../src/clickableurlconfigbase.cpp:204
-#: ../src/detailconfigbase.cpp:250 ../src/downloadmonitorbase.cpp:130
-#: ../src/encodingconfigbase.cpp:171 ../src/kipmsgconfigbase.cpp:384
-#: ../src/logconfigbase.cpp:186 ../src/recievedialogbase.cpp:263
-#: ../src/senddialogbase.cpp:276 ../src/showconfigbase.cpp:212
+#: ../src/detailconfigbase.cpp:251 ../src/downloadmonitorbase.cpp:130
+#: ../src/encodingconfigbase.cpp:171 ../src/hideconfigdialogbase.cpp:236
+#: ../src/kipmsgconfigbase.cpp:387 ../src/logconfigbase.cpp:190
+#: ../src/recievedialogbase.cpp:263 ../src/senddialogbase.cpp:276
+#: ../src/showconfigbase.cpp:212
 msgid "Alt+N"
 msgstr "Alt+N"
 
 #: ../src/attachedfiledialogbase.cpp:216 ../src/clickableurlconfigbase.cpp:201
-#: ../src/detailconfigbase.cpp:257 ../src/logconfigbase.cpp:204
+#: ../src/detailconfigbase.cpp:258 ../src/logconfigbase.cpp:208
 #: ../src/openconfirmbase.cpp:128 ../src/priorityconfigbase.cpp:102
 #: ../src/searchboxbase.cpp:131 ../src/showconfigbase.cpp:213
 #: ../src/unlockpasswordconfigbase.cpp:168
@@ -457,8 +461,8 @@ msgid "O&K"
 msgstr "OK"
 
 #: ../src/attachedfiledialogbase.cpp:217 ../src/clickableurlconfigbase.cpp:202
-#: ../src/detailconfigbase.cpp:258 ../src/downloadcompletedialogbase.cpp:86
-#: ../src/kipmsgconfigbase.cpp:413 ../src/logconfigbase.cpp:205
+#: ../src/detailconfigbase.cpp:259 ../src/downloadcompletedialogbase.cpp:86
+#: ../src/kipmsgconfigbase.cpp:416 ../src/logconfigbase.cpp:209
 #: ../src/openconfirmbase.cpp:129 ../src/priorityconfigbase.cpp:103
 #: ../src/searchboxbase.cpp:132 ../src/senddialogbase.cpp:280
 #: ../src/showconfigbase.cpp:214 ../src/unlockpasswordconfigbase.cpp:169
@@ -477,8 +481,8 @@ msgstr "クリッカブルURL - デフォルト設定"
 msgid "&Use default browser(case of no protocol specification)"
 msgstr "デフォルトブラウザを使用（プロトコル別設定が未指定の場合）"
 
-#: ../src/clickableurlconfigbase.cpp:182 ../src/detailconfigbase.cpp:233
-#: ../src/kipmsgconfigbase.cpp:380 ../src/logconfigbase.cpp:190
+#: ../src/clickableurlconfigbase.cpp:182 ../src/detailconfigbase.cpp:234
+#: ../src/kipmsgconfigbase.cpp:383 ../src/logconfigbase.cpp:194
 #: ../src/networkconfigbase.cpp:201 ../src/passworddialogbase.cpp:120
 #: ../src/senddialogbase.cpp:283 ../src/showconfigbase.cpp:222
 msgid "Alt+U"
@@ -534,14 +538,14 @@ msgstr ""
 "HTMLアンカーとして表示されます。\n"
 "ですのでこの機能はシングルクリックで実装されてます。"
 
-#: ../src/clickableurlconfigbase.cpp:199 ../src/detailconfigbase.cpp:255
-#: ../src/kipmsgconfigbase.cpp:397 ../src/logconfigbase.cpp:202
+#: ../src/clickableurlconfigbase.cpp:199 ../src/detailconfigbase.cpp:256
+#: ../src/kipmsgconfigbase.cpp:400 ../src/logconfigbase.cpp:206
 #: ../src/networkconfigbase.cpp:203 ../src/unlockpasswordconfigbase.cpp:170
 msgid "Appl&y"
 msgstr "適用"
 
 #: ../src/detailconfig.cpp:128 ../src/detailconfig.cpp:165
-#: ../src/detailconfigbase.cpp:236 ../src/detailconfigbase.cpp:251
+#: ../src/detailconfigbase.cpp:237 ../src/detailconfigbase.cpp:252
 msgid ""
 "default\n"
 "icon"
@@ -549,89 +553,90 @@ msgstr ""
 "default\n"
 "icon"
 
-#: ../src/detailconfigbase.cpp:225 ../src/logconfigbase.cpp:183
+#: ../src/detailconfigbase.cpp:226 ../src/logconfigbase.cpp:187
 msgid "KIpMessenger Detail & Configuration"
 msgstr "KIpMessenger 詳細設定"
 
-#: ../src/detailconfigbase.cpp:226
+#: ../src/detailconfigbase.cpp:227
 msgid "Detail configuration"
 msgstr "詳細設定"
 
-#: ../src/detailconfigbase.cpp:227
+#: ../src/detailconfigbase.cpp:228
 msgid "Show minimi&ze Send/Open Confirm window"
 msgstr "送信／開封確認をアイコン表示"
 
-#: ../src/detailconfigbase.cpp:228 ../src/priorityconfigbase.cpp:107
+#: ../src/detailconfigbase.cpp:229 ../src/priorityconfigbase.cpp:107
 msgid "Alt+Z"
 msgstr "Alt+Z"
 
-#: ../src/detailconfigbase.cpp:229
+#: ../src/detailconfigbase.cpp:230
 msgid "No Hide Recieve &message form when repling"
 msgstr "返信時に受信画面非消去"
 
-#: ../src/detailconfigbase.cpp:230 ../src/kipmsgconfigbase.cpp:378
-#: ../src/senddialogbase.cpp:285 ../src/showconfigbase.cpp:235
+#: ../src/detailconfigbase.cpp:231 ../src/hideconfigdialogbase.cpp:241
+#: ../src/kipmsgconfigbase.cpp:381 ../src/senddialogbase.cpp:285
+#: ../src/showconfigbase.cpp:235
 msgid "Alt+M"
 msgstr "Alt+M"
 
-#: ../src/detailconfigbase.cpp:231
+#: ../src/detailconfigbase.cpp:232
 msgid "Quote Char"
 msgstr "引用文字"
 
-#: ../src/detailconfigbase.cpp:232
+#: ../src/detailconfigbase.cpp:233
 msgid "IM ON/OFF A&utomaticaly"
 msgstr "IMの自動ON/OFF"
 
-#: ../src/detailconfigbase.cpp:234
+#: ../src/detailconfigbase.cpp:235
 msgid "Send/Recieve HotKey(&Alt+Ctrl+S,R)"
 msgstr "送受信ホットキー(Alt+Ctrl+S,R)"
 
-#: ../src/detailconfigbase.cpp:238
+#: ../src/detailconfigbase.cpp:239
 msgid "&Icon"
 msgstr "アイコン"
 
-#: ../src/detailconfigbase.cpp:239 ../src/showconfigbase.cpp:247
+#: ../src/detailconfigbase.cpp:240 ../src/showconfigbase.cpp:247
 msgid "Alt+I"
 msgstr "Alt+I"
 
-#: ../src/detailconfigbase.cpp:240
+#: ../src/detailconfigbase.cpp:241
 msgid "&Open Send form by Single Click"
 msgstr "シングルクリックで送信画面をオープン"
 
-#: ../src/detailconfigbase.cpp:242
+#: ../src/detailconfigbase.cpp:243
 msgid "Recie&ved Sound"
 msgstr "受信音"
 
-#: ../src/detailconfigbase.cpp:243
+#: ../src/detailconfigbase.cpp:244
 msgid "Alt+V"
 msgstr "Alt+V"
 
-#: ../src/detailconfigbase.cpp:244
+#: ../src/detailconfigbase.cpp:245
 msgid "Show [&Fire/Intercept] as [Send/Recieve]"
 msgstr "「送信・受信」を「発射・迎撃」に変更"
 
-#: ../src/detailconfigbase.cpp:245
+#: ../src/detailconfigbase.cpp:246
 msgid "Alt+F"
 msgstr "Alt+F"
 
-#: ../src/detailconfigbase.cpp:246
+#: ../src/detailconfigbase.cpp:247
 msgid "A&bsence Icon"
 msgstr "不在アイコン"
 
-#: ../src/detailconfigbase.cpp:248
+#: ../src/detailconfigbase.cpp:249
 msgid "Play"
 msgstr "再生"
 
-#: ../src/detailconfigbase.cpp:249
+#: ../src/detailconfigbase.cpp:250
 msgid "&None popup recieve on Absence mode"
 msgstr "不在モードではノンポップアップ受信"
 
-#: ../src/detailconfigbase.cpp:253 ../src/logconfigbase.cpp:200
+#: ../src/detailconfigbase.cpp:254 ../src/logconfigbase.cpp:204
 msgid "&Cancel"
 msgstr "キャンセル"
 
-#: ../src/detailconfigbase.cpp:254 ../src/downloadmonitorbase.cpp:134
-#: ../src/logconfigbase.cpp:201 ../src/showconfigbase.cpp:228
+#: ../src/detailconfigbase.cpp:255 ../src/downloadmonitorbase.cpp:134
+#: ../src/logconfigbase.cpp:205 ../src/showconfigbase.cpp:228
 msgid "Alt+C"
 msgstr "Alt+C"
 
@@ -664,12 +669,12 @@ msgid "Close"
 msgstr "閉じる"
 
 #: ../src/downloadcompletedialogbase.cpp:83
-#: ../src/downloaderrordialogbase.cpp:82
+#: ../src/downloaderrordialogbase.cpp:160
 msgid "95 sec  0 files"
 msgstr "95 sec  0 files"
 
 #: ../src/downloadcompletedialogbase.cpp:84
-#: ../src/downloaderrordialogbase.cpp:81
+#: ../src/downloaderrordialogbase.cpp:159
 msgid "Total 0KB (0KB/s)"
 msgstr "Total 0KB (0KB/s)"
 
@@ -677,15 +682,15 @@ msgstr "Total 0KB (0KB/s)"
 msgid "Open Folder as &Konqueror"
 msgstr "Konquerorで開く"
 
-#: ../src/downloaderrordialogbase.cpp:80
+#: ../src/downloaderrordialogbase.cpp:158
 msgid "File Download Error"
 msgstr "ファイルダウンロードエラー"
 
-#: ../src/downloaderrordialogbase.cpp:83
+#: ../src/downloaderrordialogbase.cpp:161
 msgid "Retr&y"
 msgstr "再試行"
 
-#: ../src/downloaderrordialogbase.cpp:85
+#: ../src/downloaderrordialogbase.cpp:163 ../src/hideconfigdialogbase.cpp:228
 msgid "Cancel"
 msgstr "キャンセル"
 
@@ -757,7 +762,8 @@ msgstr "ログイン名"
 msgid "Encoding Configuration"
 msgstr "エンコーディング設定"
 
-#: ../src/encodingconfigbase.cpp:166 ../src/showconfigbase.cpp:215
+#: ../src/encodingconfigbase.cpp:166 ../src/hideconfigdialogbase.cpp:230
+#: ../src/showconfigbase.cpp:215
 msgid "&Apply"
 msgstr "適用"
 
@@ -769,7 +775,7 @@ msgstr "登録済のホスト情報"
 msgid "Nickname"
 msgstr "ニックネーム"
 
-#: ../src/encodingconfigbase.cpp:218 ../src/kipmsgconfigbase.cpp:396
+#: ../src/encodingconfigbase.cpp:218 ../src/kipmsgconfigbase.cpp:399
 msgid "GroupName"
 msgstr "グループ名設定"
 
@@ -777,25 +783,63 @@ msgstr "グループ名設定"
 msgid "Entried host"
 msgstr "登録済のホスト"
 
+#: ../src/hideconfigdialogbase.cpp:225
+msgid "Hide settings"
+msgstr "隠れるホストの設定"
+
+#: ../src/hideconfigdialogbase.cpp:232
+msgid "Hide from ..."
+msgstr "隠れるホスト"
+
+#: ../src/hideconfigdialogbase.cpp:233
+msgid "Encr&yption not supported hosts."
+msgstr "暗号化未サポートホストから隠れる"
+
+#: ../src/hideconfigdialogbase.cpp:235
+msgid "Hidde&n hosts."
+msgstr "非表示のホストから隠れる"
+
+#: ../src/hideconfigdialogbase.cpp:237
+msgid "Specified hosts"
+msgstr "指定されたホスト"
+
+#: ../src/hideconfigdialogbase.cpp:238 ../src/idiomconfigbase.cpp:150
+#: ../src/networkconfigbase.cpp:184 ../src/networkconfigbase.cpp:195
+#: ../src/priorityconfigbase.cpp:110
+msgid "<<"
+msgstr "<<"
+
+#: ../src/hideconfigdialogbase.cpp:239 ../src/idiomconfigbase.cpp:147
+#: ../src/networkconfigbase.cpp:185 ../src/networkconfigbase.cpp:193
+#: ../src/priorityconfigbase.cpp:109
+msgid ">>"
+msgstr ">>"
+
+#: ../src/hideconfigdialogbase.cpp:240
+msgid "Enable hide fro&m specified hosts."
+msgstr "指定されたホストから隠れる"
+
+#: ../src/hideconfigdialogbase.cpp:242 ../src/networkconfigbase.cpp:192
+msgid "IP Address"
+msgstr "IPアドレス"
+
+#: ../src/hideconfigdialogbase.cpp:243
+msgid "Copy to IP Address"
+msgstr "IPアドレスにコピー"
+
+#: ../src/hideconfigdialogbase.cpp:244
+msgid "Login host"
+msgstr "ログイン中のホスト"
+
 #: ../src/idiomconfigbase.cpp:144
 msgid "KIpMessenger - Idiom Setting"
 msgstr "KIpMessenger - 定型文設定"
 
-#: ../src/idiomconfigbase.cpp:145 ../src/kipmsgconfigbase.cpp:399
+#: ../src/idiomconfigbase.cpp:145 ../src/kipmsgconfigbase.cpp:402
 #: ../src/networkconfigbase.cpp:205 ../src/newabsencenamebase.cpp:119
 #: ../src/priorityconfigbase.cpp:104 ../src/unlockpasswordconfigbase.cpp:166
 msgid "C&ancel"
 msgstr "キャンセル"
-
-#: ../src/idiomconfigbase.cpp:147 ../src/networkconfigbase.cpp:185
-#: ../src/networkconfigbase.cpp:193 ../src/priorityconfigbase.cpp:109
-msgid ">>"
-msgstr ">>"
-
-#: ../src/idiomconfigbase.cpp:150 ../src/networkconfigbase.cpp:184
-#: ../src/networkconfigbase.cpp:195 ../src/priorityconfigbase.cpp:110
-msgid "<<"
-msgstr "<<"
 
 #: ../src/idiomconfigbase.cpp:151
 msgid "Additional Idiom text"
@@ -805,107 +849,107 @@ msgstr "定型文に追加するテキスト"
 msgid "Active Idiom List"
 msgstr "アクティブな定型文の一覧"
 
-#: ../src/kipmsgconfigbase.cpp:286
+#: ../src/kipmsgconfigbase.cpp:289
 msgid "KIpMessenger Configuration"
 msgstr "KIpMessenger 設定"
 
-#: ../src/kipmsgconfigbase.cpp:287
+#: ../src/kipmsgconfigbase.cpp:290
 msgid "Encodings"
 msgstr "エンコーディング"
 
-#: ../src/kipmsgconfigbase.cpp:331
+#: ../src/kipmsgconfigbase.cpp:334
 msgid "Message encoding(Default)"
 msgstr "メッセージエンコーディング（デフォルト）"
 
-#: ../src/kipmsgconfigbase.cpp:332
+#: ../src/kipmsgconfigbase.cpp:335
 msgid "Local Filesystem encoding"
 msgstr "ローカルファイルシステムのエンコーディング"
 
-#: ../src/kipmsgconfigbase.cpp:376
+#: ../src/kipmsgconfigbase.cpp:379
 msgid "Send/Recieve options"
 msgstr "送受信オプション設定"
 
-#: ../src/kipmsgconfigbase.cpp:377
+#: ../src/kipmsgconfigbase.cpp:380
 msgid "Confirm to open &message"
 msgstr "開封確認を行う"
 
-#: ../src/kipmsgconfigbase.cpp:379
+#: ../src/kipmsgconfigbase.cpp:382
 msgid "No pop&up on recieve"
 msgstr "ノンポップアップ受信"
 
-#: ../src/kipmsgconfigbase.cpp:381
+#: ../src/kipmsgconfigbase.cpp:384
 msgid "Notify"
 msgstr "通知する"
 
-#: ../src/kipmsgconfigbase.cpp:383
+#: ../src/kipmsgconfigbase.cpp:386
 msgid "&No sound on recieve"
 msgstr "受信音を出さない"
 
-#: ../src/kipmsgconfigbase.cpp:385
+#: ../src/kipmsgconfigbase.cpp:388
 msgid "Secret checkbo&x's default as true"
 msgstr "封書チェックをデフォルト"
 
-#: ../src/kipmsgconfigbase.cpp:386 ../src/logconfigbase.cpp:194
+#: ../src/kipmsgconfigbase.cpp:389 ../src/logconfigbase.cpp:198
 msgid "Alt+X"
 msgstr "Alt+X"
 
-#: ../src/kipmsgconfigbase.cpp:387
+#: ../src/kipmsgconfigbase.cpp:390
 msgid "&Quote checkbox's default as true"
 msgstr "引用チェックをデフォルト"
 
-#: ../src/kipmsgconfigbase.cpp:388 ../src/recievedialogbase.cpp:269
+#: ../src/kipmsgconfigbase.cpp:391 ../src/recievedialogbase.cpp:269
 msgid "Alt+Q"
 msgstr "Alt+Q"
 
-#: ../src/kipmsgconfigbase.cpp:389
+#: ../src/kipmsgconfigbase.cpp:392
 msgid "Notify on Login/Logout/Absence"
 msgstr "Login/Logout/不在を通知する"
 
-#: ../src/kipmsgconfigbase.cpp:391
+#: ../src/kipmsgconfigbase.cpp:394
 msgid "Hide encryption not supported host."
 msgstr "暗号化未サポートホストを隠す"
 
-#: ../src/kipmsgconfigbase.cpp:393
+#: ../src/kipmsgconfigbase.cpp:396
 msgid "No send on encryption faild."
 msgstr "暗号化失敗時送信しない"
 
-#: ../src/kipmsgconfigbase.cpp:395
+#: ../src/kipmsgconfigbase.cpp:398
 msgid "UserName"
 msgstr "ユーザ名設定"
 
-#: ../src/kipmsgconfigbase.cpp:403
+#: ../src/kipmsgconfigbase.cpp:406
 msgid "Send/Recieve window --> Display & Sort configuration on Right Click"
 msgstr "送受信ウィンドウ→クリックで表示＆ソート設定"
 
-#: ../src/kipmsgconfigbase.cpp:404
+#: ../src/kipmsgconfigbase.cpp:407
 msgid "Netwo&rking setup"
 msgstr "ネットワーク設定"
 
-#: ../src/kipmsgconfigbase.cpp:405
+#: ../src/kipmsgconfigbase.cpp:408
 msgid "Alt+R"
 msgstr "Alt+R"
 
-#: ../src/kipmsgconfigbase.cpp:406
+#: ../src/kipmsgconfigbase.cpp:409
 msgid "Detail setup"
 msgstr "詳細設定"
 
-#: ../src/kipmsgconfigbase.cpp:408
+#: ../src/kipmsgconfigbase.cpp:411
 msgid "Lo&g setup"
 msgstr "ログ設定"
 
-#: ../src/kipmsgconfigbase.cpp:410
+#: ../src/kipmsgconfigbase.cpp:413
 msgid "Clicka&ble URL setup"
 msgstr "クリッカブルURL"
 
-#: ../src/kipmsgconfigbase.cpp:412
+#: ../src/kipmsgconfigbase.cpp:415
 msgid "Unloc&k password setup"
 msgstr "錠開封パスワード"
 
-#: ../src/kipmsgconfigbase.cpp:414
+#: ../src/kipmsgconfigbase.cpp:417
 msgid "&Hide setup"
 msgstr "隠れる設定"
 
-#: ../src/kipmsgconfigbase.cpp:415 ../src/showconfigbase.cpp:243
+#: ../src/kipmsgconfigbase.cpp:418 ../src/showconfigbase.cpp:243
 msgid "Alt+H"
 msgstr "Alt+H"
 
@@ -1001,45 +1045,45 @@ msgstr "終了"
 msgid "kipmsgwidgetbase"
 msgstr "kipmsgwidgetbase"
 
-#: ../src/logconfigbase.cpp:184
+#: ../src/logconfigbase.cpp:188
 msgid "Log configuration"
 msgstr "ログ設定"
 
-#: ../src/logconfigbase.cpp:185
+#: ../src/logconfigbase.cpp:189
 msgid "Record Login &name"
 msgstr "ログイン名を記録"
 
-#: ../src/logconfigbase.cpp:187
+#: ../src/logconfigbase.cpp:191
 msgid "Record IP &address"
 msgstr "IPアドレスを記録"
 
-#: ../src/logconfigbase.cpp:189
+#: ../src/logconfigbase.cpp:193
 msgid "Record after &unlock for locked recieve message"
 msgstr "錠前付き受信ログは開錠後に記録"
 
-#: ../src/logconfigbase.cpp:191
+#: ../src/logconfigbase.cpp:195
 msgid "Lo&g File"
 msgstr "ログファイル"
 
-#: ../src/logconfigbase.cpp:193
+#: ../src/logconfigbase.cpp:197
 msgid "Use e&xternal log viewer(kwrite as default)."
 msgstr "外部ログビューアを使用（デフォルトはkwrite）"
 
-#: ../src/logconfigbase.cpp:195
+#: ../src/logconfigbase.cpp:199
 msgid "L&og Viewer"
 msgstr "ログビューア"
 
-#: ../src/logconfigbase.cpp:197
-msgid "Command options"
-msgstr "オプション"
-
-#: ../src/logconfigbase.cpp:198
+#: ../src/logconfigbase.cpp:201
 msgid "R&ecording Log"
 msgstr "ログを記録する"
 
-#: ../src/logconfigbase.cpp:199 ../src/showconfigbase.cpp:249
+#: ../src/logconfigbase.cpp:202 ../src/showconfigbase.cpp:249
 msgid "Alt+E"
 msgstr "Alt+E"
+
+#: ../src/logconfigbase.cpp:203
+msgid "Command options"
+msgstr "オプション"
 
 #: ../src/networkconfigbase.cpp:181
 msgid "KIpMessenger - Nerwork Configuration"
@@ -1077,10 +1121,6 @@ msgstr "eth0"
 #: ../src/networkconfigbase.cpp:191
 msgid "1000:2000:3000:4000:5000:6000:7000:8000"
 msgstr "1000:2000:3000:4000:5000:6000:7000:8000"
-
-#: ../src/networkconfigbase.cpp:192
-msgid "IP Address"
-msgstr "IPアドレス"
 
 #: ../src/networkconfigbase.cpp:194
 msgid "Interface"
