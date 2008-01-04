@@ -240,12 +240,27 @@ void HideConfigDialog::SetupHideHosts(){
 		}
 	}
 	
-	for( unsigned int i = 0; i < visibleHostList.count(); i++ ){
-		//エージェントの隠すホストから削除
-		agent->DeleteSkulkHostAddress( hiddenHostList[i].data() );
-	}
-	for( unsigned int i = 0; i < hiddenHostList.count(); i++ ){
+	//隠す対象から外れたらしいホストはリストから削除
+	HostList hostlist = agent->GetSkulkHost();
+	for( std::vector<HostListItem>::iterator item = hostlist.begin(); item != hostlist.end(); item++ ) {
+		bool isFound = false;
 		//エージェントの隠すホストに追加
+		for( unsigned int i = 0; i < hiddenHostList.count(); i++ ){
+			if ( hiddenHostList[i] == QString( item->IpAddress().c_str() ) ) {
+				isFound = true;
+				break;
+			}
+		}
+		if ( !isFound ) {
+			agent->DeleteSkulkHost( *item );
+		}
+	}
+	//エージェントの隠すホストに追加
+	for( unsigned int i = 0; i < visibleHostList.count(); i++ ){
+		agent->DeleteSkulkHostAddress( visibleHostList[i].data() );
+	}
+	//エージェントの隠すホストに追加
+	for( unsigned int i = 0; i < hiddenHostList.count(); i++ ){
 		agent->AddSkulkHostAddress( hiddenHostList[i].data() );
 	}
 }
