@@ -197,6 +197,7 @@ kipmsgWidget::kipmsgWidget(QWidget* parent, const char* name, WFlags fl)
 	}
 
 	IpMsgAgent->setUseIPv6( true );
+
 	IpMsgAgent->StartNetwork( NetworkConfig::getSpecifyNics() );
 
 	HideConfigDialog::SetupHideHosts();
