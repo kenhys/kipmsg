@@ -23,6 +23,7 @@ KDE版Ip Messenger はIpMessenger(Windows上の有名なアプリケーション
 
 %prep
 %setup -q
+make -f Makefile.cvs
 %configure --prefix=/usr
 
 %build
