@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2006 by 仁木 邦信                                       *
+ *   Copyright (C) 2006-2009 by nikikuni                                        *
  *   nikikuni@yahoo.co.jp                                                  *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -54,6 +54,31 @@
 #include "idiomconfig.h"
 
 static QTextCodec *utf8codec = QTextCodec::codecForName( "UTF-8" );
+
+
+static int globalUserNameColumnWidth = -1;
+static int globalGroupNameColumnWidth = -1;
+static int globalHostNameColumnWidth = -1;
+static int globalIpAddressColumnWidth = -1;
+static int globalLoginNameColumnWidth = -1;
+static int globalPriorityColumnWidth = -1;
+static int globalEncodingColumnWidth = -1;
+
+
+class KIpmsgColumnWidthTemporarySaveFilter : public QObject {
+	protected:
+		bool eventFilter( QObject *object, QEvent *event ){
+			if(event->type() == QEvent::MouseMove || event->type() == QEvent::FocusOut ) {
+				QWidget *widget = dynamic_cast<QWidget*>(object);
+				SendDialog *top = dynamic_cast<SendDialog*>(widget->topLevelWidget());
+				if ( top != NULL ){
+					top->saveColumnSizeGlobalSession();
+				}else{
+				}
+			}
+			return QObject::eventFilter( object, event );
+		}
+};
 
 class KipmsgPriorityHostItem {
 	public:
@@ -210,6 +235,18 @@ void KTextEditNoDnD::keyPressEvent( QKeyEvent * e )
 SendDialog::SendDialog(QWidget* parent, const char* name, WFlags fl)
         : SendDialogBase(parent,name,fl)
 {
+
+	if(globalUserNameColumnWidth < 0){
+		globalUserNameColumnWidth = KIpMsgSettings::userNameColumnWidth();
+		globalGroupNameColumnWidth = KIpMsgSettings::groupNameColumnWidth();
+		globalHostNameColumnWidth = KIpMsgSettings::hostNameColumnWidth();
+		globalIpAddressColumnWidth = KIpMsgSettings::ipAddressColumnWidth();
+		globalLoginNameColumnWidth = KIpMsgSettings::loginNameColumnWidth();
+		globalPriorityColumnWidth = KIpMsgSettings::priorityColumnWidth();
+		globalEncodingColumnWidth = KIpMsgSettings::encodingColumnWidth();
+kdDebug() << "Column width variables initialized." << endl;
+	}
+
 	defaultX = x();
 	defaultY = y();
 	defaultWidth = width();
@@ -226,12 +263,14 @@ SendDialog::SendDialog(QWidget* parent, const char* name, WFlags fl)
     m_MessageEditbox->setMouseTracking( FALSE );
     m_MessageEditbox->setAcceptDrops( FALSE );
 
-
 	m_MessageEditbox->setAcceptDrops( TRUE );
 
 	m_HostListView->setSortColumn( ColumnMax );
 	m_HostListView->setFont( KIpMsgSettings::listFont() );
 	m_MessageEditbox->setFont( KIpMsgSettings::editFont() );
+
+	QObject *saveFilter = new KIpmsgColumnWidthTemporarySaveFilter();
+	m_HostListView->installEventFilter(saveFilter);
 
 //	connect( this, SIGNAL( reject() ), this, SLOT( slotReject() ) );
 //	connect( this, SIGNAL( accept() ), this, SLOT( slotAccept() ) );
@@ -802,6 +841,7 @@ void SendDialog::slotIdiomConfigClicked()
  */
 void SendDialog::refreshHostList( bool isUpdate )
 {
+kdDebug() << "refreshHostList(" << isUpdate << ") called." << endl;
 	//選択状態を保存して
 	QListViewItemIterator it( m_HostListView );
 	QStringList saveSelectedValues;
@@ -834,36 +874,55 @@ void SendDialog::refreshHostList( bool isUpdate )
 #if 0
 	//設定によって表示内容を変更する
 #endif
-	m_HostListView->addColumn( tr2i18n( "User" ), KIpMsgSettings::userNameColumnWidth() );
+	m_HostListView->addColumn( tr2i18n( "User" ), globalUserNameColumnWidth );
+kdDebug() << "globalUserNameColumnWidth=" << globalUserNameColumnWidth << endl;
 	if ( KIpMsgSettings::showGroupName() ) {
-		m_HostListView->addColumn( tr2i18n("Group"), KIpMsgSettings::groupNameColumnWidth() );
+		m_HostListView->addColumn( tr2i18n("Group"), globalGroupNameColumnWidth );
+kdDebug() << "globalGroupNameColumnWidth=" << globalGroupNameColumnWidth << endl;
 	} else {
-		m_HostListView->addColumn( tr2i18n("Group"), 0 );
+		int col = m_HostListView->addColumn( tr2i18n("Group"), 0 );
+		m_HostListView->hideColumn( col );
+kdDebug() << "hideColumn" << col << endl;
 	}
 	if ( KIpMsgSettings::showHostName() ) {
-		m_HostListView->addColumn( tr2i18n("Host"), KIpMsgSettings::hostNameColumnWidth() );
+		m_HostListView->addColumn( tr2i18n("Host"), globalHostNameColumnWidth );
+kdDebug() << "globalHostNameColumnWidth=" << globalHostNameColumnWidth << endl;
 	} else {
-		m_HostListView->addColumn( tr2i18n("Host"), 0 );
+		int col = m_HostListView->addColumn( tr2i18n("Host"), 0 );
+		m_HostListView->hideColumn( col );
+kdDebug() << "hideColumn" << col << endl;
 	}
 	if ( KIpMsgSettings::showIpAddress() ) {
-		m_HostListView->addColumn( tr2i18n("IP address"), KIpMsgSettings::ipAddressColumnWidth() );
+		m_HostListView->addColumn( tr2i18n("IP address"), globalIpAddressColumnWidth );
+kdDebug() << "globalIpAddressColumnWidth=" << globalIpAddressColumnWidth << endl;
 	} else {
-		m_HostListView->addColumn( tr2i18n("IP address"), 0 );
+		int col = m_HostListView->addColumn( tr2i18n("IP address"), 0 );
+		m_HostListView->hideColumn( col );
+kdDebug() << "hideColumn" << col << endl;
 	}
 	if ( KIpMsgSettings::showLoginName() ) {
-		m_HostListView->addColumn( tr2i18n("Login"), KIpMsgSettings::loginNameColumnWidth() );
+		m_HostListView->addColumn( tr2i18n("Login"), globalLoginNameColumnWidth );
+kdDebug() << "globalLoginNameColumnWidth=" << globalLoginNameColumnWidth << endl;
 	} else {
-		m_HostListView->addColumn( tr2i18n("Login"), 0 );
+		int col = m_HostListView->addColumn( tr2i18n("Login"), 0 );
+		m_HostListView->hideColumn( col );
+kdDebug() << "hideColumn" << col << endl;
 	}
 	if ( KIpMsgSettings::showPriority() ) {
-		m_HostListView->addColumn( tr2i18n("Priority"), KIpMsgSettings::priorityColumnWidth() );
+		m_HostListView->addColumn( tr2i18n("Priority"), globalPriorityColumnWidth );
+kdDebug() << "globalPriorityColumnWidth=" << globalPriorityColumnWidth << endl;
 	} else {
-		m_HostListView->addColumn( tr2i18n("Priority"), 0 );
+		int col = m_HostListView->addColumn( tr2i18n("Priority"), 0 );
+		m_HostListView->hideColumn( col );
+kdDebug() << "hideColumn" << col << endl;
 	}
 	if ( KIpMsgSettings::showEncoding() ) {
-		m_HostListView->addColumn(tr2i18n("Encoding"), KIpMsgSettings::encodingColumnWidth() );
+		m_HostListView->addColumn(tr2i18n("Encoding"), globalEncodingColumnWidth );
+kdDebug() << "globalEncodingColumnWidth=" << globalEncodingColumnWidth << endl;
 	} else {
-		m_HostListView->addColumn(tr2i18n("Encoding"), 0 );
+		int col = m_HostListView->addColumn(tr2i18n("Encoding"), 0 );
+		m_HostListView->hideColumn( col );
+kdDebug() << "hideColumn" << col << endl;
 	}
 //	m_HostListView->addColumn(tr2i18n("Encryption Flags"), 0 );
 //	m_HostListView->addColumn(tr2i18n("RSA Method"), 0 );
@@ -1440,8 +1499,47 @@ void SendDialog::slotAttachDirectoryClicked()
 /**
  * ヘッダ保存。
  */
+void SendDialog::saveColumnSizeGlobalSession()
+{
+kdDebug() << "saveColumnSizeGlobalSession called." << endl;
+	QHeader *header = m_HostListView->header();
+
+	KIpMsgSettings::setUserNameColumnIndex( 0 );
+	if ( m_HostListView->columnWidth( 0 ) > 0 ) {
+		globalUserNameColumnWidth =  m_HostListView->columnWidth( 0 );
+	}
+	KIpMsgSettings::setGroupNameColumnIndex( header->mapToIndex( 1 ) );
+	if ( m_HostListView->columnWidth( 1 ) > 0 ) {
+		globalGroupNameColumnWidth = m_HostListView->columnWidth( 1 );
+	}
+	KIpMsgSettings::setHostNameColumnIndex( header->mapToIndex( 2 ) );
+	if ( m_HostListView->columnWidth( 2 ) > 0 ) {
+		globalHostNameColumnWidth = m_HostListView->columnWidth( 2 );
+	}
+	KIpMsgSettings::setIpAddressColumnIndex( header->mapToIndex( 3 ) );
+	if ( m_HostListView->columnWidth( 3 ) > 0 ) {
+		globalIpAddressColumnWidth = m_HostListView->columnWidth( 3 );
+	}
+	KIpMsgSettings::setLoginNameColumnIndex( header->mapToIndex( 4 ) );
+	if ( m_HostListView->columnWidth( 4 ) > 0 ) {
+		globalLoginNameColumnWidth = m_HostListView->columnWidth( 4 );
+	}
+	KIpMsgSettings::setPriorityColumnIndex( header->mapToIndex( 5 ) );
+	if ( m_HostListView->columnWidth( 5 ) > 0 ) {
+		globalPriorityColumnWidth = m_HostListView->columnWidth( 5 );
+	}
+	KIpMsgSettings::setEncodingColumnIndex( header->mapToIndex( 6 ) );
+	if ( m_HostListView->columnWidth( 6 ) > 0 ) {
+		globalEncodingColumnWidth = m_HostListView->columnWidth( 6 );
+	}
+}
+
+/**
+ * ヘッダ保存。
+ */
 void SendDialog::slotSaveListHeaderClicked()
 {
+kdDebug() << "slotSaveListHeaderClicked called." << endl;
 	QHeader *header = m_HostListView->header();
 
 	KIpMsgSettings::setUserNameColumnIndex( 0 );
@@ -1473,6 +1571,14 @@ void SendDialog::slotSaveListHeaderClicked()
 		KIpMsgSettings::setEncodingColumnWidth( m_HostListView->columnWidth( 6 ) );
 	}
 	KIpMsgSettings::writeConfig();
+	//設定ファイルに保存した内容で上書く
+	globalUserNameColumnWidth = KIpMsgSettings::userNameColumnWidth();
+	globalGroupNameColumnWidth = KIpMsgSettings::groupNameColumnWidth();
+	globalHostNameColumnWidth = KIpMsgSettings::hostNameColumnWidth();
+	globalIpAddressColumnWidth = KIpMsgSettings::ipAddressColumnWidth();
+	globalLoginNameColumnWidth = KIpMsgSettings::loginNameColumnWidth();
+	globalPriorityColumnWidth = KIpMsgSettings::priorityColumnWidth();
+	globalEncodingColumnWidth = KIpMsgSettings::encodingColumnWidth();
 }
 
 /**
