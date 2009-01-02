@@ -1,6 +1,6 @@
 /***************************************************************************
- *   Copyright (C) 2006 by 仁木 邦信                                       *
- *   niki@edic.co.jp   *
+ *   Copyright (C) 2006-2009 by nikikuni                                        *
+ *   nikikuni@yahoo.co.jp                                                  *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU General Public License as published by  *

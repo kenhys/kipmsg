@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2006 by 仁木 邦信                                       *
+ *   Copyright (C) 2006-2009 by nikikuni                                        *
  *   nikikuni@yahoo.co.jp                                                  *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -60,7 +60,7 @@ public slots:
 
 protected:
 	virtual void contentsDropEvent(QDropEvent *e);
-	virtual void keyPressEvent ( QKeyEvent * e );
+	virtual void keyPressEvent ( QKeyEvent *e );
 
 private:
 	KPopupMenu *DnDPopup;
@@ -83,6 +83,7 @@ public:
 	void setMessageText(QString text);
 	void addDnDFiles(QString fileUrl);
 	void refreshFiles();
+	void saveColumnSizeGlobalSession();
 
 	enum {
 		ColumnUser = 0,

@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2006 by 仁木 邦信                                       *
+ *   Copyright (C) 2006-2009 by nikikuni                                        *
  *   nikikuni@yahoo.co.jp                                                  *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *

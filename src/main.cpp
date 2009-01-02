@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2006 by 仁木 邦信                                       *
+ *   Copyright (C) 2006-2009 by nikikuni                                        *
  *   nikikuni@yahoo.co.jp                                                  *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -51,8 +51,8 @@ static KCmdLineOptions options[] =
 int main(int argc, char **argv)
 {
     KAboutData about("kipmsg", I18N_NOOP("kipmsg"), version, description,
-                     KAboutData::License_GPL, "(C) 2006 仁木 邦信", 0, 0, "nikikuni@yahoo.co.jp");
-    about.addAuthor( "仁木 邦信", 0, "nikikuni@yahoo.co.jp" );
+                     KAboutData::License_GPL, "(C) 2006-2009 nikikuni", 0, 0, "nikikuni@yahoo.co.jp");
+    about.addAuthor( "nikikuni", 0, "nikikuni@yahoo.co.jp" );
     KCmdLineArgs::init(argc, argv, &about);
     KCmdLineArgs::addCmdLineOptions( options );
 	if ( !KUniqueApplication::start() ) {
