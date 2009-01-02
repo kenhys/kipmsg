@@ -418,6 +418,87 @@
             </widget>
         </hbox>
     </widget>
+    <widget class="QLabel">
+        <property name="name">
+            <cstring>m_MainSplitter</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>1</x>
+                <y>167</y>
+                <width>530</width>
+                <height>7</height>
+            </rect>
+        </property>
+        <property name="minimumSize">
+            <size>
+                <width>0</width>
+                <height>7</height>
+            </size>
+        </property>
+        <property name="maximumSize">
+            <size>
+                <width>32767</width>
+                <height>7</height>
+            </size>
+        </property>
+        <property name="cursor">
+            <cursor>11</cursor>
+        </property>
+        <property name="frameShape">
+            <enum>PopupPanel</enum>
+        </property>
+        <property name="frameShadow">
+            <enum>Sunken</enum>
+        </property>
+        <property name="text">
+            <string></string>
+        </property>
+    </widget>
+    <widget class="QFrame">
+        <property name="name">
+            <cstring>m_MessageFrame</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>1</x>
+                <y>177</y>
+                <width>534</width>
+                <height>200</height>
+            </rect>
+        </property>
+        <property name="minimumSize">
+            <size>
+                <width>0</width>
+                <height>140</height>
+            </size>
+        </property>
+        <property name="frameShape">
+            <enum>StyledPanel</enum>
+        </property>
+        <property name="frameShadow">
+            <enum>Raised</enum>
+        </property>
+        <property name="lineWidth">
+            <number>0</number>
+        </property>
+        <widget class="KPushButton">
+            <property name="name">
+                <cstring>m_AttachFileButton</cstring>
+            </property>
+            <property name="geometry">
+                <rect>
+                    <x>0</x>
+                    <y>0</y>
+                    <width>530</width>
+                    <height>30</height>
+                </rect>
+            </property>
+            <property name="text">
+                <string></string>
+            </property>
+        </widget>
+    </widget>
     <widget class="QFrame">
         <property name="name">
             <cstring>m_HostFrame</cstring>
@@ -595,90 +676,7 @@
             </widget>
         </hbox>
     </widget>
-    <widget class="QLabel">
-        <property name="name">
-            <cstring>m_MainSplitter</cstring>
-        </property>
-        <property name="geometry">
-            <rect>
-                <x>1</x>
-                <y>167</y>
-                <width>530</width>
-                <height>7</height>
-            </rect>
-        </property>
-        <property name="minimumSize">
-            <size>
-                <width>0</width>
-                <height>7</height>
-            </size>
-        </property>
-        <property name="maximumSize">
-            <size>
-                <width>32767</width>
-                <height>7</height>
-            </size>
-        </property>
-        <property name="cursor">
-            <cursor>11</cursor>
-        </property>
-        <property name="frameShape">
-            <enum>PopupPanel</enum>
-        </property>
-        <property name="frameShadow">
-            <enum>Sunken</enum>
-        </property>
-        <property name="text">
-            <string></string>
-        </property>
-    </widget>
-    <widget class="QFrame">
-        <property name="name">
-            <cstring>m_MessageFrame</cstring>
-        </property>
-        <property name="geometry">
-            <rect>
-                <x>1</x>
-                <y>177</y>
-                <width>534</width>
-                <height>200</height>
-            </rect>
-        </property>
-        <property name="minimumSize">
-            <size>
-                <width>0</width>
-                <height>140</height>
-            </size>
-        </property>
-        <property name="frameShape">
-            <enum>StyledPanel</enum>
-        </property>
-        <property name="frameShadow">
-            <enum>Raised</enum>
-        </property>
-        <property name="lineWidth">
-            <number>0</number>
-        </property>
-        <widget class="KPushButton">
-            <property name="name">
-                <cstring>m_AttachFileButton</cstring>
-            </property>
-            <property name="geometry">
-                <rect>
-                    <x>0</x>
-                    <y>0</y>
-                    <width>530</width>
-                    <height>30</height>
-                </rect>
-            </property>
-            <property name="text">
-                <string></string>
-            </property>
-        </widget>
-    </widget>
 </widget>
-<customwidgets>
-</customwidgets>
 <images>
     <image name="image0">
         <data format="PNG" length="445">89504e470d0a1a0a0000000d4948445200000020000000200806000000737a7af400000184494441545885c597516ec3201044df46b9566e461a59702ef7a3079b7e103b31c1b076ea66244490077676bc016ce2b338cfbf445d8b61860ed129cc4ecde0f767c28e880fc0c9c5121c25e2dca7bc0fc998f45b61b6cf01a0f192900c6155979e83e765961cbf8046f056801efc0276944029ee3d0107c127c05e8ba787b5ecab4568d6587cefbfcf39cf9455095e0bc89bb5e75dd7d61366e716c10b3375ab7f6ded8f17e1db3ba1346f71ab6839bb4bc01cf4116157f0cd023cd96e09ee16b035f03c0feb8a38742bf6a0e9c09e023bee307204df835501bdecddbb64c79113401c121a977d0b69882ffc795e45d7745929f9b30080f4930804d2cf53f086f8923f8d5b28f90b01e1124824c2a5bd08a3aafc69ccb756af6f251feea721839478641e08f0553fe1d210732605bf360eb7eb625ee5792ea538446994ca5eb0686bbc564ff6636ec5fad9819489d54cec562f84b8c189eb93138bf93d07a6becca26c7b9c20bbba5e035e27de81207f1bd6aab91c6b14718868fcdbefd4d675f45ff00bcc3659e497af383e0000000049454e44ae426082</data>
@@ -765,8 +763,8 @@
 <includehints>
     <includehint>kcombobox.h</includehint>
     <includehint>kpushbutton.h</includehint>
-    <includehint>klistview.h</includehint>
     <includehint>kpushbutton.h</includehint>
+    <includehint>klistview.h</includehint>
     <includehint>kpushbutton.h</includehint>
     <includehint>kpushbutton.h</includehint>
 </includehints>
