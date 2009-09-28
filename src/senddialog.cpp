@@ -244,7 +244,7 @@ SendDialog::SendDialog(QWidget* parent, const char* name, WFlags fl)
 		globalLoginNameColumnWidth = KIpMsgSettings::loginNameColumnWidth();
 		globalPriorityColumnWidth = KIpMsgSettings::priorityColumnWidth();
 		globalEncodingColumnWidth = KIpMsgSettings::encodingColumnWidth();
-kdDebug() << "Column width variables initialized." << endl;
+//kdDebug() << "Column width variables initialized." << endl;
 	}
 
 	defaultX = x();
@@ -380,7 +380,7 @@ kdDebug() << "Column width variables initialized." << endl;
 
 	slotSecretClicked();
 
-	refreshHostList();
+	refreshHostList(KIpMsgEvent::Event_TriggerIsNotEvent);
 }
 
 /**
@@ -749,7 +749,7 @@ void SendDialog::slotSecretClicked()
  */
 void SendDialog::slotHostListUpdateClicked()
 {
-	refreshHostList( true );
+	refreshHostList(KIpMsgEvent::Event_TriggerIsNotEvent, true);
 }
 
 /**
@@ -837,11 +837,12 @@ void SendDialog::slotIdiomConfigClicked()
 /**
  * ホストリストをリフレッシュする。
  * ・ホストリストをリフレッシュ
+ * @param event イベントＩＤ。
  * @param isUpdate TRUE:ネットワークから。FALSE:エージェントの内部変数から。
  */
-void SendDialog::refreshHostList( bool isUpdate )
+void SendDialog::refreshHostList( KIpMsgEvent::Event event, bool isUpdate )
 {
-kdDebug() << "refreshHostList(" << isUpdate << ") called." << endl;
+//kdDebug() << "refreshHostList(" << isUpdate << ") called." << endl;
 	//選択状態を保存して
 	QListViewItemIterator it( m_HostListView );
 	QStringList saveSelectedValues;
@@ -875,54 +876,54 @@ kdDebug() << "refreshHostList(" << isUpdate << ") called." << endl;
 	//設定によって表示内容を変更する
 #endif
 	m_HostListView->addColumn( tr2i18n( "User" ), globalUserNameColumnWidth );
-kdDebug() << "globalUserNameColumnWidth=" << globalUserNameColumnWidth << endl;
+//kdDebug() << "globalUserNameColumnWidth=" << globalUserNameColumnWidth << endl;
 	if ( KIpMsgSettings::showGroupName() ) {
 		m_HostListView->addColumn( tr2i18n("Group"), globalGroupNameColumnWidth );
-kdDebug() << "globalGroupNameColumnWidth=" << globalGroupNameColumnWidth << endl;
+//kdDebug() << "globalGroupNameColumnWidth=" << globalGroupNameColumnWidth << endl;
 	} else {
 		int col = m_HostListView->addColumn( tr2i18n("Group"), 0 );
 		m_HostListView->hideColumn( col );
-kdDebug() << "hideColumn" << col << endl;
+//kdDebug() << "hideColumn" << col << endl;
 	}
 	if ( KIpMsgSettings::showHostName() ) {
 		m_HostListView->addColumn( tr2i18n("Host"), globalHostNameColumnWidth );
-kdDebug() << "globalHostNameColumnWidth=" << globalHostNameColumnWidth << endl;
+//kdDebug() << "globalHostNameColumnWidth=" << globalHostNameColumnWidth << endl;
 	} else {
 		int col = m_HostListView->addColumn( tr2i18n("Host"), 0 );
 		m_HostListView->hideColumn( col );
-kdDebug() << "hideColumn" << col << endl;
+//kdDebug() << "hideColumn" << col << endl;
 	}
 	if ( KIpMsgSettings::showIpAddress() ) {
 		m_HostListView->addColumn( tr2i18n("IP address"), globalIpAddressColumnWidth );
-kdDebug() << "globalIpAddressColumnWidth=" << globalIpAddressColumnWidth << endl;
+//kdDebug() << "globalIpAddressColumnWidth=" << globalIpAddressColumnWidth << endl;
 	} else {
 		int col = m_HostListView->addColumn( tr2i18n("IP address"), 0 );
 		m_HostListView->hideColumn( col );
-kdDebug() << "hideColumn" << col << endl;
+//kdDebug() << "hideColumn" << col << endl;
 	}
 	if ( KIpMsgSettings::showLoginName() ) {
 		m_HostListView->addColumn( tr2i18n("Login"), globalLoginNameColumnWidth );
-kdDebug() << "globalLoginNameColumnWidth=" << globalLoginNameColumnWidth << endl;
+//kdDebug() << "globalLoginNameColumnWidth=" << globalLoginNameColumnWidth << endl;
 	} else {
 		int col = m_HostListView->addColumn( tr2i18n("Login"), 0 );
 		m_HostListView->hideColumn( col );
-kdDebug() << "hideColumn" << col << endl;
+//kdDebug() << "hideColumn" << col << endl;
 	}
 	if ( KIpMsgSettings::showPriority() ) {
 		m_HostListView->addColumn( tr2i18n("Priority"), globalPriorityColumnWidth );
-kdDebug() << "globalPriorityColumnWidth=" << globalPriorityColumnWidth << endl;
+//kdDebug() << "globalPriorityColumnWidth=" << globalPriorityColumnWidth << endl;
 	} else {
 		int col = m_HostListView->addColumn( tr2i18n("Priority"), 0 );
 		m_HostListView->hideColumn( col );
-kdDebug() << "hideColumn" << col << endl;
+//kdDebug() << "hideColumn" << col << endl;
 	}
 	if ( KIpMsgSettings::showEncoding() ) {
 		m_HostListView->addColumn(tr2i18n("Encoding"), globalEncodingColumnWidth );
-kdDebug() << "globalEncodingColumnWidth=" << globalEncodingColumnWidth << endl;
+//kdDebug() << "globalEncodingColumnWidth=" << globalEncodingColumnWidth << endl;
 	} else {
 		int col = m_HostListView->addColumn(tr2i18n("Encoding"), 0 );
 		m_HostListView->hideColumn( col );
-kdDebug() << "hideColumn" << col << endl;
+//kdDebug() << "hideColumn" << col << endl;
 	}
 //	m_HostListView->addColumn(tr2i18n("Encryption Flags"), 0 );
 //	m_HostListView->addColumn(tr2i18n("RSA Method"), 0 );
@@ -942,75 +943,12 @@ kdDebug() << "hideColumn" << col << endl;
 	header->moveSection( ColumnPriority, KIpMsgSettings::priorityColumnIndex() );
 	header->moveSection( ColumnEncoding, KIpMsgSettings::encodingColumnIndex() );
 
-	bool hideEncryptionUnsupported = KIpMsgSettings::hideEncryptionNotSupportedHost();
-	QStringList encodings = KIpMsgSettings::encodingSettings();
 	for( vector<HostListItem>::iterator ix = hosts.begin(); ix != hosts.end(); ix++ ){
-		if ( hideEncryptionUnsupported && !ix->IsEncryptSupport() ) {
-			continue;
-		}
-
-		//設定によって表示内容を変更する
-		QStringList values;
-		QTextCodec *codec;
-		for( QStringList::iterator ite = encodings.begin(); ite != encodings.end(); ite++ ){
-			QStringList fields = QStringList::split( "|", *ite );
-			if ( QString( ix->IpAddress().c_str() ) == fields[0] && 
-				QString( ix->UserName().c_str() ) == fields[1] ) {
-				ix->setEncodingName( string( fields[2].data() ) );
-				break;
-			}
-		}
-		if ( ix->EncodingName() != "" ) {
-			codec = QTextCodec::codecForName( ix->EncodingName().c_str() );
-		} else {
-			codec = QTextCodec::codecForName( KIpMsgSettings::messageEncoding() );
-		}
-		QString pitem = string(ix->IpAddress() + "|" + ix->UserName()).c_str();
-		//TODO
-		QPtrList<KipmsgPriorityHostItem> list;
-		QStringList loadList;
-		if ( KIpMsgSettings::customizePriority() ) {
-			loadList = KIpMsgSettings::customizedPriorityHostList();
-		} else {
-			loadList = KIpMsgSettings::priorityHostList();
-		}
-		convertStringListToPriorityHostList( loadList, list );
-		QPtrListIterator<KipmsgPriorityHostItem> it( list );
-		KipmsgPriorityHostItem *item;
-		while( ( item = it.current() ) != 0 ) {
-			if ( pitem == item->ipAddress() +"|" + item->loginName() ) {
-				ix->setPriority( utf8codec->fromUnicode( item->priority() ).data() );
-				break;
-			}
-			++it;
-		}
-		if ( ix->Priority() == "" ) {
-			ix->setPriority( "-" );
-		}
-		//アイコンの設定
-		if ( ix->Priority() != "X" || isShowHiddenTemp ) {
-			KIpMsgHostListViewItem *item = new KIpMsgHostListViewItem( m_HostListView, codec, *ix );
-			if ( ix->IsAbsence() ) {
-				if ( ix->IsFileAttachSupport() && !ix->IsEncryptSupport() ){
-					item->setPixmap( 0 ,SmallIcon("kipmsg_fileabs") );
-				} else if ( !ix->IsFileAttachSupport() && !ix->IsEncryptSupport() ){
-					item->setPixmap( 0 ,SmallIcon("kipmsg_v1abs") );
-				} else {
-					item->setPixmap( 0 ,SmallIcon("kipmsg_absence") );
-				}
-			} else {
-				if ( ix->IsFileAttachSupport() && !ix->IsEncryptSupport() ){
-					item->setPixmap( 0 ,SmallIcon("kipmsg_file") );
-				} else if ( !ix->IsFileAttachSupport() && !ix->IsEncryptSupport() ){
-					item->setPixmap( 0 ,SmallIcon("kipmsg_v1") );
-				} else {
-					item->setPixmap( 0 ,SmallIcon("kipmsg_normal") );
-				}
-			}
-		}
+		KIpMsgHostListViewItem *item = new KIpMsgHostListViewItem( m_HostListView, getHostCodec( &*ix ), *ix );
+		setHostListItem( item, &*ix );
 	}
 	//件数を表示
-	m_UserCountLCD->display( (int)hosts.size() );
+	m_UserCountLCD->display( m_HostListView->childCount() );
 	//選択状態をリストア
 	QListViewItemIterator its( m_HostListView );
 	while ( its.current() != NULL ) {
@@ -1023,6 +961,175 @@ kdDebug() << "hideColumn" << col << endl;
 		}
 		++its;
 	}
+	rebuildDynamicMenu();
+}
+
+/**
+ * ホストリストを１行更新する。
+ * ・ホストリストを１行更新
+ * @param event イベントＩＤ。
+ */
+void SendDialog::updateHostList( KIpMsgEvent::Event event, HostListItem *ix )
+{
+kdDebug() << "updateHostList() called" << endl;
+	if ( ix == NULL ){
+kdDebug() << "ix is null" << endl;
+		return;
+	}
+	if ( ix->IpAddress() == NULL ){
+kdDebug() << "IpAddress is null" << endl;
+		return;
+	}
+	if ( ix->UserName() == NULL ){
+kdDebug() << "UserName is null" << endl;
+		return;
+	}
+	QString host = QString( ix->IpAddress().c_str() ) + "|" + QString( ix->UserName().c_str() );
+	//選択状態をリストア
+kdDebug() << "updateHostList() step 2" << endl;
+	QListViewItemIterator its( m_HostListView );
+kdDebug() << "updateHostList() loop start" << endl;
+	while ( its.current() != NULL ) {
+kdDebug() << "updateHostList() loop" << endl;
+		QListViewItem *item = its.current();
+		if ( item->text( ColumnIpAddress ) + "|" + item->text( ColumnLogin ) == host ) {
+kdDebug() << "setHostListItem(1) call" << endl;
+			setHostListItem( dynamic_cast<KIpMsgHostListViewItem*>(item), &*ix );
+kdDebug() << "rebuildDynamicMenu(1) call" << endl;
+			rebuildDynamicMenu();
+kdDebug() << "updateHostList exit(1)" << endl;
+			return;
+		}
+		++its;
+	}
+kdDebug() << "new KIpMsgHostListViewItem call" << endl;
+	KIpMsgHostListViewItem *item = new KIpMsgHostListViewItem( m_HostListView, getHostCodec( &*ix ), *ix );
+kdDebug() << "setHostListItem(2) call" << endl;
+	setHostListItem( item, &*ix );
+kdDebug() << "rebuildDynamicMenu(2) call" << endl;
+	rebuildDynamicMenu();
+kdDebug() << "updateHostList exit(2)" << endl;
+}
+
+/**
+ * ホストリストから１行削除する。
+ * ・ホストリストから１行削除
+ * @param event イベントＩＤ。
+ */
+void SendDialog::deleteHostList( KIpMsgEvent::Event event, HostListItem *ix )
+{
+	if ( ix == NULL ){
+kdDebug() << "ix is null" << endl;
+		return;
+	}
+	QString host = QString( ix->IpAddress().c_str() ) + "|" + QString( ix->UserName().c_str() );
+	//選択状態をリストア
+	QListViewItemIterator its( m_HostListView );
+	while ( its.current() != NULL ) {
+		QListViewItem *item = its.current();
+		if ( item->text( ColumnIpAddress ) + "|" + item->text( ColumnLogin ) == host ) {
+			m_HostListView->takeItem( item );
+			rebuildDynamicMenu();
+			return;
+		}
+		++its;
+	}
+}
+
+/**
+ * 動的メニュー再構築する。
+ * ・動的メニュー再構築
+ */
+void SendDialog::setHostListItem( KIpMsgHostListViewItem *hlvItem, HostListItem *ix)
+{
+kdDebug() << "setHostListItem()" << hlvItem << ix <<endl;
+	bool hideEncryptionUnsupported = KIpMsgSettings::hideEncryptionNotSupportedHost();
+	QStringList encodings = KIpMsgSettings::encodingSettings();
+	if ( hideEncryptionUnsupported && !ix->IsEncryptSupport() ) {
+		return;
+	}
+	//設定によって表示内容を変更する
+	QStringList values;
+	for( QStringList::iterator ite = encodings.begin(); ite != encodings.end(); ite++ ){
+		QStringList fields = QStringList::split( "|", *ite );
+		if ( QString( ix->IpAddress().c_str() ) == fields[0] && 
+			QString( ix->UserName().c_str() ) == fields[1] ) {
+			ix->setEncodingName( string( fields[2].data() ) );
+			break;
+		}
+	}
+	QString pitem = string(ix->IpAddress() + "|" + ix->UserName()).c_str();
+	//TODO
+	QPtrList<KipmsgPriorityHostItem> list;
+	QStringList loadList;
+	if ( KIpMsgSettings::customizePriority() ) {
+		loadList = KIpMsgSettings::customizedPriorityHostList();
+	} else {
+		loadList = KIpMsgSettings::priorityHostList();
+	}
+	convertStringListToPriorityHostList( loadList, list );
+	QPtrListIterator<KipmsgPriorityHostItem> it( list );
+	KipmsgPriorityHostItem *item;
+	while( ( item = it.current() ) != 0 ) {
+		if ( pitem == item->ipAddress() +"|" + item->loginName() ) {
+			ix->setPriority( utf8codec->fromUnicode( item->priority() ).data() );
+			break;
+		}
+		++it;
+	}
+	if ( ix->Priority() == "" ) {
+		ix->setPriority( "-" );
+	}
+	//アイコンの設定
+	if ( ix->Priority() != "X" || isShowHiddenTemp ) {
+		if ( ix->IsAbsence() ) {
+			if ( ix->IsFileAttachSupport() && !ix->IsEncryptSupport() ){
+				hlvItem->setPixmap( 0 ,SmallIcon("kipmsg_fileabs") );
+			} else if ( !ix->IsFileAttachSupport() && !ix->IsEncryptSupport() ){
+				hlvItem->setPixmap( 0 ,SmallIcon("kipmsg_v1abs") );
+			} else {
+				hlvItem->setPixmap( 0 ,SmallIcon("kipmsg_absence") );
+			}
+		} else {
+			if ( ix->IsFileAttachSupport() && !ix->IsEncryptSupport() ){
+				hlvItem->setPixmap( 0 ,SmallIcon("kipmsg_file") );
+			} else if ( !ix->IsFileAttachSupport() && !ix->IsEncryptSupport() ){
+				hlvItem->setPixmap( 0 ,SmallIcon("kipmsg_v1") );
+			} else {
+				hlvItem->setPixmap( 0 ,SmallIcon("kipmsg_normal") );
+			}
+		}
+	}
+}
+/**
+ * ホストのコーデックを取得。
+ * ・ホストのコーデックを取得
+ */
+QTextCodec *SendDialog::getHostCodec( HostListItem *ix )
+{
+	if ( ix->EncodingName() != "" ) {
+		return QTextCodec::codecForName( ix->EncodingName().c_str() );
+	} else {
+		return QTextCodec::codecForName( KIpMsgSettings::messageEncoding() );
+	}
+}
+/**
+ * 動的メニュー再構築する。
+ * ・動的メニュー再構築
+ */
+void SendDialog::rebuildDynamicMenu( void )
+{
+	rebuildSortFilterMenu();
+	rebuildGroupSelectMenu();
+	rebuildEncodingSelectMenu();
+	rebuildPrioritySelectMenu();
+}
+/**
+ * 優先度選択メニュー再構築する。
+ * ・優先度選択メニュー再構築
+ */
+void SendDialog::rebuildSortFilterMenu( void )
+{
 	//優先度選択メニュー再構築
 	sortPopup->clear();
 	priorityHostMenuIdList.clear();
@@ -1054,7 +1161,15 @@ kdDebug() << "hideColumn" << col << endl;
 	showHiddenMenuId = sortPopup->insertItem(tr2i18n("Show Hidden(temporary)"), this, SLOT( slotShowHiddenTempClicked( void ) ) );
 	sortPopup->setItemChecked( showHiddenMenuId, FALSE );
 	sortPopup->insertItem(SmallIcon("undo"),tr2i18n("Restore All to default"), this, SLOT( slotRestoreAllClicked( void ) ) );
+}
 
+/**
+ * グループ選択メニュー再構築する。
+ * ・グループ選択メニュー再構築
+ */
+void SendDialog::rebuildGroupSelectMenu( void )
+{
+	IpMessengerAgent *agent = IpMessengerAgent::GetInstance();
 	//グループ選択メニュー再構築
 	groupPopup->clear();
 	groupMenuIdList.clear();
@@ -1071,10 +1186,18 @@ kdDebug() << "hideColumn" << col << endl;
 			groupMenuIdList.insert( menu_item, new QString( codec->toUnicode( QString( ixgr->GroupName().c_str() ) ) ) );
 		}
 	}
+}
+/**
+ * エンコーディング選択メニュー再構築する。
+ * ・エンコーディング選択メニュー再構築
+ */
+void SendDialog::rebuildEncodingSelectMenu( void )
+{
 	//エンコーディング選択メニュー再構築
 	encodingPopup->clear();
 	encodingMenuIdList.clear();
 	encodingMenuIdList.setAutoDelete( TRUE );
+	QListViewItemIterator it( m_HostListView );
 	it = QListViewItemIterator( m_HostListView );
 	while ( it.current() != NULL ) {
 		QListViewItem *item = it.current();
@@ -1097,10 +1220,18 @@ kdDebug() << "hideColumn" << col << endl;
 		}
 		it++;
 	}
+}
+/**
+ * 優先度選択メニュー再構築する。
+ * ・優先度選択メニュー再構築
+ */
+void SendDialog::rebuildPrioritySelectMenu( void )
+{
 	//優先度選択メニュー再構築
 	priorityPopup->clear();
 	priorityMenuIdList.clear();
 	priorityMenuIdList.setAutoDelete( TRUE );
+	QListViewItemIterator it( m_HostListView );
 	it = QListViewItemIterator( m_HostListView );
 	while ( it.current() != NULL ) {
 		QListViewItem *item = it.current();
@@ -1239,10 +1370,10 @@ void SendDialog::slotPriorityMove(int menu_item )
 	QStringList priList;
 	setPriority( *priorityHostMenuIdList[menu_item], priList );
 	KIpMsgSettings::writeConfig();
-	refreshHostList();
+	refreshHostList(KIpMsgEvent::Event_TriggerIsNotEvent);
 	IpMessengerAgent *agent = IpMessengerAgent::GetInstance();
 	KIpMsgEvent *evt = dynamic_cast<KIpMsgEvent *>(agent->GetEventObject());
-	evt->RefreshHostListInAllSendDlg();
+	evt->RefreshHostListInAllSendDlg(KIpMsgEvent::Event_TriggerIsNotEvent);
 	prev_menu = menu_item;
 }
 
@@ -1286,7 +1417,7 @@ void SendDialog::slotPriorityConfigClicked()
 		KIpMsgSettings::setCustomizedPriorityHostList( saveList );
 	}
 
-	refreshHostList();
+	refreshHostList(KIpMsgEvent::Event_TriggerIsNotEvent);
 }
 
 /**
@@ -1426,7 +1557,7 @@ void SendDialog::slotShowHiddenTempClicked()
 {
 	sortPopup->setItemChecked( showHiddenMenuId, !sortPopup->isItemChecked( showHiddenMenuId ) );
 	isShowHiddenTemp = sortPopup->isItemChecked( showHiddenMenuId );
-	refreshHostList();
+	refreshHostList(KIpMsgEvent::Event_TriggerIsNotEvent);
 }
 
 /**
@@ -1451,7 +1582,7 @@ void SendDialog::slotRestoreAllClicked()
 		KIpMsgSettings::setPriorityHostList( emptyList );
 	}
 	KIpMsgSettings::writeConfig();
-	refreshHostList();
+	refreshHostList(KIpMsgEvent::Event_TriggerIsNotEvent);
 }
 
 /**
@@ -1539,7 +1670,7 @@ kdDebug() << "saveColumnSizeGlobalSession called." << endl;
  */
 void SendDialog::slotSaveListHeaderClicked()
 {
-kdDebug() << "slotSaveListHeaderClicked called." << endl;
+//kdDebug() << "slotSaveListHeaderClicked called." << endl;
 	QHeader *header = m_HostListView->header();
 
 	KIpMsgSettings::setUserNameColumnIndex( 0 );
@@ -1728,7 +1859,7 @@ void SendDialog::slotEncodingConfigClicked()
 {
 	KIPMsgEncodingConfigDialog *encconfig = new KIPMsgEncodingConfigDialog(this,0,TRUE);
 	encconfig->exec();
-	refreshHostList();
+	refreshHostList(KIpMsgEvent::Event_TriggerIsNotEvent);
 }
 
 /**

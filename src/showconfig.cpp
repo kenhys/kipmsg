@@ -100,7 +100,7 @@ void KIPMsgShowConfigDialog::slotApplyClicked()
 	KIpMsgSettings::setIgnoreCaseAsSingleByte( m_IgnoreCaseSingleByteCheckbox->isChecked() );
 	KIpMsgSettings::setPriorityMultiBytes( m_PriorityMultiBytesCheckbox->isChecked() );
 	KIpMsgSettings::writeConfig();
-	if ( senddialog != NULL ) senddialog->refreshHostList();
+	if ( senddialog != NULL ) senddialog->refreshHostList(KIpMsgEvent::Event_TriggerIsNotEvent);
 }
 
 #include "showconfig.moc"

@@ -29,9 +29,11 @@
 #include <kmessagebox.h>
 #include <kiconloader.h>
 #include <kuniqueapplication.h>
+#include <kdebug.h>
 #include "downloadcompletedialog.h"
 #include "downloaderrordialog.h"
 #include "kipmsgevent.h"
+#include "senddialog.h"
 #include "kipmsgwidget.h"
 #include "kipmsgsettings.h"
 #include "kipmsglogger.h"
@@ -66,7 +68,8 @@ KIpMsgEvent::EventAfter(){
  */
 void
 KIpMsgEvent::RefreshHostListAfter( HostList& /*hostList*/ ){
-	RefreshHostListInAllSendDlg();
+//kdDebug() << "RefreshHostListAfter called." << endl;
+//	RefreshHostListInAllSendDlg(Event_RefreshHostListAfter);
 }
 
 /**
@@ -76,7 +79,8 @@ KIpMsgEvent::RefreshHostListAfter( HostList& /*hostList*/ ){
  */
 void
 KIpMsgEvent::UpdateHostListAfter( HostList& /*hostList*/ ){
-	RefreshHostListInAllSendDlg();
+//kdDebug() << "UpdateHostListAfter called." << endl;
+//	RefreshHostListInAllSendDlg(Event_UpdateHostListAfter);
 }
 
 /**
@@ -355,6 +359,58 @@ KIpMsgEvent::AbsenceModeChangeAfter( HostListItem& host )
 	notity->show();
 }
 
+
+/**
+ * ホストの参加通知電文受信後イベント
+ * @param host ホスト
+ */
+void KIpMsgEvent::EventBrEntryAfter( HostListItem& host ){
+printf("EventBrEntryAfter\n");
+kdDebug() << "EventBrEntryAfter called." << endl;
+//	RefreshHostListInAllSendDlg(Event_BrEntryAfter);
+	UpdateHostInAllSendDlg(Event_BrAbsenceAfter, host );
+}
+/**
+ * ホストの参加通知応答電文受信後イベント
+ * @param host ホスト
+ */
+void KIpMsgEvent::EventAnsEntryAfter( HostListItem& host ){
+printf("EventAnsEntryAfter\n");
+kdDebug() << "EventAnsEntryAfter called." << endl;
+//	RefreshHostListInAllSendDlg(Event_AnsEntryAfter);
+	UpdateHostInAllSendDlg(Event_BrAbsenceAfter, host );
+}
+/**
+ * ホストの脱退通知電文受信後イベント
+ * @param host ホスト
+ */
+void KIpMsgEvent::EventBrExitAfter( HostListItem& host ){
+printf("EventBrExitAfter\n");
+kdDebug() << "EventBrExitAfter called." << endl;
+	DeleteHostInAllSendDlg(Event_BrExitAfter, host);
+}
+/**
+ * 不在モード更新電文受信後イベント
+ * @param hostList ホスト
+ */
+void KIpMsgEvent::EventBrAbsenceAfter( HostListItem& host ){
+//printf("EventBrAbsenceAfter\n");
+kdDebug() << "EventBrAbsenceAfter called." << endl;
+//	RefreshHostListInAllSendDlg(Event_BrAbsenceAfter);
+	UpdateHostInAllSendDlg(Event_BrAbsenceAfter, host );
+};
+/**
+ * 公共鍵応答通知電文受信後イベント
+ * @param host ホスト
+ */
+void
+KIpMsgEvent::EventAnsPubKeyAfter( HostListItem& host ){
+//printf("EventAnsPubKeyAfter\n");
+kdDebug() << "EventAnsPubKeyAfter called." << endl;
+//	RefreshHostListInAllSendDlg(Event_AnsPubKeyAfter);
+//	UpdateHostInAllSendDlg(Event_AnsPubKeyAfter, host );
+}
+
 /**
  * 通知ウインドウ生成
  * @retval 通知ウインドウ
@@ -425,13 +481,59 @@ KIpMsgEvent::GetHostEncodingFromConfig( HostListItem &host )
  *   エージェント内のホストリストでリフレッシュする
  */
 void 
-KIpMsgEvent::RefreshHostListInAllSendDlg()
+KIpMsgEvent::RefreshHostListInAllSendDlg(KIpMsgEvent::Event event)
 {
+kdDebug() << "RefreshHostListInAllSendDlg called." << endl;
 	QPtrListIterator<SendDialog> sendIt(sendDialogs);
 	SendDialog *sendDlg;
 	while( ( sendDlg = sendIt.current() ) != 0 ) {
-		if ( sendDlg->isShown() ) {
-			sendDlg->refreshHostList( false );
+		if ( sendDlg == NULL ){
+kdDebug() << "sendDlg is null!!" << endl;
+		} else if ( sendDlg->isShown() ) {
+kdDebug() << "call sendDlg->refreshHostList" << endl;
+			sendDlg->refreshHostList( event, false );
+		}
+		++sendIt;
+	}
+}
+
+/**
+ * 全ての送信ダイアログのホストリストの１ホストを更新する。
+ * ・全ての送信ウインドウのホストリストの１ホストをネットワークから取得したホスト情報で更新する
+ */
+void 
+KIpMsgEvent::UpdateHostInAllSendDlg(KIpMsgEvent::Event event, HostListItem &host )
+{
+kdDebug() << "UpdateHostInAllSendDlg called." << endl;
+	QPtrListIterator<SendDialog> sendIt(sendDialogs);
+	SendDialog *sendDlg;
+	while( ( sendDlg = sendIt.current() ) != 0 ) {
+		if ( sendDlg == NULL ){
+kdDebug() << "sendDlg is null!!" << endl;
+		} else if ( sendDlg->isShown() ) {
+kdDebug() << "call sendDlg->updateHostList" << endl;
+			sendDlg->updateHostList( event, &host );
+		}
+		++sendIt;
+	}
+}
+
+/**
+ * 全ての送信ダイアログのホストリストの１ホストを更新する。
+ * ・全ての送信ウインドウのホストリストの１ホストをネットワークから取得したホスト情報で更新する
+ */
+void 
+KIpMsgEvent::DeleteHostInAllSendDlg(KIpMsgEvent::Event event, HostListItem &host )
+{
+kdDebug() << "DeleteHostInAllSendDlg called." << endl;
+	QPtrListIterator<SendDialog> sendIt(sendDialogs);
+	SendDialog *sendDlg;
+	while( ( sendDlg = sendIt.current() ) != 0 ) {
+		if ( sendDlg == NULL ){
+kdDebug() << "sendDlg is null!!" << endl;
+		} else if ( sendDlg->isShown() ) {
+kdDebug() << "call sendDlg->deleteHostList" << endl;
+			sendDlg->deleteHostList( event, &host );
 		}
 		++sendIt;
 	}

@@ -29,11 +29,13 @@
 #include <ktextedit.h>
 #include "senddialogbase.h"
 #include "IpMessenger.h"
+#include "kipmsgevent.h"
 
 using namespace std;
 using namespace ipmsg;
 
 class KipmsgPriorityHostItem;
+class KIpMsgHostListViewItem;
 
 class KIpMsgFileNameConverter : public FileNameConverter {
 public:
@@ -75,7 +77,9 @@ public:
     SendDialog(QWidget* parent = 0, const char* name = 0, WFlags fl = 0 );
     ~SendDialog();
     /*$PUBLIC_FUNCTIONS$*/
-	void refreshHostList( bool isUpdate=false);
+	void refreshHostList( KIpMsgEvent::Event event, bool isUpdate=false);
+	void updateHostList( KIpMsgEvent::Event event, HostListItem *ix );
+	void deleteHostList( KIpMsgEvent::Event event, HostListItem *ix );
 	void setRecieveDialog( QDialog *_recvdialog ) { recvDialog = _recvdialog; };
 	void setFixsizePotisionMenu();
 	void setSaveSizeMenu();
@@ -84,6 +88,7 @@ public:
 	void addDnDFiles(QString fileUrl);
 	void refreshFiles();
 	void saveColumnSizeGlobalSession();
+	void rebuildDynamicMenu();
 
 	enum {
 		ColumnUser = 0,
@@ -190,6 +195,14 @@ private:
 	void convertPriorityHostListToStringList( QPtrList<KipmsgPriorityHostItem> &list, QStringList &saveList );
 	void convertStringListToPriorityHostList( QStringList &loadList, QPtrList<KipmsgPriorityHostItem> &list );
 	void changePriorityHostList( QString pri, QPtrList<KipmsgPriorityHostItem> &list, QStringList &priList );
+
+	void rebuildSortFilterMenu();
+	void rebuildGroupSelectMenu();
+	void rebuildEncodingSelectMenu();
+	void rebuildPrioritySelectMenu();
+	void setHostListItem(KIpMsgHostListViewItem *item,HostListItem *ix);
+	QTextCodec *getHostCodec( HostListItem *ix );
+
 };
 
 #endif

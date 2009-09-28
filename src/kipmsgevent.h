@@ -31,13 +31,24 @@ using namespace ipmsg;
 
 #include "kipmsgsettings.h"
 #include "recievedialog.h"
-#include "senddialog.h"
 #include "openconfirm.h"
 #include "kipmsgnotify.h"
 #include "notifywidget.h"
+class SendDialog;
 
 class KIpMsgEvent: public IpMessengerEvent {
 	public:
+		enum Event{
+			Event_TriggerIsNotEvent=-1,
+			Event_BrEntryAfter=1,
+			Event_AnsEntryAfter,
+			Event_BrExitAfter,
+			Event_BrAbsenceAfter,
+			Event_AnsPubKeyAfter,
+			Event_RefreshHostListAfter,
+			Event_UpdateHostListAfter,
+			Event_Max=99
+		};
 		virtual void EventBefore();
 		virtual void EventAfter();
 		virtual void RefreshHostListAfter( HostList& hostList );
@@ -58,6 +69,11 @@ class KIpMsgEvent: public IpMessengerEvent {
 		virtual void AbsenceModeChangeAfter( HostListItem& host );
 		virtual void VersionInfoRecieveAfter( HostListItem &host, string version );
 		virtual void AbsenceDetailRecieveAfter( HostListItem &host, string absenceDetail );
+		virtual void EventBrEntryAfter( HostListItem& host );
+		virtual void EventAnsEntryAfter( HostListItem& host );
+		virtual void EventBrExitAfter( HostListItem& host );
+		virtual void EventBrAbsenceAfter( HostListItem& host );
+		virtual void EventAnsPubKeyAfter( HostListItem& host );
 
 		SendDialog * ShowSendDlg();
 		void ShowHiddenRecieveMsg();
@@ -71,7 +87,9 @@ class KIpMsgEvent: public IpMessengerEvent {
 		QPtrList<SendDialog>& GetSendDialogs();
 		static string CreateHostInfoString(HostListItem host);
 		static void GetHostEncodingFromConfig( HostListItem &host );
-		void RefreshHostListInAllSendDlg();
+		void RefreshHostListInAllSendDlg(KIpMsgEvent::Event event);
+		void UpdateHostInAllSendDlg(KIpMsgEvent::Event event, HostListItem &host );
+		void DeleteHostInAllSendDlg(KIpMsgEvent::Event event, HostListItem &host );
 	private:
 		void ShowRecieveMsg( RecievedMessage& msg );
 		QPtrList<SendDialog> sendDialogs;
