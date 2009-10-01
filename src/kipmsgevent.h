@@ -49,6 +49,7 @@ class KIpMsgEvent: public IpMessengerEvent {
 			Event_UpdateHostListAfter,
 			Event_Max=99
 		};
+		virtual int EventStartProcessThread();
 		virtual void EventBefore();
 		virtual void EventAfter();
 		virtual void RefreshHostListAfter( HostList& hostList );

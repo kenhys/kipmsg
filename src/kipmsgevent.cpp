@@ -42,6 +42,15 @@
 static KIpMsgNotify *notity = NULL;
 
 /**
+ * 受信スレッド開始イベント
+ * ・未サポート（ライブラリのデフォルト実装の受信スレッドを使用する）
+ */
+int
+KIpMsgEvent::EventStartProcessThread(){
+	return -1;
+}
+
+/**
  * 通知イベント開始前イベント
  * ・GUIスレッドのロック
  */
