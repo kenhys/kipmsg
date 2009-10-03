@@ -1,0 +1,241 @@
+<!DOCTYPE UI><UI version="3.3" stdsetdef="1">
+<class>IdiomConfigDialogBase</class>
+<widget class="QDialog">
+    <property name="name">
+        <cstring>IdiomConfigDialogBase</cstring>
+    </property>
+    <property name="geometry">
+        <rect>
+            <x>0</x>
+            <y>0</y>
+            <width>640</width>
+            <height>440</height>
+        </rect>
+    </property>
+    <property name="minimumSize">
+        <size>
+            <width>640</width>
+            <height>440</height>
+        </size>
+    </property>
+    <property name="maximumSize">
+        <size>
+            <width>640</width>
+            <height>440</height>
+        </size>
+    </property>
+    <property name="baseSize">
+        <size>
+            <width>640</width>
+            <height>440</height>
+        </size>
+    </property>
+    <property name="caption">
+        <string>KIpMessenger - Idiom Setting</string>
+    </property>
+    <property name="icon">
+        <pixmap>image0</pixmap>
+    </property>
+    <property name="modal">
+        <bool>true</bool>
+    </property>
+    <widget class="KPushButton">
+        <property name="name">
+            <cstring>m_CancelButton</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>530</x>
+                <y>400</y>
+                <width>100</width>
+                <height>28</height>
+            </rect>
+        </property>
+        <property name="text">
+            <string>C&amp;ancel</string>
+        </property>
+        <property name="accel">
+            <string>Alt+A</string>
+        </property>
+    </widget>
+    <widget class="KListBox">
+        <property name="name">
+            <cstring>m_IdiomListBox</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>360</x>
+                <y>50</y>
+                <width>270</width>
+                <height>340</height>
+            </rect>
+        </property>
+    </widget>
+    <widget class="KPushButton">
+        <property name="name">
+            <cstring>m_AddIdiomButton</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>280</x>
+                <y>150</y>
+                <width>69</width>
+                <height>28</height>
+            </rect>
+        </property>
+        <property name="text">
+            <string>&gt;&gt;</string>
+        </property>
+    </widget>
+    <widget class="KPushButton">
+        <property name="name">
+            <cstring>m_OKButton</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>420</x>
+                <y>400</y>
+                <width>100</width>
+                <height>28</height>
+            </rect>
+        </property>
+        <property name="text">
+            <string>&amp;OK</string>
+        </property>
+        <property name="accel">
+            <string>Alt+O</string>
+        </property>
+        <property name="default">
+            <bool>true</bool>
+        </property>
+    </widget>
+    <widget class="KPushButton">
+        <property name="name">
+            <cstring>m_DeleteIdiomButton</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>280</x>
+                <y>200</y>
+                <width>69</width>
+                <height>28</height>
+            </rect>
+        </property>
+        <property name="text">
+            <string>&lt;&lt;</string>
+        </property>
+    </widget>
+    <widget class="QLabel">
+        <property name="name">
+            <cstring>textLabel2</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>10</x>
+                <y>20</y>
+                <width>260</width>
+                <height>20</height>
+            </rect>
+        </property>
+        <property name="text">
+            <string>Additional Idiom text</string>
+        </property>
+    </widget>
+    <widget class="QLabel">
+        <property name="name">
+            <cstring>textLabel1</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>360</x>
+                <y>20</y>
+                <width>270</width>
+                <height>20</height>
+            </rect>
+        </property>
+        <property name="text">
+            <string>Active Idiom List</string>
+        </property>
+    </widget>
+    <widget class="KTextEdit">
+        <property name="name">
+            <cstring>m_IdiomTextEdit</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>10</x>
+                <y>50</y>
+                <width>260</width>
+                <height>340</height>
+            </rect>
+        </property>
+        <property name="font">
+            <font>
+            </font>
+        </property>
+        <property name="vScrollBarMode">
+            <enum>AlwaysOn</enum>
+        </property>
+        <property name="hScrollBarMode">
+            <enum>AlwaysOn</enum>
+        </property>
+        <property name="wordWrap">
+            <enum>NoWrap</enum>
+        </property>
+    </widget>
+</widget>
+<customwidgets>
+</customwidgets>
+<images>
+    <image name="image0">
+        <data format="PNG" length="384">89504e470d0a1a0a0000000d4948445200000020000000200806000000737a7af400000147494441545885c596c172c3200c447733feec528f0dffad1e5cd3c480247068f6941984f64928180a3eab25ff12d4590812328553403e54f3df350167f803001eae280166412c76c87d8910273f2fcdf67500807248102104ac76e9d9fc48f31ae30750cc35034b7e808111b8c2dd0398241f00cbe1b1d4aabe3a84a4927cf4dfe7dc4739a8042807c85bb5e7ac6bf904e4a20578458a39fdaddc1f1fc2db37a148bee29ad23a3b04904dff1c86ccbb013cd5f698bb017a8df33ed084987a157ba4766064c0e67d8c1ce6236a0258d5bb6f49a3230b00c42db9929d4a5b444463cf370ae813226df17561b58e60de5b34ab7b068a2aaeeb7b549f6fb7013c4a7b2c405be04d80b4971bacea6bf1c47192610d086b2862284760b369b54d00103b606a39e216f1b5069a001a440f4c2d879c8f310bc003312201e8fe1a3e57f94e18ed39fa2ffa010ae47b1d5c06bcac0000000049454e44ae426082</data>
+    </image>
+</images>
+<connections>
+    <connection>
+        <sender>m_AddIdiomButton</sender>
+        <signal>clicked()</signal>
+        <receiver>IdiomConfigDialogBase</receiver>
+        <slot>slotAddIdiomClicked()</slot>
+    </connection>
+    <connection>
+        <sender>m_CancelButton</sender>
+        <signal>clicked()</signal>
+        <receiver>IdiomConfigDialogBase</receiver>
+        <slot>slotCancelClicked()</slot>
+    </connection>
+    <connection>
+        <sender>m_DeleteIdiomButton</sender>
+        <signal>clicked()</signal>
+        <receiver>IdiomConfigDialogBase</receiver>
+        <slot>slotDeleteIdiomClicked()</slot>
+    </connection>
+    <connection>
+        <sender>m_OKButton</sender>
+        <signal>clicked()</signal>
+        <receiver>IdiomConfigDialogBase</receiver>
+        <slot>slotOKClicked()</slot>
+    </connection>
+</connections>
+<tabstops>
+    <tabstop>m_IdiomListBox</tabstop>
+    <tabstop>m_IdiomTextEdit</tabstop>
+    <tabstop>m_OKButton</tabstop>
+    <tabstop>m_CancelButton</tabstop>
+</tabstops>
+<slots>
+    <slot>slotAddIdiomClicked()</slot>
+    <slot>slotDeleteIdiomClicked()</slot>
+    <slot>slotOKClicked()</slot>
+    <slot>slotCancelClicked()</slot>
+</slots>
+<layoutdefaults spacing="6" margin="11"/>
+<includehints>
+    <includehint>kpushbutton.h</includehint>
+    <includehint>klistbox.h</includehint>
+    <includehint>kpushbutton.h</includehint>
+    <includehint>kpushbutton.h</includehint>
+    <includehint>kpushbutton.h</includehint>
+    <includehint>ktextedit.h</includehint>
+</includehints>
+</UI>
