@@ -1,8 +1,15 @@
+2009-10-03 Niki, Kuninobu <nikikuni@yahoo.co.jp>
+- Update:HEAD BRANCH was Shifted KDE4.
+- Update:Add BRANCH "KDE3" as KDE3 version's maintaince branch.
+
 2008-01-03 Niki, Kuninobu <nikikuni@yahoo.co.jp>
 - Fix:Duplicate entry.
 - Update:Add skulk host at initializing.
 - Update:Add static method to skulk host settings.
 - Update:Add login host list.
+
+2008-05-08 Niki, Kuninobu <nikikuni@yahoo.co.jp>
+- New upstream release.(0.1.8)
 
 2008-01-01 Niki, Kuninobu <nikikuni@yahoo.co.jp>
 - Update:Add Hide hosts config dialog.
@@ -10,6 +17,9 @@
 2007-12-31 Niki, Kuninobu <nikikuni@yahoo.co.jp>
 - Update:Separate Detail / Log config dialog.
 - Fix:Enable/Disable option Textbox.
+
+2007-11-29 Niki, Kuninobu <nikikuni@yahoo.co.jp>
+- New upstream release.(0.1.7)
 
 2007-11-18 Niki, Kuninobu <nikikuni@yahoo.co.jp>
 - Fix:Change API Name RefreashHostListAfter to RefreshHostListAfter.
@@ -26,6 +36,9 @@
 - Update:Delete debug print.
 
 2007-07-29 Niki, Kuninobu <nikikuni@yahoo.co.jp>
+- New upstream release.(0.1.6)
+
+2007-07-29 Niki, Kuninobu <nikikuni@yahoo.co.jp>
 - Fix:Compile error for libipmsg-0.1.5.
 
 2007-06-10 Niki, Kuninobu <nikikuni@yahoo.co.jp>
@@ -33,6 +46,9 @@
 
 2007-05-07 Niki, Kuninobu <nikikuni@yahoo.co.jp>
 - Fix:Insert duplicate idiom in textbox.
+
+2007-04-29 Niki, Kuninobu <nikikuni@yahoo.co.jp>
+- New upstream release.(0.1.5)
 
 2007-04-20 Niki, Kuninobu <nikikuni@yahoo.co.jp>
 - Update:Add function(save as draft, and load from draft).
@@ -55,8 +71,14 @@
 2007-04-07 Niki, Kuninobu <nikikuni@yahoo.co.jp>
 - Fix:auto select Listbox item when "<<" and ">>" button in Network config dialog.
 
+2007-03-29 Niki, Kuninobu <nikikuni@yahoo.co.jp>
+- New upstream release.(0.1.4)
+
 2007-03-06 Niki, Kuninobu <nikikuni@yahoo.co.jp>
 - Update:Enable automatic absence,It cooperates with a screen saver.
+
+2007-02-28 Niki, Kuninobu <nikikuni@yahoo.co.jp>
+- New upstream release.(0.1.3)
 
 2007-02-06 Niki, Kuninobu <nikikuni@yahoo.co.jp>
 - Update:zh_CN locale.(Experimental)
