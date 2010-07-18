@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2006-2009 by nikikuni                                        *
+ *   Copyright (C) 2006-2010 by nikikuni                                   *
  *   nikikuni@yahoo.co.jp                                                  *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -20,6 +20,7 @@
 
 
 #include <qlabel.h>
+#include <kdebug.h>
 #include <klocale.h>
 #include <kpushbutton.h>
 #include "IpMessenger.h"
@@ -36,9 +37,15 @@ using namespace ipmsg;
  * @param name 名前
  * @param fl フラグ
  */
-DownloadErrorDialog::DownloadErrorDialog(QWidget* parent, const char* name, WFlags fl)
-        : DownloadErrorDialogBase(parent,name,fl)
-{}
+DownloadErrorDialog::DownloadErrorDialog(QWidget* parent, const char* name, Qt::WindowFlags fl)
+        : DownloadErrorDialogBase()
+//        : DownloadErrorDialogBase(parent,name,fl)
+{
+	kDebug() << "START DownloadErrorDialog::DownloadErrorDialog" << endl;
+	setupUi(this);
+	setButtons( None );
+	kDebug() << "END   DownloadErrorDialog::DownloadErrorDialog" << endl;
+}
 
 /**
  * デストラクタ
@@ -54,7 +61,9 @@ DownloadErrorDialog::~DownloadErrorDialog()
  */
 void DownloadErrorDialog::slotCancelClicked()
 {
+	kDebug() << "START DownloadErrorDialog::slotCancelClicked" << endl;
 	reject();
+	kDebug() << "END   DownloadErrorDialog::slotCancelClicked" << endl;
 }
 
 /**
@@ -63,7 +72,9 @@ void DownloadErrorDialog::slotCancelClicked()
  */
 void DownloadErrorDialog::slotRetryClicked()
 {
+	kDebug() << "START DownloadErrorDialog::slotRetryClicked" << endl;
 	accept();
+	kDebug() << "END   DownloadErrorDialog::slotRetryClicked" << endl;
 }
 
 /**
@@ -72,8 +83,10 @@ void DownloadErrorDialog::slotRetryClicked()
  * @param info ダウンロード情報
  */
 void DownloadErrorDialog::setDownloadInfo( DownloadInfo info ){
-    m_DetailLabel1->setText( QString( tr2i18n( "Total %1 (%2)" ) ).arg( info.getSizeString().c_str() ).arg( info.getSpeedString().c_str() ) );
-    m_DetailLabel2->setText( QString( tr2i18n( "%1 sec  %2 files" ) ).arg( info.Time() ).arg( info.FileCount() ) );
+	kDebug() << "START DownloadErrorDialog::slotRetryClicked" << endl;
+	m_DetailLabel1->setText( QString( tr2i18n( "Total %1 (%2)" ) ).arg( info.getSizeString().c_str() ).arg( info.getSpeedString().c_str() ) );
+	m_DetailLabel2->setText( QString( tr2i18n( "%1 sec  %2 files" ) ).arg( info.Time() ).arg( info.FileCount() ) );
+	kDebug() << "END   DownloadErrorDialog::slotRetryClicked" << endl;
 }
 
 #include "downloaderrordialog.moc"

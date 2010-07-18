@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2006-2009 by nikikuni                                        *
+ *   Copyright (C) 2006-2010 by nikikuni                                   *
  *   nikikuni@yahoo.co.jp                                                  *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -22,14 +22,45 @@
 #ifndef _HIDECONFIGDIALOG_H_
 #define _HIDECONFIGDIALOG_H_
 
-#include "hideconfigdialogbase.h"
+#include "ui_hideconfigdialogbase.h"
 
-class HideConfigDialog : public HideConfigDialogBase
+class KIpMessengerHiddenConfigEntry {
+public:
+	KIpMessengerHiddenConfigEntry(QString ipAddress, QString hostName); 
+	~KIpMessengerHiddenConfigEntry(){};
+	QString ipAddress(){ return m_IpAddress; };
+	QString hostName(){ return m_HostName; };
+
+private:
+	QString m_IpAddress;
+	QString m_HostName;
+};
+
+class KIpMessengerHiddenConfigModel : public QAbstractListModel
+{
+	Q_OBJECT
+
+public:
+	KIpMessengerHiddenConfigModel( QObject *parent ) : QAbstractListModel( parent ){}; 
+	~KIpMessengerHiddenConfigModel(){};
+	void clear();
+	int rowCount(const QModelIndex &parent = QModelIndex()) const;
+	QVariant data(const QModelIndex &index, int role) const;
+	QVariant headerData(int selection, Qt::Orientation orientation, int role = Qt::DisplayRole) const;
+	bool addEntry(KIpMessengerHiddenConfigEntry entry);
+	KIpMessengerHiddenConfigEntry getHiddenConfigEntry(const QModelIndex &index);
+	void setHiddenConfigEntry(const QModelIndex &index, const KIpMessengerHiddenConfigEntry entry);
+
+private:
+	QList<KIpMessengerHiddenConfigEntry> hiddenConfigList;
+};
+
+class HideConfigDialog : public KDialog, private Ui::HideConfigDialogBase
 {
     Q_OBJECT
 
 public:
-    HideConfigDialog(QWidget* parent = 0, const char* name = 0, WFlags fl = 0 );
+    HideConfigDialog(QWidget* parent = 0, const char* name = 0, Qt::WindowFlags fl = 0 );
     ~HideConfigDialog();
     /*$PUBLIC_FUNCTIONS$*/
 	static void SetupHideHosts();
@@ -39,6 +70,8 @@ public slots:
 
 protected:
     /*$PROTECTED_FUNCTIONS$*/
+
+protected slots:
     virtual void slotAddHideAddressClicked();
     virtual void slotDeleteHideAddressClicked();
     virtual void slotOKClicked();
@@ -46,9 +79,7 @@ protected:
     virtual void slotApplyClicked();
     virtual void slotEnableSpecifiedHostClicked();
     virtual void slotCopyIPAddressClicked();
-    virtual void slotIPAddressListViewSelectionChanged();
-
-protected slots:
+    virtual void slotIPAddressListViewSelectionChanged(QModelIndex &);
     /*$PROTECTED_SLOTS$*/
 
 };

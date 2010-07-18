@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2006-2009 by nikikuni                                        *
+ *   Copyright (C) 2006-2010 by nikikuni                                   *
  *   nikikuni@yahoo.co.jp                                                  *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -21,11 +21,13 @@
 
 #include <qlabel.h>
 #include <qtextcodec.h>
+#include <kdebug.h>
 #include <krun.h>
 #include <klocale.h>
 #include <kmimetype.h>
-#include <kuserprofile.h>
 #include <kservice.h>
+#include <kmimetype.h>
+#include <kmimetypetrader.h>
 #include <kpushbutton.h>
 #include "IpMessenger.h"
 
@@ -42,9 +44,15 @@ using namespace ipmsg;
  * @param name 名前
  * @param fl フラグ
  */
-DownloadCompleteDialog::DownloadCompleteDialog(QWidget* parent, const char* name, WFlags fl)
-        : DownloadCompleteDialogBase(parent,name,fl)
-{}
+DownloadCompleteDialog::DownloadCompleteDialog(QWidget* parent, const char* name, Qt::WindowFlags fl)
+//        : DownloadCompleteDialogBase(parent,name,fl)
+        : DownloadCompleteDialogBase()
+{
+	kDebug() << "START DownloadCompleteDialog::DownloadCompleteDialog" << endl;
+	setupUi(this);
+	setButtons( None );
+	kDebug() << "END   DownloadCompleteDialog::DownloadCompleteDialog" << endl;
+}
 
 /**
  * デストラクタ
@@ -60,7 +68,9 @@ DownloadCompleteDialog::~DownloadCompleteDialog()
  */
 void DownloadCompleteDialog::slotCloseClicked()
 {
+	kDebug() << "START DownloadCompleteDialog::slotCloseClicked" << endl;
 	reject();
+	kDebug() << "END   DownloadCompleteDialog::slotCloseClicked" << endl;
 }
 
 /**
@@ -73,24 +83,30 @@ void DownloadCompleteDialog::slotCloseClicked()
  */
 void DownloadCompleteDialog::slotOpenAsClicked()
 {
-	QTextCodec *fsCodec = QTextCodec::codecForName( KIpMsgSettings::localFilesystemEncoding() );
-	KURL url = KURL::fromPathOrURL( QString( fsCodec->toUnicode( Info.LocalFileName().c_str() ) ) );
+	kDebug() << "START DownloadCompleteDialog::slotOpenAsClicked" << endl;
+//TESTME
+	QTextCodec *fsCodec = QTextCodec::codecForName( KIpMsgSettings::localFilesystemEncoding().toAscii() );
+//	KUrl url = KUrl::fromPathOrURL( QString( fsCodec->toUnicode( Info.LocalFileName().c_str() ) ) );
+	KUrl url = KUrl::fromPath( QString( fsCodec->toUnicode( Info.LocalFileName().c_str() ) ) );
 	
 	if ( Info.File().IsDirectory() ) {
-		( new KRun( url ) )->setAutoDelete( true );
+		( new KRun( url, this ) )->setAutoDelete( true );
 	} else if ( Info.File().IsRegularFile() ) {
-		KMimeType::Ptr mimetype = KMimeType::findByURL( url );
-		if ( mimetype == NULL ) {
+		KMimeType::Ptr mimetype = KMimeType::findByUrl( url );
+//		if ( mimetype == NULL ) {
+		if ( mimetype.data() == NULL ) {
 			return;
 		}
-		KService::Ptr offer = KServiceTypeProfile::preferredService( mimetype->name(), "Application" );
-		if ( offer == NULL ) {
-			KRun::displayOpenWithDialog( url );
+//		KService::Ptr offer = KServiceTypeProfile::preferredService( mimetype->name(), "Application" );
+		KService::Ptr offer = KMimeTypeTrader::self()->preferredService( mimetype->name(), "Application" );
+		if ( offer.data() == NULL ) {
+			KRun::displayOpenWithDialog( url, this );
 		} else {
-			KRun::run( *offer, url );
+			KRun::run( *offer, url, this );
 		}
 	}
 	accept();
+	kDebug() << "END   DownloadCompleteDialog::slotOpenAsClicked" << endl;
 }
 
 /**
@@ -103,19 +119,25 @@ void DownloadCompleteDialog::slotOpenAsClicked()
  * @param info ダウンロード情報
  */
 void DownloadCompleteDialog::setDownloadInfo( DownloadInfo info ){
-	QTextCodec *fsCodec = QTextCodec::codecForName( KIpMsgSettings::localFilesystemEncoding() );
+	kDebug() << "START DownloadCompleteDialog::setDownloadInfo" << endl;
+	QTextCodec *fsCodec = QTextCodec::codecForName( KIpMsgSettings::localFilesystemEncoding().toAscii() );
 	Info = info;
 	if ( Info.File().IsDirectory() ) {
 		m_OpenAsButton->setText( tr2i18n( "Open folder as Konqueror" ) );
 	} else if ( Info.File().IsRegularFile() ) {
-		KURL url = KURL::fromPathOrURL( QString( fsCodec->toUnicode( Info.LocalFileName().c_str() ) ) );
-		KMimeType::Ptr mimetype = KMimeType::findByURL( url );
-		if ( mimetype == NULL ) {
+//		KURL url = KURL::fromPathOrURL( QString( fsCodec->toUnicode( Info.LocalFileName().c_str() ) ) );
+		KUrl url = KUrl::fromPath( QString( fsCodec->toUnicode( Info.LocalFileName().c_str() ) ) );
+		KMimeType::Ptr mimetype = KMimeType::findByUrl( url );
+//		if ( mimetype == NULL ) {
+		if ( mimetype.data() == NULL ) {
 			m_OpenAsButton->setHidden( TRUE );
+			kDebug() << "END   DownloadCompleteDialog::setDownloadInfo" << endl;
 			return;
 		} else {
-			KService::Ptr offer = KServiceTypeProfile::preferredService( mimetype->name(), "Application" );
-			if ( offer == NULL ) {
+//			KService::Ptr offer = KServiceTypeProfile::preferredService( mimetype->name(), "Application" );
+			KService::Ptr offer = KMimeTypeTrader::self()->preferredService( mimetype->name(), "Application" );
+//			if ( offer == NULL ) {
+			if ( offer.data() == NULL ) {
 				m_OpenAsButton->setText( tr2i18n( "Open as Application" ) );
 			} else {
 				m_OpenAsButton->setText( tr2i18n( "Open as '%1'" ).arg( offer->name() ) );
@@ -124,8 +146,9 @@ void DownloadCompleteDialog::setDownloadInfo( DownloadInfo info ){
 	} else {
 		m_OpenAsButton->setHidden( TRUE );
 	}
-    m_DetailLabel1->setText( QString( tr2i18n( "Total %1 (%2)" ) ).arg( info.getSizeString().c_str() ).arg( info.getSpeedString().c_str() ) );
-    m_DetailLabel2->setText( QString( tr2i18n( "%1 sec  %2 files" ) ).arg( info.Time() ).arg( info.FileCount() ) );
+	m_DetailLabel1->setText( QString( tr2i18n( "Total %1 (%2)" ) ).arg( info.getSizeString().c_str() ).arg( info.getSpeedString().c_str() ) );
+	m_DetailLabel2->setText( QString( tr2i18n( "%1 sec  %2 files" ) ).arg( info.Time() ).arg( info.FileCount() ) );
+	kDebug() << "END   DownloadCompleteDialog::setDownloadInfo" << endl;
 }
 
 #include "downloadcompletedialog.moc"

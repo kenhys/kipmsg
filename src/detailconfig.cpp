@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2006-2009 by nikikuni                                        *
+ *   Copyright (C) 2006-2010 by nikikuni                                   *
  *   nikikuni@yahoo.co.jp                                                  *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -21,8 +21,9 @@
 #include <qpixmap.h>
 #include <qlabel.h>
 #include <qcheckbox.h>
+#include <kdebug.h>
 #include <klineedit.h>
-#include <knotifyclient.h>
+#include <knotification.h>
 #include <kpushbutton.h>
 #include <kprocess.h>
 #include <klocale.h>
@@ -38,9 +39,13 @@
  * @param name 名前
  * @param fl フラグ
  */
-KIPMsgDetailConfigDialog::KIPMsgDetailConfigDialog(QWidget* parent, const char* name, WFlags fl)
-        : KIPMsgDetailConfigDialogBase(parent,name,fl)
+KIPMsgDetailConfigDialog::KIPMsgDetailConfigDialog(QWidget* parent, const char* name, Qt::WindowFlags fl)
+//        : KIPMsgDetailConfigDialogBase(parent,name,fl)
+        : KIPMsgDetailConfigDialogBase()
 {
+	kDebug() << "START KIPMsgDetailConfigDialog::KIPMsgDetailConfigDialog" << endl;
+	setupUi(this);
+	setButtons( None );
 	//詳細
 	m_IMEAutomaticalyCheckbox->setChecked( KIpMsgSettings::iMEAutomaticaly() );
 	m_ConfirmIconCheckbox->setChecked( KIpMsgSettings::confirmIcon() );
@@ -53,6 +58,7 @@ KIPMsgDetailConfigDialog::KIPMsgDetailConfigDialog(QWidget* parent, const char* 
 	m_RecieveSoundFileNameEditbox->setText( KIpMsgSettings::recieveSoundFileName() );
 	m_IconFileNameEditbox->setText( KIpMsgSettings::iconFileName() );
 	m_AbsenceIconFileNameEditbox->setText( KIpMsgSettings::absenceIconFileName() );
+	kDebug() << "END   KIPMsgDetailConfigDialog::KIPMsgDetailConfigDialog" << endl;
 }
 
 /**
@@ -70,10 +76,12 @@ KIPMsgDetailConfigDialog::~KIPMsgDetailConfigDialog()
  */
 void KIPMsgDetailConfigDialog::slotRecievedSoundClicked()
 {
+	kDebug() << "START KIPMsgDetailConfigDialog::slotRecievedSoundClicked" << endl;
 	QString soundFileName = KFileDialog::getOpenFileName();
 	if ( soundFileName != "" ) {
 		m_RecieveSoundFileNameEditbox->setText( soundFileName );
 	}
+	kDebug() << "END   KIPMsgDetailConfigDialog::slotRecievedSoundClicked" << endl;
 }
 
 /**
@@ -82,15 +90,20 @@ void KIPMsgDetailConfigDialog::slotRecievedSoundClicked()
  */
 void KIPMsgDetailConfigDialog::slotPlaySoundClicked()
 {
+	kDebug() << "START KIPMsgDetailConfigDialog::slotPlaySoundClicked" << endl;
 	QString soundFile = m_RecieveSoundFileNameEditbox->text();
 	if ( soundFile == "" ) {
-		KNotifyClient::beep();
+		KNotification::beep();
 	} else {
+//FIXME using phonon
+/*
 		KProcess test;
 		test << "artsplay";
 		test << soundFile;
 		test.start(KProcess::DontCare);
+*/
 	}
+	kDebug() << "END   KIPMsgDetailConfigDialog::slotPlaySoundClicked" << endl;
 }
 
 /**
@@ -99,11 +112,13 @@ void KIPMsgDetailConfigDialog::slotPlaySoundClicked()
  */
 void KIPMsgDetailConfigDialog::slotIconClicked()
 {
+	kDebug() << "START KIPMsgDetailConfigDialog::slotIconClicked" << endl;
 	QString iconFileName = KFileDialog::getOpenFileName();
 	if ( iconFileName != "" ) {
 		m_IconFileNameEditbox->setText( iconFileName );
 	}
 	loadNormalIcon( iconFileName );
+	kDebug() << "END   KIPMsgDetailConfigDialog::slotIconClicked" << endl;
 }
 
 /**
@@ -111,7 +126,9 @@ void KIPMsgDetailConfigDialog::slotIconClicked()
  * ・アイコンを表示する。
  */
 void KIPMsgDetailConfigDialog::slotIconNameChanged(const QString & /*text*/){
+	kDebug() << "START KIPMsgDetailConfigDialog::slotIconNameChanged" << endl;
 	loadNormalIcon( m_IconFileNameEditbox->text() );
+	kDebug() << "END   KIPMsgDetailConfigDialog::slotIconNameChanged" << endl;
 }
 
 /**
@@ -119,6 +136,7 @@ void KIPMsgDetailConfigDialog::slotIconNameChanged(const QString & /*text*/){
  * ・アイコンをロードしラベルに設定する。
  */
 void KIPMsgDetailConfigDialog::loadNormalIcon(QString iconFileName){
+	kDebug() << "START KIPMsgDetailConfigDialog::loadNormalIcon" << endl;
 	if ( iconFileName != "" ) {
 		QPixmap icon;
 		icon.load( iconFileName );
@@ -128,6 +146,7 @@ void KIPMsgDetailConfigDialog::loadNormalIcon(QString iconFileName){
 			m_PreviewIconLabel->setText( tr2i18n("default\nicon") );
 		}
 	}
+	kDebug() << "END   KIPMsgDetailConfigDialog::loadNormalIcon" << endl;
 }
 
 /**
@@ -136,11 +155,13 @@ void KIPMsgDetailConfigDialog::loadNormalIcon(QString iconFileName){
  */
 void KIPMsgDetailConfigDialog::slotAbsenceIconClicked()
 {
+	kDebug() << "START KIPMsgDetailConfigDialog::slotAbsenceIconClicked" << endl;
 	QString iconFileName = KFileDialog::getOpenFileName();
 	if ( iconFileName != "" ) {
 		m_AbsenceIconFileNameEditbox->setText( iconFileName );
 	}
 	loadAbsenceIcon(iconFileName);
+	kDebug() << "END   KIPMsgDetailConfigDialog::slotAbsenceIconClicked" << endl;
 }
 
 /**
@@ -148,7 +169,9 @@ void KIPMsgDetailConfigDialog::slotAbsenceIconClicked()
  * ・不在アイコンを表示する。
  */
 void KIPMsgDetailConfigDialog::slotAbsenceIconNameChanged(const QString & /*text*/){
+	kDebug() << "START KIPMsgDetailConfigDialog::slotAbsenceIconClicked" << endl;
 	loadAbsenceIcon( m_AbsenceIconFileNameEditbox->text() );
+	kDebug() << "END   KIPMsgDetailConfigDialog::slotAbsenceIconClicked" << endl;
 }
 
 /**
@@ -156,6 +179,7 @@ void KIPMsgDetailConfigDialog::slotAbsenceIconNameChanged(const QString & /*text
  * ・不在アイコンをロードしラベルに設定する。
  */
 void KIPMsgDetailConfigDialog::loadAbsenceIcon(QString iconFileName){
+	kDebug() << "START KIPMsgDetailConfigDialog::loadAbsenceIcon" << endl;
 	if ( iconFileName != "" ) {
 		QPixmap icon;
 		icon.load( iconFileName );
@@ -165,6 +189,7 @@ void KIPMsgDetailConfigDialog::loadAbsenceIcon(QString iconFileName){
 			m_PreviewAbsenceIconLabel->setText( tr2i18n("default\nicon") );
 		}
 	}
+	kDebug() << "END   KIPMsgDetailConfigDialog::loadAbsenceIcon" << endl;
 }
 
 /**
@@ -173,8 +198,11 @@ void KIPMsgDetailConfigDialog::loadAbsenceIcon(QString iconFileName){
  */
 void KIPMsgDetailConfigDialog::slotOkClicked()
 {
+	kDebug() << "START KIPMsgDetailConfigDialog::slotOkClicked" << endl;
 	slotApplyClicked();
-	close();
+//	close();
+	accept();
+	kDebug() << "END   KIPMsgDetailConfigDialog::slotOkClicked" << endl;
 }
 
 /**
@@ -183,7 +211,10 @@ void KIPMsgDetailConfigDialog::slotOkClicked()
  */
 void KIPMsgDetailConfigDialog::slotCancelClicked()
 {
-	close();
+	kDebug() << "START KIPMsgDetailConfigDialog::slotCancelClicked" << endl;
+//	close();
+	reject();
+	kDebug() << "END   KIPMsgDetailConfigDialog::slotCancelClicked" << endl;
 }
 
 /**
@@ -192,6 +223,7 @@ void KIPMsgDetailConfigDialog::slotCancelClicked()
  */
 void KIPMsgDetailConfigDialog::slotApplyClicked()
 {
+	kDebug() << "START KIPMsgDetailConfigDialog::slotApplyClicked" << endl;
 	//詳細
 	KIpMsgSettings::setIMEAutomaticaly( m_IMEAutomaticalyCheckbox->isChecked() );
 	KIpMsgSettings::setConfirmIcon( m_ConfirmIconCheckbox->isChecked() );
@@ -205,7 +237,8 @@ void KIPMsgDetailConfigDialog::slotApplyClicked()
 	KIpMsgSettings::setIconFileName( m_IconFileNameEditbox->text() );
 	KIpMsgSettings::setAbsenceIconFileName( m_AbsenceIconFileNameEditbox->text() );
 
-	KIpMsgSettings::writeConfig();
+	KIpMsgSettings::self()->writeConfig();
+	kDebug() << "END   KIPMsgDetailConfigDialog::slotApplyClicked" << endl;
 }
 
 #include "detailconfig.moc"

@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2006-2009 by nikikuni                                        *
+ *   Copyright (C) 2006-2010 by nikikuni                                   *
  *   nikikuni@yahoo.co.jp                                                  *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -27,14 +27,14 @@
 using namespace std;
 using namespace ipmsg;
 
-#include "downloadcompletedialogbase.h"
+#include "ui_downloadcompletedialogbase.h"
 
-class DownloadCompleteDialog : public DownloadCompleteDialogBase
+class DownloadCompleteDialog : public KDialog, private Ui::DownloadCompleteDialogBase
 {
     Q_OBJECT
 
 public:
-    DownloadCompleteDialog(QWidget* parent = 0, const char* name = 0, WFlags fl = 0 );
+    DownloadCompleteDialog(QWidget* parent = 0, const char* name = 0, Qt::WindowFlags fl = 0 );
     ~DownloadCompleteDialog();
     /*$PUBLIC_FUNCTIONS$*/
 	void setDownloadInfo( DownloadInfo info );

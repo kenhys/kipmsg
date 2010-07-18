@@ -1,160 +1,178 @@
-<!DOCTYPE UI><UI version="3.3" stdsetdef="1">
-<class>KIpMsgDownloadMonitorBase</class>
-<widget class="QDialog">
-    <property name="name">
-        <cstring>KIpMsgDownloadMonitorBase</cstring>
-    </property>
-    <property name="geometry">
-        <rect>
-            <x>0</x>
-            <y>0</y>
-            <width>600</width>
-            <height>280</height>
-        </rect>
-    </property>
-    <property name="sizePolicy">
-        <sizepolicy>
-            <hsizetype>0</hsizetype>
-            <vsizetype>0</vsizetype>
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-        </sizepolicy>
-    </property>
-    <property name="minimumSize">
-        <size>
-            <width>600</width>
-            <height>280</height>
-        </size>
-    </property>
-    <property name="maximumSize">
-        <size>
-            <width>600</width>
-            <height>280</height>
-        </size>
-    </property>
-    <property name="baseSize">
-        <size>
-            <width>600</width>
-            <height>280</height>
-        </size>
-    </property>
-    <property name="caption">
-        <string>KIpMessenger - Attached File Download Monitor</string>
-    </property>
-    <property name="icon">
-        <pixmap>image0</pixmap>
-    </property>
-    <widget class="KListView">
-        <property name="name">
-            <cstring>m_FileListView</cstring>
-        </property>
-        <property name="geometry">
-            <rect>
-                <x>10</x>
-                <y>10</y>
-                <width>580</width>
-                <height>180</height>
-            </rect>
-        </property>
-        <property name="allColumnsShowFocus">
-            <bool>true</bool>
-        </property>
-    </widget>
-    <widget class="QCheckBox">
-        <property name="name">
-            <cstring>m_NotPermitedIfModifiedCheckbox</cstring>
-        </property>
-        <property name="geometry">
-            <rect>
-                <x>10</x>
-                <y>240</y>
-                <width>580</width>
-                <height>23</height>
-            </rect>
-        </property>
-        <property name="text">
-            <string>Download &amp;not permitted, if file was changed.</string>
-        </property>
-        <property name="accel">
-            <string>Alt+N</string>
-        </property>
-    </widget>
-    <widget class="KPushButton">
-        <property name="name">
-            <cstring>m_DeleteButton</cstring>
-        </property>
-        <property name="geometry">
-            <rect>
-                <x>10</x>
-                <y>200</y>
-                <width>100</width>
-                <height>30</height>
-            </rect>
-        </property>
-        <property name="text">
-            <string>&amp;Delete</string>
-        </property>
-        <property name="accel">
-            <string>Alt+D</string>
-        </property>
-    </widget>
-    <widget class="KPushButton">
-        <property name="name">
-            <cstring>m_CloseButton</cstring>
-        </property>
-        <property name="geometry">
-            <rect>
-                <x>120</x>
-                <y>200</y>
-                <width>100</width>
-                <height>30</height>
-            </rect>
-        </property>
-        <property name="text">
-            <string>&amp;Close</string>
-        </property>
-        <property name="accel">
-            <string>Alt+C</string>
-        </property>
-    </widget>
-</widget>
-<customwidgets>
-</customwidgets>
-<images>
-    <image name="image0">
-        <data format="PNG" length="474">89504e470d0a1a0a0000000d4948445200000020000000200806000000737a7af4000001a1494441545885c596d19183300c4457198a481bee237da489f3313ed344ae0e53076da40bdd07c10123db0286cbfe104dd6d693ac3810e3b36ae22786cc4220029fc2c920ba1493bfbe63d019f9010017958b81b3209abae5b89809133f25cdd6750040e190c04c6090d8a579f2719ba5470f50485e4a50931e60c708a470c7004e920e80d6c35353ae7a7108890a9beffdf529d7118f540cac07485bb5e6aca5fd18444dc9a0151157a73fb7f7c787f0f04dc81cafb8ac4a9ddd051093be33ec4abe194053ed96e46a80ad89e33a5015e2d4ab58a36207f60cd8797f468ae47b9405a855afbe252b1d6900c0bb0ee66a303c87f82ca9731ee1da2ffc71ddf71a7a82e89c5ff8719f7560780e30489217e053ff149794fa811980b91a0c789115d43f82e89fe2fe37645fdf527f04d85249aef279dcff0474ce2fd64d71eabf4864b19244f10c05bf1477ce83309ea46d2d6c6b577ee271638e9dc07b060c0c6eed4dec84775ef44bb16dadb8feabb51401d2699e3f6f7719620153583f3c65089e5ec67a17b85649ae1347c4006567208dc323c03b8ff058cfc611955e47ff457f2650fdb02216115d0000000049454e44ae426082</data>
-    </image>
-</images>
-<connections>
-    <connection>
-        <sender>m_CloseButton</sender>
-        <signal>clicked()</signal>
-        <receiver>KIpMsgDownloadMonitorBase</receiver>
-        <slot>slotCloseClicked()</slot>
-    </connection>
-    <connection>
-        <sender>m_DeleteButton</sender>
-        <signal>clicked()</signal>
-        <receiver>KIpMsgDownloadMonitorBase</receiver>
-        <slot>slotDeleteClicked()</slot>
-    </connection>
-    <connection>
-        <sender>m_NotPermitedIfModifiedCheckbox</sender>
-        <signal>clicked()</signal>
-        <receiver>KIpMsgDownloadMonitorBase</receiver>
-        <slot>slotNotPermitedIfModifiedCheckboxClicked()</slot>
-    </connection>
-</connections>
-<slots>
-    <slot>slotDeleteClicked()</slot>
-    <slot>slotCloseClicked()</slot>
-    <slot>slotPollingTimeout()</slot>
-    <slot>slotNotPermitedIfModifiedCheckboxClicked()</slot>
-</slots>
-<layoutdefaults spacing="6" margin="11"/>
-<includehints>
-    <includehint>klistview.h</includehint>
-    <includehint>kpushbutton.h</includehint>
-    <includehint>kpushbutton.h</includehint>
-</includehints>
-</UI>
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>KIpMsgDownloadMonitorBase</class>
+ <widget class="QDialog" name="KIpMsgDownloadMonitorBase">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>600</width>
+    <height>280</height>
+   </rect>
+  </property>
+  <property name="sizePolicy">
+   <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+    <horstretch>0</horstretch>
+    <verstretch>0</verstretch>
+   </sizepolicy>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>600</width>
+    <height>280</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>600</width>
+    <height>280</height>
+   </size>
+  </property>
+  <property name="baseSize">
+   <size>
+    <width>600</width>
+    <height>280</height>
+   </size>
+  </property>
+  <property name="windowTitle">
+   <string>KIpMessenger - Attached File Download Monitor</string>
+  </property>
+  <widget class="QTreeView" name="m_FileListView">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>10</y>
+     <width>580</width>
+     <height>180</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QCheckBox" name="m_NotPermitedIfModifiedCheckbox">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>240</y>
+     <width>580</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Download &amp;not permitted, if file was changed.</string>
+   </property>
+   <property name="shortcut">
+    <string>Alt+N</string>
+   </property>
+  </widget>
+  <widget class="KPushButton" name="m_DeleteButton" native="true">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>200</y>
+     <width>100</width>
+     <height>30</height>
+    </rect>
+   </property>
+   <property name="text" stdset="0">
+    <string>&amp;Delete</string>
+   </property>
+   <property name="shortcut" stdset="0">
+    <string>Alt+D</string>
+   </property>
+  </widget>
+  <widget class="KPushButton" name="m_CloseButton" native="true">
+   <property name="geometry">
+    <rect>
+     <x>120</x>
+     <y>200</y>
+     <width>100</width>
+     <height>30</height>
+    </rect>
+   </property>
+   <property name="text" stdset="0">
+    <string>&amp;Close</string>
+   </property>
+   <property name="shortcut" stdset="0">
+    <string>Alt+C</string>
+   </property>
+  </widget>
+ </widget>
+ <layoutdefault spacing="6" margin="11"/>
+ <customwidgets>
+  <customwidget>
+   <class>QFrame</class>
+   <extends>QFrame</extends>
+   <header>Qt3Support/QFrame</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>QTreeView</class>
+   <extends>QAbstractItemView</extends>
+   <header>qtreeview.h</header>
+  </customwidget>
+  <customwidget>
+   <class>QTreeView</class>
+   <extends>QAbstractItemView</extends>
+   <header>qtreeview.h</header>
+  </customwidget>
+  <customwidget>
+   <class>KPushButton</class>
+   <extends>QPushButton</extends>
+   <header>kpushbutton.h</header>
+  </customwidget>
+ </customwidgets>
+ <includes>
+  <include location="local">kpushbutton.h</include>
+  <include location="local">kpushbutton.h</include>
+ </includes>
+ <resources/>
+ <connections>
+  <connection>
+   <sender>m_CloseButton</sender>
+   <signal>clicked()</signal>
+   <receiver>KIpMsgDownloadMonitorBase</receiver>
+   <slot>slotCloseClicked()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>m_DeleteButton</sender>
+   <signal>clicked()</signal>
+   <receiver>KIpMsgDownloadMonitorBase</receiver>
+   <slot>slotDeleteClicked()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>m_NotPermitedIfModifiedCheckbox</sender>
+   <signal>clicked()</signal>
+   <receiver>KIpMsgDownloadMonitorBase</receiver>
+   <slot>slotNotPermitedIfModifiedCheckboxClicked()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+</ui>

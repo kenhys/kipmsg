@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2006-2009 by nikikuni                                        *
+ *   Copyright (C) 2006-2010 by nikikuni                                   *
  *   nikikuni@yahoo.co.jp                                                  *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -22,14 +22,58 @@
 #ifndef _ENCODINGCONFIG_H_
 #define _ENCODINGCONFIG_H_
 
-#include "encodingconfigbase.h"
+#include <qabstractitemmodel.h>
+#include <qstring.h>
+#include "ui_encodingconfigbase.h"
 
-class KIPMsgEncodingConfigDialog : public KIPMsgEncodingConfigDialogBase
+class KIpMessengerEncodingConfigEntry {
+public:
+	KIpMessengerEncodingConfigEntry(QString nickName, QString groupName, QString hostName, QString ipAddress, QString userName, QString encodingName);
+	~KIpMessengerEncodingConfigEntry(){};
+	QString nickName(){ return m_NickName; };
+	QString groupName(){ return m_GroupName; };
+	QString hostName(){ return m_HostName; };
+	QString ipAddress(){ return m_IpAddress; };
+	QString userName(){ return m_UserName; };
+	QString encodingName(){ return m_EncodingName; };
+	void setNickName( QString value ){ m_NickName = value; };
+	void setGroupName( QString value ){ m_GroupName = value; };
+	void setEncodingName( QString value ){ m_EncodingName = value; };
+
+private:
+	QString m_NickName;
+	QString m_GroupName;
+	QString m_HostName;
+	QString m_IpAddress;
+	QString m_UserName;
+	QString m_EncodingName;
+};
+
+class KIpMessengerEncodingConfigModel : public QAbstractListModel
+{
+	Q_OBJECT
+
+public:
+	KIpMessengerEncodingConfigModel( QObject *parent ) : QAbstractListModel( parent ){}; 
+	~KIpMessengerEncodingConfigModel(){};
+	void clear();
+	int rowCount(const QModelIndex &parent = QModelIndex()) const;
+	QVariant data(const QModelIndex &index, int role) const;
+	QVariant headerData(int selection, Qt::Orientation orientation, int role = Qt::DisplayRole) const;
+	bool addEntry(KIpMessengerEncodingConfigEntry entry);
+	KIpMessengerEncodingConfigEntry getEncodingConfigEntry(const QModelIndex &index);
+	void setEncodingConfigEntry(const QModelIndex &index, const KIpMessengerEncodingConfigEntry entry);
+
+private:
+	QList<KIpMessengerEncodingConfigEntry> encodingConfigList;
+};
+
+class KIPMsgEncodingConfigDialog : public KDialog, private Ui::KIPMsgEncodingConfigDialogBase
 {
     Q_OBJECT
 
 public:
-    KIPMsgEncodingConfigDialog(QWidget* parent = 0, const char* name = 0, WFlags fl = 0 );
+    KIPMsgEncodingConfigDialog(QWidget* parent = 0, const char* name = 0, Qt::WindowFlags fl = 0 );
     ~KIPMsgEncodingConfigDialog();
     /*$PUBLIC_FUNCTIONS$*/
 
@@ -38,7 +82,8 @@ public slots:
     virtual void slotOkClicked();
     virtual void slotApplyClicked();
     virtual void slotCancelClicked();
-    virtual void slotHostSelected(QListViewItem*);
+//    virtual void slotHostSelected(QListViewItem*);
+	virtual void slotCurrentHostChanged( QModelIndex &current, QModelIndex &previous );
     virtual void slotEncodingComboChanged(int);
 
 protected:

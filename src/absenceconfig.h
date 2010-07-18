@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2006-2009 by nikikuni                                        *
+ *   Copyright (C) 2006-2010 by nikikuni                                   *
  *   nikikuni@yahoo.co.jp                                                  *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -24,7 +24,7 @@
 
 #include <qmap.h>
 #include <qpixmap.h>
-#include "absenceconfigbase.h"
+#include "ui_absenceconfigbase.h"
 
 class AbsenceSetting
 {
@@ -34,12 +34,12 @@ public:
 };
 
 
-class KIpMsgAbsenceModeConfigDialog : public KIpMsgAbsenceModeConfigDialogBase
+class KIpMsgAbsenceModeConfigDialog : public KDialog, private Ui::KIpMsgAbsenceModeConfigDialogBase
 {
     Q_OBJECT
 
 public:
-    KIpMsgAbsenceModeConfigDialog(QWidget* parent = 0, const char* name = 0, WFlags fl = 0 );
+    KIpMsgAbsenceModeConfigDialog(QWidget* parent = 0, const char* name = 0, Qt::WindowFlags fl = 0 );
     ~KIpMsgAbsenceModeConfigDialog();
     /*$PUBLIC_FUNCTIONS$*/
 	void setNewId( QString id ){ newId = id; };
@@ -50,7 +50,7 @@ public slots:
     virtual void slotConfigOnlyClicked();
     virtual void slotCancelClicked();
     virtual void slotSetClicked();
-    virtual void slotAbsenceModeChanged(QListBoxItem*);
+    virtual void slotAbsenceModeChanged(QListWidgetItem*);
     virtual void slotAddClicked();
     virtual void slotDeleteClicked();
     virtual void slotEncodingChanged(int);

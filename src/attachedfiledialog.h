@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2006-2009 by nikikuni                                        *
+ *   Copyright (C) 2006-2010 by nikikuni                                   *
  *   nikikuni@yahoo.co.jp                                                  *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -22,19 +22,60 @@
 #ifndef _ATTACHEDFILEDIALOG_H_
 #define _ATTACHEDFILEDIALOG_H_
 
-#include "attachedfiledialogbase.h"
+#include <qstring.h>
+#include <qabstractitemmodel.h>
+#include "ui_attachedfiledialogbase.h"
 #include "IpMessenger.h"
 
 using namespace std;
 using namespace ipmsg;
 
+class KIpMessengerAttachedFileEntry {
+public:
+	KIpMessengerAttachedFileEntry(QString fileName, QString size, QString mTime, QString fullPath);
+	QString fileName(){ return m_FileName;};
+	QString size(){ return m_Size;};
+	QString mTime(){ return m_MTime;};
+	QString fullPath(){ return m_FullPath;};
 
-class KIpMessengerAttachedFileDialog : public KIpMessengerAttachedFileDialogBase
+private:
+	QString m_FileName;
+	QString m_Size;
+	QString m_MTime;
+	QString m_FullPath;
+};
+class KIpMessengerAttachedFileModel : public QAbstractListModel
+{
+	Q_OBJECT
+
+public:
+	KIpMessengerAttachedFileModel( QObject *parent ) : QAbstractListModel( parent ){}; 
+	~KIpMessengerAttachedFileModel(){};
+	void clear();
+	int rowCount(const QModelIndex &parent = QModelIndex()) const;
+	int columnCount(const QModelIndex &parent = QModelIndex()) const;
+	QVariant data(const QModelIndex &index, int role) const;
+	QVariant headerData(int selection, Qt::Orientation orientation, int role = Qt::DisplayRole) const;
+	bool addEntry(KIpMessengerAttachedFileEntry entry);
+
+	enum Column {
+		fileNameCol=0,
+		sizeCol,
+		timeStampCol,
+		fullPathCol,
+		ColumnMax
+	};
+
+private:
+	QList<KIpMessengerAttachedFileEntry> fileList;
+};
+
+class KIpMessengerAttachedFileDialog : public KDialog, private Ui::KIpMessengerAttachedFileDialogBase
 {
     Q_OBJECT
 
 public:
-    KIpMessengerAttachedFileDialog(QWidget* parent = 0, const char* name = 0, WFlags fl = 0 );
+    KIpMessengerAttachedFileDialog(QWidget* parent = 0, const char* name = 0, Qt::WindowFlags fl = 0 );
     ~KIpMessengerAttachedFileDialog();
     /*$PUBLIC_FUNCTIONS$*/
 	void setFiles( AttachFileList _files );

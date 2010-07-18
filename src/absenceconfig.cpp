@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2006-2009 by nikikuni                                        *
+ *   Copyright (C) 2006-2010 by nikikuni                                   *
  *   nikikuni@yahoo.co.jp                                                  *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -20,7 +20,9 @@
 
 
 #include <ctype.h>
-#include <klistbox.h>
+#include <kdebug.h>
+#include <klistwidget.h>
+//#include <klistbox.h>
 #include <kcombobox.h>
 #include <kiconloader.h>
 #include <klineedit.h>
@@ -41,11 +43,16 @@
  * @param name 名前
  * @param fl フラグ
  */
-KIpMsgAbsenceModeConfigDialog::KIpMsgAbsenceModeConfigDialog(QWidget* parent, const char* name, WFlags fl)
-        : KIpMsgAbsenceModeConfigDialogBase(parent,name,fl)
+KIpMsgAbsenceModeConfigDialog::KIpMsgAbsenceModeConfigDialog(QWidget* parent, const char* name, Qt::WindowFlags fl)
+        : KIpMsgAbsenceModeConfigDialogBase()
+//        : KIpMsgAbsenceModeConfigDialogBase(parent,name,fl)
 {
+	kDebug() << "START KIpMsgAbsenceModeConfigDialog::KIpMsgAbsenceModeConfigDialog" << endl;
+	setupUi(this);
+	setButtons( None );
 	load();
 	setStatus();
+	kDebug() << "END   KIpMsgAbsenceModeConfigDialog::KIpMsgAbsenceModeConfigDialog" << endl;
 }
 
 /**
@@ -64,9 +71,12 @@ KIpMsgAbsenceModeConfigDialog::~KIpMsgAbsenceModeConfigDialog()
  */
 void KIpMsgAbsenceModeConfigDialog::slotConfigAndAbsenceModeClicked()
 {
+	kDebug() << "START KIpMsgAbsenceModeConfigDialog::slotConfigAndAbsenceModeClicked" << endl;
 	save();
 	// TODO Goto AbsenceMode
-	close();
+//	close();
+	done(QDialog::Accepted);
+	kDebug() << "END   KIpMsgAbsenceModeConfigDialog::slotConfigAndAbsenceModeClicked" << endl;
 }
 /**
  * 設定クリックイベント
@@ -75,8 +85,12 @@ void KIpMsgAbsenceModeConfigDialog::slotConfigAndAbsenceModeClicked()
  */
 void KIpMsgAbsenceModeConfigDialog::slotConfigOnlyClicked()
 {
+	kDebug() << "START KIpMsgAbsenceModeConfigDialog::slotConfigOnlyClicked" << endl;
 	save();
-	close();
+//	close();
+//	done(QDialog::Accepted);
+	accept();
+	kDebug() << "END   KIpMsgAbsenceModeConfigDialog::slotConfigOnlyClicked" << endl;
 }
 /**
  * 設定をロード
@@ -89,6 +103,7 @@ void KIpMsgAbsenceModeConfigDialog::slotConfigOnlyClicked()
  */
 void KIpMsgAbsenceModeConfigDialog::load()
 {
+	kDebug() << "START KIpMsgAbsenceModeConfigDialog::load" << endl;
 	//ID=ID1,ID2,ID3
 	//ENCODING=ID1\aShift_JIS,ID2\aShift_JIS,ID3\aShift_JIS,ID1\autf8,ID2\autf8,ID3\autf8
 	//TITLE=ID1\aShift_JIS\aTITLE1,ID2\aShift_JIS\aTITLE2,ID3\aShift_JIS\aTITLE2
@@ -102,29 +117,33 @@ void KIpMsgAbsenceModeConfigDialog::load()
 	QStringList details = KIpMsgSettings::absenceDetails();
 
 	//QMap<Encoding,Key, AbsenceSetting>
-	for( unsigned int i = 0; i < titles.count(); i++ ){
-		QStringList titleFields = QStringList::split( "\a", titles[i] );
-		QStringList detailFields = QStringList::split( "\a", details[i] );
+	for( int i = 0; i < titles.count(); i++ ){
+		QStringList titleFields = titles[i].split( "\a" );
+		QStringList detailFields = details[i].split( "\a" );
+//		QStringList titleFields = QStringList::split( "\a", titles[i] );
+//		QStringList detailFields = QStringList::split( "\a", details[i] );
 		AbsenceSetting config;
 		config.title = titleFields[2];
 		config.detail = detailFields[2];
 		settings[titleFields[0]/* ID */][titleFields[1]/* ENCODING */] = config;
 	}
 
-	for( unsigned int i = 0; i < keys.count(); i++ ){
+	for( int i = 0; i < keys.count(); i++ ){
 		AbsenceSetting config = settings[keys[i]][KIpMsgSettings::messageEncoding()];
-		m_AbsenceModeListbox->insertItem( keys[i] + ":" + config.title );
+		m_AbsenceModeListbox->insertItem( m_AbsenceModeListbox->count(), keys[i] + ":" + config.title );
 	}
 
 	currentKey = "";
 	if ( keys.count() > 0 ){
 		currentKey = keys[0];
-		m_AbsenceModeListbox->setSelected( 0, TRUE );
+//		m_AbsenceModeListbox->setSelected( 0, TRUE );
+		m_AbsenceModeListbox->item( 0 )->setSelected( TRUE );
 	}
 
 	currentEncoding = KIpMsgSettings::messageEncoding();
 	m_AutoAbsenceModeCheckbox->setChecked( KIpMsgSettings::autoAbsenceEnabled() );
 	setSelectedItem();
+	kDebug() << "END   KIpMsgAbsenceModeConfigDialog::load" << endl;
 }
 /**
  * 設定を保存
@@ -136,19 +155,21 @@ void KIpMsgAbsenceModeConfigDialog::load()
  */
 void KIpMsgAbsenceModeConfigDialog::save()
 {
+	kDebug() << "START KIpMsgAbsenceModeConfigDialog::save" << endl;
 	QStringList keys;
 	QStringList encodings;
 	QStringList titles;
 	QStringList details;
 
-	for( unsigned int i = 0; i < m_AbsenceModeListbox->count(); i++ ){
-		keys << getSelectedAbsenceModeKey( m_AbsenceModeListbox->text(i) );
+	for( int i = 0; i < m_AbsenceModeListbox->count(); i++ ){
+		keys << getSelectedAbsenceModeKey( m_AbsenceModeListbox->item(i)->text() );
 	}
 
-	for( unsigned int i = 0; i < keys.count(); i++ ){
+	for( int i = 0; i < keys.count(); i++ ){
 		QString saveKey = keys[i];
 		for( int j = 0; j < m_EncodingCombobox->count(); j++ ){
-			QString saveEncoding = m_EncodingCombobox->text(j);
+//			QString saveEncoding = m_EncodingCombobox->item(j)->text();
+			QString saveEncoding = m_EncodingCombobox->itemText(j);
 			titles << saveKey + "\a" + saveEncoding + "\a" + settings[saveKey][saveEncoding].title;
 			details << saveKey + "\a" + saveEncoding + "\a" + settings[saveKey][saveEncoding].detail;
 		}
@@ -158,7 +179,8 @@ void KIpMsgAbsenceModeConfigDialog::save()
 	KIpMsgSettings::setAbsenceTitles( titles );
 	KIpMsgSettings::setAbsenceDetails( details );
 	KIpMsgSettings::setAutoAbsenceEnabled( m_AutoAbsenceModeCheckbox->isChecked() );
-	KIpMsgSettings::writeConfig();
+	KIpMsgSettings::self()->writeConfig();
+	kDebug() << "END   KIpMsgAbsenceModeConfigDialog::save" << endl;
 }
 
 /**
@@ -167,7 +189,10 @@ void KIpMsgAbsenceModeConfigDialog::save()
  */
 void KIpMsgAbsenceModeConfigDialog::slotCancelClicked()
 {
-	close();
+	kDebug() << "START KIpMsgAbsenceModeConfigDialog::slotCancelClicked" << endl;
+//	close();
+	done(QDialog::Rejected);
+	kDebug() << "END   KIpMsgAbsenceModeConfigDialog::slotCancelClicked" << endl;
 }
 
 /**
@@ -176,19 +201,25 @@ void KIpMsgAbsenceModeConfigDialog::slotCancelClicked()
  */
 void KIpMsgAbsenceModeConfigDialog::slotSetClicked()
 {
+	kDebug() << "START KIpMsgAbsenceModeConfigDialog::slotSetClicked" << endl;
 	AbsenceSetting conf = settings[currentKey][m_EncodingCombobox->currentText()];
 	conf.title = m_TitleEditbox->text();
-	conf.detail = m_DescriptionTextbox->text();
+//	conf.detail = m_DescriptionTextbox->text();
+	conf.detail = m_DescriptionTextbox->toPlainText();
 	settings[currentKey][m_EncodingCombobox->currentText()] = conf;
 
-	for( unsigned int i = 0; i < m_AbsenceModeListbox->count(); i++ ){
-		if ( getSelectedAbsenceModeKey( m_AbsenceModeListbox->text(i) ) == currentKey ){
-			m_AbsenceModeListbox->removeItem(i);
-			m_AbsenceModeListbox->insertItem(currentKey + ":" + conf.title, i);
-			m_AbsenceModeListbox->setSelected( i, TRUE );
+	for( int i = 0; i < m_AbsenceModeListbox->count(); i++ ){
+		if ( getSelectedAbsenceModeKey( m_AbsenceModeListbox->item(i)->text() ) == currentKey ){
+//			m_AbsenceModeListbox->removeItem(i);
+			m_AbsenceModeListbox->removeItemWidget(m_AbsenceModeListbox->item(i));
+//			m_AbsenceModeListbox->insertItem(m_AbsenceModeListbox->count(), currentKey + ":" + conf.title, i);
+			m_AbsenceModeListbox->insertItem(i, currentKey + ":" + conf.title);
+//			m_AbsenceModeListbox->setSelected( i, TRUE );
+			m_AbsenceModeListbox->item(i)->setSelected( TRUE );
 			break;
 		}
 	}
+	kDebug() << "END   KIpMsgAbsenceModeConfigDialog::slotSetClicked" << endl;
 }
 
 /**
@@ -196,14 +227,16 @@ void KIpMsgAbsenceModeConfigDialog::slotSetClicked()
  * ・指定された不在モードを設定項目に表示する。
  * @param item リストボックスで選択された項目
  */
-void KIpMsgAbsenceModeConfigDialog::slotAbsenceModeChanged(QListBoxItem *item)
+void KIpMsgAbsenceModeConfigDialog::slotAbsenceModeChanged(QListWidgetItem *item)
 {
+	kDebug() << "START KIpMsgAbsenceModeConfigDialog::slotAbsenceModeChanged" << endl;
 	if ( item == NULL ){
 		return;
 	}
 	currentKey = getSelectedAbsenceModeKey( item->text() );
 	setSelectedItem();
 	setStatus();
+	kDebug() << "END   KIpMsgAbsenceModeConfigDialog::slotAbsenceModeChanged" << endl;
 }
 
 /**
@@ -213,17 +246,20 @@ void KIpMsgAbsenceModeConfigDialog::slotAbsenceModeChanged(QListBoxItem *item)
  */
 void KIpMsgAbsenceModeConfigDialog::slotEncodingChanged(int index)
 {
-	currentEncoding = m_EncodingCombobox->text(index);
+	kDebug() << "START KIpMsgAbsenceModeConfigDialog::slotEncodingChanged" << endl;
+	currentEncoding = m_EncodingCombobox->itemText(index);
 
 	m_AbsenceModeListbox->clear();
 	QMap<QString, QMap<QString, AbsenceSetting> >::Iterator it;
 	for( it = settings.begin(); it != settings.end(); ++it ){
-		AbsenceSetting config = it.data()[currentEncoding];
-		m_AbsenceModeListbox->insertItem( it.key() + ":" + config.title );
+//		AbsenceSetting config = it.data()[currentEncoding];
+		AbsenceSetting config = it.value()[currentEncoding];
+		m_AbsenceModeListbox->insertItem( m_AbsenceModeListbox->count(), it.key() + ":" + config.title );
 	}
 
 	setSelectedItem();
 	setStatus();
+	kDebug() << "END   KIpMsgAbsenceModeConfigDialog::slotEncodingChanged" << endl;
 }
 
 /**
@@ -232,8 +268,10 @@ void KIpMsgAbsenceModeConfigDialog::slotEncodingChanged(int index)
  */
 void KIpMsgAbsenceModeConfigDialog::slotAddClicked()
 {
+	kDebug() << "START KIpMsgAbsenceModeConfigDialog::slotAddClicked" << endl;
 	while( true ) {
-		NamingNewAbsenceMode *dlg = new NamingNewAbsenceMode(this,0,TRUE);
+//		NamingNewAbsenceMode *dlg = new NamingNewAbsenceMode(this,0,TRUE);
+		NamingNewAbsenceMode *dlg = new NamingNewAbsenceMode(this);
 		dlg->setAbsenceConfigDlg( this );
 		if ( dlg->exec() != QDialog::Accepted ){
 			delete dlg;
@@ -245,30 +283,36 @@ void KIpMsgAbsenceModeConfigDialog::slotAddClicked()
 			if ( settings.contains( newId ) ) {
 				continue;
 			}
-			m_AbsenceModeListbox->insertItem( newId + ":" + newId );
+			m_AbsenceModeListbox->insertItem( m_AbsenceModeListbox->count(), newId + ":" + newId );
 			//全てのエンコーディングにnewIdを追加。
 			for( int i = 0; i < m_EncodingCombobox->count(); i++ ){
 				AbsenceSetting config;
 				config.title = newId;
 				config.detail = "";
-				settings[newId][m_EncodingCombobox->text(i)] = config;
+				settings[newId][m_EncodingCombobox->itemText(i)] = config;
 			}
 			//追加されたアイテムを選択
-			m_AbsenceModeListbox->setSelected( m_AbsenceModeListbox->count() - 1, TRUE );
+//			m_AbsenceModeListbox->setSelected( m_AbsenceModeListbox->count() - 1, TRUE );
+			m_AbsenceModeListbox->item( m_AbsenceModeListbox->count() - 1)->setSelected( TRUE );
 			break;
 		}
 	}
 	setStatus();
+	kDebug() << "END   KIpMsgAbsenceModeConfigDialog::slotAddClicked" << endl;
 }
 
 bool KIpMsgAbsenceModeConfigDialog::canAcceptNewId()
 {
-	for( unsigned int i = 0; i < newId.length(); i++ ) {
-		char c = newId.at(i).latin1();
+	kDebug() << "START KIpMsgAbsenceModeConfigDialog::canAcceptNewId" << endl;
+	for( int i = 0; i < newId.length(); i++ ) {
+//		char c = newId.at(i).latin1();
+		char c = newId.at(i).toLatin1();
 		if ( !isdigit( c ) && !isalpha( c ) && c != ' ' ){
+			kDebug() << "END   KIpMsgAbsenceModeConfigDialog::canAcceptNewId" << endl;
 			return false;
 		}
 	}
+	kDebug() << "END   KIpMsgAbsenceModeConfigDialog::canAcceptNewId" << endl;
 	return true;
 }
 
@@ -278,47 +322,90 @@ bool KIpMsgAbsenceModeConfigDialog::canAcceptNewId()
  */
 void KIpMsgAbsenceModeConfigDialog::slotDeleteClicked()
 {
-	if ( m_AbsenceModeListbox->currentItem() < 0 ) {
+	kDebug() << "START KIpMsgAbsenceModeConfigDialog::slotDeleteClicked" << endl;
+//	if ( m_AbsenceModeListbox->currentItem() < 0 ) {
+	if ( m_AbsenceModeListbox->currentRow() < 0 ) {
 		return;
 	}
-	settings.remove( getSelectedAbsenceModeKey( m_AbsenceModeListbox->currentText() ) );
-	unsigned int deleteIndex = m_AbsenceModeListbox->currentItem();
-	m_AbsenceModeListbox->removeItem( deleteIndex );
+//	settings.remove( getSelectedAbsenceModeKey( m_AbsenceModeListbox->currentText() ) );
+	settings.remove( getSelectedAbsenceModeKey( m_AbsenceModeListbox->currentItem()->text() ) );
+//	int deleteIndex = m_AbsenceModeListbox->currentItem();
+//	m_AbsenceModeListbox->removeItem( deleteIndex );
+	int deleteIndex = m_AbsenceModeListbox->currentRow();
+	m_AbsenceModeListbox->removeItemWidget( m_AbsenceModeListbox->item( deleteIndex ) );
 	if ( m_AbsenceModeListbox->count() > 0 && m_AbsenceModeListbox->count() > deleteIndex ) {
-		m_AbsenceModeListbox->setSelected( deleteIndex, TRUE );
+		QListWidgetItem *currentItem = m_AbsenceModeListbox->item(deleteIndex);
+		if(currentItem != NULL) currentItem->setSelected( TRUE );
+//		m_AbsenceModeListbox->setSelected( deleteIndex, TRUE );
 	} else if ( m_AbsenceModeListbox->count() > 0 && m_AbsenceModeListbox->count() == deleteIndex ) {
-		m_AbsenceModeListbox->setSelected( deleteIndex - 1, TRUE );
+		QListWidgetItem *currentItem = m_AbsenceModeListbox->item( deleteIndex - 1 );
+		if(currentItem != NULL) currentItem->setSelected( TRUE );
+//		m_AbsenceModeListbox->setSelected( deleteIndex - 1, TRUE );
 	} else if ( m_AbsenceModeListbox->count() > 0 && m_AbsenceModeListbox->count() < deleteIndex ) {
-		m_AbsenceModeListbox->setSelected( m_AbsenceModeListbox->count() - 1, TRUE );
+		QListWidgetItem *currentItem = m_AbsenceModeListbox->item(m_AbsenceModeListbox->count() - 1);
+		if(currentItem != NULL) currentItem->setSelected( TRUE );
+//		m_AbsenceModeListbox->setSelected( m_AbsenceModeListbox->count() - 1, TRUE );
 	}
 	setSelectedItem();
 	setStatus();
+	kDebug() << "END   KIpMsgAbsenceModeConfigDialog::slotDeleteClicked" << endl;
 }
 
 
 void KIpMsgAbsenceModeConfigDialog::slotUpClicked()
 {
-	unsigned int deleteIndex = m_AbsenceModeListbox->currentItem();
-	QString currentText = m_AbsenceModeListbox->currentText();
-	m_AbsenceModeListbox->removeItem( deleteIndex );
-	m_AbsenceModeListbox->insertItem( currentText, deleteIndex - 1 );
-	m_AbsenceModeListbox->setSelected( deleteIndex - 1, TRUE );
+	kDebug() << "START KIpMsgAbsenceModeConfigDialog::slotUpClicked" << endl;
+	int deleteIndex = m_AbsenceModeListbox->currentRow();
+//	unsigned int deleteIndex = m_AbsenceModeListbox->currentItem();
+	QListWidgetItem *currentItem = m_AbsenceModeListbox->item(deleteIndex);
+	if(currentItem == NULL){
+		setStatus();
+		kDebug() << "END   KIpMsgAbsenceModeConfigDialog::slotUpClicked" << endl;
+		return;
+	}
+//	QString currentText = m_AbsenceModeListbox->currentText();
+	QString currentText = currentItem->text();
+//	m_AbsenceModeListbox->removeItem( deleteIndex );
+	m_AbsenceModeListbox->removeItemWidget( currentItem );
+//	m_AbsenceModeListbox->insertItem( currentText, deleteIndex - 1 );
+//	m_AbsenceModeListbox->setSelected( deleteIndex - 1, TRUE );
+	QListWidgetItem *item = new QListWidgetItem( currentText );
+	m_AbsenceModeListbox->insertItem( deleteIndex - 1, item );
+	item->setSelected( TRUE );
 	setStatus();
+	kDebug() << "END   KIpMsgAbsenceModeConfigDialog::slotUpClicked" << endl;
 }
 void KIpMsgAbsenceModeConfigDialog::slotDownClicked()
 {
-	unsigned int deleteIndex = m_AbsenceModeListbox->currentItem();
-	QString currentText = m_AbsenceModeListbox->currentText();
-	m_AbsenceModeListbox->removeItem( deleteIndex );
-	m_AbsenceModeListbox->insertItem( currentText, deleteIndex + 1 );
-	m_AbsenceModeListbox->setSelected( deleteIndex + 1, TRUE );
+	kDebug() << "START KIpMsgAbsenceModeConfigDialog::slotDownClicked" << endl;
+//	unsigned int deleteIndex = m_AbsenceModeListbox->currentItem();
+	int deleteIndex = m_AbsenceModeListbox->currentRow();
+//	QString currentText = m_AbsenceModeListbox->currentText();
+	QListWidgetItem *currentItem = m_AbsenceModeListbox->item(deleteIndex);
+	if(currentItem == NULL){
+		setStatus();
+		return;
+	}
+//	QString currentText = m_AbsenceModeListbox->currentText();
+	QString currentText = currentItem->text();
+//	m_AbsenceModeListbox->removeItem( deleteIndex );
+	m_AbsenceModeListbox->removeItemWidget( currentItem );
+//	m_AbsenceModeListbox->insertItem( currentText, deleteIndex + 1 );
+//	m_AbsenceModeListbox->setSelected( deleteIndex + 1, TRUE );
+	QListWidgetItem *item = new QListWidgetItem( currentText );
+	m_AbsenceModeListbox->insertItem( deleteIndex + 1, item );
+	item->setSelected( TRUE );
 	setStatus();
+	kDebug() << "END   KIpMsgAbsenceModeConfigDialog::slotDownClicked" << endl;
 }
 
 QString KIpMsgAbsenceModeConfigDialog::getSelectedAbsenceModeKey( QString text )
 {
-	QStringList strs = QStringList::split( ":", text );
+	kDebug() << "START KIpMsgAbsenceModeConfigDialog::getSelectedAbsenceModeKey" << endl;
+	QStringList strs = text.split( ":" );
+//	QStringList strs = QStringList::split( ":", text );
 	return strs[0];
+	kDebug() << "END   KIpMsgAbsenceModeConfigDialog::getSelectedAbsenceModeKey" << endl;
 }
 
 /**
@@ -326,9 +413,11 @@ QString KIpMsgAbsenceModeConfigDialog::getSelectedAbsenceModeKey( QString text )
  */
 void KIpMsgAbsenceModeConfigDialog::setSelectedItem()
 {
+	kDebug() << "START KIpMsgAbsenceModeConfigDialog::setSelectedItem" << endl;
 	AbsenceSetting conf = settings[currentKey][currentEncoding];
 	m_TitleEditbox->setText( conf.title );
 	m_DescriptionTextbox->setText( conf.detail );
+	kDebug() << "END   KIpMsgAbsenceModeConfigDialog::setSelectedItem" << endl;
 }
 
 /**
@@ -336,23 +425,30 @@ void KIpMsgAbsenceModeConfigDialog::setSelectedItem()
  */
 void KIpMsgAbsenceModeConfigDialog::setStatus()
 {
+	kDebug() << "START KIpMsgAbsenceModeConfigDialog::setStatus" << endl;
 	if ( m_AbsenceModeListbox->count() > 0 ) {
 		m_EncodingCombobox->setEnabled( TRUE );
 		m_TitleEditbox->setEnabled( TRUE );
 		m_DescriptionTextbox->setEnabled( TRUE );
 		m_DeleteButton->setEnabled( TRUE );
-		if ( m_AbsenceModeListbox->currentItem() == 0 ){
-			m_UpButton->setPixmap( SmallIcon("kipmsg_up_disabled") );
+//		if ( m_AbsenceModeListbox->currentItem() == 0 ){
+		if ( m_AbsenceModeListbox->currentRow() == 0 ){
+//			m_UpButton->setPixmap( SmallIcon("kipmsg_up_disabled") );
+			m_UpButton->setIcon( SmallIcon("kipmsg_up_disabled") );
 			m_UpButton->setEnabled( FALSE );
 		} else {
-			m_UpButton->setPixmap( SmallIcon("kipmsg_up_enabled") );
+//			m_UpButton->setPixmap( SmallIcon("kipmsg_up_enabled") );
+			m_UpButton->setIcon( SmallIcon("kipmsg_up_enabled") );
 			m_UpButton->setEnabled( TRUE );
 		}
-		if ( m_AbsenceModeListbox->currentItem() >= (int)m_AbsenceModeListbox->count() - 1 ){
-			m_DownButton->setPixmap( SmallIcon("kipmsg_down_disabled") );
+//		if ( m_AbsenceModeListbox->currentItem() >= (int)m_AbsenceModeListbox->count() - 1 ){
+		if ( m_AbsenceModeListbox->currentRow() >= (int)m_AbsenceModeListbox->count() - 1 ){
+//			m_DownButton->setPixmap( SmallIcon("kipmsg_down_disabled") );
+			m_DownButton->setIcon( SmallIcon("kipmsg_down_disabled") );
 			m_DownButton->setEnabled( FALSE );
 		} else {
-			m_DownButton->setPixmap( SmallIcon("kipmsg_down_enabled") );
+//			m_DownButton->setPixmap( SmallIcon("kipmsg_down_enabled") );
+			m_DownButton->setIcon( SmallIcon("kipmsg_down_enabled") );
 			m_DownButton->setEnabled( TRUE );
 		}
 		m_SetButton->setEnabled( TRUE );
@@ -361,12 +457,15 @@ void KIpMsgAbsenceModeConfigDialog::setStatus()
 		m_TitleEditbox->setEnabled( FALSE );
 		m_DescriptionTextbox->setEnabled( FALSE );
 		m_DeleteButton->setEnabled( FALSE );
-		m_UpButton->setPixmap( SmallIcon("kipmsg_up_disabled") );
+		m_UpButton->setIcon( SmallIcon("kipmsg_up_disabled") );
+//		m_UpButton->setPixmap( SmallIcon("kipmsg_up_disabled") );
 		m_UpButton->setEnabled( FALSE );
-		m_DownButton->setPixmap( SmallIcon("kipmsg_down_disabled") );
+		m_DownButton->setIcon( SmallIcon("kipmsg_down_disabled") );
+//		m_DownButton->setPixmap( SmallIcon("kipmsg_down_disabled") );
 		m_DownButton->setEnabled( FALSE );
 		m_SetButton->setEnabled( FALSE );
 	}
+	kDebug() << "END   KIpMsgAbsenceModeConfigDialog::setStatus" << endl;
 }
 
 #include "absenceconfig.moc"

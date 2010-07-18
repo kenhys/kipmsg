@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2006-2009 by nikikuni                                        *
+ *   Copyright (C) 2006-2010 by nikikuni                                   *
  *   nikikuni@yahoo.co.jp                                                  *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -20,8 +20,9 @@
 
 
 #include <qtextcodec.h>
+#include <kdebug.h>
 #include <klocale.h>
-#include <klistview.h>
+//#include <klistview.h>
 #include <kfiledialog.h>
 
 #include "attachedfiledialog.h"
@@ -40,13 +41,23 @@ using namespace ipmsg;
  * @param name 名前
  * @param fl フラグ
  */
-KIpMessengerAttachedFileDialog::KIpMessengerAttachedFileDialog(QWidget* parent, const char* name, WFlags fl)
-        : KIpMessengerAttachedFileDialogBase(parent,name,fl)
+KIpMessengerAttachedFileDialog::KIpMessengerAttachedFileDialog(QWidget* parent, const char* name, Qt::WindowFlags fl)
+        : KIpMessengerAttachedFileDialogBase()
+//        : KIpMessengerAttachedFileDialogBase(parent,name,fl)
 {
-	m_AttachFileListView->addColumn( tr2i18n( "File" ) );
-	m_AttachFileListView->addColumn( tr2i18n( "Size" ) );
-	m_AttachFileListView->addColumn( tr2i18n( "Timestamp" ) );
-	m_AttachFileListView->addColumn( tr2i18n( "Full Path" ) );
+	kDebug() << "START KIpMessengerAttachedFileDialog::KIpMessengerAttachedFileDialog" << endl;
+	setupUi(this);
+	setButtons( None );
+	KIpMessengerAttachedFileModel *model = new KIpMessengerAttachedFileModel(m_AttachFileListView);
+	m_AttachFileListView->setHeaderHidden( false );
+	m_AttachFileListView->setRootIsDecorated( false );
+	m_AttachFileListView->setAllColumnsShowFocus( true );
+	m_AttachFileListView->setModel( model );
+	m_AttachFileListView->setColumnWidth( KIpMessengerAttachedFileModel::fileNameCol, 200 );
+	m_AttachFileListView->setColumnWidth( KIpMessengerAttachedFileModel::sizeCol, 60 );
+	m_AttachFileListView->setColumnWidth( KIpMessengerAttachedFileModel::timeStampCol, 240 );
+	m_AttachFileListView->setColumnWidth( KIpMessengerAttachedFileModel::fullPathCol, 800 );
+	kDebug() << "END   KIpMessengerAttachedFileDialog::KIpMessengerAttachedFileDialog" << endl;
 }
 
 /**
@@ -65,8 +76,10 @@ KIpMessengerAttachedFileDialog::~KIpMessengerAttachedFileDialog()
  */
 void KIpMessengerAttachedFileDialog::setFiles( AttachFileList _files )
 {
+	kDebug() << "START KIpMessengerAttachedFileDialog::setFiles" << endl;
 	files = _files;
 	setFileNames();
+	kDebug() << "END   KIpMessengerAttachedFileDialog::setFiles" << endl;
 }
 
 /**
@@ -75,6 +88,8 @@ void KIpMessengerAttachedFileDialog::setFiles( AttachFileList _files )
  */
 AttachFileList KIpMessengerAttachedFileDialog::getFiles()
 {
+	kDebug() << "START KIpMessengerAttachedFileDialog::getFiles" << endl;
+	kDebug() << "END   KIpMessengerAttachedFileDialog::getFiles" << endl;
 	return files;
 }
 
@@ -84,7 +99,9 @@ AttachFileList KIpMessengerAttachedFileDialog::getFiles()
  */
 void KIpMessengerAttachedFileDialog::slotOkClicked()
 {
+	kDebug() << "START KIpMessengerAttachedFileDialog::slotOkClicked" << endl;
 	accept();
+	kDebug() << "END   KIpMessengerAttachedFileDialog::slotOkClicked" << endl;
 }
 
 /**
@@ -93,7 +110,9 @@ void KIpMessengerAttachedFileDialog::slotOkClicked()
  */
 void KIpMessengerAttachedFileDialog::slotCancelClicked()
 {
+	kDebug() << "START KIpMessengerAttachedFileDialog::slotCancelClicked" << endl;
 	reject();
+	kDebug() << "END   KIpMessengerAttachedFileDialog::slotCancelClicked" << endl;
 }
 
 /**
@@ -102,14 +121,17 @@ void KIpMessengerAttachedFileDialog::slotCancelClicked()
  */
 void KIpMessengerAttachedFileDialog::slotAddFilesClicked()
 {
+	kDebug() << "START KIpMessengerAttachedFileDialog::slotAddFilesClicked" << endl;
 	QString attachFileName = KFileDialog::getOpenFileName();
 	if ( attachFileName != "" ) {
 		AttachFile file;
-		file.setFullPath( attachFileName.data() );
+		QTextCodec *codec = QTextCodec::codecForName( KIpMsgSettings::localFilesystemEncoding().toAscii() );
+		file.setFullPath( codec->fromUnicode( attachFileName ).data() );
 		file.GetLocalFileInfo();
 		files.AddFile( file );
 	}
 	setFileNames();
+	kDebug() << "END   KIpMessengerAttachedFileDialog::slotAddFilesClicked" << endl;
 }
 
 /**
@@ -118,14 +140,17 @@ void KIpMessengerAttachedFileDialog::slotAddFilesClicked()
  */
 void KIpMessengerAttachedFileDialog::slotAddDirectoriesClicked()
 {
+	kDebug() << "START KIpMessengerAttachedFileDialog::slotAddDirectoriesClicked" << endl;
 	QString attachDirName = KFileDialog::getExistingDirectory();
 	if ( attachDirName != "" ) {
 		AttachFile file;
-		file.setFullPath( attachDirName.data() );
+		QTextCodec *codec = QTextCodec::codecForName( KIpMsgSettings::localFilesystemEncoding().toAscii() );
+		file.setFullPath( codec->fromUnicode( attachDirName ).data() );
 		file.GetLocalFileInfo();
 		files.AddFile( file );
 	}
 	setFileNames();
+	kDebug() << "END   KIpMessengerAttachedFileDialog::slotAddDirectoriesClicked" << endl;
 }
 
 /**
@@ -134,29 +159,34 @@ void KIpMessengerAttachedFileDialog::slotAddDirectoriesClicked()
  */
 void KIpMessengerAttachedFileDialog::slotDeleteClicked()
 {
-	QTextCodec *codec = QTextCodec::codecForName( KIpMsgSettings::localFilesystemEncoding() );
-	QListViewItemIterator it( m_AttachFileListView );
-	while ( it.current() != NULL ) {
-		QListViewItem *item = it.current();
-		if ( item->isSelected() ) {
-			vector<AttachFile>::iterator i = files.FindByFullPath( codec->fromUnicode( item->text( 3 ) ).data() );
-			if ( i != files.end() ) {
-				files.erase( i );
-			}
+	kDebug() << "START KIpMessengerAttachedFileDialog::slotDeleteClicked" << endl;
+	QTextCodec *codec = QTextCodec::codecForName( KIpMsgSettings::localFilesystemEncoding().toAscii() );
+	QAbstractItemModel *dataModel = m_AttachFileListView->model();
+	QListIterator<QModelIndex> it = m_AttachFileListView->selectionModel()->selectedRows();
+	QVariant data;
+	while ( it.hasNext() ) {
+		QModelIndex index = dataModel->index( it.next().row(), KIpMessengerAttachedFileModel::fullPathCol );
+		data = dataModel->data( index, Qt::DisplayRole );
+		string filename = string( codec->fromUnicode( data.toString() ).data() );
+		vector<AttachFile>::iterator i = files.FindByFullPath( filename );
+		if ( i != files.end() ) {
+			files.erase( i );
 		}
-		it++;
 	}
 	setFileNames();
+	kDebug() << "END   KIpMessengerAttachedFileDialog::slotDeleteClicked" << endl;
 }
 
 /**
- * ・添付ファイルリスト表示
+ * 添付ファイルリスト表示
  * ・添付ファイルリストからリストビューに表示。
  */
 void KIpMessengerAttachedFileDialog::setFileNames()
 {
-	m_AttachFileListView->clear();
-	QTextCodec *codec = QTextCodec::codecForName( KIpMsgSettings::localFilesystemEncoding() );
+	kDebug() << "START KIpMessengerAttachedFileDialog::setFileNames" << endl;
+	KIpMessengerAttachedFileModel *dataModel = (KIpMessengerAttachedFileModel *)m_AttachFileListView->model();
+	dataModel->clear();
+	QTextCodec *codec = QTextCodec::codecForName( KIpMsgSettings::localFilesystemEncoding().toAscii() );
 	for( vector<AttachFile>::iterator it = files.begin(); it != files.end(); it++ ){
 		it->GetLocalFileInfo();
 		QString size("");
@@ -165,12 +195,97 @@ void KIpMessengerAttachedFileDialog::setFileNames()
 		} else {
 			size = QString("%1").arg(it->FileSize());
 		}
-		new QListViewItem( m_AttachFileListView,
-						   codec->toUnicode( it->FileName().c_str() ),
-						   size,
-						   CreateTimeString( it->MTime() ),
-						   codec->toUnicode( it->FullPath().c_str() ) );
+		dataModel->addEntry( KIpMessengerAttachedFileEntry( 
+									codec->toUnicode( it->FileName().c_str() ),
+									size,
+									CreateTimeString( it->MTime() ),
+									codec->toUnicode( it->FullPath().c_str() ) ) );
+	}
+	m_AttachFileListView->reset();
+	kDebug() << "END   KIpMessengerAttachedFileDialog::setFileNames" << endl;
+}
+
+/**
+ * 添付ファイルコンストラクタ。
+ */
+KIpMessengerAttachedFileEntry::KIpMessengerAttachedFileEntry(QString fileName, QString size, QString mTime, QString fullPath){
+	this->m_FileName = fileName;
+	this->m_Size = size;
+	this->m_MTime = mTime;
+	this->m_FullPath = fullPath;
+}
+
+/**
+ * 添付ファイルモデルのリストをクリアします。
+ */
+void KIpMessengerAttachedFileModel::clear(){
+	removeRows(0,rowCount()-1);
+	fileList.clear();
+}
+
+/**
+ * 添付ファイルモデルのリストの行数を返します。
+ */
+int KIpMessengerAttachedFileModel::rowCount(const QModelIndex &parent) const{
+	return fileList.count();
+}
+/**
+ * 添付ファイルモデルのリストの列数を返します。
+ */
+int KIpMessengerAttachedFileModel::columnCount(const QModelIndex &parent) const{
+	return ColumnMax;
+}
+/**
+ * 添付ファイルモデルのデータを返します。
+ */
+QVariant KIpMessengerAttachedFileModel::data(const QModelIndex &index, int role) const{
+	if (!index.isValid()){
+		return QVariant();
+	}
+
+	if (index.row() >= fileList.size()){
+		return QVariant();
+	}
+
+	if (role == Qt::DisplayRole) {
+		KIpMessengerAttachedFileEntry entry = fileList.at(index.row());
+		switch(index.column()){
+			case fileNameCol:	return entry.fileName();
+			case sizeCol:		return entry.size();
+			case timeStampCol:	return entry.mTime();
+			case fullPathCol:	return entry.fullPath();
+			default:			return QVariant();
+		}
+	} else {
+		return QVariant();
 	}
 }
 
+/**
+ * 添付ファイルモデルのヘッダーを返します。
+ */
+QVariant KIpMessengerAttachedFileModel::headerData(int selection, Qt::Orientation orientation, int role) const{
+	if (role != Qt::DisplayRole){
+		return QVariant();
+	}
+
+	if (orientation == Qt::Horizontal){
+		switch(selection){
+			case fileNameCol:	return tr2i18n( "File" );
+			case sizeCol: 		return tr2i18n( "Size" );
+			case timeStampCol: 	return tr2i18n( "Timestamp" );
+			case fullPathCol: 	return tr2i18n( "Full Path" );
+			default:			return QVariant();
+		}
+	}
+	return QVariant();
+}
+
+/**
+ * 添付ファイルモデルに添付ファイルを追加します。
+ */
+bool KIpMessengerAttachedFileModel::addEntry(const KIpMessengerAttachedFileEntry entry){
+	fileList.append(entry);
+	return true;
+}
 #include "attachedfiledialog.moc"

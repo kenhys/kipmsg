@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2006-2009 by nikikuni                                        *
+ *   Copyright (C) 2006-2010 by nikikuni                                   *
  *   nikikuni@yahoo.co.jp                                                  *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -23,14 +23,14 @@
 #define _DOWNLOAD_ERROR_DIALOG_H_
 
 #include "IpMessenger.h"
-#include "downloaderrordialogbase.h"
+#include "ui_downloaderrordialogbase.h"
 
-class DownloadErrorDialog : public DownloadErrorDialogBase
+class DownloadErrorDialog : public KDialog, private Ui::DownloadErrorDialogBase
 {
     Q_OBJECT
 
 public:
-    DownloadErrorDialog(QWidget* parent = 0, const char* name = 0, WFlags fl = 0 );
+    DownloadErrorDialog(QWidget* parent = 0, const char* name = 0, Qt::WindowFlags fl = 0 );
     ~DownloadErrorDialog();
     /*$PUBLIC_FUNCTIONS$*/
 	void setDownloadInfo( DownloadInfo info );

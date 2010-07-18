@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2006-2009 by nikikuni                                        *
+ *   Copyright (C) 2006-2010 by nikikuni                                   *
  *   nikikuni@yahoo.co.jp                                                  *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -22,15 +22,15 @@
 #ifndef _IDIOM_CONFIG_H_
 #define _IDIOM_CONFIG_H_
 
-#include "idiomconfigbase.h"
+#include "ui_idiomconfigbase.h"
 #include "qstringlist.h"
 
-class IdiomConfigDialog : public IdiomConfigDialogBase
+class IdiomConfigDialog : public KDialog, private Ui::IdiomConfigDialogBase
 {
     Q_OBJECT
 
 public:
-    IdiomConfigDialog(QWidget* parent = 0, const char* name = 0, WFlags fl = 0 );
+    IdiomConfigDialog(QWidget* parent = 0, const char* name = 0, Qt::WindowFlags fl = 0 );
     ~IdiomConfigDialog();
     /*$PUBLIC_FUNCTIONS$*/
 

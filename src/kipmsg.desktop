@@ -7,3 +7,6 @@ Icon=kipmsg
 Type=Application
 Comment=IPMessenger for KDE
 Comment[ja]=IPメッセンジャー for KDE
+X-KDE-StartupNotify=true
+X-DBUS-StartupType=Unique
+X-DBUS-ServiceName=jp.sourceforge.kipmsg

@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2006-2009 by nikikuni                                        *
+ *   Copyright (C) 2006-2010 by nikikuni                                   *
  *   nikikuni@yahoo.co.jp                                                  *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -22,14 +22,14 @@
 #ifndef _CLICKABLEURLCONFIG_H_
 #define _CLICKABLEURLCONFIG_H_
 
-#include "clickableurlconfigbase.h"
+#include "ui_clickableurlconfigbase.h"
 
-class KIPMsgClickableURLConfigDialog : public KIPMsgClickableURLConfigDialogBase
+class KIPMsgClickableURLConfigDialog : public KDialog, private Ui::KIPMsgClickableURLConfigDialogBase
 {
     Q_OBJECT
 
 public:
-    KIPMsgClickableURLConfigDialog(QWidget* parent = 0, const char* name = 0, WFlags fl = 0 );
+    KIPMsgClickableURLConfigDialog(QWidget* parent = 0, const char* name = 0, Qt::WindowFlags fl = 0 );
     ~KIPMsgClickableURLConfigDialog();
     /*$PUBLIC_FUNCTIONS$*/
 	QMap<QString,QString> protocols;
@@ -40,7 +40,7 @@ public slots:
     virtual void slotOkClicked();
     virtual void slotCancelClicked();
     virtual void slotApplyClicked();
-    virtual void slotProtocolClicked(QListBoxItem*);
+    virtual void slotProtocolClicked(QListWidgetItem*);
     virtual void slotProgramNameChanged(const QString&);
 
 protected:

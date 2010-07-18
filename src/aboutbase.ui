@@ -1,188 +1,188 @@
-<!DOCTYPE UI><UI version="3.3" stdsetdef="1">
-<class>KIpMessengerAboutDialogBase</class>
-<widget class="QDialog">
-    <property name="name">
-        <cstring>KIpMessengerAboutDialogBase</cstring>
-    </property>
-    <property name="geometry">
-        <rect>
-            <x>0</x>
-            <y>0</y>
-            <width>500</width>
-            <height>190</height>
-        </rect>
-    </property>
-    <property name="sizePolicy">
-        <sizepolicy>
-            <hsizetype>0</hsizetype>
-            <vsizetype>0</vsizetype>
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-        </sizepolicy>
-    </property>
-    <property name="minimumSize">
-        <size>
-            <width>500</width>
-            <height>190</height>
-        </size>
-    </property>
-    <property name="maximumSize">
-        <size>
-            <width>500</width>
-            <height>190</height>
-        </size>
-    </property>
-    <property name="baseSize">
-        <size>
-            <width>500</width>
-            <height>190</height>
-        </size>
-    </property>
-    <property name="caption">
-        <string>About KIpMessenger</string>
-    </property>
-    <property name="icon">
-        <pixmap>image0</pixmap>
-    </property>
-    <property name="modal">
-        <bool>true</bool>
-    </property>
-    <widget class="QLabel">
-        <property name="name">
-            <cstring>pixmapLabel1</cstring>
-        </property>
-        <property name="geometry">
-            <rect>
-                <x>10</x>
-                <y>20</y>
-                <width>32</width>
-                <height>32</height>
-            </rect>
-        </property>
-        <property name="pixmap">
-            <pixmap>image1</pixmap>
-        </property>
-        <property name="scaledContents">
-            <bool>true</bool>
-        </property>
-    </widget>
-    <widget class="KPushButton">
-        <property name="name">
-            <cstring>m_JumpToWebButton</cstring>
-        </property>
-        <property name="geometry">
-            <rect>
-                <x>10</x>
-                <y>68</y>
-                <width>480</width>
-                <height>30</height>
-            </rect>
-        </property>
-        <property name="text">
-            <string>http://www.ipms&amp;g.org</string>
-        </property>
-        <property name="accel">
-            <string>Alt+G</string>
-        </property>
-    </widget>
-    <widget class="KPushButton">
-        <property name="name">
-            <cstring>m_OKButton</cstring>
-        </property>
-        <property name="geometry">
-            <rect>
-                <x>210</x>
-                <y>150</y>
-                <width>90</width>
-                <height>30</height>
-            </rect>
-        </property>
-        <property name="text">
-            <string>&amp;OK</string>
-        </property>
-        <property name="accel">
-            <string>Alt+O</string>
-        </property>
-    </widget>
-    <widget class="QLabel">
-        <property name="name">
-            <cstring>textLabel7</cstring>
-        </property>
-        <property name="geometry">
-            <rect>
-                <x>50</x>
-                <y>10</y>
-                <width>440</width>
-                <height>50</height>
-            </rect>
-        </property>
-        <property name="frameShape">
-            <enum>PopupPanel</enum>
-        </property>
-        <property name="frameShadow">
-            <enum>Sunken</enum>
-        </property>
-        <property name="text">
-            <string>IP Messenger for KDE version 0.1.10</string>
-        </property>
-        <property name="alignment">
-            <set>AlignCenter</set>
-        </property>
-    </widget>
-    <widget class="QLabel">
-        <property name="name">
-            <cstring>textLabel8</cstring>
-        </property>
-        <property name="geometry">
-            <rect>
-                <x>0</x>
-                <y>100</y>
-                <width>500</width>
-                <height>40</height>
-            </rect>
-        </property>
-        <property name="text">
-            <string>Orignal Windows version's Copyright(c) 1996-2004, H.Shirouzu
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>KIpMessengerAboutDialogBase</class>
+ <widget class="QDialog" name="KIpMessengerAboutDialogBase">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>500</width>
+    <height>190</height>
+   </rect>
+  </property>
+  <property name="sizePolicy">
+   <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+    <horstretch>0</horstretch>
+    <verstretch>0</verstretch>
+   </sizepolicy>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>500</width>
+    <height>190</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>500</width>
+    <height>190</height>
+   </size>
+  </property>
+  <property name="baseSize">
+   <size>
+    <width>500</width>
+    <height>190</height>
+   </size>
+  </property>
+  <property name="windowTitle">
+   <string>About KIpMessenger</string>
+  </property>
+  <property name="modal">
+   <bool>true</bool>
+  </property>
+  <widget class="QLabel" name="pixmapLabel1">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>20</y>
+     <width>32</width>
+     <height>32</height>
+    </rect>
+   </property>
+   <property name="pixmap">
+    <pixmap>../icons/hi16-app-kipmsg.png</pixmap>
+   </property>
+   <property name="scaledContents">
+    <bool>true</bool>
+   </property>
+   <property name="wordWrap">
+    <bool>false</bool>
+   </property>
+  </widget>
+  <widget class="KPushButton" name="m_JumpToWebButton" native="true">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>68</y>
+     <width>480</width>
+     <height>30</height>
+    </rect>
+   </property>
+   <property name="text" stdset="0">
+    <string>http://www.ipms&amp;g.org</string>
+   </property>
+   <property name="shortcut" stdset="0">
+    <string>Alt+G</string>
+   </property>
+  </widget>
+  <widget class="KPushButton" name="m_OKButton" native="true">
+   <property name="geometry">
+    <rect>
+     <x>210</x>
+     <y>150</y>
+     <width>90</width>
+     <height>30</height>
+    </rect>
+   </property>
+   <property name="text" stdset="0">
+    <string>&amp;OK</string>
+   </property>
+   <property name="shortcut" stdset="0">
+    <string>Alt+O</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="textLabel7">
+   <property name="geometry">
+    <rect>
+     <x>50</x>
+     <y>10</y>
+     <width>440</width>
+     <height>50</height>
+    </rect>
+   </property>
+   <property name="frameShadow">
+    <enum>QFrame::Sunken</enum>
+   </property>
+   <property name="text">
+    <string>IP Messenger for KDE version 0.1.10</string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignCenter</set>
+   </property>
+   <property name="wordWrap">
+    <bool>false</bool>
+   </property>
+  </widget>
+  <widget class="QLabel" name="textLabel8">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>100</y>
+     <width>500</width>
+     <height>40</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Orignal Windows version's Copyright(c) 1996-2004, H.Shirouzu
  KDE version's Copyright(c) 2006-2009, K.Niki</string>
-        </property>
-        <property name="alignment">
-            <set>AlignCenter</set>
-        </property>
-    </widget>
-</widget>
-<images>
-    <image name="image0">
-        <data format="PNG" length="471">89504e470d0a1a0a0000000d4948445200000020000000200806000000737a7af40000019e494441545885c5964192832010457fa75ce602dc2f37c876188bd16de604783e2f907dcfc24014a169b59cfc8d52f9d0af9b96408ccfaa896f8c3c0b81087c0a2783e822067ffdc6a033e203002e2a170367413475cb713113023f25c5d6550080b049602630285ba579f06999a5470f20049702d4a407d8d10229dc318093a403a075f3d454ca3edb8444c2e27bbf3ee53ce2898a81750369b3d6ec756e3d06512319b422e26af797d6fe78131e3e0999e311579454d95d0031e83bc2aee09b0134d96e09ae06d81a38ce0355214e3d8a35122bb0a7c1cefb335204dfa322402d7bf52959a94803009deb61ae06e3738c4f49bdebe0afc3c21fe77dafa10344efba851ff75905c6e7088324b8009ffac35852ea076600e66a30e245266878f8ac3f8c875f5fbcbea5fe08b0259352e6f3f1f0e3d1bb6e312f8c53ff254716334914f730e3cf8d7bd78130eda46d2d6c6b577ee269618e95c0bb070c0c6eed2d5b89ce75597f6e6c5b9b9dffd55a8a006937cf9fb77b1e620123cc1f9f79080e97b1c179ae6552aac4113130dd88c29e4819f8875757648ba4ebe8bfe80fe6410424335586a80000000049454e44ae426082</data>
-    </image>
-    <image name="image1">
-        <data format="XPM.GZ" length="1304">789c9d90cb6ac3301045f7fe0ae1d999a23435a586d24f287459285d8c1ea65d6493a68b10faefd58c647b24db31e43a463ad2c965925da3dedf5e55b3ab7e4e78fab6ca7ee15135eef770387f7cbe5caaba7d50e1f3a4f6f55d557b6515dc730871c0be2734845ddbedbb96d0319a8086d0267c8ca809fb7ea8828874c0b71b890e70342e263a00d7a4dc5996ae3ba0f5dc0179470b6d169d74b7e268e9f07293a3513883921c4c4ae6e8c2c18428a441199df26f13caed0e8054169c38bc50660e4ce38ea7b9238db59e5c5972b239361c5c77320567bfddd8f02487f781f448c931ce8ca7b4372e11ed650f1fdad463a1e811df8c2dfc7229ad538f15d3c4c787e4f318e739a229b2ec31d6a7644d5ecc333515c97b6457e96ca4fe7baefe010cef5597</data>
-    </image>
-</images>
-<connections>
-    <connection>
-        <sender>m_JumpToWebButton</sender>
-        <signal>clicked()</signal>
-        <receiver>KIpMessengerAboutDialogBase</receiver>
-        <slot>slotJumpClicked()</slot>
-    </connection>
-    <connection>
-        <sender>m_OKButton</sender>
-        <signal>clicked()</signal>
-        <receiver>KIpMessengerAboutDialogBase</receiver>
-        <slot>slotOkClicked()</slot>
-    </connection>
-</connections>
-<tabstops>
-    <tabstop>m_JumpToWebButton</tabstop>
-    <tabstop>m_OKButton</tabstop>
-</tabstops>
-<slots>
-    <slot>slotJumpClicked()</slot>
-    <slot>slotOkClicked()</slot>
-</slots>
-<layoutdefaults spacing="6" margin="11"/>
-<includehints>
-    <includehint>kpushbutton.h</includehint>
-    <includehint>kpushbutton.h</includehint>
-</includehints>
-</UI>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignCenter</set>
+   </property>
+   <property name="wordWrap">
+    <bool>false</bool>
+   </property>
+  </widget>
+ </widget>
+ <layoutdefault spacing="6" margin="11"/>
+ <customwidgets>
+  <customwidget>
+   <class>KPushButton</class>
+   <extends>QPushButton</extends>
+   <header>kpushbutton.h</header>
+  </customwidget>
+ </customwidgets>
+ <tabstops>
+  <tabstop>m_JumpToWebButton</tabstop>
+  <tabstop>m_OKButton</tabstop>
+ </tabstops>
+ <includes>
+  <include location="local">kpushbutton.h</include>
+  <include location="local">kpushbutton.h</include>
+ </includes>
+ <resources/>
+ <connections>
+  <connection>
+   <sender>m_JumpToWebButton</sender>
+   <signal>clicked()</signal>
+   <receiver>KIpMessengerAboutDialogBase</receiver>
+   <slot>slotJumpClicked()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>m_OKButton</sender>
+   <signal>clicked()</signal>
+   <receiver>KIpMessengerAboutDialogBase</receiver>
+   <slot>slotOkClicked()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+</ui>

@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2006-2009 by nikikuni                                        *
+ *   Copyright (C) 2006-2010 by nikikuni                                   *
  *   nikikuni@yahoo.co.jp                                                  *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -19,8 +19,9 @@
  ***************************************************************************/
 
 
+#include <kdebug.h>
 #include <ktextedit.h>
-#include <klistbox.h>
+#include <klistwidget.h>
 #include "idiomconfig.h"
 #include "kipmsgsettings.h"
 
@@ -31,15 +32,21 @@
  * @param name 名前
  * @param fl フラグ
  */
-IdiomConfigDialog::IdiomConfigDialog(QWidget* parent, const char* name, WFlags fl)
-        : IdiomConfigDialogBase(parent,name,fl)
+IdiomConfigDialog::IdiomConfigDialog(QWidget* parent, const char* name, Qt::WindowFlags fl)
+        : IdiomConfigDialogBase()
+//        : IdiomConfigDialogBase(parent,name,fl)
 {
+	kDebug() << "START IdiomConfigDialog::IdiomConfigDialog" << endl;
+	setupUi(this);
+	setButtons( None );
 	idioms = KIpMsgSettings::idiomSettings();
 	QStringList::Iterator itIdiom = idioms.begin();
 	while ( itIdiom != idioms.end() ) {
-		m_IdiomListBox->insertItem( getListItem( *itIdiom ) );
+//FIXME m_IdiomListBox->insertItem( getListItem( *itIdiom ) );
+		m_IdiomListBox->addItem( getListItem( *itIdiom ) );
 		itIdiom++;
 	}
+	kDebug() << "END   IdiomConfigDialog::IdiomConfigDialog" << endl;
 }
 
 /**
@@ -54,51 +61,69 @@ IdiomConfigDialog::~IdiomConfigDialog()
  * OKクリックイベント
  * ・ウインドウを閉じる
  */
-void IdiomConfigDialog::slotOKClicked()
+void
+IdiomConfigDialog::slotOKClicked()
 {
+	kDebug() << "START IdiomConfigDialog::slotOKClicked" << endl;
 	KIpMsgSettings::setIdiomSettings( idioms );
-	KIpMsgSettings::writeConfig();
-    close();
+	KIpMsgSettings::self()->writeConfig();
+//	close();
+	accept();
+	kDebug() << "END   IdiomConfigDialog::slotOKClicked" << endl;
 }
 
 /**
  * キャンセルクリックイベント
  * ・ウインドウを閉じる
  */
-void IdiomConfigDialog::slotCancelClicked()
+void
+IdiomConfigDialog::slotCancelClicked()
 {
-    close();
+	kDebug() << "START IdiomConfigDialog::slotCancelClicked" << endl;
+//	close();
+	reject();
+	kDebug() << "END   IdiomConfigDialog::slotCancelClicked" << endl;
 }
 
 /**
  * ＞＞クリックイベント
  * ・定型文をアクティブなリストに追加
  */
-void IdiomConfigDialog::slotAddIdiomClicked()
+void
+IdiomConfigDialog::slotAddIdiomClicked()
 {
-	if ( m_IdiomTextEdit->text() == "" ) {
+	kDebug() << "START IdiomConfigDialog::slotAddIdiomClicked" << endl;
+	if ( m_IdiomTextEdit->toPlainText() == "" ) {
+		kDebug() << "END   IdiomConfigDialog::slotAddIdiomClicked" << endl;
 		return;
 	}
-	m_IdiomListBox->insertItem( getListItem( m_IdiomTextEdit->text() ) );
-	idioms << m_IdiomTextEdit->text();
-	m_IdiomTextEdit->setText("");
+//FIXME m_IdiomListBox->insertItem( getListItem( m_IdiomTextEdit->toPlainText() ) );
+	m_IdiomListBox->addItem( getListItem( m_IdiomTextEdit->toPlainText() ) );
+	idioms << m_IdiomTextEdit->toPlainText();
+	m_IdiomTextEdit->setPlainText("");
+	kDebug() << "END   IdiomConfigDialog::slotAddIdiomClicked" << endl;
 }
 
 /**
  * ＜＜クリックイベント
  * ・定型文をアクティブなリストにから削除しテキストボックスに移動。
  */
-void IdiomConfigDialog::slotDeleteIdiomClicked()
+void
+IdiomConfigDialog::slotDeleteIdiomClicked()
 {
-	int selectedIndex = m_IdiomListBox->index( m_IdiomListBox->selectedItem() );
+	kDebug() << "START IdiomConfigDialog::slotDeleteIdiomClicked" << endl;
+// FIXME int selectedIndex = m_IdiomListBox->index( m_IdiomListBox->selectedItem() );
+	int selectedIndex = m_IdiomListBox->currentRow();
 	if ( selectedIndex < 0 ) {
+		kDebug() << "END   IdiomConfigDialog::slotDeleteIdiomClicked" << endl;
 		return;
 	}
 	m_IdiomTextEdit->setText( idioms[selectedIndex] );
-	m_IdiomListBox->removeItem( selectedIndex );
+	m_IdiomListBox->removeItemWidget( m_IdiomListBox->item( selectedIndex ) );
 	QStringList::iterator it = idioms.begin();
 	for( int i = 0; i <= selectedIndex - 1; ++it, i++ );
-	idioms.remove( it );
+	idioms.removeAll( *it );
+	kDebug() << "END   IdiomConfigDialog::slotDeleteIdiomClicked" << endl;
 }
 
 /**
@@ -107,12 +132,17 @@ void IdiomConfigDialog::slotDeleteIdiomClicked()
  * @param テキストボックスの内容
  * @retval リストボックスに表示する内容
  */
-QString IdiomConfigDialog::getListItem( QString idiom )
+QString
+IdiomConfigDialog::getListItem( QString idiom )
 {
-	QStringList lines = QStringList::split( "\n", idiom );
+	kDebug() << "START IdiomConfigDialog::getListItem" << endl;
+//	QStringList lines = QStringList::split( "\n", idiom );
+	QStringList lines = idiom.split( "\n" );
 	if ( lines.size() == 1 ) {
+		kDebug() << "END   IdiomConfigDialog::getListItem" << endl;
 		return idiom;
 	} else {
+		kDebug() << "END   IdiomConfigDialog::getListItem" << endl;
 		return lines[0] + "..." ;
 	}
 }

@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2006-2009 by nikikuni                                        *
+ *   Copyright (C) 2006-2010 by nikikuni                                   *
  *   nikikuni@yahoo.co.jp                                                  *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -19,6 +19,7 @@
  ***************************************************************************/
 
 
+#include <kdebug.h>
 #include "about.h"
 #include "kurl.h"
 #include "krun.h"
@@ -30,9 +31,15 @@
  * @param name 名前
  * @param fl フラグ
  */
-KIpMessengerAboutDialog::KIpMessengerAboutDialog(QWidget* parent, const char* name, WFlags fl)
-        : KIpMessengerAboutDialogBase(parent,name,fl)
-{}
+KIpMessengerAboutDialog::KIpMessengerAboutDialog(QWidget* parent, const char* name, Qt::WindowFlags fl)
+        : KIpMessengerAboutDialogBase()
+//        : KIpMessengerAboutDialogBase(parent,name,fl)
+{
+	kDebug() << "START KIpMessengerAboutDialog::KIpMessengerAboutDialog" << endl;
+	setupUi(this);
+	setButtons( None );
+	kDebug() << "END   KIpMessengerAboutDialog::KIpMessengerAboutDialog" << endl;
+}
 
 /**
  * デストラクタ
@@ -48,7 +55,10 @@ KIpMessengerAboutDialog::~KIpMessengerAboutDialog()
  */
 void KIpMessengerAboutDialog::slotOkClicked()
 {
-	close();
+	kDebug() << "START KIpMessengerAboutDialog::slotOkClicked" << endl;
+//	close();
+	accept();
+	kDebug() << "END   KIpMessengerAboutDialog::slotOkClicked" << endl;
 }
 /**
  * Webサイトを表示
@@ -56,8 +66,10 @@ void KIpMessengerAboutDialog::slotOkClicked()
  */
 void KIpMessengerAboutDialog::slotJumpClicked()
 {
-	KURL url = KURL( QString( "http://www.ipmsg.org" ) );
-	(new KRun( url ))->setAutoDelete( true );
+	kDebug() << "START KIpMessengerAboutDialog::slotJumpClicked" << endl;
+	KUrl url = KUrl( QString( "http://www.ipmsg.org" ) );
+	(new KRun( url, this ))->setAutoDelete( true );
+	kDebug() << "END   KIpMessengerAboutDialog::slotJumpClicked" << endl;
 }
 
 #include "about.moc"

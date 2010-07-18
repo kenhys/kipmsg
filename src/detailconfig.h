@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2006-2009 by nikikuni                                        *
+ *   Copyright (C) 2006-2010 by nikikuni                                   *
  *   nikikuni@yahoo.co.jp                                                  *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -22,14 +22,14 @@
 #ifndef _DETAILCONFIG_H_
 #define _DETAILCONFIG_H_
 
-#include "detailconfigbase.h"
+#include "ui_detailconfigbase.h"
 
-class KIPMsgDetailConfigDialog : public KIPMsgDetailConfigDialogBase
+class KIPMsgDetailConfigDialog : public KDialog, private Ui::KIPMsgDetailConfigDialogBase
 {
     Q_OBJECT
 
 public:
-    KIPMsgDetailConfigDialog(QWidget* parent = 0, const char* name = 0, WFlags fl = 0 );
+    KIPMsgDetailConfigDialog(QWidget* parent = 0, const char* name = 0, Qt::WindowFlags fl = 0 );
     ~KIPMsgDetailConfigDialog();
     /*$PUBLIC_FUNCTIONS$*/
 

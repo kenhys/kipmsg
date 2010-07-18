@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2006-2009 by nikikuni                                        *
+ *   Copyright (C) 2006-2010 by nikikuni                                   *
  *   nikikuni@yahoo.co.jp                                                  *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -21,9 +21,11 @@
 #include <qmap.h>
 #include <qstringlist.h>
 #include <qcheckbox.h>
+#include <kdebug.h>
 #include <klineedit.h>
-#include <klistbox.h>
+#include <klistwidget.h>
 #include <kfiledialog.h>
+#include <qstring.h>
 
 #include "clickableurlconfig.h"
 #include "kipmsgsettings.h"
@@ -35,15 +37,19 @@
  * @param name 名前
  * @param fl フラグ
  */
-KIPMsgClickableURLConfigDialog::KIPMsgClickableURLConfigDialog(QWidget* parent, const char* name, WFlags fl)
-        : KIPMsgClickableURLConfigDialogBase(parent,name,fl)
+KIPMsgClickableURLConfigDialog::KIPMsgClickableURLConfigDialog(QWidget* parent, const char* name, Qt::WindowFlags fl)
+//        : KIPMsgClickableURLConfigDialogBase(parent,name,fl)
+        : KIPMsgClickableURLConfigDialogBase()
 {
+	kDebug() << "START KIPMsgClickableURLConfigDialog::KIPMsgClickableURLConfigDialog" << endl;
+	setupUi(this);
+	setButtons( None );
 	m_DefaultBrowserCheckbox->setChecked( KIpMsgSettings::useDefaultBrowser() );
 	QStringList pro = KIpMsgSettings::executePrograms();
 
 	for( QStringList::iterator p = pro.begin(); p != pro.end(); p++ ){
 		QString item = *p;
-		int pos = item.find(':');
+		int pos = item.indexOf(':');
 		if ( pos < 0 ) {
 			protocols[item] = "";
 		} else {
@@ -52,10 +58,10 @@ KIPMsgClickableURLConfigDialog::KIPMsgClickableURLConfigDialog(QWidget* parent, 
 			protocols[key] = val;
 		}
 	}
-	if ( m_ProtocolsListbox->count() == 0 ) {
-		m_ProtocolsListbox->setCurrentItem( 0 );
-		m_ProgramNameEditbox->setText( protocols[m_ProtocolsListbox->currentText()] );
-	}
+	m_ProtocolsListbox->item( 0 )->setSelected( TRUE );
+	m_ProtocolsListbox->setCurrentRow( 0 );
+	m_ProgramNameEditbox->setText( protocols[m_ProtocolsListbox->currentItem()->text()] );
+	kDebug() << "END   KIPMsgClickableURLConfigDialog::KIPMsgClickableURLConfigDialog" << endl;
 }
 
 /**
@@ -74,7 +80,9 @@ KIPMsgClickableURLConfigDialog::~KIPMsgClickableURLConfigDialog()
  */
 void KIPMsgClickableURLConfigDialog::slotProgramNameChanged(const QString& text)
 {
-	protocols[m_ProtocolsListbox->currentText()] = text;
+	kDebug() << "START KIPMsgClickableURLConfigDialog::slotProgramNameChanged" << endl;
+	protocols[m_ProtocolsListbox->currentItem()->text()] = text;
+	kDebug() << "END   KIPMsgClickableURLConfigDialog::slotProgramNameChanged" << endl;
 }
 
 /**
@@ -84,11 +92,13 @@ void KIPMsgClickableURLConfigDialog::slotProgramNameChanged(const QString& text)
  */
 void KIPMsgClickableURLConfigDialog::slotBrowseClicked()
 {
+	kDebug() << "START KIPMsgClickableURLConfigDialog::slotBrowseClicked" << endl;
 	QString programName = KFileDialog::getOpenFileName();
 	if ( programName != "" ) {
-		protocols[m_ProtocolsListbox->currentText()] = programName;
-		m_ProgramNameEditbox->setText( protocols[m_ProtocolsListbox->currentText()] );
+		protocols[m_ProtocolsListbox->currentItem()->text()] = programName;
+		m_ProgramNameEditbox->setText( protocols[m_ProtocolsListbox->currentItem()->text()] );
 	}
+	kDebug() << "END   KIPMsgClickableURLConfigDialog::slotBrowseClicked" << endl;
 }
 
 /**
@@ -97,8 +107,11 @@ void KIPMsgClickableURLConfigDialog::slotBrowseClicked()
  */
 void KIPMsgClickableURLConfigDialog::slotOkClicked()
 {
+	kDebug() << "START KIPMsgClickableURLConfigDialog::slotOkClicked" << endl;
 	slotApplyClicked();
-	close();
+//	close();
+	accept();
+	kDebug() << "END   KIPMsgClickableURLConfigDialog::slotOkClicked" << endl;
 }
 
 /**
@@ -107,7 +120,10 @@ void KIPMsgClickableURLConfigDialog::slotOkClicked()
  */
 void KIPMsgClickableURLConfigDialog::slotCancelClicked()
 {
-	close();
+	kDebug() << "START KIPMsgClickableURLConfigDialog::slotCancelClicked" << endl;
+//	close();
+	reject();
+	kDebug() << "END   KIPMsgClickableURLConfigDialog::slotCancelClicked" << endl;
 }
 
 /**
@@ -116,16 +132,19 @@ void KIPMsgClickableURLConfigDialog::slotCancelClicked()
  */
 void KIPMsgClickableURLConfigDialog::slotApplyClicked()
 {
+	kDebug() << "START KIPMsgClickableURLConfigDialog::slotApplyClicked" << endl;
 	KIpMsgSettings::setUseDefaultBrowser( m_DefaultBrowserCheckbox->isChecked() );
 
 	QStringList pro;
 	for( QMap<QString,QString>::iterator p = protocols.begin(); p != protocols.end(); p++ ){
-		pro << p.key() + ":" + p.data();
+//		pro << p.key() + ":" + p.data();
+		pro << p.key() + ":" + p.value();
 	}
 
 	KIpMsgSettings::setExecutePrograms( pro );
 
-	KIpMsgSettings::writeConfig();
+	KIpMsgSettings::self()->writeConfig();
+	kDebug() << "END   KIPMsgClickableURLConfigDialog::slotApplyClicked" << endl;
 }
 
 /**
@@ -133,9 +152,11 @@ void KIPMsgClickableURLConfigDialog::slotApplyClicked()
  * ・プロトコルに設定されているプログラムを表示する。
  * @param item リストボックスアイテム
  */
-void KIPMsgClickableURLConfigDialog::slotProtocolClicked(QListBoxItem* item)
+void KIPMsgClickableURLConfigDialog::slotProtocolClicked(QListWidgetItem* item)
 {
+	kDebug() << "START KIPMsgClickableURLConfigDialog::slotProtocolClicked" << endl;
 	m_ProgramNameEditbox->setText( protocols[item->text()] );
+	kDebug() << "END   KIPMsgClickableURLConfigDialog::slotProtocolClicked" << endl;
 }
 
 #include "clickableurlconfig.moc"

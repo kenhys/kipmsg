@@ -1,430 +1,454 @@
-<!DOCTYPE UI><UI version="3.3" stdsetdef="1">
-<class>HideConfigDialogBase</class>
-<widget class="QDialog">
-    <property name="name">
-        <cstring>HideConfigDialogBase</cstring>
-    </property>
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>HideConfigDialogBase</class>
+ <widget class="QDialog" name="HideConfigDialogBase">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>750</width>
+    <height>600</height>
+   </rect>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>750</width>
+    <height>600</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>750</width>
+    <height>600</height>
+   </size>
+  </property>
+  <property name="baseSize">
+   <size>
+    <width>650</width>
+    <height>750</height>
+   </size>
+  </property>
+  <property name="windowTitle">
+   <string>Hide settings</string>
+  </property>
+  <widget class="QFrame" name="frame68">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>560</y>
+     <width>720</width>
+     <height>40</height>
+    </rect>
+   </property>
+   <property name="frameShape">
+    <enum>QFrame::NoFrame</enum>
+   </property>
+   <property name="frameShadow">
+    <enum>QFrame::Raised</enum>
+   </property>
+   <widget class="KPushButton" name="m_OKButton">
     <property name="geometry">
-        <rect>
-            <x>0</x>
-            <y>0</y>
-            <width>750</width>
-            <height>600</height>
-        </rect>
+     <rect>
+      <x>250</x>
+      <y>0</y>
+      <width>110</width>
+      <height>31</height>
+     </rect>
     </property>
-    <property name="minimumSize">
-        <size>
-            <width>750</width>
-            <height>600</height>
-        </size>
+    <property name="text">
+     <string>&amp;OK</string>
     </property>
-    <property name="maximumSize">
-        <size>
-            <width>750</width>
-            <height>600</height>
-        </size>
+    <property name="shortcut">
+     <string>Alt+O</string>
     </property>
-    <property name="baseSize">
-        <size>
-            <width>650</width>
-            <height>750</height>
-        </size>
+    <property name="default">
+     <bool>true</bool>
     </property>
-    <property name="caption">
-        <string>Hide settings</string>
+   </widget>
+   <widget class="KPushButton" name="m_CancelButton">
+    <property name="geometry">
+     <rect>
+      <x>380</x>
+      <y>0</y>
+      <width>110</width>
+      <height>31</height>
+     </rect>
     </property>
-    <property name="icon">
-        <pixmap>image0</pixmap>
+    <property name="text">
+     <string>Cancel</string>
     </property>
-    <widget class="QFrame">
-        <property name="name">
-            <cstring>frame68</cstring>
-        </property>
-        <property name="geometry">
-            <rect>
-                <x>20</x>
-                <y>560</y>
-                <width>720</width>
-                <height>40</height>
-            </rect>
-        </property>
-        <property name="frameShape">
-            <enum>NoFrame</enum>
-        </property>
-        <property name="frameShadow">
-            <enum>Raised</enum>
-        </property>
-        <widget class="KPushButton">
-            <property name="name">
-                <cstring>m_OKButton</cstring>
-            </property>
-            <property name="geometry">
-                <rect>
-                    <x>250</x>
-                    <y>0</y>
-                    <width>110</width>
-                    <height>31</height>
-                </rect>
-            </property>
-            <property name="text">
-                <string>&amp;OK</string>
-            </property>
-            <property name="accel">
-                <string>Alt+O</string>
-            </property>
-            <property name="default">
-                <bool>true</bool>
-            </property>
-        </widget>
-        <widget class="KPushButton">
-            <property name="name">
-                <cstring>m_CancelButton</cstring>
-            </property>
-            <property name="geometry">
-                <rect>
-                    <x>380</x>
-                    <y>0</y>
-                    <width>110</width>
-                    <height>31</height>
-                </rect>
-            </property>
-            <property name="text">
-                <string>Cancel</string>
-            </property>
-            <property name="accel">
-                <string></string>
-            </property>
-            <property name="default">
-                <bool>true</bool>
-            </property>
-        </widget>
-        <widget class="KPushButton">
-            <property name="name">
-                <cstring>m_ApplyButton</cstring>
-            </property>
-            <property name="geometry">
-                <rect>
-                    <x>610</x>
-                    <y>0</y>
-                    <width>110</width>
-                    <height>31</height>
-                </rect>
-            </property>
-            <property name="text">
-                <string>&amp;Apply</string>
-            </property>
-            <property name="accel">
-                <string>Alt+A</string>
-            </property>
-        </widget>
+    <property name="shortcut">
+     <string/>
+    </property>
+    <property name="default">
+     <bool>true</bool>
+    </property>
+   </widget>
+   <widget class="KPushButton" name="m_ApplyButton">
+    <property name="geometry">
+     <rect>
+      <x>610</x>
+      <y>0</y>
+      <width>110</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>&amp;Apply</string>
+    </property>
+    <property name="shortcut">
+     <string>Alt+A</string>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QGroupBox" name="groupBox33">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>10</y>
+     <width>730</width>
+     <height>540</height>
+    </rect>
+   </property>
+   <property name="title">
+    <string>Hide from ...</string>
+   </property>
+   <widget class="QCheckBox" name="m_EncriptionNotSupporedHostsCheckBox">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>60</y>
+      <width>700</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Encr&amp;yption not supported hosts.</string>
+    </property>
+    <property name="shortcut">
+     <string>Alt+Y</string>
+    </property>
+   </widget>
+   <widget class="QCheckBox" name="m_HiddenHostsCheckBox">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>30</y>
+      <width>700</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Hidde&amp;n hosts.</string>
+    </property>
+    <property name="shortcut">
+     <string>Alt+N</string>
+    </property>
+   </widget>
+   <widget class="QGroupBox" name="groupBox35">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>90</y>
+      <width>710</width>
+      <height>440</height>
+     </rect>
+    </property>
+    <property name="title">
+     <string>Specified hosts</string>
+    </property>
+    <widget class="KPushButton" name="m_DeleteAddressButton">
+     <property name="geometry">
+      <rect>
+       <x>360</x>
+       <y>90</y>
+       <width>40</width>
+       <height>30</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>&lt;&lt;</string>
+     </property>
     </widget>
-    <widget class="QGroupBox">
-        <property name="name">
-            <cstring>groupBox33</cstring>
-        </property>
-        <property name="geometry">
-            <rect>
-                <x>10</x>
-                <y>10</y>
-                <width>730</width>
-                <height>540</height>
-            </rect>
-        </property>
-        <property name="title">
-            <string>Hide from ...</string>
-        </property>
-        <widget class="QCheckBox">
-            <property name="name">
-                <cstring>m_EncriptionNotSupporedHostsCheckBox</cstring>
-            </property>
-            <property name="geometry">
-                <rect>
-                    <x>20</x>
-                    <y>60</y>
-                    <width>700</width>
-                    <height>20</height>
-                </rect>
-            </property>
-            <property name="text">
-                <string>Encr&amp;yption not supported hosts.</string>
-            </property>
-            <property name="accel">
-                <string>Alt+Y</string>
-            </property>
-        </widget>
-        <widget class="QCheckBox">
-            <property name="name">
-                <cstring>m_HiddenHostsCheckBox</cstring>
-            </property>
-            <property name="geometry">
-                <rect>
-                    <x>20</x>
-                    <y>30</y>
-                    <width>700</width>
-                    <height>20</height>
-                </rect>
-            </property>
-            <property name="text">
-                <string>Hidde&amp;n hosts.</string>
-            </property>
-            <property name="accel">
-                <string>Alt+N</string>
-            </property>
-        </widget>
-        <widget class="QGroupBox">
-            <property name="name">
-                <cstring>groupBox35</cstring>
-            </property>
-            <property name="geometry">
-                <rect>
-                    <x>10</x>
-                    <y>90</y>
-                    <width>710</width>
-                    <height>440</height>
-                </rect>
-            </property>
-            <property name="title">
-                <string>Specified hosts</string>
-            </property>
-            <widget class="KPushButton">
-                <property name="name">
-                    <cstring>m_DeleteAddressButton</cstring>
-                </property>
-                <property name="geometry">
-                    <rect>
-                        <x>360</x>
-                        <y>90</y>
-                        <width>40</width>
-                        <height>30</height>
-                    </rect>
-                </property>
-                <property name="text">
-                    <string>&lt;&lt;</string>
-                </property>
-            </widget>
-            <widget class="KPushButton">
-                <property name="name">
-                    <cstring>m_AddAddressButton</cstring>
-                </property>
-                <property name="geometry">
-                    <rect>
-                        <x>360</x>
-                        <y>50</y>
-                        <width>40</width>
-                        <height>31</height>
-                    </rect>
-                </property>
-                <property name="text">
-                    <string>&gt;&gt;</string>
-                </property>
-            </widget>
-            <widget class="KListBox">
-                <property name="name">
-                    <cstring>m_AddressListBox</cstring>
-                </property>
-                <property name="geometry">
-                    <rect>
-                        <x>410</x>
-                        <y>50</y>
-                        <width>290</width>
-                        <height>380</height>
-                    </rect>
-                </property>
-            </widget>
-            <widget class="QCheckBox">
-                <property name="name">
-                    <cstring>m_EnableHideFromSpecifiedHostsCheckBox</cstring>
-                </property>
-                <property name="geometry">
-                    <rect>
-                        <x>10</x>
-                        <y>30</y>
-                        <width>690</width>
-                        <height>20</height>
-                    </rect>
-                </property>
-                <property name="text">
-                    <string>Enable hide fro&amp;m specified hosts.</string>
-                </property>
-                <property name="accel">
-                    <string>Alt+M</string>
-                </property>
-            </widget>
-            <widget class="QLabel">
-                <property name="name">
-                    <cstring>m_AddressLabel</cstring>
-                </property>
-                <property name="geometry">
-                    <rect>
-                        <x>20</x>
-                        <y>50</y>
-                        <width>320</width>
-                        <height>21</height>
-                    </rect>
-                </property>
-                <property name="text">
-                    <string>IP Address</string>
-                </property>
-            </widget>
-            <widget class="KLineEdit">
-                <property name="name">
-                    <cstring>m_AddressEditbox</cstring>
-                </property>
-                <property name="geometry">
-                    <rect>
-                        <x>10</x>
-                        <y>70</y>
-                        <width>340</width>
-                        <height>25</height>
-                    </rect>
-                </property>
-            </widget>
-            <widget class="KPushButton">
-                <property name="name">
-                    <cstring>m_CopyIPAddressButton</cstring>
-                </property>
-                <property name="geometry">
-                    <rect>
-                        <x>130</x>
-                        <y>400</y>
-                        <width>221</width>
-                        <height>31</height>
-                    </rect>
-                </property>
-                <property name="text">
-                    <string>Copy to IP Address</string>
-                </property>
-            </widget>
-            <widget class="KListView">
-                <property name="name">
-                    <cstring>m_HostsListView</cstring>
-                </property>
-                <property name="geometry">
-                    <rect>
-                        <x>10</x>
-                        <y>130</y>
-                        <width>340</width>
-                        <height>260</height>
-                    </rect>
-                </property>
-                <property name="allColumnsShowFocus">
-                    <bool>true</bool>
-                </property>
-                <property name="showSortIndicator">
-                    <bool>true</bool>
-                </property>
-                <property name="resizeMode">
-                    <enum>AllColumns</enum>
-                </property>
-            </widget>
-            <widget class="QLabel">
-                <property name="name">
-                    <cstring>m_LoginHostLabel</cstring>
-                </property>
-                <property name="geometry">
-                    <rect>
-                        <x>20</x>
-                        <y>100</y>
-                        <width>330</width>
-                        <height>21</height>
-                    </rect>
-                </property>
-                <property name="text">
-                    <string>Login host</string>
-                </property>
-            </widget>
-        </widget>
+    <widget class="KPushButton" name="m_AddAddressButton">
+     <property name="geometry">
+      <rect>
+       <x>360</x>
+       <y>50</y>
+       <width>40</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>&gt;&gt;</string>
+     </property>
     </widget>
-</widget>
-<images>
-    <image name="image0">
-        <data format="PNG" length="805">89504e470d0a1a0a0000000d4948445200000016000000160806000000c4b46c3b000002ec49444154388d9d944d6813511485bfda2c5ea042461a48248b74a174a04247bab011c1a46e4c1134c585d19522825544d495a282b8527775e5dfc6d48575dcd811d4d68568056dba5032458a1614934549061dcc2885e7c27692e964fcbb7061e6dcf3cebcfbde3dd32641d20b2469c42c4ccea6a9a1f03f91e2451bb21729df21a56cca22f27a62bf04f95f39464e2277ae105dce12f202a7ff4a48eb999669266484aa2bbc2ab09f04889d350fa4f694b8d437cc61aeba587adb3813fd034c32c008475c3c14282c80755ee8f9a9cd28c31675040e82519167a85f47b9630190c570b9c13bfe045cf242ca6a0b6c08e320a8a1769b0c7313e6fccb57d56d41fdabf0a235281f8e71853381df05b8bceb245c6bbc9fe4b2fb1c329e64d10fe528f4ed5bd28c70e3611eeb499c0a718fd0b89965b0db8059c83085766ec6ad15d19824d3208f919320653fcf659a09a9311d78fb91ceaa7c104bfb0a9f89c924ef3de3e65ede14a9dfb60d90ddaea34c393edc20cb3c5d1e2c782a9642883ab7477f1dd3504287a7de7a811c4718f1ad0b144e6f9d646f7f81033d3721d79af3812417b98043d85f5c3ee39539fd4893b2efcfb63bddc29d2d9da7f694a85615369e9d81d70dbc848a4215852a833c086ad40d9ff0f0c1ab282f2dcfd017d118641c0b050b857a53eb590c62947dc2213569726257c3fbf9dda3700e585866807134cb50935dbb1225780bdc82143314d9c88bde1453e95f73acde3709850544224d3f9b593c6e2af66a10114468e284c29437c588dfaf8005712a748932e6924e58b4380ac769b277086634cdd766cd8aa0db7bb9b7234f59084a42a0ab2ace6263c6db8f7546cfbfd9b0c105e64bebf9f8e903c6171b7d6d9267228cfddd26ba26eaddc00fc1c29a28a3f128c74b264f5fbfc2fe66433b643e57687bdfadcac29ebc6791655914ee14a8542a00880e41ac33463c1127b325c3ca30e74cf4bbbacb1d5fa4b53080633b188f0d9c4507f3ade9abff2ec680b66f1d4256125d81a4fa621d736efe9f8453c04f125193e251e3ae9b0000000049454e44ae426082</data>
-    </image>
-</images>
-<connections>
-    <connection>
-        <sender>m_AddAddressButton</sender>
-        <signal>clicked()</signal>
-        <receiver>HideConfigDialogBase</receiver>
-        <slot>slotAddHideAddressClicked()</slot>
-    </connection>
-    <connection>
-        <sender>m_ApplyButton</sender>
-        <signal>clicked()</signal>
-        <receiver>HideConfigDialogBase</receiver>
-        <slot>slotApplyClicked()</slot>
-    </connection>
-    <connection>
-        <sender>m_CancelButton</sender>
-        <signal>clicked()</signal>
-        <receiver>HideConfigDialogBase</receiver>
-        <slot>slotCancelClicked()</slot>
-    </connection>
-    <connection>
-        <sender>m_DeleteAddressButton</sender>
-        <signal>clicked()</signal>
-        <receiver>HideConfigDialogBase</receiver>
-        <slot>slotDeleteHideAddressClicked()</slot>
-    </connection>
-    <connection>
-        <sender>m_OKButton</sender>
-        <signal>clicked()</signal>
-        <receiver>HideConfigDialogBase</receiver>
-        <slot>slotOKClicked()</slot>
-    </connection>
-    <connection>
-        <sender>m_EnableHideFromSpecifiedHostsCheckBox</sender>
-        <signal>clicked()</signal>
-        <receiver>HideConfigDialogBase</receiver>
-        <slot>slotEnableSpecifiedHostClicked()</slot>
-    </connection>
-    <connection>
-        <sender>m_CopyIPAddressButton</sender>
-        <signal>clicked()</signal>
-        <receiver>HideConfigDialogBase</receiver>
-        <slot>slotCopyIPAddressClicked()</slot>
-    </connection>
-    <connection>
-        <sender>m_HostsListView</sender>
-        <signal>selectionChanged()</signal>
-        <receiver>HideConfigDialogBase</receiver>
-        <slot>slotIPAddressListViewSelectionChanged()</slot>
-    </connection>
-</connections>
-<tabstops>
-    <tabstop>m_HiddenHostsCheckBox</tabstop>
-    <tabstop>m_EncriptionNotSupporedHostsCheckBox</tabstop>
-    <tabstop>m_EnableHideFromSpecifiedHostsCheckBox</tabstop>
-    <tabstop>m_AddressEditbox</tabstop>
-    <tabstop>m_HostsListView</tabstop>
-    <tabstop>m_AddAddressButton</tabstop>
-    <tabstop>m_DeleteAddressButton</tabstop>
-    <tabstop>m_AddressListBox</tabstop>
-    <tabstop>m_CopyIPAddressButton</tabstop>
-    <tabstop>m_OKButton</tabstop>
-    <tabstop>m_CancelButton</tabstop>
-    <tabstop>m_ApplyButton</tabstop>
-</tabstops>
-<slots>
-    <slot>slotAddHideAddressClicked()</slot>
-    <slot>slotDeleteHideAddressClicked()</slot>
-    <slot>slotOKClicked()</slot>
-    <slot>slotCancelClicked()</slot>
-    <slot>slotApplyClicked()</slot>
-    <slot>slotEnableSpecifiedHostClicked()</slot>
-    <slot>slotCopyIPAddressClicked()</slot>
-    <slot>slotIPAddressListViewSelectionChanged()</slot>
-</slots>
-<layoutdefaults spacing="6" margin="11"/>
-<includehints>
-    <includehint>kpushbutton.h</includehint>
-    <includehint>kpushbutton.h</includehint>
-    <includehint>kpushbutton.h</includehint>
-    <includehint>kpushbutton.h</includehint>
-    <includehint>kpushbutton.h</includehint>
-    <includehint>klistbox.h</includehint>
-    <includehint>klineedit.h</includehint>
-    <includehint>kpushbutton.h</includehint>
-    <includehint>klistview.h</includehint>
-</includehints>
-</UI>
+    <widget class="KListWidget" name="m_AddressListBox">
+     <property name="geometry">
+      <rect>
+       <x>410</x>
+       <y>50</y>
+       <width>290</width>
+       <height>380</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QCheckBox" name="m_EnableHideFromSpecifiedHostsCheckBox">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>30</y>
+       <width>690</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Enable hide fro&amp;m specified hosts.</string>
+     </property>
+     <property name="shortcut">
+      <string>Alt+M</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="m_AddressLabel">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>50</y>
+       <width>320</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>IP Address</string>
+     </property>
+     <property name="wordWrap">
+      <bool>false</bool>
+     </property>
+    </widget>
+    <widget class="KLineEdit" name="m_AddressEditbox">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>70</y>
+       <width>340</width>
+       <height>31</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="KPushButton" name="m_CopyIPAddressButton">
+     <property name="geometry">
+      <rect>
+       <x>130</x>
+       <y>400</y>
+       <width>221</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Copy to IP Address</string>
+     </property>
+    </widget>
+    <widget class="QTreeView" name="m_HostsListView">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>130</y>
+       <width>340</width>
+       <height>260</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QLabel" name="m_LoginHostLabel">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>100</y>
+       <width>330</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Login host</string>
+     </property>
+     <property name="wordWrap">
+      <bool>false</bool>
+     </property>
+    </widget>
+   </widget>
+  </widget>
+ </widget>
+ <layoutdefault spacing="6" margin="11"/>
+ <customwidgets>
+  <customwidget>
+   <class>KListWidget</class>
+   <extends>QListWidget</extends>
+   <header>klistwidget.h</header>
+  </customwidget>
+  <customwidget>
+   <class>KPushButton</class>
+   <extends>QPushButton</extends>
+   <header>kpushbutton.h</header>
+  </customwidget>
+  <customwidget>
+   <class>KLineEdit</class>
+   <extends>QLineEdit</extends>
+   <header>klineedit.h</header>
+  </customwidget>
+ </customwidgets>
+ <tabstops>
+  <tabstop>m_HiddenHostsCheckBox</tabstop>
+  <tabstop>m_EncriptionNotSupporedHostsCheckBox</tabstop>
+  <tabstop>m_EnableHideFromSpecifiedHostsCheckBox</tabstop>
+  <tabstop>m_AddressEditbox</tabstop>
+  <tabstop>m_HostsListView</tabstop>
+  <tabstop>m_AddAddressButton</tabstop>
+  <tabstop>m_DeleteAddressButton</tabstop>
+  <tabstop>m_AddressListBox</tabstop>
+  <tabstop>m_CopyIPAddressButton</tabstop>
+  <tabstop>m_OKButton</tabstop>
+  <tabstop>m_CancelButton</tabstop>
+  <tabstop>m_ApplyButton</tabstop>
+ </tabstops>
+ <includes>
+  <include location="local">kpushbutton.h</include>
+  <include location="local">kpushbutton.h</include>
+  <include location="local">kpushbutton.h</include>
+  <include location="local">kpushbutton.h</include>
+  <include location="local">kpushbutton.h</include>
+  <include location="local">klistwidget.h</include>
+  <include location="local">klineedit.h</include>
+  <include location="local">kpushbutton.h</include>
+  <include location="local">qtreeview.h</include>
+ </includes>
+ <resources/>
+ <connections>
+  <connection>
+   <sender>m_AddAddressButton</sender>
+   <signal>clicked()</signal>
+   <receiver>HideConfigDialogBase</receiver>
+   <slot>slotAddHideAddressClicked()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>m_ApplyButton</sender>
+   <signal>clicked()</signal>
+   <receiver>HideConfigDialogBase</receiver>
+   <slot>slotApplyClicked()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>m_CancelButton</sender>
+   <signal>clicked()</signal>
+   <receiver>HideConfigDialogBase</receiver>
+   <slot>slotCancelClicked()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>m_DeleteAddressButton</sender>
+   <signal>clicked()</signal>
+   <receiver>HideConfigDialogBase</receiver>
+   <slot>slotDeleteHideAddressClicked()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>m_OKButton</sender>
+   <signal>clicked()</signal>
+   <receiver>HideConfigDialogBase</receiver>
+   <slot>slotOKClicked()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>m_EnableHideFromSpecifiedHostsCheckBox</sender>
+   <signal>clicked()</signal>
+   <receiver>HideConfigDialogBase</receiver>
+   <slot>slotEnableSpecifiedHostClicked()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>m_CopyIPAddressButton</sender>
+   <signal>clicked()</signal>
+   <receiver>HideConfigDialogBase</receiver>
+   <slot>slotCopyIPAddressClicked()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>m_HostsListView</sender>
+   <signal>activated(QModelIndex &amp;)</signal>
+   <receiver>HideConfigDialogBase</receiver>
+   <slot>slotIPAddressListViewSelectionChanged(QModelIndex &amp;)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+</ui>

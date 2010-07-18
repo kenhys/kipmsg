@@ -1,5 +1,5 @@
 /***************************************************************************
- *   Copyright (C) 2006-2009 by nikikuni                                        *
+ *   Copyright (C) 2006-2010 by nikikuni                                   *
  *   nikikuni@yahoo.co.jp                                                  *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
@@ -22,14 +22,16 @@
 #ifndef _ABOUT_H_
 #define _ABOUT_H_
 
-#include "aboutbase.h"
+#include "ui_aboutbase.h"
+//#include "aboutbase.h"
 
-class KIpMessengerAboutDialog : public KIpMessengerAboutDialogBase
+//class KIpMessengerAboutDialog : public KIpMessengerAboutDialogBase
+class KIpMessengerAboutDialog : public KDialog, private Ui::KIpMessengerAboutDialogBase
 {
     Q_OBJECT
 
 public:
-    KIpMessengerAboutDialog(QWidget* parent = 0, const char* name = 0, WFlags fl = 0 );
+    KIpMessengerAboutDialog(QWidget* parent = 0, const char* name = 0, Qt::WindowFlags fl = 0 );
     ~KIpMessengerAboutDialog();
     /*$PUBLIC_FUNCTIONS$*/
 
